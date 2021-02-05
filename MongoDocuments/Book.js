@@ -15,7 +15,7 @@ const BookSchema = mongoose.Schema({
     },
     
     negotiable:{
-        type:boolen,
+        type:Boolean,
         required:true
     },
     
