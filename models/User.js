@@ -13,15 +13,9 @@ const UserSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    college:{
-        type:String,
-        required:true
-    },
-    location:{
-        type:String,
-        required:true
-    },
-    
+    college:String,
+    location:String,
+    soldAds:Number
 })
 
 const User = mongoose.model('User',UserSchema)
