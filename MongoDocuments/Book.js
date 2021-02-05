@@ -14,6 +14,21 @@ const BookSchema = mongoose.Schema({
         required:true
     },
     
+    negotiable:{
+        type:boolen,
+        required:true
+    },
+    
+    author:{
+        type:String,
+        required:true
+    },
+    
+    edition:{
+        type:String,
+        required:true
+    },
+    
 })
 
 const Book = mongoose.model('Book',BookSchema)
