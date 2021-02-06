@@ -1,12 +1,22 @@
 const mongoose = require('mongoose')
 
 const BookSchema = mongoose.Schema({
-    ownerName:String,
+    ownerName:{
+        type:String,
+        required:true,
+        minlength:[3,"Ownername must be at least 3 characters long"],
+        maxlength:[20,"Ownername is limited to 20 chracters"],
+    },
     name:{              //name of book
         type:String,
-        required:true
+        required:true,
+        minlength:[3,"name must be at least 3 characters long"],
+        maxlength:[20,"name is limited to 20 chracters"],
     },
-    subject:String,     //subject -> Engineering subject
+    subject:{           //subject -> Engineering subject
+        type:String,  
+        required:true 
+    },
     price:{     //price of the book
         type:Number,
         required:true

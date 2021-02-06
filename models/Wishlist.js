@@ -10,23 +10,15 @@ const WishListSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    subject:String,     //subject -> Engineering subject
+    subject:{           //subject -> Engineering subject
+        type:String,  
+        required:true 
+    },
     price:{     //price of the book
         type:Number,
         required:true
     },
-    condition:{  //condition of the book ->New or Used
-        type:String,
-        required:true
-    },
-    type:{          //whether it is for-> Sell Or Exchange
-        type:String,  
-        required:true
-    },
-    negotiable:{    //nogotitiable->true or false
-        type:Boolean,
-        required:true
-    },
+
     selectedFile:{
         type:String,  //upload photo of Book(currently only one)  
         required:true
@@ -40,10 +32,7 @@ const WishListSchema = mongoose.Schema({
         ref: 'User'
     },
     tags:[String],     //tags for book
-    noOfPages:{         //no of pages in the book
-        type:Number,
-        required:true
-    },
+    
     edition:{           //edition of the book
         type:String,
         required:true
