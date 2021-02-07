@@ -23,7 +23,10 @@ const WishListSchema = mongoose.Schema({
         required:true
     },
     
-    tags:[String],     //tags for book
+    tags:{
+        type:String,  //tags for book 
+        required:true
+    },    
     
     edition:{           //edition of the book
         type:String,
