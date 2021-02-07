@@ -10,12 +10,14 @@ const WishListSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    subject:String,     //subject -> Engineering subject
+    subject:{           //subject -> Engineering subject
+        type:String,  
+        required:true 
+    },
     price:{     //price of the book
         type:Number,
         required:true
     },
-    
     selectedFile:{
         type:String,  //upload photo of Book(currently only one)  
         required:true
