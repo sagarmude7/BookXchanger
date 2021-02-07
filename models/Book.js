@@ -6,7 +6,7 @@ const BookSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    subject:String,     //subject -> Engineering subject
+    subject:String,     //subject -> Engineering subject/Branch
     price:{     //price of the book
         type:Number,
         required:true
@@ -19,8 +19,8 @@ const BookSchema = mongoose.Schema({
         type:String,  
         required:true
     },
-    negotiable:{    //nogotitiable->true or false
-        type:Boolean,
+    price_type:{    //nogotitiable->Fixed, Negotiable, Price on call, Don
+        type:String,
         required:true
     },
     selectedFile:{
@@ -35,14 +35,13 @@ const BookSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    tags:[String],     //tags for book
-    noOfPages:{         //no of pages in the book
-        type:Number,
+    tags:{
+        type:String,  //tags for book 
         required:true
-    },
+    },     
+    
     edition:{           //edition of the book
         type:String,
-        required:true
     },
     description:String, //description of the book
     createdAt:{         //created At

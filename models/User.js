@@ -15,7 +15,8 @@ const UserSchema = mongoose.Schema({
     },
     college:String,
     location:String,
-    soldAds:Number
+    soldAds:Number,
+    listedAds:Number
 })
 
 const User = mongoose.model('User',UserSchema)
