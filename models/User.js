@@ -1,10 +1,22 @@
 const mongoose = require('mongoose')
 
 const UserSchema = mongoose.Schema({
-    name:{
+    username:{
         type:String,
         required:true,
         minlength:[3,"name must be at least 3 characters long"],
+        maxlength:[20,"name is limited to 20 chracters"],
+    },
+    firstName:{
+        type:String,
+        required:true,
+        minlength:[1,"name must be at least 3 characters long"],
+        maxlength:[20,"name is limited to 20 chracters"],
+    },
+    lastName:{
+        type:String,
+        required:true,
+        minlength:[1,"name must be at least 3 characters long"],
         maxlength:[20,"name is limited to 20 chracters"],
     },
     email:{
@@ -25,8 +37,14 @@ const UserSchema = mongoose.Schema({
         default:Date.now(),
         required:true
     },
-    college:String,
-    location:String,
+    college:{
+        type:String,
+        required:true
+    },
+    location:{
+        type:String,
+        required:true
+    },
     soldAds:Number,
     listedAds:Number
 })
