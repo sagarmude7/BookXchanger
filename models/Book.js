@@ -1,17 +1,16 @@
 const mongoose = require('mongoose')
-
-const BookSchema = mongoose.Schema({
+const bookSchema = mongoose.Schema({
     ownerName:{
         type:String,
         required:true,
         minlength:[3,"Ownername must be at least 3 characters long"],
-        maxlength:[20,"Ownername is limited to 20 chracters"],
+        maxlength:[35,"Ownername is limited to 35 chracters"],
     },
     name:{              //name of book
         type:String,
         required:true,
         minlength:[3,"name must be at least 3 characters long"],
-        maxlength:[20,"name is limited to 20 chracters"],
+        maxlength:[35,"name is limited to 35 chracters"],
     },
     subject:{           //subject -> Engineering subject
         type:String,  
@@ -49,18 +48,28 @@ const BookSchema = mongoose.Schema({
         type:String,  //tags for book 
         required:true
     },     
-    
+     
+    noOfPages:{         //no of pages in the book
+        type:Number,
+        required:true
+    },
     edition:{           //edition of the book
         type:String,
+        required:true
     },
     description:String, //description of the book
     createdAt:{         //created At
+        type:Date,
+        default:Date.now()
+    },
+    updatedAt:{         //created At
         type:Date,
         default:Date.now()
     }
     
 })
 
-const Book = mongoose.model('Book',BookSchema)
+module.exports.bookSchema = bookSchema;
+module.exports.bookModel = mongoose.model('Book', bookSchema);
 
-module.exports = Book
+ 

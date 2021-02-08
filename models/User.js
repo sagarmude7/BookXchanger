@@ -1,23 +1,11 @@
 const mongoose = require('mongoose')
-
+const { bookSchema , bookModel } = require('./Book.js');
 const UserSchema = mongoose.Schema({
-    username:{
+    name:{
         type:String,
         required:true,
         minlength:[3,"name must be at least 3 characters long"],
-        maxlength:[20,"name is limited to 20 chracters"],
-    },
-    firstName:{
-        type:String,
-        required:true,
-        minlength:[1,"name must be at least 3 characters long"],
-        maxlength:[20,"name is limited to 20 chracters"],
-    },
-    lastName:{
-        type:String,
-        required:true,
-        minlength:[1,"name must be at least 3 characters long"],
-        maxlength:[20,"name is limited to 20 chracters"],
+        maxlength:[35,"name is limited to 35 chracters"],
     },
     email:{
         type:String,
@@ -46,9 +34,9 @@ const UserSchema = mongoose.Schema({
         required:true
     },
     soldAds:Number,
-    listedAds:Number
+    Books: [bookSchema]
 })
 
 const User = mongoose.model('User',UserSchema)
 
-module.exports = User
+module.exports = User;
