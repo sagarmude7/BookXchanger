@@ -35,6 +35,8 @@ const WishListSchema = mongoose.Schema({
     description:String, //description of the book
 })
 
+
 const WishList = mongoose.model('WishList',WishListSchema)
 
+module.exports.WishListSchema = WishListSchema
 module.exports = WishList
