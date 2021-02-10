@@ -16,6 +16,10 @@ const bookSchema = mongoose.Schema({
         type:String,  
         required:true 
     },
+    branch:{
+        type:String,
+        required:true
+    },
     price:{     //price of the book
         type:Number,
         required:true
