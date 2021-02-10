@@ -51,12 +51,8 @@ const bookSchema = mongoose.Schema({
     tags:{
         type:String,  //tags for book 
         required:true
-    },     
-     
-    noOfPages:{         //no of pages in the book
-        type:Number,
-        required:true
-    },
+    },      
+    noOfPages:Number,
     edition:{           //edition of the book
         type:String,
         required:true
