@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const { bookSchema , bookModel } = require('./Book.js');
+const { bookSchema} = require('./Book.js');
+const { WishListSchema} = require('./WishList.js');
 const UserSchema = mongoose.Schema({
     name:{
         type:String,
@@ -34,7 +35,8 @@ const UserSchema = mongoose.Schema({
         required:true
     },
     soldAds:Number,
-    Books: [bookSchema]
+    Books: [bookSchema],
+    WishList:[WishListSchema]
 })
 
 const User = mongoose.model('User',UserSchema)
