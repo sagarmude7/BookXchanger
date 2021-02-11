@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const WishListSchema = mongoose.Schema({
     bookId:String,
-    user:{
+    adder:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },

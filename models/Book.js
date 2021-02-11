@@ -1,12 +1,8 @@
 const mongoose = require('mongoose')
-const bookSchema = mongoose.Schema({
-    ownerName:{
-        type:String,
-        required:true,
-        minlength:[3,"Ownername must be at least 3 characters long"],
-        maxlength:[35,"Ownername is limited to 35 chracters"],
-    },
-    name:{              //name of book
+
+const BookSchema = mongoose.Schema({
+    ownerName:String,
+    bookName:{              //name of book
         type:String,
         required:true,
         minlength:[3,"name must be at least 3 characters long"],
@@ -18,6 +14,10 @@ const bookSchema = mongoose.Schema({
     },
     branch:{
         type:String,
+        required:true
+    },
+    subject:{
+        type:String,     //subject -> Engineering subject
         required:true
     },
     price:{     //price of the book
@@ -44,12 +44,17 @@ const bookSchema = mongoose.Schema({
         type:Number,
         required:true
     },    
-    author: {
+    owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    tags:{
-        type:String,  //tags for book 
+    author:{
+        type:String,
+        required:true
+    },
+    tags:[String],     //tags for book
+    noOfPages:{         //no of pages in the book
+        type:Number,
         required:true
     },      
     noOfPages:Number,
