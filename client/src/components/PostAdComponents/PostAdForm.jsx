@@ -1,9 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Container,Grow,Grid,Paper,Typography,TextField,Button,Select,MenuItem,FormControl,InputLabel} from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import FileBase from 'react-file-base64'
+import {useDispatch,useSelector} from 'react-redux'
 import useStyles from './style'
+import {createBookAd} from '../../actions/books'
 
 const initialState={
     bookName:'',subject:'',price:'',condition:'',author:'',priceType:'',mrp:'',branch:'',tags:[],noOfPages:'',edition:'',description:''
@@ -11,18 +13,29 @@ const initialState={
 const PostAdForm = () => {
     const classes = useStyles()
     const [next,setNext] = useState(false)
-
+    const dispatch = useDispatch()
     const [bookData,setBookData] = useState(initialState)
+    const books = useSelector(state=>state.books)
 
     const handleChange=(e)=>{
         setBookData({...bookData,[e.target.name]:e.target.value})
+    }
+
+    useEffect(()=>{
+        console.log(books)
+    },[books])
+
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        console.log(bookData)
+        dispatch(createBookAd({...bookData,price:Number(bookData.price),mrp:Number(bookData.mrp),noOfPages:Number(bookData.noOfPages)}))
     }
 
     return (
         <Grow in>
             <Container>
             <Paper className={classes.paper}>
-                <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} >
+                <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography color="secondary" variant="h6">Post a Book for Selling</Typography>
                     {!next?(    
                         <>         

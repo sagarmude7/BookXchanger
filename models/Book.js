@@ -1,12 +1,9 @@
 const mongoose = require('mongoose')
 
 const BookSchema = mongoose.Schema({
-    ownerName:String,
     bookName:{              //name of book
         type:String,
-        required:true,
-        minlength:[3,"name must be at least 3 characters long"],
-        maxlength:[35,"name is limited to 35 chracters"],
+        required:true
     },
     subject:{           //subject -> Engineering subject
         type:String,  
@@ -14,10 +11,6 @@ const BookSchema = mongoose.Schema({
     },
     branch:{
         type:String,
-        required:true
-    },
-    subject:{
-        type:String,     //subject -> Engineering subject
         required:true
     },
     price:{     //price of the book
@@ -28,26 +21,14 @@ const BookSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    type:{          //whether it is for-> Sell Or Exchange
-        type:String,  
-        required:true
-    },
-    price_type:{    //nogotitiable->Fixed, Negotiable, Price on call, Don
+    priceType:{    //nogotitiable->Fixed, Negotiable, Price on call, Don
         type:String,
         required:true
     },
-    selectedFile:{
-        type:String,  //upload photo of Book(currently only one)  
-        required:true
-    },
-    MRP:{               //MRP of book
+    mrp:{               //MRP of book
         type:Number,
         required:true
     },    
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
     author:{
         type:String,
         required:true
@@ -57,7 +38,6 @@ const BookSchema = mongoose.Schema({
         type:Number,
         required:true
     },      
-    noOfPages:Number,
     edition:{           //edition of the book
         type:String,
         required:true
@@ -74,7 +54,7 @@ const BookSchema = mongoose.Schema({
     
 })
 
-module.exports.bookSchema = bookSchema;
-module.exports.bookModel = mongoose.model('Book', bookSchema);
+module.exports.BookSchema = BookSchema;
+module.exports.Book = mongoose.model('Book', BookSchema);
 
  

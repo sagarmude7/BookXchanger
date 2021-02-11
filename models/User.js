@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { bookSchema} = require('./Book.js');
+const { BookSchema} = require('./Book.js');
 const { WishListSchema} = require('./WishList.js');
 const UserSchema = mongoose.Schema({
     name:{
@@ -35,7 +35,7 @@ const UserSchema = mongoose.Schema({
         required:true
     },
     soldAds:Number,
-    Books: [bookSchema],
+    Books: [BookSchema],
     WishList:[WishListSchema]
 })
 
