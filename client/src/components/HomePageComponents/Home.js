@@ -1,13 +1,13 @@
 import React from 'react'
 import Navbar from "../Navbar/Navbar.js"
-import AllBooks from '../AllBooksComponents/AllBooks'
+import Description from "./Description/Description.js"
 const Home = () => {
     return (
         <div>
             <Navbar />
-            <AllBooks/>
+            <Description />
         </div>
     )
 }
 
-export default Home
+export default Home;

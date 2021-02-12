@@ -4,12 +4,12 @@ const navData = [
         href : "/"
     },
     {
-        label : "About Us",
-        href : "/about"
+        label : "Post Ad",
+        href : "/add"
     },
     {
-        label : "Contact Us",
-        href : "/contact"
+        label : "All Books",
+        href : "/book"
     },
     {
         label : "Login",

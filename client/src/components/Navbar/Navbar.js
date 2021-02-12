@@ -10,7 +10,7 @@ import navData from "./navData.js";
 import {Link as RouterLink} from "react-router-dom";
 
 const Navbar = () => {
-    const {navBar,logo,menuButton ,toolbar,drawerContainer} = useStyles();
+    const {navBar,appBarSpacer,logo,menuButton ,toolbar,drawerContainer} = useStyles();
     const bookLogo = (
         <Typography varient="h6" component="h1" className={logo}>
             Logo
@@ -120,11 +120,12 @@ const getMenuButtons = () => {
 
 
     return (
-        <header>
-           <AppBar className={navBar}>
+        <>
+           <AppBar className={navBar} position="fixed">            
               {mobileView ? displayMobile() : displayDesktop()}
            </AppBar> 
-        </header>
+           <div className={appBarSpacer}></div>
+        </>
     )
 };
 

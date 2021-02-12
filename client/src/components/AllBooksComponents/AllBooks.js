@@ -14,7 +14,9 @@ const AllBooks = () => {
     },[dispatch])
 
     return (
-        <Grow in>
+        <Grow in>    
+          <h1>No Books added yet...</h1>
+         <Navbar />  
                 <Container>
                 {books.length===0?<CircularProgress/>:(
                     <Grid className={classes.container} container alignItems="stretch" spacing={3}>

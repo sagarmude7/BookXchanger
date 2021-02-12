@@ -5,6 +5,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import FileBase from 'react-file-base64'
 import {useDispatch,useSelector} from 'react-redux'
 import useStyles from './style'
+import Navbar from "../Navbar/Navbar.js"
 import {createBookAd} from '../../actions/books'
 
 const initialState={
@@ -33,7 +34,9 @@ const PostAdForm = () => {
 
     return (
         <Grow in>
+               
             <Container>
+            <Navbar />   
             <Paper className={classes.paper}>
                 <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography color="secondary" variant="h6">Post a Book for Selling</Typography>
