@@ -7,7 +7,8 @@ exports.getBooks = async(req,res)=>{
         const books = await Book.find()
 
         return res.status(200).json(books)
-    }catch(err){
+    }
+    catch(err){
         return res.status(404).json({msg:"No Book Found"})
     }
 }
