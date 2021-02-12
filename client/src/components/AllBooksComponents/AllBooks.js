@@ -19,7 +19,7 @@ const AllBooks = () => {
                 {books.length===0?<CircularProgress/>:(
                     <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                     {books.map((book)=>(
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={3}>
                             <Book key={book._id} book={book}/>
                         </Grid>
                     ))}
