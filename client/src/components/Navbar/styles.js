@@ -7,6 +7,7 @@ const styles = makeStyles(() => ({
             paddingLeft: 0,
         },
         background: "#400CCC",
+        padding: '10px 50px',
     },
     logo :{
         fontWeight : 600,

@@ -121,7 +121,7 @@ const getMenuButtons = () => {
 
     return (
         <header>
-           <AppBar className={navBar}>
+           <AppBar className={navBar} position="static">
               {mobileView ? displayMobile() : displayDesktop()}
            </AppBar> 
         </header>
