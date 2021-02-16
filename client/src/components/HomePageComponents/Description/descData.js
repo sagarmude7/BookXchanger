@@ -15,7 +15,7 @@ var items = [
         heading : "Welcome To BookxChanger3",
         subHeading : "Your personalized old books exchanging Store3",
         description : "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place3",
-        img : 'C:/Users/vishal/Desktop/WebDev/Layouts/Layout1.jpg'
+        img : './images/Book3.jpg'
 
     }
 ]

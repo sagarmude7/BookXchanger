@@ -8,28 +8,24 @@ const AllBooks = () => {
     const dispatch = useDispatch()
     const classes = useStyles()
     const books = useSelector(state=>state.books)
-    useEffect(()=>{
-        //accepts an action call as an argument -> goes to actions folder
-        dispatch(getBooks())
-    },[dispatch])
+
+   
 
     return (
-        <Grow in>    
-          <h1>No Books added yet...</h1>
-         <Navbar />  
-                <Container>
-                {books.length===0?<CircularProgress/>:(
-                    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-                    {books.map((book)=>(
+        <div style={{"marginTop":"200px"}}>
+            <Container>
+            {books.length===0?<CircularProgress/>:(
+                <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                {books.map((book)=>(
                         <Grid item xs={12} sm={3}>
                             <Book key={book._id} book={book}/>
                         </Grid>
-                    ))}
-                    </Grid>
+                ))}
+                </Grid>
                 )
-                }
-                </Container>
-        </Grow>
+            }
+            </Container>
+        </div>
         
             
     )

@@ -29,6 +29,9 @@ const BookSchema = mongoose.Schema({
         type:Number,
         required:true
     },    
+    selectedFile:{
+        type:String
+    },
     author:{
         type:String,
         required:true

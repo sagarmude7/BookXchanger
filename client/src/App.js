@@ -4,6 +4,7 @@ import {Container} from '@material-ui/core'
 import PostAdForm from './components/PostAdComponents/PostAdForm.js'
 import Home from  "./components/HomePageComponents/Home.js"
 import Loading from "./components/Loading/Loading.js"
+import DisplayBooks from './components/AllBooksComponents/AllBooks'
 const App = ()=>{
 
     function displayLoading(){
@@ -19,6 +20,7 @@ const App = ()=>{
             <Container maxWidth="lg">
                 <Switch>
                     <Route exact path="/" component={Home}/>
+                    <Route exact path="/all" component={DisplayBooks}/>
                     <Route exact path="/add" component={PostAdForm}/>                
                 </Switch>
             </Container>

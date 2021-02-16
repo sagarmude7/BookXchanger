@@ -8,7 +8,8 @@ export const getBooks = ()=>async(dispatch)=>{
         console.log(data)
         dispatch({type:FETCH_ALL,payload:data})
     } catch (err) {
-        console.log(err.response.data)
+        console.log("Some error occured")
+        // console.log(err.response.data)
     }
 }
 

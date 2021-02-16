@@ -16,7 +16,7 @@ exports.getBooks = async(req,res)=>{
 exports.createBookAd = async(req,res)=>{
     const book = req.body
     console.log(book);
-    const newBook = new Book(book)
+    const newBook = new Book({...book,createdAt:new Date().toISOString()})
     console.log(newBook)
     try {
         await newBook.save()
