@@ -10,15 +10,10 @@ const SearchBox = () => {
        setIsChange(true);
         setInputValue(e.target.value);
     }
-   
     const filteredbooks = 
         bookData.filter(book => {
         return book.name.toLowerCase().includes(inputValue.toLowerCase());
-    })
- 
-            
-            
- 
+    });           
     return ( 
         <>
         <div className="searchBox">
