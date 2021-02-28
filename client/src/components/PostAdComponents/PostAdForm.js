@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {Container,Grow,Grid,Paper,Typography,TextField,Button,Select,MenuItem,FormControl,InputLabel} from '@material-ui/core'
+import {useHistory} from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import FileBase from 'react-file-base64'
@@ -8,11 +9,13 @@ import useStyles from './style'
 import Navbar from "../Navbar/Navbar.js"
 import {createBookAd} from '../../actions/books'
 
+
 const initialState={
     bookName:'',subject:'',price:'',condition:'',author:'',priceType:'',mrp:'',branch:'',tags:[],noOfPages:'',edition:'',description:''
 }
 const PostAdForm = () => {
     const classes = useStyles()
+    const history = useHistory()
     const [next,setNext] = useState(false)
     const dispatch = useDispatch()
     const [bookData,setBookData] = useState(initialState)
@@ -30,6 +33,7 @@ const PostAdForm = () => {
         e.preventDefault()
         console.log(bookData)
         dispatch(createBookAd({...bookData,price:Number(bookData.price),mrp:Number(bookData.mrp),noOfPages:Number(bookData.noOfPages)}))
+        history.push('/')
     }
 
     return (
@@ -92,9 +96,7 @@ const PostAdForm = () => {
                                     value={bookData.condition}
                                     name="condition"
                                     >
-                                        <MenuItem value="Used">
-                                            <em>Used</em>
-                                        </MenuItem>
+                                        <MenuItem value="Used">Used</MenuItem>
                                         <MenuItem value="New">New</MenuItem>
                                     </Select>
                                 </FormControl>
@@ -117,7 +119,7 @@ const PostAdForm = () => {
                                             <em>Fixed</em>
                                         </MenuItem>
                                         <MenuItem value="Negotiable">Negotiable</MenuItem>
-                                        <MenuItem value="Price on Meet">Price on Meet</MenuItem>
+                                        <MenuItem value="Price on Call">Price on Call</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -132,6 +134,11 @@ const PostAdForm = () => {
                                         id="contained-button-file"
                                         multiple
                                         type="file"
+                                    />
+                                    <FileBase 
+                                    type="file"
+                                    multiple={false}
+                                    onDone={({base64})=>setBookData({...bookData,selectedFile:base64})}
                                     />
                                     <label htmlFor="contained-button-file">
                                         <Button variant="contained" color="primary" component="span">

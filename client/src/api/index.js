@@ -9,4 +9,9 @@ const fetchBooks = ()=>API.get(`${urlBooks}/all`)
 
 const createBookAd = (formData)=>API.post(`${urlBooks}/add`,formData)
 
-module.exports = {fetchBooks,createBookAd}
+const urlUsers = '/users';
+
+const signUp = (formData)=>API.post(`${urlUsers}/signUp`,formData)
+const signIn = (formData)=>API.post(`${urlUsers}/signIn`,formData)
+
+module.exports = {fetchBooks,createBookAd,signUp,signIn}

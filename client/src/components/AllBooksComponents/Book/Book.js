@@ -11,7 +11,7 @@ const Book = ({book}) => {
     const classes = useStyles()
     return (
         <Card className={classes.card}>
-            <CardMedia className={classes.media} image="" title="" />
+            <CardMedia className={classes.media} image={book.selectedFile} title={book.title} />
             <div className={classes.overlay}>
                 <Typography variant="h6">{book.bookName}</Typography>
                 <Typography variant="body2">{moment(book.createdAt).fromNow()}</Typography>

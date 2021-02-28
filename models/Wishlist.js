@@ -39,4 +39,4 @@ const WishListSchema = mongoose.Schema({
 const WishList = mongoose.model('WishList',WishListSchema)
 
 module.exports.WishListSchema = WishListSchema
-module.exports = WishList
+module.exports.WishList = WishList

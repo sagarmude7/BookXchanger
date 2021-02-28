@@ -7,6 +7,8 @@ export default (books=[],action)=>{
             return action.payload
         case CREATE:
             return [...books,action.payload]
+        case 'UPDATE_BOOKS':
+            return action.payload
         default:
             return books
     }
