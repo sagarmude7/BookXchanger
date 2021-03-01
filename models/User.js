@@ -1,12 +1,11 @@
 const mongoose = require('mongoose')
 const { BookSchema} = require('./Book.js');
 const { WishListSchema} = require('./WishList.js');
+
 const UserSchema = mongoose.Schema({
     name:{
         type:String,
-        required:true,
-        minlength:[3,"name must be at least 3 characters long"],
-        maxlength:[35,"name is limited to 35 chracters"],
+        required:true
     },
     email:{
         type:String,
@@ -17,12 +16,11 @@ const UserSchema = mongoose.Schema({
         required:true
     },
     createdAt :{
-        type: Date(),
+        type: Date,
         default:Date.now(),
-        required:true
     },
     updatedAt :{
-        type: Date(),
+        type: Date,
         default:Date.now(),
         required:true
     },

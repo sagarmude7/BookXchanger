@@ -25,7 +25,7 @@ app.use(body_parser.urlencoded({limit:"30mb",extended:true}))
 app.use(cors())
 
 //routes
-
 app.use('/books/',require('./routes/books'))
+app.use('/users/',require('./routes/users'))
 
 app.listen(PORT,()=>console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`))

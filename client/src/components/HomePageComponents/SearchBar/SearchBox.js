@@ -1,9 +1,9 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 // import bookData from "./bookData.js"
 import {UPDATE_BOOKS} from '../../../constants/actions'
 import "./styles.css"
 import SearchIcon from "@material-ui/icons/Search"
-import {useSelector,useDispatch,use} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import {getBooks} from '../../../actions/books'
 
 const SearchBox = () => {
@@ -14,9 +14,9 @@ const SearchBox = () => {
     
     const BarStyling = {width:"20rem",background : "#F2F1F9",border :"none",padding:"0.5rem"};
 
-    if(inputValue===""){
-        dispatch(getBooks())
-    }
+    // if(inputValue===""){
+    //     dispatch(getBooks())
+    // }
 
     const bookFilterOnChange =(e)=> {  
        setIsChange(true);

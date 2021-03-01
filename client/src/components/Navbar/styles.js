@@ -8,6 +8,13 @@ const styles = makeStyles((theme) => ({
         },
         background: "#400CCC",  
     },
+    appBar: {
+        borderRadius: 15,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
     appBarSpacer : theme.mixins.toolbar,
     logo :{
         fontWeight : 600,
@@ -24,13 +31,23 @@ const styles = makeStyles((theme) => ({
         display : "flex",
         justifyContent : "space-between",
         marginRight : "5px",
-
-    },
+   },
     drawerContainer :{
         padding : "20px 30px",
         background : "#343BBB"
-    }
-
+    },
+    brandContainer: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    heading: {
+        color: 'rgba(0,183,255, 1)',
+        textDecoration: 'none',
+    },
+    image: {
+        marginLeft: '15px',
+    },
 }));
 
 export default styles;
+

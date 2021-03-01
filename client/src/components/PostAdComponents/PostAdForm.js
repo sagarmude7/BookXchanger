@@ -96,9 +96,7 @@ const PostAdForm = () => {
                                     value={bookData.condition}
                                     name="condition"
                                     >
-                                        <MenuItem value="Used">
-                                            <em>Used</em>
-                                        </MenuItem>
+                                        <MenuItem value="Used">Used</MenuItem>
                                         <MenuItem value="New">New</MenuItem>
                                     </Select>
                                 </FormControl>
@@ -121,7 +119,7 @@ const PostAdForm = () => {
                                             <em>Fixed</em>
                                         </MenuItem>
                                         <MenuItem value="Negotiable">Negotiable</MenuItem>
-                                        <MenuItem value="Price on Meet">Price on Meet</MenuItem>
+                                        <MenuItem value="Price on Call">Price on Call</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
