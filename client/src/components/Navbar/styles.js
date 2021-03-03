@@ -1,53 +1,103 @@
 import {makeStyles} from "@material-ui/core"
 const styles = makeStyles((theme) => ({
-    navBar : {
-        paddingRight : "0px",
-        paddingLeft:"0px",
-        "@media (max-width : 900px)"  : {
-            paddingLeft: 0,
-        },
-        background: "#400CCC",  
-    },
-    appBar: {
-        borderRadius: 15,
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    appBarSpacer : theme.mixins.toolbar,
-    logo :{
-        fontWeight : 600,
-        textAlign : "left",
-    },
-    menuButton : {
-        fontWeight : 400,
-        size : "18px",
-        marginLeft : "38px",
-        color :"white !important",
-        border : "1px solid white",
-    },
-    toolbar : {
-        display : "flex",
-        justifyContent : "space-between",
-        marginRight : "5px",
-   },
-    drawerContainer :{
-        padding : "20px 30px",
-        background : "#343BBB"
-    },
-    brandContainer: {
-        display: 'flex',
-        alignItems: 'center',
-    },
-    heading: {
-        color: 'rgba(0,183,255, 1)',
-        textDecoration: 'none',
-    },
-    image: {
-        marginLeft: '15px',
-    },
-}));
+   
+            appBar : {
+                background: "#400CCC",  
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                "@media (max-width : 900px)"  : {
+                    paddingLeft: 0,
+                },
+                
 
+            },
+            appBarSpacer : theme.mixins.toolbar,
+            menuButton : {
+                fontWeight : 700,
+                marginLeft : "30px",
+                color :"white !important",
+                "&:hover" : {
+                    borderBottom : "2px solid white",
+                    borderRadius :"0px !important",
+                    transform : "translateY(4px)",
+                    
+                },
+                
+            },
+            toolbar : {
+                display : "flex",
+                alignItems :"center",
+                justifyContent : "space-between",
+           },
+            drawerContainer :{
+                padding : "20px 30px",
+                background : "#000",
+                
+                borderRadius : "20px",
+                margin : "10px",
+                fontWeigth : "500",
+            },
+            brandContainer: {
+                display: 'flex',
+                alignItems: 'center',
+            },
+            image: {
+                marginLeft: '15px',
+            },
+            midNavbar : {
+                alignItems :  "center",
+                marginRight : "340px",
+            }
+
+        // dropbtn :  {
+        //   backgroundColor: "#4CAF50",
+        //   color: "white",
+        //   padding: "16px",
+        //   fontSize: "16px",
+        //   border: "none",
+        //   cursor: "pointer",
+        // },
+
+        // dropdown :  {
+        //           position: "relative",
+        //           display: "inline-block",
+        //           "& : hover" : 
+        //             {
+        //                 "& dropdownContent" : 
+        //                 {
+        //                 display: "block",
+        //                 },
+        //                  "& dropbtn" : 
+        //                 {
+        //               backgroundColor: "#3e8e41",
+        //                 },
+        //            },
+                    
+        // },
+
+        //  dropdownContent : {
+        //       display:" none",
+        //       position: "absolute",
+        //       backgroundColor: "#f9f9f9",
+        //       minWidth: "160px",
+        //       boxShadow:" 0px 8px 16px 0px rgba(0,0,0,0.2)",
+        //       zIndex: "1"
+        // },
+
+        // dropdownContent :{
+        //     "& a" : {
+        //       color: "black",
+        //       padding: "12px 16px",
+        //       textDecoration: "none",
+        //       display: "block",
+        //           "& : hover" : {
+        //             backgroundColor:" #f1f1f1"
+        //           },
+        //     },
+        // },
+
+
+}));
 export default styles;
 

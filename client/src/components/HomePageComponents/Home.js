@@ -7,6 +7,7 @@ import DisplayBooks from '../AllBooksComponents/AllBooks'
 import {getBooks} from '../../actions/books'
 import {useDispatch} from 'react-redux'
 
+
 const Home = () => {
     const dispatch = useDispatch()
     
@@ -14,11 +15,13 @@ const Home = () => {
     
     return (
         <>
-            
-            <SearchBox/>
-            <Description />
-            <DisplayBooks/>
-            <Chatbot />
+         <Navbar />
+          { /* <SearchBox /> */}
+            <Description /> 
+        
+           { /*<DisplayBooks/> */}
+        
+            {/* <Chatbot /> */}
         </>
     )
 }
