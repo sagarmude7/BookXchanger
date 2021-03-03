@@ -11,8 +11,9 @@ const styles = makeStyles(() => ({
        position :"relative",
        marginLeft :"0px",
        marginRight :"0px",
-        overflow :  "none"
-    },
+        overflow :  "none",
+        width :"100%"
+            },
     content : {
         textAlign : "center",
         zIndex :"12",
@@ -24,6 +25,10 @@ const styles = makeStyles(() => ({
         left : "50%",
         transform : "translate(-50%,-50%)",
         color : "white"
+    },
+    parent : {
+       width :"100%",
+       backgroundColor :"green"
     }
 }));
 

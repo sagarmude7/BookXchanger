@@ -21,6 +21,6 @@ export const createBookAd = (formData)=>async(dispatch)=>{
         console.log(data)
         dispatch({type:CREATE,payload:data})
     }catch(err){
-        console.log(err.response.data)
+        console.log(err)
     }
 }

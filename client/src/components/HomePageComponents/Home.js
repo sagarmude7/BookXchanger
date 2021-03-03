@@ -16,10 +16,10 @@ const Home = () => {
     return (
         <>
          <Navbar />
-         <SearchBox />
-            {/* <Description /> */}
+          { /* <SearchBox /> */}
+            <Description /> 
         
-            <DisplayBooks/>
+           { /*<DisplayBooks/> */}
         
             {/* <Chatbot /> */}
         </>
