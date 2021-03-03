@@ -66,3 +66,50 @@ exports.signIn = async(req,res)=>{
         return res.status(500).json({ message: "Something went wrong" });
     }
 }
+
+//utility function to generate a random password
+function random_password_generate(max,min)
+{
+    var passwordChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#@!%&()/";
+    var randPwLen = Math.floor(Math.random() * (max - min + 1)) + min;
+    var randPassword = Array(randPwLen).fill(passwordChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+    return randPassword;
+}
+
+exports.googleFacebookSignIn = async(req,res)=>{
+    const {email,name,profilePic} = req.body
+    console.log(email)
+    try{
+        const oldUser = await User.findOne({email:email})
+
+        
+
+        if(!oldUser){
+            const password = random_password_generate(20,10);
+            console.log(name);
+            //siMrjVb44!QFG
+            console.log(password);
+            const hashedPassword = await bcrypt.hash(password,10);
+            console.log(hashedPassword)
+            const newUser = await User.create({name,email,password:hashedPassword,profilePic,createdAt:new Date().toISOString(),college:'ABC',location:'DEF',soldAds:0,Books:[],WishList:[]})
+
+            console.log("newUser",newUser);
+            const payload = {
+                email: newUser.email,
+                id:newUser._id
+            }
+
+            const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
+
+            return res.status(200).json({profile:newUser,token:token})
+        }
+
+        const updatedUser = await User.findOneAndUpdate({email:email},{profilePic:profilePic},{new:true})
+        console.log(updatedUser);
+        const token = jwt.sign({ profile: updatedUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+  
+        return res.status(200).json({ profile: updatedUser, token });
+    }catch(err){
+        return res.status(500).json({ message: "Something went wrong" });
+    }
+}

@@ -95,7 +95,7 @@ const getMenuButtons = () => {
                 user?(
                     <>
                     <Button>
-                        <Avatar src={user?.profile?.imageUrl} alt={user?.profile?.name}>{user?.profile?.name.charAt(0)}</Avatar>
+                        <Avatar src={user?.profile?.profilePic} alt={user?.profile?.name}>{user?.profile?.name.charAt(0)}</Avatar>
                     </Button>
                     <Button>
                         <Typography variant="h6">{user?.profile?.name}</Typography>
