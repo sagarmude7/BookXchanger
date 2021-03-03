@@ -63,7 +63,7 @@ exports.signIn = async(req,res)=>{
   
         return res.status(200).json({ profile: oldUser, token });
     } catch (err) {
-        return res.status(500).json({ message: "Something went wrong" });
+        return res.status(500).json({ msg: "Something went wrong" });
     }
 }
 
@@ -107,9 +107,9 @@ exports.googleFacebookSignIn = async(req,res)=>{
         const updatedUser = await User.findOneAndUpdate({email:email},{profilePic:profilePic},{new:true})
         console.log(updatedUser);
         const token = jwt.sign({ profile: updatedUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
-  
+        console.log("Hello,token generated")
         return res.status(200).json({ profile: updatedUser, token });
     }catch(err){
-        return res.status(500).json({ message: "Something went wrong" });
+        return res.status(500).json({ msg: "Something went wrong" });
     }
 }
