@@ -15,7 +15,7 @@
     import MenuItem from '@material-ui/core/MenuItem';
 
     const Navbar = () => {
-        const {midNavbar,appBarSpacer,logo,menuButton,appBar,brandContainer ,toolbar,drawerContainer,image,heading} = useStyles();
+        const {mobileloginMenu,parentTool,midNavbar,appBarSpacer,logo,menuButton,appBar,brandContainer ,toolbar,drawerContainer,image,heading} = useStyles();
         const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
         const [push,setPush] = useState(false);
         const history = useHistory();
@@ -141,15 +141,8 @@
                 >
                     <MenuItem>Sell Boooks</MenuItem>
                 </Link>
-                <Link
-                to="/auth"
-                component = {RouterLink}
-                color="inherit"
-                className={menuButton}
-                key="Sign Up"
-            >
-                <MenuItem>Sign Up</MenuItem>
-            </Link>
+
+
                 </>
             );
             }
@@ -282,8 +275,8 @@
             }
             
             return(
-           
-                <Toolbar >
+           <>
+                <Toolbar className={parentTool}>
                  
                     <IconButton
                        {...{
@@ -309,7 +302,70 @@
                     </Drawer>
 
                    <MenuBookIcon style={{margin : "20px"}}/>
+                   
                 </Toolbar>
+                
+
+                   {
+                       
+                    user?(
+                        <div className={mobileloginMenu}>
+                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                             <Avatar src={user?.profile?.imageUrl} alt={user?.profile?.name}>{user?.profile?.name.charAt(0)}</Avatar>
+                        </Button>
+                        <Menu
+                          id="simple-menu"
+                          anchorEl={anchorEl}
+                          keepMounted
+                          open={Boolean(anchorEl)}
+                          onClose={handleClose}
+                          style={{color: "pink"}}
+                        >
+                          <MenuItem onClick={handleClose} >
+                               <Button component={RouterLink} to="/profile" >
+                                <Typography variant="h6"
+                                 style={{fontWeight :"400",
+                                            boxShadow: " none",
+                                            fontSize : "1.2rem"
+                                    }}
+                                     >
+                                     My Profile</Typography>
+                               </Button>
+                          </MenuItem>
+                          <MenuItem onClick={handleClose} >
+                               <Button component={RouterLink} to="/wishlist">
+                                    <Typography variant="h6" 
+                                    style={{fontWeight :"400",
+                                            boxShadow: " none",
+                                            fontSize : "1.2rem"
+                                    }}
+                                >Wishlist</Typography>
+                                </Button>
+                          </MenuItem>
+                          <MenuItem onClick={handleClose}>
+                              <Button component={RouterLink} to="/auth" onClick={logout} >
+                                    <Typography variant="h6"
+                                     style={{fontWeight :"400",
+                                            boxShadow: " none",
+                                            fontSize : "1.2rem"
+                                    }}
+                                    >
+                                    Logout</Typography>
+                               </Button>
+                          </MenuItem>
+                        </Menu>
+                                       
+                       
+                       
+                        </div>
+                    ):(
+                        <div className={mobileloginMenu}>
+                        <Button  component={RouterLink} to='/auth' className={menuButton}>Sign Up</Button>
+                        </div>
+                    )
+                   
+                    }
+                 </>
               
             );
         }

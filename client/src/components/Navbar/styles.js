@@ -48,7 +48,14 @@ const styles = makeStyles((theme) => ({
             midNavbar : {
                 alignItems :  "center",
                 marginRight : "340px",
-            }
+            },
+            mobileloginMenu :{
+               float:"right",
+               margin:"20px",
+              
+                
+            },
+        
 
         // dropbtn :  {
         //   backgroundColor: "#4CAF50",
