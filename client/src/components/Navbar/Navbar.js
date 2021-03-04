@@ -145,7 +145,7 @@
 
                 </>
             );
-            }
+    }
 
     const logout = ()=>{
         dispatch({type:LOGOUT})
@@ -175,7 +175,7 @@
                     user?(
                         <>
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                             <Avatar src={user?.profile?.imageUrl} alt={user?.profile?.name}>{user?.profile?.name.charAt(0)}</Avatar>
+                             <Avatar src={user?.profile?.profilePic} alt={user?.profile?.name}>{user?.profile?.name.charAt(0)}</Avatar>
                         </Button>
                         <Menu
                           id="simple-menu"
@@ -256,30 +256,33 @@
     ///DisplayDesktop() Functionality
 
     //Writing displayMobile() functionality
-        const displayDesktop = () =>{
-            return(
-                <>
-                    <MenuBookIcon style={{margin : "20px"}}/>
+    const displayDesktop = () =>{
+        return(
+            <>
+                <MenuBookIcon style={{margin : "20px"}}/>
                 <Toolbar className={toolbar}>
                     {getMenuButtons()} 
                 </Toolbar>
-                </>
-            );
+            </>
+        );
+    }
+
+
+    const displayMobile = () => {
+        const handleDrawerOpen = () => {
+            setState((prevState) => ({...prevState,drawerOpen : true}));
         }
-        const displayMobile = () => {
-            const handleDrawerOpen = () => {
-                    setState((prevState) => ({...prevState,drawerOpen : true}));
-            }
-            const handleDrawerClose = () => {
-                setState((prevState) => ({...prevState,drawerOpen: false}));
-            }
+        const handleDrawerClose = () => {
+            setState((prevState) => ({...prevState,drawerOpen: false}));
+        }
             
             return(
            <>
                 <Toolbar className={parentTool}>
+
                  
-                    <IconButton
-                       {...{
+                <IconButton
+                    {...{
                         edge :"start",        //Allows Button to be Positioned at the start
                         color : "inherit",    //lets the icon the color specified to closest top level component
                         "aria-label" :"menu",  //These two meant for screen readers to notify users ,this element is menu , this element is pop up
@@ -288,21 +291,23 @@
                     }}
                     >
 
-                    <MenuIcon />
-                    </IconButton>
-                    <Drawer
+                <MenuIcon />
+                </IconButton>
+                <Drawer
                     {...{
                         anchor : "left",
                         open : drawerOpen,
                         onClose : handleDrawerClose,
 
                     }}
-                    >
+                >
                     <div className={drawerContainer}>{getDrawerChoices()}</div>
-                    </Drawer>
+                </Drawer>
 
                    <MenuBookIcon style={{margin : "20px"}}/>
                    
+
+
                 </Toolbar>
                 
 

@@ -12,7 +12,7 @@ import FacebookIcon from './FacebookIcon'
 import {useDispatch} from 'react-redux'
 import {GoogleLogin} from 'react-google-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import {signUp,signIn} from '../../actions/auth'
+import {signUp,signIn,googleFacebookSignIn} from '../../actions/auth'
 import Navbar from '../Navbar/Navbar'
 import {AUTH} from '../../constants/actions'
 
@@ -53,16 +53,17 @@ const Auth = () => {
 
     const googleSuccess = async(res)=>{
         console.log(res)
-        const profile = {
-            profile:res?.profileObj,
-            token:res?.tokenId
-        }
-        try {
-            dispatch({type:AUTH,payload:profile})
-            history.push('/')
-        } catch (err) {
-            console.log("Something went wrong")
-        }
+        dispatch(googleFacebookSignIn({email:res.profileObj.email,name:res.profileObj.name,profilePic:res.profileObj.imageUrl},history))
+        // const profile = {
+        //     profile:res?.profileObj,
+        //     token:res?.tokenId
+        // }
+        // try {
+        //     dispatch({type:AUTH,payload:profile})
+        //     history.push('/')
+        // } catch (err) {
+        //     console.log("Something went wrong")
+        // }
     }
 
     const googleError=()=>{
@@ -75,6 +76,7 @@ const Auth = () => {
 
     const responseFacebook = (res)=>{
         console.log(res)
+        dispatch(googleFacebookSignIn({email:res.email,name:res.name,profilePic:`http://graph.facebook.com/${res.userID}/picture?type=square&access_token=${res.accessToken}`},history))
     }
     return (
         <Container component="main" maxWidth="xs">

@@ -24,3 +24,14 @@ export const signIn = (formData,history)=>async(dispatch)=>{
         dispatch({type:AUTH,payload:data})
     }
 }
+
+export const googleFacebookSignIn = (formData,history)=>async(dispatch)=>{
+    try{
+        const {data} = await api.googleFacebookSignIn(formData)
+        dispatch({type:AUTH,payload:data})
+        history.push('/')
+    }catch(err){
+        const data = err.response.data
+        dispatch({type:AUTH,payload:data})
+    }
+}

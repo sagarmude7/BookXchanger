@@ -14,4 +14,6 @@ const urlUsers = '/users';
 const signUp = (formData)=>API.post(`${urlUsers}/signUp`,formData)
 const signIn = (formData)=>API.post(`${urlUsers}/signIn`,formData)
 
-module.exports = {fetchBooks,createBookAd,signUp,signIn}
+const googleFacebookSignIn = (formData)=>API.post(`${urlUsers}/googleFacebookSignIn`,formData);
+
+module.exports = {fetchBooks,createBookAd,signUp,signIn,googleFacebookSignIn}

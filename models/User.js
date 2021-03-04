@@ -7,6 +7,7 @@ const UserSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    profilePic:String,
     email:{
         type:String,
         required:true
@@ -21,8 +22,7 @@ const UserSchema = mongoose.Schema({
     },
     updatedAt :{
         type: Date,
-        default:Date.now(),
-        required:true
+        default:Date.now()
     },
     college:{
         type:String,
