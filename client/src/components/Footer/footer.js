@@ -6,6 +6,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import EmailIcon from '@material-ui/icons/Email';
+
 import {Link as RouterLink,useHistory} from "react-router-dom";
 
 const Footer = () => {
@@ -84,6 +85,8 @@ const Footer = () => {
               </Typography>
           </div>
         </div>
+
+       
 
         <div>
           <Typography align="center" style={{ fontSize: "13px", position: "Centre", padding: "5px 0 5px 0", background: "black" }} >
