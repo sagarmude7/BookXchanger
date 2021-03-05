@@ -115,7 +115,7 @@
                     <MenuItem>Wishlist</MenuItem>
                 </Link>
                  <Link
-                    to="/add"
+                    to="/about"
                     component = {RouterLink}
                     color="inherit"
                     className={menuButton}
@@ -133,7 +133,7 @@
                     <MenuItem>Contact Us</MenuItem>
                 </Link>
                  <Link
-                    to="/sell"
+                    to="/add"
                     component = {RouterLink}
                     color="inherit"
                     className={menuButton}
@@ -229,7 +229,7 @@
                     )
                     }
                 
-                          <Button component={RouterLink} to="/sell"  style = {{ padding :" 0px",margin :"2px"}}className={menuButton}>
+                          <Button component={RouterLink} to="/add"  style = {{ padding :" 0px",margin :"2px"}}className={menuButton}>
                             Sell Books
                         </Button>
                    
