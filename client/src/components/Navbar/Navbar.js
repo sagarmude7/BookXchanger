@@ -115,7 +115,7 @@
                     <MenuItem>Wishlist</MenuItem>
                 </Link>
                  <Link
-                    to="/add"
+                    to="/about"
                     component = {RouterLink}
                     color="inherit"
                     className={menuButton}
