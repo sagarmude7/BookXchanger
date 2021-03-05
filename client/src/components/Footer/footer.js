@@ -4,6 +4,7 @@ import { Typography, CssBaseline, Container, Link } from "@material-ui/core"
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import EmailIcon from '@material-ui/icons/Email';
 import {Link as RouterLink,useHistory} from "react-router-dom";
 
@@ -41,6 +42,9 @@ const Footer = () => {
               </Link>
               <Link href="https://github.com/sagarmude7/Bookxchanger" target="_blank" color="inherit">
               <GitHubIcon className={classes.Icon} />
+              </Link>
+              <Link href="http://linkedin.com/" target="_blank" color="inherit">
+              <LinkedInIcon className={classes.Icon} />
               </Link>
               <Link href="mailto:bookxchanger@gmail.com" target="_blank" color="inherit">
               <EmailIcon className={classes.Icon} />
