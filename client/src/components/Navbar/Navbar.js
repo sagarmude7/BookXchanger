@@ -17,6 +17,7 @@
     const Navbar = () => {
         const {mobileloginMenu,parentTool,midNavbar,appBarSpacer,logo,menuButton,appBar,brandContainer ,toolbar,drawerContainer,image,heading} = useStyles();
         const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+        //console.log(user);
         const [push,setPush] = useState(false);
         const history = useHistory();
         const [state,setState] = useState({
