@@ -33,7 +33,7 @@ const App = ()=>{
 
                 </Switch>
             </Container>
-            <ScrollUpButton ShowAtPosition={600}/>
+            <ScrollUpButton ShowAtPosition={300}/>
         </Router>
     )
         
