@@ -5,6 +5,8 @@ import Book from './Book/Book'
 import useStyles from './style'
 import Navbar from '../Navbar/Navbar'
 import {getBooks} from '../../actions/books'
+import FilteredBooks from "./FilteredBooks/filteredBooks.js"
+
 const AllBooks = () => {
     const dispatch = useDispatch()
     const classes = useStyles()
@@ -19,6 +21,9 @@ const AllBooks = () => {
     return (
         <>
         <Navbar/>
+          <FilteredBooks />
+        <br />
+        <h1>All Books : </h1>
         <div style={{"marginTop":"200px"}}>
             <Container>
             {books.length===0?<CircularProgress/>:(

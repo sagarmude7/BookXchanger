@@ -5,7 +5,7 @@ const styles = makeStyles(() => ({
        
        border : "5px solid #000WWW",
        backgroundSize : "cover",
-       height : "400px",
+       height : "600px",
        backgroundPosition : "center",
        backgroundRepeat : "no-repeat",
        position :"relative",
@@ -28,7 +28,9 @@ const styles = makeStyles(() => ({
     },
     parent : {
        width :"100%",
-       backgroundColor :"green"
+       backgroundColor :"green",
+       marginTop :"20px",
+
     }
 }));
 
