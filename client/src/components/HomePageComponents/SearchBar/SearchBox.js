@@ -154,76 +154,115 @@ import "./styles.css"
 import SearchIcon from "@material-ui/icons/Search"
 import {useSelector,useDispatch} from 'react-redux';
 import {getBooks} from '../../../actions/books'
+import { makeStyles } from '@material-ui/core/styles';
+import {TextField,Typography} from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import Fab from '@material-ui/core/Fab';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(5),
+      width: '25ch',
+      marginTop : "10px !impotant",
+      display : "flex",
+      alignItems : "center",
+      justifyContent : "center",
+    },
+  },
+
+
+}));
+
 
 const SearchBox = () => {
+
+    const classes = useStyles();
     const [inputName,setInputName] = useState("");
     const [inputSubject,setInputSubject] = useState("");
     const [inputBranch,setInputBranch] = useState("");
     const [isChange,setIsChange]  = useState(false);
     const dispatch = useDispatch()
     const books = useSelector(state=>state.books);
-    var filteredbooksByName = [];
-    var filteredbooksByBranch = [];
-    var filteredbooksBySubject = [];
+    const [filteredbooksByName,setFilteredbooksByName] = useState([]);
+    const [filteredbooksByBranch,setFilteredbooksByBranch] = useState([]);
+    const [filteredbooksBySubject,setFilteredbooksBySubject] = useState([]);
 
     // if(inputValue===""){
     //     dispatch(getBooks())
     // }
 
-    var updateBooksByName = ()=>{ 
-       return (filteredbooksByName = books.filter((book) => 
-           {book.bookName.toLowerCase().includes(inputName.toLowerCase())}))
+    // const updateBooksByName = ()=>{ 
+    //    return (books.filter((book) => 
+    //        {book.bookName.toLowerCase().includes(inputName.toLowerCase())}))
          
     
-        }
-      var updateBooksBySubject = ()=>{  
-        return (filteredbooksBySubject = books.filter(book=>book.subject.toLowerCase().includes(inputSubject.toLowerCase())))
+    //     }
+    //   const updateBooksBySubject = ()=>{  
+    //     return (books.filter(book=>book.subject.toLowerCase().includes(inputSubject.toLowerCase())))
       
-    }
+    // }
     
-      var updateBooksByBranch = ()=>{
-       return (filteredbooksByBranch = books.filter(book=>book.branch.toLowerCase().includes(inputBranch.toLowerCase())) )
-    }
+    //   const updateBooksByBranch = ()=>{
+    //    return (books.filter(book=>book.branch.toLowerCase().includes(inputBranch.toLowerCase())) )
+    // }
 
     var updateBooks = (e)=>{
         e.preventDefault()
-        filteredbooksByName = updateBooksByName();
-        filteredbooksBySubject = updateBooksBySubject();
-        filteredbooksByBranch = updateBooksByBranch();
-  console.log(filteredbooksByBranch,filteredbooksBySubject,filteredbooksByName);
-        const filteredbooks = filteredbooksByName.concat(filteredbooksBySubject,filteredbooksByBranch)
-        dispatch({type:UPDATE_BOOKS,payload:filteredbooks})
+        console.log(inputSubject,inputName,inputBranch);
+
+        setFilteredbooksByName(books.filter((book) => 
+        book.bookName.toLowerCase().includes(inputName.toLowerCase())));
+        setFilteredbooksByBranch(filteredbooksByName.filter((book) => 
+        book.branch.toLowerCase().includes(inputBranch.toLowerCase())));
+        setFilteredbooksBySubject(filteredbooksByBranch.filter((book) => 
+        book.subject.toLowerCase().includes(inputSubject.toLowerCase())));
+
+        const filteredbooks = [...filteredbooksByName,...filteredbooksByBranch,...filteredbooksBySubject]
+        console.log(filteredbooks);
+        const  uniqueFilteredArray = filteredbooks.filter(function(item, pos) {
+            return filteredbooks.indexOf(item) == pos;
+        })
+        console.log(uniqueFilteredArray);
+        dispatch({type:UPDATE_BOOKS,payload:uniqueFilteredArray})
     }
     
     return ( 
         <>
-        <div className="searchBox">
-            <input
-                className="searchInput" 
-                key="random1"
-                value= {inputName}
-                placeholder={"Search Name"}
-                onChange = {(e) => {setInputName(e.target.value)}}
-            />
-             <input
-                className="searchInput" 
-                key="random1"
-                value= {inputSubject}
-                placeholder={"Search Subject"}
-                onChange = {(e) => {setInputSubject(e.target.value)}}
-            />
-             <input
-                className="searchInput" 
-                key="random1"
-                value= {inputBranch}
-                placeholder={"Search Branch"}
-                onChange = {(e) => {setInputBranch(e.target.value)}}
-            />
-            <button className="searchButton" type="submit" onClick={updateBooks}> <SearchIcon /></button>
-        </div>
+      <Typography variant="h4" component="h2" style ={{textAlign:"center"}}> Search a Book </Typography>
+<form className={classes.root} noValidate autoComplete="off" >
+  <input 
+  id="standard-basic" 
+  label="Name" 
+  className="searchInput" 
+  key="random1"
+  value= {inputName}
+  placeholder={"Search Name"}
+  onChange = {(e) => {setInputName(e.target.value)}}
+  />
+ <input 
+  id="standard-basic" 
+  label="Branch" 
+  className="searchInput" 
+  key="random2"
+  value= {inputBranch}
+  placeholder={"Search Branch"}
+  onChange = {(e) => {setInputBranch(e.target.value)}}
+  />
+  <input 
+  id="standard-basic" 
+  label="Subject" 
+  className="searchInput" 
+  key="random3"
+  value= {inputSubject}
+  placeholder={"Search Subject"}
+  onChange = {(e) => {setInputSubject(e.target.value)}}
+  />
+        <button className="searchButton" type="submit" onClick={updateBooks}> <Link to="/all" className="Link"><span style={{fontSize:"1.4rem"}}>Search</span>      </Link></button>
+
+</form>
         <br />
        </>
-            
+      
     )
 }
 
