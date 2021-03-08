@@ -14,6 +14,9 @@ exports.getBooks = async(req,res)=>{
 
 exports.createBookAd = async(req,res)=>{
     const book = req.body
+    console.log(req.userId)
+    if(!req.userId)
+        return res.status(403).json({msg:"Unauthorized"})
     // console.log(book);
     const newBook = new Book({...book,createdAt:new Date().toISOString()})
     // console.log(newBook)

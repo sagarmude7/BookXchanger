@@ -19,6 +19,8 @@ const PostAdForm = () => {
     const [next,setNext] = useState(false)
     const dispatch = useDispatch()
     const [bookData,setBookData] = useState(initialState)
+    const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
     const books = useSelector(state=>state.books)
 
     const handleChange=(e)=>{
@@ -28,6 +30,13 @@ const PostAdForm = () => {
     useEffect(()=>{
         console.log(books)
     },[books])
+
+    useEffect(()=>{
+        setUser(JSON.parse(localStorage.getItem('profile')))
+        const token = user?.token
+        if(!token)
+            history.push('/auth');
+    },[user?.token,history])
 
     const handleSubmit = (e)=>{
         e.preventDefault()

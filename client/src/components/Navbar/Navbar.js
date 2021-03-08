@@ -62,10 +62,10 @@
          
         },[]);
 
-         useEffect(()=>{
+        useEffect(()=>{
             setUser(JSON.parse(localStorage.getItem('profile')))
             const token = user?.token
-        },[user?.token])
+        },[])
 
 
     const getDrawerChoices = () => {
@@ -317,7 +317,7 @@
                     user?(
                         <div className={mobileloginMenu}>
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                             <Avatar src={user?.profile?.imageUrl} alt={user?.profile?.name}>{user?.profile?.name.charAt(0)}</Avatar>
+                             <Avatar src={user?.profile?.profilePic} alt={user?.profile?.name}>{user?.profile?.name.charAt(0)}</Avatar>
                         </Button>
                         <Menu
                           id="simple-menu"

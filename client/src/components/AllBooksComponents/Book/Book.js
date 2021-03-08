@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import {ThumbUpAltOutlined} from '@material-ui/icons';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import useStyles from './style'
@@ -28,7 +28,7 @@ const Book = ({book}) => {
             </CardContent>
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" >
-                <ThumbUpAltIcon fontSize="small"/>
+                <FavoriteIcon fontSize="small"/>
                 </Button>
                 <Button size="small" color="primary">
                     <DeleteIcon fontSize="small" /> Delete
