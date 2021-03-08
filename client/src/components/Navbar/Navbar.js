@@ -61,10 +61,10 @@
          
         },[]);
 
-         useEffect(()=>{
+        useEffect(()=>{
             setUser(JSON.parse(localStorage.getItem('profile')))
             const token = user?.token
-        },[user?.token])
+        },[])
 
 
     const getDrawerChoices = () => {
