@@ -6,7 +6,7 @@ export default (books=[],action)=>{
         case FETCH_ALL:
             return action.payload
         case FILTER_BOOKS :
-            return action.payload
+            return (action.payload)
         case CREATE:
             return [...books,action.payload]
         case 'UPDATE_BOOKS':

@@ -11,7 +11,7 @@ const FilteredBooks = () => {
     const dispatch = useDispatch()
 
       useEffect(()=>{
-        console.log("Getting Books")
+        console.log("Getting Filtered Books")
         //accepts an action call as an argument -> goes to actions folder
         dispatch(filterBooks())
     },[dispatch])
