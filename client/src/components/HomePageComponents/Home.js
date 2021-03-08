@@ -5,19 +5,20 @@ import SearchBox from "./SearchBar/SearchBox.js"
 import Chatbot from "./Chatbot/chatbot.js"
 import DisplayBooks from '../AllBooksComponents/AllBooks'
 import {getBooks} from '../../actions/books'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import Footer from "../Footer/footer.js"
-
+import {useState} from "react";
+import FilteredBooks from "../AllBooksComponents/FilteredBooks/filteredBooks.js"
 const Home = () => {
     const dispatch = useDispatch()
+ 
     return (
         <>
          <Navbar />
-      
-          { /* <SearchBox /> */}
-            <Description /> 
+        <SearchBox /> 
+        <Description />
         
-          <DisplayBooks/> 
+       <DisplayBooks /> 
         
             {/* <Chatbot /> */}
             <Footer/>

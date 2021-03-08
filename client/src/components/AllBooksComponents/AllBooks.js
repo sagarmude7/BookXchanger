@@ -6,6 +6,8 @@ import useStyles from './style'
 import Navbar from '../Navbar/Navbar'
 import {getBooks} from '../../actions/books'
 
+import FilteredBooks from "./FilteredBooks/filteredBooks.js"
+
 const AllBooks = () => {
     const dispatch = useDispatch()
     const classes = useStyles()
@@ -15,6 +17,12 @@ const AllBooks = () => {
     const [data, setData] = useState([]);
     const [sortType, setSortType] = useState();
 
+  useEffect(()=>{
+        console.log("Getting Books")
+        //accepts an action call as an argument -> goes to actions folder
+        dispatch(getBooks())
+    },[dispatch])
+  
     useEffect(() =>{   
         const sortArray = type => {
             //console.log(type);
@@ -44,15 +52,16 @@ const AllBooks = () => {
 
    
 
-    useEffect(()=>{
-        console.log("Getting Books")
-        //accepts an action call as an argument -> goes to actions folder
-        dispatch(getBooks())
-    },[dispatch])
+  
 
     return (
         <>
         <Navbar/>
+
+          <FilteredBooks />
+        <br />
+        <h1>All Books : </h1>
+ 
         <div style={{"marginTop":"20px"}}>
         <Button variant="contained" color="primary" size="large" className={classes.sortButton} onClick={()=>setSortbool(!sortbool)}>
             Sort
@@ -86,6 +95,7 @@ const AllBooks = () => {
         </>
         ):(<></>)
         }
+
             <Container>
             {books.length===0?<CircularProgress/>:(
                 <Grid className={classes.container} container alignItems="stretch" spacing={3}>
