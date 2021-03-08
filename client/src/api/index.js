@@ -23,4 +23,6 @@ const signIn = (formData)=>API.post(`${urlUsers}/signIn`,formData)
 
 const googleFacebookSignIn = (formData)=>API.post(`${urlUsers}/googleFacebookSignIn`,formData);
 
+const getProfile = (id)=>API.get(`${urlUsers}/${id}/profile`);
+
 module.exports = {fetchBooks,createBookAd,signUp,signIn,googleFacebookSignIn}

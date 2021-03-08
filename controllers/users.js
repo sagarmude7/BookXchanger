@@ -113,3 +113,13 @@ exports.googleFacebookSignIn = async(req,res)=>{
         return res.status(500).json({ msg: "Something went wrong" });
     }
 }
+
+exports.getProfile = async(req,res)=>{
+    const {id :_id} = req.params;
+    
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id`);
+
+    const user = await User.findById(_id);
+
+    res.json(user);
+}
