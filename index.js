@@ -28,4 +28,4 @@ app.use(cors())
 app.use('/books/',require('./routes/books'))
 app.use('/users/',require('./routes/users'))
 
-app.listen(PORT,()=>console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`))
+app.listen(PORT,()=>console.log(`Server running in development mode on port 5000`))

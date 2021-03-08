@@ -33,7 +33,7 @@ exports.signUp = async(req,res)=>{
             id:newUser._id
         }
 
-        const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
+        const token = jwt.sign(payload,'njioaty89v72qrcpagsb',{expiresIn:"1h"})
 
         return res.status(200).json({profile:newUser,token:token})
     } catch (err) {
@@ -50,7 +50,7 @@ exports.signIn = async(req,res)=>{
             return res.status(400).json({msg:error.details[0].message})
 
         const oldUser = await User.findOne({email:email})
-
+        console.log(oldUser)
         if(!oldUser)
             return res.status(400).json({msg:"User doesn't exist"})
         
@@ -59,7 +59,7 @@ exports.signIn = async(req,res)=>{
         if(isPasswordIncorrect)
             return res.status(400).json({msg:"Password Incorrect"})
 
-        const token = jwt.sign({ profile: oldUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ profile: oldUser, id: oldUser._id }, 'njioaty89v72qrcpagsb', { expiresIn: "1h" });
   
         return res.status(200).json({ profile: oldUser, token });
     } catch (err) {
@@ -99,14 +99,14 @@ exports.googleFacebookSignIn = async(req,res)=>{
                 id:newUser._id
             }
 
-            const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
+            const token = jwt.sign(payload,'njioaty89v72qrcpagsb',{expiresIn:"1h"})
 
             return res.status(200).json({profile:newUser,token:token})
         }
 
         const updatedUser = await User.findOneAndUpdate({email:email},{profilePic:profilePic},{new:true})
         console.log(updatedUser);
-        const token = jwt.sign({ profile: updatedUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ profile: updatedUser, id: oldUser._id },'njioaty89v72qrcpagsb', { expiresIn: "1h" });
         // console.log("Hello,token generated")
         return res.status(200).json({ profile: updatedUser, token });
     }catch(err){
