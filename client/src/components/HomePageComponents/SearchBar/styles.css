@@ -7,7 +7,7 @@
 .SearchBox-input{
     border : 2px solid black;
     border-radius: 20px;
-    padding : 20px;
+    padding : 50px;
 }
 button{
     padding :8px;
@@ -18,4 +18,13 @@ button{
     border-radius: 10px;
     border : none;
     cursor :pointer;
+    width:20%;
+    margin-top: 50px;
+}
+input{
+    padding : 20px !important;
+}
+.Link{
+    text-decoration: none;
+    color: white;
 }

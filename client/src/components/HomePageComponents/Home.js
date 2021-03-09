@@ -18,8 +18,6 @@ const Home = () => {
         <SearchBox /> 
         <Description />
         
-       <DisplayBooks /> 
-        
             {/* <Chatbot /> */}
             <Footer/>
         </>
