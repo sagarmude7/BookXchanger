@@ -6,4 +6,5 @@ const auth = require('../middleware/auth')
 router.get('/all',getBooks)
 router.post('/add',auth,createBookAd)
 
+
 module.exports = router

@@ -14,6 +14,8 @@ const urlBooks = '/books';
 
 const fetchBooks = ()=>API.get(`${urlBooks}/all`)
 
+const fetchFilteredBooks = (filterData)=>API.get(`${urlBooks}/filtered`,filterData)
+
 const createBookAd = (formData)=>API.post(`${urlBooks}/add`,formData)
 
 const urlUsers = '/users';
