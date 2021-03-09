@@ -6,7 +6,7 @@ const { regValidator, loginValidator } = require('../validators/joi-validator')
 
 exports.signUp = async(req,res)=>{
     const {firstName,lastName,email,college,location,password,confirmPassword} = req.body 
-
+    console.log(password)
     const {error} = regValidator.validate(req.body)
     try {
         if(error)
@@ -33,7 +33,7 @@ exports.signUp = async(req,res)=>{
             id:newUser._id
         }
 
-        const token = jwt.sign(payload,'njioaty89v72qrcpagsb',{expiresIn:"1h"})
+        const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
 
         return res.status(200).json({profile:newUser,token:token})
     } catch (err) {
@@ -43,6 +43,7 @@ exports.signUp = async(req,res)=>{
 
 exports.signIn = async(req,res)=>{
     const {email,password} = req.body
+    console.log(password)
     const {error} = loginValidator.validate(req.body)
 
     try {
@@ -56,10 +57,10 @@ exports.signIn = async(req,res)=>{
         
         const isPasswordIncorrect = await bcrypt.compare(password,oldUser.password)
 
-        if(isPasswordIncorrect)
+        if(!isPasswordIncorrect)
             return res.status(400).json({msg:"Password Incorrect"})
 
-        const token = jwt.sign({ profile: oldUser, id: oldUser._id }, 'njioaty89v72qrcpagsb', { expiresIn: "1h" });
+        const token = jwt.sign({ profile: oldUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
   
         return res.status(200).json({ profile: oldUser, token });
     } catch (err) {
@@ -99,14 +100,15 @@ exports.googleFacebookSignIn = async(req,res)=>{
                 id:newUser._id
             }
 
-            const token = jwt.sign(payload,'njioaty89v72qrcpagsb',{expiresIn:"1h"})
+            const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
 
             return res.status(200).json({profile:newUser,token:token})
         }
 
         const updatedUser = await User.findOneAndUpdate({email:email},{profilePic:profilePic},{new:true})
         console.log(updatedUser);
-        const token = jwt.sign({ profile: updatedUser, id: oldUser._id },'njioaty89v72qrcpagsb', { expiresIn: "1h" });
+        updatedUser.save()
+        const token = jwt.sign({ profile: updatedUser, id: oldUser._id },process.env.TOKEN_SECRET, { expiresIn: "1h" });
         // console.log("Hello,token generated")
         return res.status(200).json({ profile: updatedUser, token });
     }catch(err){

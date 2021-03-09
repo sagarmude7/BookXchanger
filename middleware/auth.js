@@ -7,7 +7,7 @@ const auth = (req,res,next)=>{
 
         //verify token
         if(token){
-            const decodedData = jwt.verify(token,'njioaty89v72qrcpagsb')
+            const decodedData = jwt.verify(token,process.env.TOKEN_SECRET)
             //attach user id to request object
             req.userId = decodedData?.id  
         }

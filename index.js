@@ -1,6 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-const body_parser = require('body-parser')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 
@@ -16,10 +15,17 @@ const app = express()
 //connect to database
 connectDB()
 
-//sending and receiving images data through form or json
-//limit : Controls the maximum request body size.
-app.use(body_parser.json({limit:"30mb",extended:true}))
-app.use(body_parser.urlencoded({limit:"30mb",extended:true}))
+
+//body parser middleware for accepting json
+app.use(express.json({limit:"30mb",extended:true}))
+
+//middleware for accepting data from forms
+app.use(express.urlencoded({limit:"30mb",extended:true}))
+
+// //sending and receiving images data through form or json
+// //limit : Controls the maximum request body size.
+// app.use(body_parser.json({limit:"30mb",extended:true}))
+// app.use(body_parser.urlencoded({limit:"30mb",extended:true}))
 
 //cross origin request
 app.use(cors())
@@ -28,4 +34,4 @@ app.use(cors())
 app.use('/books/',require('./routes/books'))
 app.use('/users/',require('./routes/users'))
 
-app.listen(PORT,()=>console.log(`Server running in development mode on port 5000`))
+app.listen(PORT,()=>console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`))

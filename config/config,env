@@ -1,4 +1,0 @@
-NODE_ENV=development
-PORT=5000
-MONGO_URI=mongodb+srv://vdmondkr2002:Vedant@2002@bookxchanger.hvboa.mongodb.net/Booxchanger?retryWrites=true&w=majority
-TOKEN_SECRET=njioaty89v72qrcpagsb
