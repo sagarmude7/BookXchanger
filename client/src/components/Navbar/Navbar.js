@@ -13,6 +13,7 @@
     import MenuBookIcon from '@material-ui/icons/MenuBook';
     import Menu from '@material-ui/core/Menu';
     import MenuItem from '@material-ui/core/MenuItem';
+    import Wishlist from '../WishlistComponent/Wishlist'
 
     const Navbar = () => {
         const {mobileloginMenu,parentTool,midNavbar,appBarSpacer,logo,menuButton,appBar,brandContainer ,toolbar,drawerContainer,image,heading} = useStyles();
@@ -107,7 +108,7 @@
                         <MenuItem>Books</MenuItem>
                     </Link>
                     <Link
-                    to="/add"
+                    to="/wishlist"
                     component = {RouterLink}
                     color="inherit"
                     className={menuButton}
