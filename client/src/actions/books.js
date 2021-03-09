@@ -5,7 +5,7 @@ export const getBooks = ()=>async(dispatch)=>{
     try {
         //get data from api
         const {data } = await api.fetchBooks()
-        console.log(data)
+        //console.log(data)
         dispatch({type:FETCH_ALL,payload:data})
     } catch (err) {
         console.log("Some error occured")

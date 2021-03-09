@@ -36,15 +36,21 @@ const AllBooks = () => {
         const sortProperty = types[type];
 
             if (type==='pricelowest') {
-        
-                const sorted = [...books].sort((b, a) => b[sortProperty] - a[sortProperty]);
-                setData(sorted);
-            } else
-            {     
-                const sorted = [...books].sort((a, b) => b[sortProperty] - a[sortProperty]);
-                setData(sorted);
+    
+                  const sorted = [...books].sort((b, a) => b[sortProperty] - a[sortProperty]);
+                  setData(sorted);
             }
-        
+            else if(type==='datenewest')
+            {
+            
+                  const sorted = [...books].sort((b, a) => b[sortProperty] - a[sortProperty]);
+                  sorted.reverse();
+                  setData(sorted);
+            }
+            else{
+                  const sorted = [...books].sort((a, b) => b[sortProperty] - a[sortProperty]);
+                  setData(sorted);
+            }
         };
         sortArray(sortType)
     }, [sortType])
