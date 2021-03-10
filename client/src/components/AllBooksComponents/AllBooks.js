@@ -17,37 +17,42 @@ const AllBooks = () => {
     const [data, setData] = useState([]);
     const [sortType, setSortType] = useState();
 
-  useEffect(()=>{
-        console.log("Getting Books")
-        //accepts an action call as an argument -> goes to actions folder
-        dispatch(getBooks())
+    useEffect(()=>{
+            console.log("Getting Books")
+            //accepts an action call as an argument -> goes to actions folder
+            dispatch(getBooks())
     },[dispatch])
-  
+    
     useEffect(() =>{   
         const sortArray = type => {
-            //console.log(type);
-            const types = {
-                pricehighest: 'price',
-                pricelowest: 'price',
-                dateoldest: 'createdAt',
-                datenewest: 'createdAt'
-              };
-  
-              const sortProperty = types[type];
+        //console.log(type);
+        const types = {
+            pricehighest: 'price',
+            pricelowest: 'price',
+            dateoldest: 'createdAt',
+            datenewest: 'createdAt'
+        };
+    
+        const sortProperty = types[type];
 
             if (type==='pricelowest') {
     
                   const sorted = [...books].sort((b, a) => b[sortProperty] - a[sortProperty]);
                   setData(sorted);
-            } else
+            }
+            else if(type==='datenewest')
             {
             
+                  const sorted = [...books].sort((b, a) => b[sortProperty] - a[sortProperty]);
+                  sorted.reverse();
+                  setData(sorted);
+            }
+            else{
                   const sorted = [...books].sort((a, b) => b[sortProperty] - a[sortProperty]);
                   setData(sorted);
             }
-           
-          };
-          sortArray(sortType)
+        };
+        sortArray(sortType)
     }, [sortType])
 
    
@@ -58,7 +63,7 @@ const AllBooks = () => {
         <>
         <Navbar/>
 
-          <FilteredBooks />
+        <FilteredBooks />
         <br />
         <h1>All Books : </h1>
  
