@@ -1,4 +1,5 @@
 import Navbar from '../Navbar/Navbar'
+import Footer from "../Footer/footer.js"
 import { TextField,Divider, Card,CardMedia, Container,Avatar , Button, Typography, Paper } from '@material-ui/core';
 import useStyles from "./styles.js";
 import './profile.css'
@@ -17,6 +18,7 @@ const Profile = () => {
     console.log(user.profile.profilePic);
 
     return (
+        <>
         <div className={classes.container}>
             <Navbar/>
 
@@ -88,11 +90,9 @@ const Profile = () => {
             <Avatar className={`${classes.pink } ${classes.Edit} ${classes.large}`}>
                 <EditIcon/>
             </Avatar>
-
-
-            
-           
         </div>
+        <Footer/>
+        </>
     )
 }
 

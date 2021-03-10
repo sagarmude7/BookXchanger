@@ -4,6 +4,7 @@ import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormContro
 import Book from './Book/Book'
 import useStyles from './style'
 import Navbar from '../Navbar/Navbar'
+import Footer from "../Footer/footer.js"
 import {getBooks} from '../../actions/books'
 
 import FilteredBooks from "./FilteredBooks/filteredBooks.js"
@@ -123,6 +124,7 @@ const AllBooks = () => {
             }
             </Container>
         </div>
+        <Footer/>
         </>
             
     )
