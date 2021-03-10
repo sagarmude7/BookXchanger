@@ -18,7 +18,7 @@ const Profile = () => {
 
     return (
         <div className={classes.container}>
-            <Navbar></Navbar>
+            <Navbar/>
 
             <Typography className={classes.heading} variant="h4">My Profile</Typography>
 

@@ -4,8 +4,8 @@ const styles = makeStyles((theme) => ({
 
   mainfooter: {
     background: "#400CCC",
-    padding: "auto",
-    position: "center"
+    position: "center",
+    margin:"30px 0 0 0"
   },
 
   flexContainer: {
