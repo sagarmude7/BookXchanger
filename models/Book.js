@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const BookSchema = mongoose.Schema({
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    },
     bookName:{              //name of book
         type:String,
         required:true

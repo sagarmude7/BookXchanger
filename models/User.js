@@ -33,8 +33,8 @@ const UserSchema = mongoose.Schema({
         required:true
     },
     soldAds:Number,
-    Books: [BookSchema],
-    WishList:[WishListSchema]
+    books: [BookSchema],
+    wishList:[WishListSchema]
 })
 
 const User = mongoose.model('User',UserSchema)

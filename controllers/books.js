@@ -1,6 +1,8 @@
 const { response } = require('express')
 const mongoose = require('mongoose')
 const {Book} = require('../models/Book')
+const { update } = require('../models/User')
+const User = require('../models/User')
 
 exports.getBooks = async(req,res)=>{
     try{
@@ -15,13 +17,25 @@ exports.getBooks = async(req,res)=>{
 exports.createBookAd = async(req,res)=>{
     const book = req.body
     console.log(req.userId)
+    //getting current user
     if(!req.userId)
         return res.status(403).json({msg:"Unauthorized"})
-    // console.log(book);
-    const newBook = new Book({...book,createdAt:new Date().toISOString()})
-    // console.log(newBook)
     try {
+        //new Book Object
+        const newBook = new Book({...book,createdAt:new Date().toISOString(),owner:req.userId})
+        
+        //get current User
+        const currentUser = await User.findById(req.userId);
+        const books = currentUser.books;
+        //pushing new Book to array
+        books.push(newBook)
+        //updated books array of User
+        const updatedUser = await User.findOneAndUpdate({_id:req.userId},{books:books},{new:true})
+        updatedUser.save()
+        
         await newBook.save()
+        console.log(newBook);
+        console.log(updatedUser);
         console.log("Book added")
         return res.status(201).json(newBook)
     } catch (err) {
