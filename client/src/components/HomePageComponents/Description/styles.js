@@ -5,7 +5,7 @@ const styles = makeStyles(() => ({
        
        border : "5px solid #000WWW",
        backgroundSize : "cover",
-       height : "600px",
+       height : "500px",
        backgroundPosition : "center",
        backgroundRepeat : "no-repeat",
        position :"relative",
@@ -19,7 +19,7 @@ const styles = makeStyles(() => ({
         zIndex :"12",
         fontSize :"20px",
         fontWeight : "400",
-        fontFamily :"'Pacifico',cursive",
+        fontFamily :"'Source Code Pro', monospace",
         position : "absolute",
         top :"50%",
         left : "50%",
