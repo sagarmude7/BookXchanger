@@ -1,6 +1,6 @@
 import Navbar from '../Navbar/Navbar'
 import Footer from "../Footer/footer.js"
-import { TextField,Divider, Card,CardMedia, Container,Avatar , Button, Typography, Paper } from '@material-ui/core';
+import { TextField,Divider, Card,CardMedia, Container,Avatar , Button, Typography, Paper,menuButton } from '@material-ui/core';
 import useStyles from "./styles.js";
 import './profile.css'
 import React from 'react'
@@ -28,7 +28,7 @@ const Profile = () => {
             <Container className={classes.head}>
             
                 <img className={classes.pic} src={img} alt="M" width="175" height="190"></img>
-                <Typography variant="body1" color="textPrimary" className={classes.headUser} variant="h6">{user.profile.name}</Typography>
+                <Typography variant="body1" color="textPrimary" className={classes.headUser}>{user.profile.name}</Typography>
             
                 <Container className={classes.headRight}>
 
