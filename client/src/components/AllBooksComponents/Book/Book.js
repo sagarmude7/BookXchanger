@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import {ThumbUpAltOutlined} from '@material-ui/icons';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import useStyles from './style'
@@ -9,6 +9,9 @@ import moment from 'moment'
 import {useDispatch} from 'react-redux'
 const Book = ({book}) => {
     const classes = useStyles()
+    function addtofavourite(params) {
+        
+    }
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={book.selectedFile} title={book.title} />
@@ -27,12 +30,10 @@ const Book = ({book}) => {
                 <Typography variant="body2" color="textSecondary" component="p">{book.tags.map((tag)=>`#${tag} `)}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary" >
-                <FavoriteIcon fontSize="small"/>
+                <Button size="medium" color="white" onClick={addtofavourite()} >
+                <FavoriteBorderIcon  />
                 </Button>
-                <Button size="small" color="primary">
-                    <DeleteIcon fontSize="small" /> Delete
-                </Button>      
+                    
             </CardActions>
         </Card>
     )

@@ -9,6 +9,7 @@ import Auth from './components/Auth/Auth'
 import DisplayBooks from './components/AllBooksComponents/AllBooks'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
+import Wishlist from './components/WishlistComponent/Wishlist.js'
 
 const App = ()=>{
 
@@ -30,6 +31,8 @@ const App = ()=>{
                     <Route exact path="/add" component={PostAdForm}/>  
                     <Route exact path="/auth" component={Auth}/>
                     <Route exact path="/profile" component={Profile}/>  
+                    <Route exact path="/wishlist" component={Wishlist}/>  
+
 
                 </Switch>
             </Container>
