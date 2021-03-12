@@ -6,22 +6,29 @@ import SearchIcon from "@material-ui/icons/Search"
 import {useSelector,useDispatch} from 'react-redux';
 import {getBooks} from '../../../actions/books'
 import { makeStyles } from '@material-ui/core/styles';
-import {TextField,Typography} from '@material-ui/core';
+import {TextField,Typography,Grid} from '@material-ui/core';
 import { Link,useHistory } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import FilteredBooks from '../../AllBooksComponents/FilteredBooks/filteredBooks';
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *': {
-      margin: theme.spacing(5),
-      width: '25ch',
-      marginTop : "10px !impotant",
-      display : "flex",
-      alignItems : "center",
-      justifyContent : "center",
-    },
+    flexGrow :"1",
+    display : "flex",
+    alignItems : "center",
+    justifyContent : "center",
+    width : "100%"
   },
-
+  input : {
+    padding: theme.spacing(6),
+    marginLeft :"10px",
+    marginRight : "10px", 
+    textAlign: 'center',
+  },
+  button:{
+    position :"relative",
+    top : "0px",
+    left : "45%"
+  }
 
 }));
 
@@ -83,12 +90,13 @@ const SearchBox = () => {
 
     return ( 
         <>
-      <Typography variant="h4" component="h2" style ={{textAlign:"center"}}> Search a Book </Typography>
-          <form className={classes.root} noValidate autoComplete="off" >
+      <Typography variant="h5"  className="heading"> Search a Book </Typography>
+          <form noValidate autoComplete="off" >
+          <div  className={classes.root} >
             <input 
             id="standard-basic" 
             label="Name" 
-            className="searchInput" 
+            className={classes.input} 
             key="random1"
             value= {inputName}
             placeholder={"Search Name"}
@@ -97,7 +105,7 @@ const SearchBox = () => {
           <input 
             id="standard-basic" 
             label="Branch" 
-            className="searchInput" 
+            className={classes.input} 
             key="random2"
             value= {inputBranch}
             placeholder={"Search Branch"}
@@ -106,17 +114,15 @@ const SearchBox = () => {
             <input 
             id="standard-basic" 
             label="Subject" 
-            className="searchInput" 
+            className={classes.input} 
             key="random3"
             value= {inputSubject}
             placeholder={"Search Subject"}
             onChange = {(e) => {setInputSubject(e.target.value)}}
             />
-                  <button className="searchButton" type="submit" onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
-
+          </div>
+          <button className={classes.button} type="submit" onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
           </form>
-        <br />
-        <FilteredBooks/>
        </>
       
     )

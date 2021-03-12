@@ -11,7 +11,7 @@ const Description = () => {
 
         return (
             <div className={parent}>
-            <div className={paper} style={{backgroundImage : 'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0.5)),url(' + props.item.img + ')'}}>
+            <div className={paper} style={{backgroundImage : 'linear-gradient(rgba(0,2,1,0.5),rgba(2,0,0.5)),url(' + props.item.img + ')'}}>
                 <div className={content}>
                 <h1>{props.item.heading}</h1> 
                 <h3>{props.item.subHeading}</h3>
