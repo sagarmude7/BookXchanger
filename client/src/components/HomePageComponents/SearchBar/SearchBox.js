@@ -9,6 +9,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import {TextField,Typography,Grid} from '@material-ui/core';
 import { Link,useHistory } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FilteredBooks from '../../AllBooksComponents/FilteredBooks/filteredBooks';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +32,13 @@ const useStyles = makeStyles((theme) => ({
     position :"relative",
     top : "0px",
     left : "45%"
-  }
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+    justifyContent :"center",
+    textAlign :"center"
+  },
 
 }));
 
@@ -51,8 +61,10 @@ const SearchBox = () => {
       dispatch(getBooks())
     },[dispatch])
     console.log(books)
+
     var updateBooks = (e)=>{
-        e.preventDefault()
+        e.preventDefault();
+        console.log("Clickedd Once")
         console.log(inputSubject,inputName,inputBranch);
         console.log(e.target)
         if(inputName!==""){
@@ -76,8 +88,10 @@ const SearchBox = () => {
         })
         console.log(uniqueFilteredArray);
         dispatch({type:ADDFILTER,payload:uniqueFilteredArray})
-        // history.push('/all');
+        
     }
+
+    
     // const [filterData,setFilterData] = useState({
     //   filter:'',type:''
     // })
@@ -121,9 +135,13 @@ const SearchBox = () => {
             onChange = {(e) => {setInputSubject(e.target.value)}}
             />
           </div>
-          <button className={classes.button} type="submit" onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
+          <button className={classes.button}  type="submit" onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
           </form>
-       </>
+
+
+    
+      
+    </>
       
     )
 }

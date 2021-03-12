@@ -1,4 +1,3 @@
-
 import React,{useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { Grid,CircularProgress,Grow,Container} from '@material-ui/core';
@@ -21,8 +20,8 @@ const FilteredBooks = () => {
 
         return (
             <>
-            <h1>Filtered Books</h1>
-            <div style={{"marginTop":"200px"}}>
+            <span style={{margin : "0px",padding:"5px"}}>Filtered Books</span>
+            <div style={{"marginTop":"2px"}}>
                 <Container>
                 {filterData.length===0?<CircularProgress/>:(
                     <Grid className={classes.container} container alignItems="stretch" spacing={3}>

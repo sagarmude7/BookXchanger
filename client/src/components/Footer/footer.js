@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <>
       <CssBaseline />
-      <div className={classes.mainfooter}>
+      <div className={classes.footer}>
         <div className={classes.flexContainer} style={{flexWrap:"wrap",}}>
           <div style={{flexGrow:"1" , flex:"auto", flexDirection:"row"}}>
             <Typography align="center">

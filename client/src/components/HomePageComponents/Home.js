@@ -7,6 +7,7 @@ import DisplayBooks from '../AllBooksComponents/AllBooks'
 import {getBooks} from '../../actions/books'
 import {useDispatch,useSelector} from 'react-redux'
 import Footer from "../Footer/footer.js"
+import BookSlider from "./BookSlider/BookSlider.js"
 import {useState} from "react";
 import FilteredBooks from "../AllBooksComponents/FilteredBooks/filteredBooks.js"
 const Home = () => {
@@ -15,11 +16,11 @@ const Home = () => {
     return (
         <>
          <Navbar />
-        <SearchBox /> 
+         
         <Description />
-        
-            {/* <Chatbot /> */}
-            <Footer/>
+        {/* <BookSlider /> */}
+        <Chatbot /> 
+        <Footer/>
         </>
     )
 }
