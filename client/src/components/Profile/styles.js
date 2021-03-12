@@ -14,7 +14,9 @@ export default makeStyles((theme) => ({
         
         
     },
-
+body:{
+  background:"white"
+},
     
       
       pink: {

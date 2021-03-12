@@ -1,77 +1,102 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import AppBar from 'material-ui/AppBar';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React, { useEffect, useState } from "react";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { Container, Button } from "@material-ui/core";
+import useStyles from "./styles.js";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-class App extends Component {
-  constructor() {
-    super();
 
-    this.state = {
-      selection : 1
-    };
-    this.handleChange = this.handleChange.bind(this); 
-  }
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-  handleChange(event, index, value) {
-    //set selection to the value selected
-    this.setState({ selection : value });
-
-  }
-
-  pageControl(){
-    if( this.state.selection == 1){
-      return (
-        <div>Hello</div>
-      );
-    } else if( this.state.selection == 2) {
-      return (
-        <div>Hola</div>
-      );
-    } else if( this.state.selection == 3) {
-      return (
-        <div>Bonjour</div>
-      );
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <MuiThemeProvider>
-        <AppBar
-            title="My App"
-            style={
-              { 
-                background:"#ffb400" //hex color values (yellow)
-              }
-            }
-            titleStyle = {
-              {
-                color:"#FFFFF" //color of text (black)
-              }
-            }
-            showMenuIconButton={false}
-         />
-         <DropDownMenu 
-          value={this.state.selection} 
-          onChange={this.handleChange}   
-         >
-          <MenuItem value={1} primaryText="English"  />
-          <MenuItem value={2} primaryText="Spanish" />
-          <MenuItem value={3} primaryText="French" />
-
-        </DropDownMenu>
-        <br/><br/><br/>
-        <center>
-        {this.pageControl()}
-        </center>
-        </MuiThemeProvider>
-      </div>
-    );
-  }
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
 }
 
-render(<App />, document.getElementById('root'));
+const Dashboard = () => {
+  const classes = useStyles();
+
+  const [value, setValue] = React.useState(2);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const [Myadbool, setMyadbool] = useState(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  function a11yProps(index) {
+    return {
+      id: `full-width-tab-${index}`,
+      "aria-controls": `full-width-tabpanel-${index}`,
+    };
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  return (
+    <>
+      <Container className={classes.body}>
+        <ButtonGroup size="large" color="secondary">
+          <Button
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={() => setMyadbool(!Myadbool)}
+          >
+            My Ads
+          </Button>
+          <Button>Messages</Button>
+        </ButtonGroup>
+        {Myadbool === true ? (
+          <>
+            <Paper className={classes.root}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+              >
+                <Tab label="Active Ads" {...a11yProps(0)} />
+                <Tab label="Pending Ads" />
+                <Tab label="Sold Ads" />
+              </Tabs>
+            </Paper>
+            
+              <TabPanel value={value} index={0}>
+                Item One
+              </TabPanel>
+           
+          </>
+        ) : (
+          <></>
+        )}
+      </Container>
+    </>
+  );
+};
+
+export default Dashboard;

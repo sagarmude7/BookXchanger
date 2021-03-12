@@ -12,29 +12,24 @@ import {
   Paper,
 } from "@material-ui/core";
 import useStyles from "./styles.js";
-import "./profile.css";
 import React from "react";
 import img from "./profilepic.png";
 import EditIcon from "@material-ui/icons/Edit";
-import PageviewIcon from "@material-ui/icons/Pageview";
 import LockIcon from "@material-ui/icons/Lock";
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import Dashboard from "../Dashboard components/Dashboard"
 
 const Profile = () => {
   const classes = useStyles();
 
   const user = JSON.parse(localStorage.getItem("profile"));
   console.log(user.profile.profilePic);
+  
 
+  
   return (
     <>
       <div className={classes.container}>
         <Navbar />
-
-        <Typography className={classes.heading} variant="h4">
-          My Profile
-        </Typography>
 
         <Container className={classes.head}>
           <img
@@ -61,29 +56,10 @@ const Profile = () => {
             >
               Change Password
             </Button>
-
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              endIcon={<LibraryBooksIcon />}
-            >
-              My Ads
-            </Button>
           </Container>
         </Container>
 
-        <Container>
-          <Button component={RouterLink} to="/" >
-            Home
-          </Button>
-          <Button component={RouterLink} to="/all" >
-            Books
-          </Button>
-          <Button component={RouterLink} to="/aboutus" >
-            About Us
-          </Button>
-        </Container>
+        <Dashboard/>
 
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
