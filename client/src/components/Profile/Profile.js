@@ -9,6 +9,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import LockIcon from '@material-ui/icons/Lock';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import {Link as RouterLink,useHistory} from "react-router-dom";
 
 const Profile = () => {
 
@@ -44,6 +45,18 @@ const Profile = () => {
                         endIcon={<LibraryBooksIcon/>}>My Ads</Button>
                 </Container>  
 
+            </Container>
+
+            <Container>
+            <Button component={RouterLink} to="/"  className={menuButton} >
+                            Home
+                        </Button>
+                        <Button component={RouterLink} to="/all" className={menuButton}>
+                            Books
+                        </Button>
+                        <Button component={RouterLink} to="/aboutus" className={menuButton}>
+                            About Us
+                        </Button>
             </Container>
 
             
