@@ -11,8 +11,8 @@ const styles = makeStyles(() => ({
        position :"relative",
        marginLeft :"0px",
        marginRight :"0px",
-        overflow :  "none",
-        width :"100%"
+       overflow :  "none",
+       width :"100%"
             },
     content : {
         textAlign : "center",

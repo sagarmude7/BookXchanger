@@ -5,6 +5,7 @@ import Book from './Book/Book'
 import useStyles from './style'
 import Navbar from '../Navbar/Navbar'
 import Footer from "../Footer/footer.js"
+import SearchBox from "../HomePageComponents/SearchBar/SearchBox.js"
 import {getBooks} from '../../actions/books'
 
 import FilteredBooks from "./FilteredBooks/filteredBooks.js"
@@ -63,7 +64,7 @@ const AllBooks = () => {
     return (
         <>
         <Navbar/>
-
+        <SearchBox /> 
         <FilteredBooks />
         <br />
         <h1>All Books : </h1>
