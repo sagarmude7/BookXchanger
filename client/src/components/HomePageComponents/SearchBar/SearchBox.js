@@ -49,12 +49,16 @@ const SearchBox = () => {
     const [inputName,setInputName] = useState("");
     const [inputSubject,setInputSubject] = useState("");
     const [inputBranch,setInputBranch] = useState("");
+    const [inputPrice,setInputPrice] = useState("");
+    const [inputCondition,setInputCondition] = useState("");
     const history = useHistory();
     const dispatch = useDispatch()
     const books = useSelector(state=>state.books);
     const [filteredbooksByName,setFilteredbooksByName] = useState([]);
     const [filteredbooksByBranch,setFilteredbooksByBranch] = useState([]);
     const [filteredbooksBySubject,setFilteredbooksBySubject] = useState([]);
+    const [filteredbooksByPrice,setFilteredbooksByPrice] = useState([]);
+    const [filteredbooksByCondition,setFilteredbooksByCondition] = useState([]);
     useEffect(()=>{
       console.log("Getting Books")
       //accepts an action call as an argument -> goes to actions folder
@@ -62,50 +66,87 @@ const SearchBox = () => {
     },[dispatch])
     console.log(books)
 
-    var updateBooks = (e)=>{
-        e.preventDefault();
+
+
+    function setName(value) {
+      setInputName(value);
+    }
+    
+    function setSubject(value) {
+      setInputSubject(value);
+    }
+    
+    function setBranch(value) {
+      setInputBranch(value);
+    }
+    
+    function setPrice(value) {
+      setInputPrice(value);
+      console.log(value);
+    }
+    
+    function setCondition(value) {
+      setInputCondition(value);
+    }
+ 
+    const updateBooks =  ()=>{
+        
         console.log("Clickedd Once")
         console.log(inputSubject,inputName,inputBranch);
-        console.log(e.target)
         if(inputName!==""){
-          setFilteredbooksByName(books.filter(book => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
+          setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
           console.log("Filtered By Name",filteredbooksByName);
+        }
+        else{
+          setFilteredbooksByName([]);
         }
         if(inputSubject!==""){
           setFilteredbooksBySubject(books.filter((book) => book.subject.toLowerCase().includes(inputSubject.toLowerCase())));
           console.log("Filtered By Subject",filteredbooksBySubject);
         }
+        else{
+          setFilteredbooksBySubject([]);
+        }
         if(inputBranch!==""){
           setFilteredbooksByBranch(books.filter((book) => book.branch.toLowerCase().includes(inputBranch.toLowerCase())));
           console.log("Filtered By Branch",filteredbooksByBranch);
         }
-          
+        else{
+          setFilteredbooksByBranch([]);
+        }
+        if(inputPrice!==""){
+          setFilteredbooksByPrice(books.filter(book => book.price == inputPrice));
+          console.log("Filtered By Price",filteredbooksByPrice);
+        }
+        else{
+          setFilteredbooksByPrice([]);
+        }
+     
+        if(inputCondition!==""){
+         setFilteredbooksByCondition(books.filter((book) => book.condition.toLowerCase().includes(inputCondition.toLowerCase())));
+          console.log("Filtered By Condition",filteredbooksByCondition);
+        }
+        else{
+          setFilteredbooksByCondition([]);
+        }
         console.log(filteredbooksByName)
-        const filteredbooks = [...filteredbooksByName,...filteredbooksByBranch,...filteredbooksBySubject]
+        const filteredbooks = [...filteredbooksByName,...filteredbooksByBranch,...filteredbooksBySubject,...filteredbooksByPrice,...filteredbooksByCondition]
         console.log(filteredbooks);
-        const uniqueFilteredArray = filteredbooks.filter(function(item, pos) {
+        var uniqueFilteredArray = filteredbooks.filter(function(item, pos) {
             return filteredbooks.indexOf(item) == pos;
         })
         console.log(uniqueFilteredArray);
+
         dispatch({type:ADDFILTER,payload:uniqueFilteredArray})
+      
+       }
         
-    }
-
-    
-    // const [filterData,setFilterData] = useState({
-    //   filter:'',type:''
-    // })
-
-    // const handleSubmit = (e)=>{
-    //   e.preventDefault()
-    //   setFilterData({...filterData,filter:})
-    //   dispatch(filterBooks(filterData));
-    // }
+      
 
     return ( 
         <>
       <Typography variant="h5"  className="heading"> Search a Book </Typography>
-          <form noValidate autoComplete="off" >
+          <div noValidate autoComplete="off" >
           <div  className={classes.root} >
             <input 
             id="standard-basic" 
@@ -114,7 +155,7 @@ const SearchBox = () => {
             key="random1"
             value= {inputName}
             placeholder={"Search Name"}
-            onChange = {(e) => {setInputName(e.target.value)}}
+            onChange = {(e) => {setName(e.target.value)}}
             />
           <input 
             id="standard-basic" 
@@ -123,7 +164,7 @@ const SearchBox = () => {
             key="random2"
             value= {inputBranch}
             placeholder={"Search Branch"}
-            onChange = {(e) => {setInputBranch(e.target.value)}}
+            onChange = {(e) => {setBranch(e.target.value)}}
             />
             <input 
             id="standard-basic" 
@@ -132,11 +173,36 @@ const SearchBox = () => {
             key="random3"
             value= {inputSubject}
             placeholder={"Search Subject"}
-            onChange = {(e) => {setInputSubject(e.target.value)}}
+            onChange = {(e) => {setSubject(e.target.value)}}
             />
           </div>
-          <button className={classes.button}  type="submit" onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
-          </form>
+          <hr style={{borderWidth : "0px"}}/>
+          <div  className={classes.root} >
+            <input 
+            id="standard-basic" 
+            label="Price" 
+            className={classes.input} 
+            key="random4"
+            value= {inputPrice}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder={"Type Price"}
+            
+            />
+          
+            <input 
+            id="standard-basic" 
+            label="Condition" 
+            className={classes.input} 
+            key="random5"
+            value= {inputCondition}
+            onChange={(e) => setCondition(e.target.value)}
+            placeholder={"Search Condition"}
+            
+            />
+          </div>
+          <button className={classes.button} onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
+          <span className="hide">Double Click to search</span>
+          </div>
 
 
     
