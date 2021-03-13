@@ -42,3 +42,9 @@ exports.createBookAd = async(req,res)=>{
         return res.status(409).json({msg:err})
     }
 }
+
+exports.addToWishList = async(req,res)=>{
+    const {id} = req.params;
+    console.log(id);
+    return res.status(200).json({msg:"Added To the wishlist from backend"})
+}
