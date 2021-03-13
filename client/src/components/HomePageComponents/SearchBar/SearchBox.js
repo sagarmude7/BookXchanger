@@ -14,6 +14,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FilteredBooks from '../../AllBooksComponents/FilteredBooks/filteredBooks';
+import { blue } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow :"1",
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft :"10px",
     marginRight : "10px", 
     textAlign: 'center',
+    border  :"1px solid blue"
   },
   button:{
     position :"relative",
@@ -39,7 +41,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent :"center",
     textAlign :"center"
   },
-
+ accordian :{
+   width:"400px",
+  position : "relative",
+  display:"flex",
+  AlignItems:"center",
+  justifyContent : "center"
+ }
 }));
 
 
@@ -140,7 +148,13 @@ const SearchBox = () => {
         dispatch({type:ADDFILTER,payload:uniqueFilteredArray})
       
        }
-        
+
+        const [expanded, setExpanded] = React.useState(false);
+      
+        const handleChange = (panel) => (event, isExpanded) => {
+          setExpanded(isExpanded ? panel : false);
+        };
+      
       
 
     return ( 
@@ -203,7 +217,40 @@ const SearchBox = () => {
           <button className={classes.button} onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
           <span className="hide">Double Click to search</span>
           </div>
-
+      {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={classes.accordian}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography className={classes.heading}>Advanced Search</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        <div  className={classes.root} >
+            <input 
+            id="standard-basic" 
+            label="Price" 
+            className={classes.input} 
+            key="random4"
+            value= {inputPrice}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder={"Type Price"}
+            
+            />
+          
+            <input 
+            id="standard-basic" 
+            label="Condition" 
+            className={classes.input} 
+            key="random5"
+            value= {inputCondition}
+            onChange={(e) => setCondition(e.target.value)}
+            placeholder={"Search Condition"}
+            
+            />
+          </div>
+        </AccordionDetails>
+      </Accordion> */}
 
     
       

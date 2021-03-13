@@ -19,6 +19,7 @@
     "react-file-base64": "^1.0.3",
     "react-google-login": "^5.2.2",
     "react-material-ui-carousel": "^2.1.2",
+    "react-multi-carousel": "^2.6.2",
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -52,6 +53,8 @@
       "last 1 safari version"
     ]
   },
-  "globals": { "_": true },
+  "globals": {
+    "_": true
+  },
   "proxy": "http://localhost:5000/"
 }
