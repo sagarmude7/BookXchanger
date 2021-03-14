@@ -8,8 +8,8 @@ export const getBooks = ()=>async(dispatch)=>{
         //console.log(data)
         dispatch({type:FETCH_ALL,payload:data})
     } catch (err) {
-        console.log("Some error occured")
-        // console.log(err.response.data)
+        // console.log("Some error occured")
+        console.log(err)
     }
 }
 
@@ -28,9 +28,9 @@ export const createBookAd = (formData)=>async(dispatch)=>{
 
 export const addToWishList = (id)=>async(dispatch)=>{
     try {
-        const {data}= api.addToWishList(id);
+        const {data}= await api.addToWishList(id);
         console.log(data)
     } catch (error) {
-        
+        console.log(error);
     }
 }

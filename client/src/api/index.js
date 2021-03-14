@@ -6,7 +6,7 @@ API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
       req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
     }
-  
+
     return req;
 });
 
@@ -14,11 +14,9 @@ const urlBooks = '/books';
 
 const fetchBooks = ()=>API.get(`${urlBooks}/all`)
 
-const fetchFilteredBooks = (filterData)=>API.get(`${urlBooks}/filtered`,filterData)
-
 const createBookAd = (formData)=>API.post(`${urlBooks}/add`,formData)
 
-const addToWishList = (id)=>API.patch(`${urlBooks}/${id}/addWishList`,id)
+const addToWishList = (id)=>API.post(`${urlBooks}/${id}/addWishList`,id)
 
 const urlUsers = '/users';
 

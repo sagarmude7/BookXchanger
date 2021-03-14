@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const { regValidator, loginValidator } = require('../validators/joi-validator')
 
 exports.signUp = async(req,res)=>{
+    console.log(req.body)
     const {firstName,lastName,email,college,location,password,confirmPassword} = req.body 
     console.log(password)
     const {error} = regValidator.validate(req.body)
