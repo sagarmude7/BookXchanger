@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { Container, Button } from "@material-ui/core";
 import useStyles from "./styles.js";
+import { Grid, CircularProgress } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Book from "./Book/Book";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -30,6 +31,19 @@ function TabPanel(props) {
 }
 
 const Dashboard = () => {
+  const user = JSON.parse(localStorage.getItem("profile"));
+
+  function card(book) {
+    return (
+      <Grid item xs={12} sm={3}>
+        <Book key={book._id} book={book}/>
+      </Grid>
+    );
+  }
+
+  console.log(user.profile);
+  console.log(user.profile.books[0]);
+
   const classes = useStyles();
 
   const [value, setValue] = React.useState(2);
@@ -41,8 +55,6 @@ const Dashboard = () => {
   const [Myadbool, setMyadbool] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-
-  
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -81,15 +93,22 @@ const Dashboard = () => {
                 textColor="primary"
               >
                 <Tab label="Active Ads" {...a11yProps(0)} />
-                <Tab label="Pending Ads" />
-                <Tab label="Sold Ads" />
+                <Tab label="Pending Ads" {...a11yProps(1)} />
+                <Tab label="Sold Ads" {...a11yProps(2)} />
               </Tabs>
             </Paper>
-            
-              <TabPanel value={value} index={0}>
-                Item One
-              </TabPanel>
-           
+
+            <TabPanel value={value} index={0}>
+              <>
+                {user.profile.books.length !== null ? (
+                  <>{user.profile.books.map(card)}</>
+                ) : (
+                  <>
+                    <div>No Active Ads</div>
+                  </>
+                )}
+              </>
+            </TabPanel>
           </>
         ) : (
           <></>

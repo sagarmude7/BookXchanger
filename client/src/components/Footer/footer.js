@@ -89,7 +89,7 @@ const Footer = () => {
        
 
         <div>
-          <Typography align="center" style={{ fontSize: "13px", position: "Centre", padding: "5px 0 5px 0", background: "black",color:"white"}} >
+          <Typography align="center"  style={{ fontSize: "13px", position: "Centre", padding: "5px 0 5px 0", background: "black",color:"white"}} >
             {'Copyright © '}
             <Link color="inherit" to="/" component = {RouterLink} key="Home">
               Bookxchanger
