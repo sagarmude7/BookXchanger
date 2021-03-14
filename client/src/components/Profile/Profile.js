@@ -16,16 +16,14 @@ import React from "react";
 import img from "./profilepic.png";
 import EditIcon from "@material-ui/icons/Edit";
 import LockIcon from "@material-ui/icons/Lock";
-import Dashboard from "../Dashboard components/Dashboard"
+import Dashboard from "../Dashboard components/Dashboard";
 
 const Profile = () => {
   const classes = useStyles();
 
   const user = JSON.parse(localStorage.getItem("profile"));
   console.log(user.profile.profilePic);
-  
 
-  
   return (
     <>
       <div className={classes.container}>
@@ -59,7 +57,7 @@ const Profile = () => {
           </Container>
         </Container>
 
-        <Dashboard/>
+        <Dashboard />
 
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>

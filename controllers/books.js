@@ -6,6 +6,7 @@ const User = require('../models/User')
 
 exports.getBooks = async(req,res)=>{
     try{
+        console.log("Geti books")
         const books = await Book.find()
         return res.status(200).json(books)
     }
@@ -31,8 +32,7 @@ exports.createBookAd = async(req,res)=>{
         books.push(newBook)
         //updated books array of User
         const updatedUser = await User.findOneAndUpdate({_id:req.userId},{books:books},{new:true})
-        updatedUser.save()
-        
+        updatedUser.save()    
         await newBook.save()
         console.log(newBook);
         console.log(updatedUser);
@@ -44,6 +44,7 @@ exports.createBookAd = async(req,res)=>{
 }
 
 exports.addToWishList = async(req,res)=>{
+    console.log("Hello")
     const {id} = req.params;
     console.log(id);
     return res.status(200).json({msg:"Added To the wishlist from backend"})
