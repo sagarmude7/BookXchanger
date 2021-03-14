@@ -1,79 +1,117 @@
-import React,{useEffect} from 'react';
-import CarouselSlider from "react-carousel-slider"
-import Book from '../../AllBooksComponents/Book/Book'
+import React,{useEffect,useState} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Book from '../../AllBooksComponents/Book/Book'
+import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormControlLabel,Radio, Typography} from '@material-ui/core';
+import useStyles from './style'
 import {getBooks} from '../../../actions/books'
 
-                        // {
-                        //    "autoSliding": {
-                        //         "items": [
-                        //             {
-                        //                 "imgSrc": "https: ..."
-                        //             },
-                        //             {
-                        //                 "imgSrc": "https: ..."
-                        //             },
-                        //             {
-                        //                 "imgSrc": "https: ..."
-                        //             },
-                        //             {
-                        //                 "imgSrc": "https: ..."
-                        //             }
-                        //         ]
-                        //     }
-                        // }
-const BookSlider = () =>{
-           
-            const dispatch = useDispatch();
-            useEffect(()=>{
-                    console.log("Getting Books")
-                    //accepts an action call as an argument -> goes to actions folder
-                    dispatch(getBooks())
-            },[dispatch]);
-            const books = useSelector(state=>state.books)    
-            const data = books.map((book) =>  <Book key={book.id}  book={book}/>); 
-            console.log(data);
-            let manner = {
-                 autoSliding: {interval: "3s"},
-                            duration: "2s"
-                    };
-                            
-                let accEleSetting;
+const BookSlider = () => {
+    const dispatch = useDispatch()
+    const classes = useStyles()
+    const books = useSelector(state=>state.books)
+  const [sortbool,setSortbool] = useState(false)
 
-                let mobileRegx = /Mobi|Tablet|iPad|iPhone/;
-                if (mobileRegx.test(navigator.userAgent)) {
-                        accEleSetting.button = false;
-                        }
+    const [data, setData] = useState([]);
+    const [sortType, setSortType] = useState();
+    useEffect(()=>{
+            console.log("Getting Books")
+            //accepts an action call as an argument -> goes to actions folder
+            dispatch(getBooks())
+    },[dispatch])
 
-                let buttonSetting = {
-                placeOn: "middle-inside",
-                hoverEvent: true,
-                        style: {
-                            left: {
-                                height: "50px",
-                                width: "50px",
-                                color: "#929393",
-                                background: "rgba(225, 228, 232, 0.8)",
-                                borderRadius: "50%"
-                                },
-                            right: {
-                                height: "50px",
-                                width: "50px",
-                                color: "#929393",
-                                background: "rgba(225, 228, 232, 0.8)",
-                                borderRadius: "50%"
-                                }
-                                }
-                            };
+
+
+    const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 5
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 3
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2
+        },
+        mobile: {
+          breakpoint: { max: 264, min: 0 },
+          items: 1
+        }
+      };
+
+      return(
+
+        <>
+        <hr style={{borderWidth : "0px"}}/>
+        <hr style={{borderWidth : "0px"}}/>
         
-                            return (
-                            <CarouselSlider 
-                            
-                                slideItems = {data}  
-                                manner = {manner} 
-                                buttonSetting = {buttonSetting} />
-                            )
-  
-                        }
-                            
+        <Typography variant="h6" style={{textAlign:"center",color:"black"}} >Most Featured Books</Typography>
+        <hr style={{border : "1px solid black",width:"300px"}}/>
+        <hr style={{borderWidth : "0px"}}/>
+    <Carousel responsive={responsive}>
+            <Container >
+                  <Book key={1} book={books[1]} />   
+            </Container>
+            <Container >
+                  <Book key={2} book={books[2]}/>   
+            </Container>
+            <Container >
+                  <Book key={3} book={books[3]}/>   
+            </Container>
+            <Container >
+                  <Book key={4} book={books[4]}/>   
+            </Container>
+            <Container >
+                  <Book key={5} book={books[2]}/>   
+            </Container>
+            <Container >
+                  <Book key={6} book={books[2]}/>   
+            </Container>
+
+      </Carousel>
+      <hr style={{borderWidth : "0px"}}/>
+      <hr style={{borderWidth : "0px"}}/>
+        <Typography variant="h6" style={{textAlign:"center"}} >Most Trending  Books</Typography>
+        <hr style={{border : "1px solid black",width:"300px"}}/>
+        <hr style={{borderWidth : "0px"}}/>
+
+    <Carousel responsive={responsive}>
+            <Container >
+                  <Book key={1} book={books[1]} />   
+            </Container>
+            <Container >
+                  <Book key={2} book={books[2]}/>   
+            </Container>
+            <Container >
+                  <Book key={3} book={books[3]}/>   
+            </Container>
+            <Container >
+                  <Book key={4} book={books[4]}/>   
+            </Container>
+            <Container >
+                  <Book key={5} book={books[2]}/>   
+            </Container>
+            <Container >
+                  <Book key={6} book={books[2]}/>   
+            </Container>
+
+      </Carousel>
+      </>
+      )
+      
+}
+
+
+
 export default BookSlider;
+
+
+
+
+
+
+

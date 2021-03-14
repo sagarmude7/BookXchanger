@@ -21,17 +21,17 @@ const Book = ({book}) => {
                 <Typography variant="body2">{moment(book.createdAt).fromNow()}</Typography>
             </div> 
             <div className={classes.overlay2}>
-                <Button style={{ color: 'white' }} size="small"><MoreHorizIcon fontSize="default" /></Button>
+                <Button color="primary" size="small"><MoreHorizIcon fontSize="default" /></Button>
             </div>
             <Typography className={classes.title} gutterBottom variant="h5" component="h2">${book.price}</Typography>
             <div className={classes.details}>
-                <Typography variant="body2" color="textSecondary" component="h2">{book.description}</Typography>
+                <Typography variant="body2" color="secondary" component="h2">{book.description}</Typography>
             </div>
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">{book.tags.map((tag)=>`#${tag} `)}</Typography>
+                <Typography variant="body2" color="secondary" component="p">{book.tags.map((tag)=>`#${tag} `)}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size="medium" color="white" onClick={addtofavourite()} >
+                <Button size="medium" color="secondary" onClick={addtofavourite()} >
                 <FavoriteBorderIcon  />
                 </Button>
                     

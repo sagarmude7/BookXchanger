@@ -26,3 +26,11 @@ export const createBookAd = (formData)=>async(dispatch)=>{
 }
 
 
+export const addToWishList = (id)=>async(dispatch)=>{
+    try {
+        const {data}= api.addToWishList(id);
+        console.log(data)
+    } catch (error) {
+        
+    }
+}

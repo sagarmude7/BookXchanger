@@ -18,7 +18,7 @@ const Home = () => {
          <Navbar />
          
         <Description />
-        {/* <BookSlider /> */}
+        <BookSlider />
         <Chatbot /> 
         <Footer/>
         </>

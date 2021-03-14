@@ -59,7 +59,7 @@ const Footer = () => {
               <Typography style={{ fontSize: "20px", fontWeight: "bold" }} align="center" >
                 Quick Links
                 </Typography>
-              <Typography align="center" component={'span'} >
+              <Typography align="center">
                 <li style={{ listStyleType: "none", textAlign: 'center' }} >
                   <ul style={{ listStyleType: "none", textAlign: 'center', paddingInlineStart: "0px" }}>
                     <Link to="/" component = {RouterLink} key="Home" color="inherit">

@@ -18,6 +18,8 @@ const fetchFilteredBooks = (filterData)=>API.get(`${urlBooks}/filtered`,filterDa
 
 const createBookAd = (formData)=>API.post(`${urlBooks}/add`,formData)
 
+const addToWishList = (id)=>API.patch(`${urlBooks}/${id}/addWishList`,id)
+
 const urlUsers = '/users';
 
 const signUp = (formData)=>API.post(`${urlUsers}/signUp`,formData)
@@ -27,4 +29,4 @@ const googleFacebookSignIn = (formData)=>API.post(`${urlUsers}/googleFacebookSig
 
 const getProfile = (id)=>API.get(`${urlUsers}/${id}/profile`);
 
-module.exports = {fetchBooks,createBookAd,signUp,signIn,googleFacebookSignIn}
+module.exports = {fetchBooks,createBookAd,signUp,signIn,googleFacebookSignIn,addToWishList}
