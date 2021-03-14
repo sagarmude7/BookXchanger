@@ -1,36 +1,31 @@
 const mongoose = require('mongoose')
 
 const WishListSchema = mongoose.Schema({
-    bookId:String,
+    book:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Book'
+    },
     adder:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    name:{              //name of book
-        type:String,
-        required:true
+    bookName:{              //name of book
+        type:String
     },
     subject:{           //subject -> Engineering subject
-        type:String,  
-        required:true 
+        type:String 
     },
     price:{     //price of the book
-        type:Number,
-        required:true
+        type:Number
     },
     selectedFile:{
-        type:String,  //upload photo of Book(currently only one)  
-        required:true
+        type:String
     },
     
-    tags:{
-        type:String,  //tags for book 
-        required:true
-    },    
+    tags:[String], 
     
     edition:{           //edition of the book
-        type:String,
-        required:true
+        type:String
     },
     description:String, //description of the book
 })

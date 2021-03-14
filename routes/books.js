@@ -11,6 +11,6 @@ const auth = require('../middleware/auth')
 
 router.get('/all',getBooks)
 router.post('/add',auth,createBookAd)
-router.post('/:id/addWishList',addToWishList)
+router.patch('/:id/addWishList',auth,addToWishList)
 
 module.exports = router

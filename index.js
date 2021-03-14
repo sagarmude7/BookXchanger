@@ -19,12 +19,12 @@ const app = express()
 connectDB()
 
 app.use((req, res, next) => {
-    console.log("Running.")
+    // console.log("Running.")
     res.append('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
     res.append('Access-Control-Allow-Headers','authorization,Content-Type');
     res.append("Access-Control-Allow-Credentials","true");
-    console.log(res.getHeader('Access-Control-Allow-Origin'))
+    // console.log(res.getHeader('Access-Control-Allow-Origin'))
     next();
 });
 

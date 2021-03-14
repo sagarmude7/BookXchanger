@@ -16,7 +16,7 @@ const fetchBooks = ()=>API.get(`${urlBooks}/all`)
 
 const createBookAd = (formData)=>API.post(`${urlBooks}/add`,formData)
 
-const addToWishList = (id)=>API.post(`${urlBooks}/${id}/addWishList`,id)
+const addToWishList = (id)=>API.patch(`${urlBooks}/${id}/addWishList`,id)
 
 const urlUsers = '/users';
 
