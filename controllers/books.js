@@ -22,13 +22,17 @@ exports.createBookAd = async(req,res)=>{
         return res.status(403).json({msg:"Unauthorized"})
     try {
         //new Book Object
+        console.log("Book 1")
         const newBook = new Book({...book,createdAt:new Date().toISOString(),owner:req.userId})
         
         //get current User
         const currentUser = await User.findById(req.userId);
+        console.log("123")
         const books = currentUser.Books;
+        
         //pushing new Book to array
         books.push(newBook)
+        
         //updated books array of User
         const updatedUser = await User.findOneAndUpdate({_id:req.userId},{Books:Books},{new:true})
         updatedUser.save()
