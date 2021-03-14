@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { Container, Button } from "@material-ui/core";
 import useStyles from "./styles.js";
+import { Grid, CircularProgress } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Book from "./Book/Book";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -30,8 +32,17 @@ function TabPanel(props) {
 
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
-  
+
+  function card(book) {
+    return (
+      <Grid item xs={12} sm={3}>
+        <Book key={book._id} book={book}/>
+      </Grid>
+    );
+  }
+
   console.log(user.profile);
+  console.log(user.profile.books[0]);
 
   const classes = useStyles();
 
@@ -40,8 +51,6 @@ const Dashboard = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  
 
   const [Myadbool, setMyadbool] = useState(false);
 
@@ -91,16 +100,11 @@ const Dashboard = () => {
 
             <TabPanel value={value} index={0}>
               <>
-              
                 {user.profile.books.length !== null ? (
-                  
-                  <>
-                    {user.profile.books[1]}
-                  </>
+                  <>{user.profile.books.map(card)}</>
                 ) : (
                   <>
-                    
-                    <h1>hello</h1>
+                    <div>No Active Ads</div>
                   </>
                 )}
               </>
