@@ -29,14 +29,15 @@ exports.createBookAd = async(req,res)=>{
         //get current User
         const currentUser = await User.findById(req.userId);
         console.log("123")
-        const books = currentUser.Books;
+        const books = currentUser.books;
         
         //pushing new Book to array
         books.push(newBook)
         
         //updated books array of User
         const updatedUser = await User.findOneAndUpdate({_id:req.userId},{books:books},{new:true})
-        updatedUser.save()    
+        updatedUser.save()
+        
         await newBook.save()
         console.log(newBook);
         console.log(updatedUser);

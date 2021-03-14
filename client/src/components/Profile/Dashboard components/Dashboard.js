@@ -100,11 +100,13 @@ const Dashboard = () => {
 
             <TabPanel value={value} index={0}>
               <>
-                {user.profile.books.length !== null ? (
-                  <>{user.profile.books.map(card)}</>
+                {user.profile.books.length !== 0 ? (
+                  <>{user.profile.books.map(card)}
+                  </>
                 ) : (
                   <>
-                    <div>No Active Ads</div>
+                  No Active Ads
+                    
                   </>
                 )}
               </>

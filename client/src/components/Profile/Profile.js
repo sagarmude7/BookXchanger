@@ -16,7 +16,7 @@ import React from "react";
 import img from "./profilepic.png";
 import EditIcon from "@material-ui/icons/Edit";
 import LockIcon from "@material-ui/icons/Lock";
-import Dashboard from "../Dashboard components/Dashboard";
+import Dashboard from "./Dashboard components/Dashboard"
 
 const Profile = () => {
   const classes = useStyles();
@@ -45,16 +45,7 @@ const Profile = () => {
             {user.profile.name}
           </Typography>
 
-          <Container className={classes.headRight}>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              endIcon={<LockIcon />}
-            >
-              Change Password
-            </Button>
-          </Container>
+          
         </Container>
 
         <Dashboard />
