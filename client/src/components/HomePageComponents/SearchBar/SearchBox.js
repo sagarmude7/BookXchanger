@@ -82,9 +82,6 @@ const SearchBox = () => {
       dispatch(getBooks())
     },[dispatch])
     console.log(books)
-
-
-
     function setName(value) {
       setInputName(value);
     }

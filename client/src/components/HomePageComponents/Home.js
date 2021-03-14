@@ -10,6 +10,7 @@ import Footer from "../Footer/footer.js"
 import BookSlider from "./BookSlider/BookSlider.js"
 import {useState} from "react";
 import FilteredBooks from "../AllBooksComponents/FilteredBooks/filteredBooks.js"
+import Feedback from "./Feedback/Feedback.js"
 const Home = () => {
     const dispatch = useDispatch()
  
@@ -19,6 +20,7 @@ const Home = () => {
          
         <Description />
         <BookSlider />
+        <Feedback />
         <Chatbot /> 
         <Footer/>
         </>
