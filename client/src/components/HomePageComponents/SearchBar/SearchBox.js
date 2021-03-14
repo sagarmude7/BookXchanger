@@ -98,9 +98,6 @@ const SearchBox = () => {
     }
  
     const updateBooks =  ()=>{
-        
-        console.log("Clickedd Once")
-        console.log(inputSubject,inputName,inputBranch);
         if(inputName!==""){
           setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
           console.log("Filtered By Name",filteredbooksByName);
@@ -123,7 +120,7 @@ const SearchBox = () => {
           setFilteredbooksByBranch([]);
         }
         if(inputPrice!==""){
-          setFilteredbooksByPrice(books.filter(book => book.price == inputPrice));
+          setFilteredbooksByPrice(books.filter((book) => book.priceType.toLowerCase().includes(inputPrice.toLowerCase())));
           console.log("Filtered By Price",filteredbooksByPrice);
         }
         else{
@@ -137,26 +134,18 @@ const SearchBox = () => {
         else{
           setFilteredbooksByCondition([]);
         }
-        console.log(filteredbooksByName)
         const filteredbooks = [...filteredbooksByName,...filteredbooksByBranch,...filteredbooksBySubject,...filteredbooksByPrice,...filteredbooksByCondition]
-        console.log(filteredbooks);
         var uniqueFilteredArray = filteredbooks.filter(function(item, pos) {
             return filteredbooks.indexOf(item) == pos;
         })
         console.log(uniqueFilteredArray);
-
-        dispatch({type:ADDFILTER,payload:uniqueFilteredArray})
-      
+        dispatch({type:ADDFILTER,payload:uniqueFilteredArray})      
        }
-
         const [expanded, setExpanded] = React.useState(false);
       
         const handleChange = (panel) => (event, isExpanded) => {
           setExpanded(isExpanded ? panel : false);
         };
-      
-      
-
     return ( 
         <>
       <Typography variant="h5"  className="heading"> Search a Book </Typography>
@@ -199,10 +188,8 @@ const SearchBox = () => {
             key="random4"
             value= {inputPrice}
             onChange={(e) => setPrice(e.target.value)}
-            placeholder={"Type Price"}
-            
-            />
-          
+            placeholder={"Type Fixed / Negotiable"}
+            />     
             <input 
             id="standard-basic" 
             label="Condition" 
@@ -210,14 +197,20 @@ const SearchBox = () => {
             key="random5"
             value= {inputCondition}
             onChange={(e) => setCondition(e.target.value)}
-            placeholder={"Search Condition"}
-            
+            placeholder={"Type New/ Used"}    
             />
           </div>
           <button className={classes.button} onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
           <span className="hide">Double Click to search</span>
-          </div>
-      {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={classes.accordian}>
+          </div> 
+    </>
+    )
+}
+
+export default SearchBox;
+
+
+  {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={classes.accordian}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -253,12 +246,3 @@ const SearchBox = () => {
       </Accordion> */}
 
     
-      
-    </>
-      
-    )
-}
-
-export default SearchBox;
-
-
