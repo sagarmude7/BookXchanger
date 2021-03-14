@@ -5,9 +5,8 @@ import useStyles from "./styles.js";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -30,6 +29,10 @@ function TabPanel(props) {
 }
 
 const Dashboard = () => {
+  const user = JSON.parse(localStorage.getItem("profile"));
+  
+  console.log(user.profile);
+
   const classes = useStyles();
 
   const [value, setValue] = React.useState(2);
@@ -38,11 +41,11 @@ const Dashboard = () => {
     setValue(newValue);
   };
 
+  
+
   const [Myadbool, setMyadbool] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-
-  
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -81,15 +84,27 @@ const Dashboard = () => {
                 textColor="primary"
               >
                 <Tab label="Active Ads" {...a11yProps(0)} />
-                <Tab label="Pending Ads" />
-                <Tab label="Sold Ads" />
+                <Tab label="Pending Ads" {...a11yProps(1)} />
+                <Tab label="Sold Ads" {...a11yProps(2)} />
               </Tabs>
             </Paper>
-            
-              <TabPanel value={value} index={0}>
-                Item One
-              </TabPanel>
-           
+
+            <TabPanel value={value} index={0}>
+              <>
+              
+                {user.profile.books.length !== null ? (
+                  
+                  <>
+                    {user.profile.books[1]}
+                  </>
+                ) : (
+                  <>
+                    
+                    <h1>hello</h1>
+                  </>
+                )}
+              </>
+            </TabPanel>
           </>
         ) : (
           <></>
