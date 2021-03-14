@@ -78,7 +78,7 @@ const Navbar = () => {
   useEffect(() => {
     //Function which returns the current view of the window.
     const setResponsiveness = () => {
-      return window.innerWidth < 900 && window.innerWidth > 100
+      return (window.innerWidth < 900 && window.innerWidth > 100)
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };

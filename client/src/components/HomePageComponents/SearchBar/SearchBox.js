@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search"
 import {useSelector,useDispatch} from 'react-redux';
 import {getBooks} from '../../../actions/books'
 import { makeStyles } from '@material-ui/core/styles';
-import {TextField,Typography,Grid} from '@material-ui/core';
+import {Container,Grow,Grid,Paper,Typography,TextField,Button,Select,MenuItem,FormControl,InputLabel} from '@material-ui/core';
 import { Link,useHistory } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import Accordion from '@material-ui/core/Accordion';
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft :"10px",
     marginRight : "10px", 
     textAlign: 'center',
-    border  :"1px solid blue"
+    border  :"1px solid grey"
   },
   button:{
     position :"relative",
@@ -47,6 +47,15 @@ const useStyles = makeStyles((theme) => ({
   display:"flex",
   AlignItems:"center",
   justifyContent : "center"
+ },
+ gridContainer: {
+  display:"flex",
+  alignItems:"center",
+  justifyContent:"center",
+ },
+ gridItem :{
+  border:"1px solid blue",
+  borderRadius:"10px"
  }
 }));
 
@@ -73,9 +82,6 @@ const SearchBox = () => {
       dispatch(getBooks())
     },[dispatch])
     console.log(books)
-
-
-
     function setName(value) {
       setInputName(value);
     }
@@ -98,9 +104,6 @@ const SearchBox = () => {
     }
  
     const updateBooks =  ()=>{
-        
-        console.log("Clickedd Once")
-        console.log(inputSubject,inputName,inputBranch);
         if(inputName!==""){
           setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
           console.log("Filtered By Name",filteredbooksByName);
@@ -123,7 +126,7 @@ const SearchBox = () => {
           setFilteredbooksByBranch([]);
         }
         if(inputPrice!==""){
-          setFilteredbooksByPrice(books.filter(book => book.price == inputPrice));
+          setFilteredbooksByPrice(books.filter((book) => book.priceType.toLowerCase().includes(inputPrice.toLowerCase())));
           console.log("Filtered By Price",filteredbooksByPrice);
         }
         else{
@@ -137,30 +140,21 @@ const SearchBox = () => {
         else{
           setFilteredbooksByCondition([]);
         }
-        console.log(filteredbooksByName)
         const filteredbooks = [...filteredbooksByName,...filteredbooksByBranch,...filteredbooksBySubject,...filteredbooksByPrice,...filteredbooksByCondition]
-        console.log(filteredbooks);
         var uniqueFilteredArray = filteredbooks.filter(function(item, pos) {
             return filteredbooks.indexOf(item) == pos;
         })
         console.log(uniqueFilteredArray);
-
-        dispatch({type:ADDFILTER,payload:uniqueFilteredArray})
-      
+        dispatch({type:ADDFILTER,payload:uniqueFilteredArray})      
        }
-
-        const [expanded, setExpanded] = React.useState(false);
-      
+        const [expanded, setExpanded] = React.useState(false);     
         const handleChange = (panel) => (event, isExpanded) => {
           setExpanded(isExpanded ? panel : false);
         };
-      
-      
-
     return ( 
         <>
       <Typography variant="h5"  className="heading"> Search a Book </Typography>
-          <div noValidate autoComplete="off" >
+        <div noValidate autoComplete="off" >
           <div  className={classes.root} >
             <input 
             id="standard-basic" 
@@ -191,33 +185,56 @@ const SearchBox = () => {
             />
           </div>
           <hr style={{borderWidth : "0px"}}/>
-          <div  className={classes.root} >
-            <input 
-            id="standard-basic" 
-            label="Price" 
-            className={classes.input} 
-            key="random4"
-            value= {inputPrice}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder={"Type Price"}
-            
-            />
-          
-            <input 
-            id="standard-basic" 
-            label="Condition" 
-            className={classes.input} 
-            key="random5"
-            value= {inputCondition}
-            onChange={(e) => setCondition(e.target.value)}
-            placeholder={"Search Condition"}
-            
-            />
-          </div>
+          <hr style={{borderWidth : "0px"}}/>
+        <Grid container spacing={4} className={classes.gridContainer} > 
+            <Grid item xs={4} sm={2}>
+                <FormControl variant="outlined" border="blue" className={classes.formControl} fullWidth>
+                <InputLabel id="conditionTypeLabel">Condition Of Book</InputLabel>
+                    <Select
+                    labelId="conditionLabel"
+                    id="condition"
+                    label="Condition Of Book"
+                    onChange={(e) => setCondition(e.target.value)}
+                    value={inputCondition}
+                    name="condition"
+                    >
+                        <MenuItem value="Used">Used</MenuItem>
+                        <MenuItem value="New">New</MenuItem>
+                    </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={4} sm={2} >
+                  <FormControl variant="outlined" className={classes.formControl} fullWidth>
+                      <InputLabel id="type-label">Price Type</InputLabel>
+                      <Select
+                      labelId="type-label"
+                      id="priceType"
+                      label="Price Type"
+                      name="priceType"
+                      value={inputPrice}
+                      onChange={(e) => setPrice(e.target.value)}
+                      placeholder={"Type Fixed / Negotiable"}
+                      >
+                          <MenuItem value="Fixed">
+                              <em>Fixed</em>
+                          </MenuItem>
+                          <MenuItem value="Negotiable">Negotiable</MenuItem>
+                          <MenuItem value="Price on Call">Price on Call</MenuItem>
+                      </Select>
+                  </FormControl>
+              </Grid>
+            </Grid>
           <button className={classes.button} onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
           <span className="hide">Double Click to search</span>
-          </div>
-      {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={classes.accordian}>
+        </div> 
+    </>
+    )
+}
+
+export default SearchBox;
+
+
+  {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={classes.accordian}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -253,12 +270,3 @@ const SearchBox = () => {
       </Accordion> */}
 
     
-      
-    </>
-      
-    )
-}
-
-export default SearchBox;
-
-

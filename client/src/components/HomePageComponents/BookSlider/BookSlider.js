@@ -54,23 +54,12 @@ const BookSlider = () => {
         <hr style={{borderWidth : "0px"}}/>
     <Carousel responsive={responsive}>
             <Container >
-                  <Book key={1} book={books[1]} />   
+                  <Book key={1} book={books[0]} />   
             </Container>
             <Container >
-                  <Book key={2} book={books[2]}/>   
+                  <Book key={2} book={books[1]}/>   
             </Container>
-            <Container >
-                  <Book key={3} book={books[3]}/>   
-            </Container>
-            <Container >
-                  <Book key={4} book={books[4]}/>   
-            </Container>
-            <Container >
-                  <Book key={5} book={books[2]}/>   
-            </Container>
-            <Container >
-                  <Book key={6} book={books[2]}/>   
-            </Container>
+           
 
       </Carousel>
       <hr style={{borderWidth : "0px"}}/>
@@ -81,23 +70,12 @@ const BookSlider = () => {
 
     <Carousel responsive={responsive}>
             <Container >
-                  <Book key={1} book={books[1]} />   
+                  <Book key={1} book={books[0]} />   
             </Container>
             <Container >
-                  <Book key={2} book={books[2]}/>   
+                  <Book key={2} book={books[1]}/>   
             </Container>
-            <Container >
-                  <Book key={3} book={books[3]}/>   
-            </Container>
-            <Container >
-                  <Book key={4} book={books[4]}/>   
-            </Container>
-            <Container >
-                  <Book key={5} book={books[2]}/>   
-            </Container>
-            <Container >
-                  <Book key={6} book={books[2]}/>   
-            </Container>
+          
 
       </Carousel>
       </>
