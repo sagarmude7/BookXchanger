@@ -59,7 +59,7 @@ const Dashboard = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  //  dispatch(getMyAds())
   function a11yProps(index) {
     return {
       id: `full-width-tab-${index}`,

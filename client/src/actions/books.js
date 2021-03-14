@@ -34,3 +34,10 @@ export const addToWishList = (id)=>async(dispatch)=>{
         console.log(error);
     }
 }
+// export const getMyAds = ()=>async()=>{
+//     try {
+//         const {}
+//     } catch (error) {
+        
+//     }
+// }

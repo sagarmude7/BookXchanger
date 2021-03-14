@@ -68,18 +68,35 @@ exports.addToWishList = async(req,res)=>{
         }
         const newWishList = await WishList.create(wishListItem)
 
-        
-        const wishList = currentUser.wishList;
+        // const wishList = currentUser.wishList;
 
-        wishList.push(newWishList)
+        // wishList.push(book)
 
         //updated books array of User
-        const updatedUser = await User.findOneAndUpdate({_id:req.userId},{wishList:wishList},{new:true})
-        updatedUser.save();
-        console.log(updatedUser)
+        // const updatedUser = await User.findOneAndUpdate({_id:req.userId},{wishList:wishList},{new:true})
+        // updatedUser.save();
+        // console.log(updatedUser)
+        console.log(currentUser.wishList)
         return res.status(200).json({liked:true})
     }catch(err){
         return res.status(500).json({msg:"Something went wrong on Server.."})
     }
-    
 }
+
+// exports.getWishList = (req,res)=>{
+//     const currentUser = await User.findById(req.userId);
+//     return res.status(200).json({wishList:currentUser.wishList})
+// }
+
+// exports.soldBook = (req,res)=>{
+//     const currentUser = 
+// }
+
+// exports.getUserBooks = async(req,res)=>{
+//     try {
+//         const currentUser = await User.findById(req.userId);
+//         return res.status(200).json({books:currentUser.books})
+//     } catch (error) {
+        
+//     }
+// }

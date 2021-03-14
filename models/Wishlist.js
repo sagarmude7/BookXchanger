@@ -9,25 +9,10 @@ const WishListSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    bookName:{              //name of book
-        type:String
-    },
-    subject:{           //subject -> Engineering subject
-        type:String 
-    },
-    price:{     //price of the book
-        type:Number
-    },
-    selectedFile:{
-        type:String
-    },
-    
-    tags:[String], 
-    
-    edition:{           //edition of the book
-        type:String
-    },
-    description:String, //description of the book
+    addedAt:{
+        type: Date,
+        default: Date.now()
+    }
 })
 
 
