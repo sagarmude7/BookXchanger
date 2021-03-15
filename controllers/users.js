@@ -9,10 +9,11 @@ exports.signUp = async(req,res)=>{
     const {firstName,lastName,email,college,location,password,confirmPassword} = req.body 
     console.log(password)
     const {error} = regValidator.validate(req.body)
+    console.log(error)
     try {
         if(error)
             return res.status(400).json({msg:error.details[0].message})
-
+        console.log("Hello")
         console.log("Finding if user exists")
         const existingUser = await User.findOne({email:email})
         
@@ -36,7 +37,7 @@ exports.signUp = async(req,res)=>{
 
         const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
 
-        return res.status(200).json({ profile: {name:newUser.name,email:newUser.email}, token })
+        return res.status(200).json({ profile: {name:newUser.name,email:newUser.email,id:newUser._id}, token })
     } catch (err) {
         return res.status(500).json({msg:"SOMEThing went wrong"})
     }
@@ -50,9 +51,10 @@ exports.signIn = async(req,res)=>{
     try {
         if(error)
             return res.status(400).json({msg:error.details[0].message})
-
+        
         const oldUser = await User.findOne({email:email})
         // console.log(oldUser)
+        
         if(!oldUser)
             return res.status(400).json({msg:"User doesn't exist"})
         
@@ -62,8 +64,8 @@ exports.signIn = async(req,res)=>{
             return res.status(400).json({msg:"Password Incorrect"})
 
         const token = jwt.sign({ profile: oldUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
-  
-        return res.status(200).json({ profile: {name:oldUser.name,email:oldUser.email}, token });
+        
+        return res.status(200).json({ profile: {name:oldUser.name,email:oldUser.email,id:oldUser._id}, token });
     } catch (err) {
         return res.status(500).json({ msg: "Something went wrong" });
     }
@@ -103,7 +105,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
 
             const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
 
-            return res.status(200).json({ profile: {name:newUser.name,email:newUser.email,profilePic:newUser.profilePic}, token })
+            return res.status(200).json({ profile: {name:newUser.name,email:newUser.email,profilePic:newUser.profilePic,id:newUser._id}, token })
         }
 
         const updatedUser = await User.findOneAndUpdate({email:email},{profilePic:profilePic},{new:true})
@@ -111,7 +113,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
         updatedUser.save()
         const token = jwt.sign({ profile: updatedUser, id: oldUser._id },process.env.TOKEN_SECRET, { expiresIn: "1h" });
         // console.log("Hello,token generated")
-        return res.status(200).json({ profile: {name:updatedUser.name,email:updatedUser.email,profilePic:updatedUser.profilePic}, token });
+        return res.status(200).json({ profile: {name:updatedUser.name,email:updatedUser.email,profilePic:updatedUser.profilePic,id:updatedUser._id}, token });
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });
     }

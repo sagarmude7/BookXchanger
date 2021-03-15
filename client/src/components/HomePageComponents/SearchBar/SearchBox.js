@@ -81,7 +81,7 @@ const SearchBox = () => {
       //accepts an action call as an argument -> goes to actions folder
       dispatch(getBooks())
     },[dispatch])
-    console.log(books)
+  
     function setName(value) {
       setInputName(value);
     }

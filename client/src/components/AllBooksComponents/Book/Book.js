@@ -24,7 +24,8 @@ const Book = ({ book }) => {
     dispatch(addToWishList(book?._id));
   };
   const Favorite = () => {
-    return book?.wishListedBy?.find((id) => id === user?.profile?._id) ? (
+    
+    return book?.wishListedBy?.find((id) => id === user?.profile?.id) ? (
       <FavoriteIcon />
     ) : (
       <FavoriteBorderIcon />

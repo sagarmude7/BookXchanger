@@ -12,7 +12,7 @@ const FilteredBooks = () => {
     },[dispatch])
 
   
-    console.log(filterData);
+    // console.log(filterData);
     if(filterData.length === 0 ) {
             return(<h1>No Books Found..</h1>);
     }
