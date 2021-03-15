@@ -1,10 +1,11 @@
+import { GET_PROFILE } from "../constants/actions";
 
-export default (data=[],action)=>{
+// eslint-disable-next-line import/no-anonymous-default-export
+export default (user={},action)=>{
     switch(action.type){
-        case 'GET_PROFILE':
-            return action.paylaod;
+        case GET_PROFILE:
+            return action.payload;
         default:
-            return data;
-
+            return user;
     }
 }

@@ -12,6 +12,10 @@ const WishListSchema = mongoose.Schema({
     selectedFile:{
         type:String
     },
+    wishListedBy:{
+        type:[String],
+        default:[]
+    },
     price:{     //price of the book
         type:Number,
         required:true
@@ -22,7 +26,7 @@ const WishListSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    addedAt:{
+    createdAt:{
         type: Date,
         default: Date.now()
     }

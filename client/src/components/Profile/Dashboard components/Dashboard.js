@@ -9,6 +9,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Book from "./Book/Book";
+import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -31,8 +32,9 @@ function TabPanel(props) {
 }
 
 const Dashboard = () => {
-  const user = JSON.parse(localStorage.getItem("profile"));
-
+  // const user = JSON.parse(localStorage.getItem("profile"));
+  const user = useSelector(state=>state.user)
+  const addedBooks = user.books
   function card(book) {
     return (
       <Grid item xs={12} sm={3}>
@@ -41,7 +43,7 @@ const Dashboard = () => {
     );
   }
 
-  console.log(user.profile);
+
   
 
   const classes = useStyles();
@@ -100,8 +102,8 @@ const Dashboard = () => {
 
             <TabPanel value={value} index={0}>
               <>
-                {user.profile.books.length !== 0 ? (
-                  <>{user.profile.books.map(card)}
+                {user.books.length !== 0 ? (
+                  <>{user.books.map(card)}
                   </>
                 ) : (
                   <>

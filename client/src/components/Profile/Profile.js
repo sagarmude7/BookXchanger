@@ -12,17 +12,21 @@ import {
   Paper,
 } from "@material-ui/core";
 import useStyles from "./styles.js";
-import React from "react";
+import React, { useEffect } from "react";
 import img from "./profilepic.png";
 import EditIcon from "@material-ui/icons/Edit";
 import LockIcon from "@material-ui/icons/Lock";
 import Dashboard from "./Dashboard components/Dashboard"
+import {useDispatch, useSelector} from 'react-redux'
+import { getProfile } from "../../actions/user";
 
 const Profile = () => {
   const classes = useStyles();
-
-  const user = JSON.parse(localStorage.getItem("profile"));
-  console.log(user.profile.profilePic);
+  const dispatch = useDispatch()
+  const user = useSelector(state=>state.user)
+  useEffect(()=>{
+    dispatch(getProfile())
+  },[dispatch])
 
   return (
     <>
@@ -42,7 +46,7 @@ const Profile = () => {
             color="textPrimary"
             className={classes.headUser}
           >
-            {user.profile.name}
+            {user?.name}
           </Typography>
 
           
@@ -60,7 +64,7 @@ const Profile = () => {
               Your Name :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.profile.name}
+              {user?.name}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -70,7 +74,7 @@ const Profile = () => {
               Email Address :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.profile.email}
+              {user?.email}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -80,7 +84,7 @@ const Profile = () => {
               College Name :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.profile.college}
+              {user?.college}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -90,7 +94,7 @@ const Profile = () => {
               Location :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.profile.location}
+              {user?.location}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -100,7 +104,7 @@ const Profile = () => {
               Number of Ads Sold :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.profile.SoldAds}
+              {user?.soldAds}
             </Typography>
           </Container>
 

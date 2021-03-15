@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 // const cors = require('cors')
-const {getBooks,createBookAd,addToWishList} = require('../controllers/books')
+const {getBooks,createBookAd,addToWishList,getWishList} = require('../controllers/books')
 const auth = require('../middleware/auth')
 
 // var corsOptions = {
@@ -12,5 +12,6 @@ const auth = require('../middleware/auth')
 router.get('/all',getBooks)
 router.post('/add',auth,createBookAd)
 router.patch('/:id/addWishList',auth,addToWishList)
+
 
 module.exports = router

@@ -22,15 +22,11 @@ const PostAdForm = () => {
     const [bookData,setBookData] = useState(initialState)
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const books = useSelector(state=>state.books)
 
     const handleChange=(e)=>{
         setBookData({...bookData,[e.target.name]:e.target.value})
     }
 
-    useEffect(()=>{
-        console.log(books)
-    },[books])
 
     useEffect(()=>{
         setUser(JSON.parse(localStorage.getItem('profile')))

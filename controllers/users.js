@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
+const { WishList } = require('../models/WishList')
 const jwt = require('jsonwebtoken')
 const { regValidator, loginValidator } = require('../validators/joi-validator')
+
 
 exports.signUp = async(req,res)=>{
     // console.log(req.body)
@@ -120,11 +122,22 @@ exports.googleFacebookSignIn = async(req,res)=>{
 }
 
 exports.getProfile = async(req,res)=>{
-    const {id :_id} = req.params;
-    
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id`);
+    try{
+        const user = await User.findById(req.userId);
+        console.log(user)
+        res.status(200).json(user);
+    }catch(err){
+        return res.status(500).json({ msg: "Something went wrong" });
+    }
+}
 
-    const user = await User.findById(_id);
 
-    res.json(user);
+exports.getWishList = async(req,res)=>{
+    try{
+        const wishList = await WishList.find({adder:req.userId})
+        console.log(wishList);
+        return res.status(200).json(wishList)
+    }catch(err){
+        return res.status(500).json({ msg: "Something went wrong" });
+    }
 }
