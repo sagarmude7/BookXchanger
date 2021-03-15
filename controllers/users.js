@@ -36,7 +36,7 @@ exports.signUp = async(req,res)=>{
 
         const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
 
-        return res.status(200).json({profile:newUser,token:token})
+        return res.status(200).json({ profile: {name:newUser.name,email:newUser.email}, token })
     } catch (err) {
         return res.status(500).json({msg:"SOMEThing went wrong"})
     }
@@ -63,7 +63,7 @@ exports.signIn = async(req,res)=>{
 
         const token = jwt.sign({ profile: oldUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
   
-        return res.status(200).json({ profile: oldUser, token });
+        return res.status(200).json({ profile: {name:oldUser.name,email:oldUser.email}, token });
     } catch (err) {
         return res.status(500).json({ msg: "Something went wrong" });
     }
@@ -103,7 +103,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
 
             const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
 
-            return res.status(200).json({profile:newUser,token:token})
+            return res.status(200).json({ profile: {name:newUser.name,email:newUser.email,profilePic:newUser.profilePic}, token })
         }
 
         const updatedUser = await User.findOneAndUpdate({email:email},{profilePic:profilePic},{new:true})
@@ -111,7 +111,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
         updatedUser.save()
         const token = jwt.sign({ profile: updatedUser, id: oldUser._id },process.env.TOKEN_SECRET, { expiresIn: "1h" });
         // console.log("Hello,token generated")
-        return res.status(200).json({ profile: updatedUser, token });
+        return res.status(200).json({ profile: {name:updatedUser.name,email:updatedUser.email,profilePic:updatedUser.profilePic}, token });
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });
     }

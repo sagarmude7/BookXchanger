@@ -42,7 +42,7 @@ const Dashboard = () => {
   }
 
   console.log(user.profile);
-  console.log(user.profile.books[0]);
+  
 
   const classes = useStyles();
 
