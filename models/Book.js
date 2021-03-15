@@ -49,6 +49,10 @@ const BookSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    wishListedBy:{
+        type:[String],
+        default:[]
+    },
     description:String, //description of the book
     createdAt:{         //created At
         type:Date,

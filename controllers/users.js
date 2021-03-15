@@ -27,7 +27,7 @@ exports.signUp = async(req,res)=>{
 
         const hashedPassword = await bcrypt.hash(password,10);
 
-        const newUser = await User.create({name:`${firstName} ${lastName}`,email:email,password:hashedPassword,createdAt:new Date().toISOString(),college:college,location:location,soldAds:0,books:[],wishList:[]})
+        const newUser = await User.create({name:`${firstName} ${lastName}`,email:email,password:hashedPassword,createdAt:new Date().toISOString(),college:college,location:location,soldAds:0,books:[]})
 
         const payload = {
             email: newUser.email,
@@ -93,7 +93,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
             console.log(password);
             const hashedPassword = await bcrypt.hash(password,10);
             console.log(hashedPassword)
-            const newUser = await User.create({name,email,password:hashedPassword,profilePic,createdAt:new Date().toISOString(),college:'ABC',location:'DEF',soldAds:0,books:[],wishList:[]})
+            const newUser = await User.create({name,email,password:hashedPassword,profilePic,createdAt:new Date().toISOString(),college:'ABC',location:'DEF',soldAds:0,books:[]})
 
             console.log("newUser",newUser);
             const payload = {

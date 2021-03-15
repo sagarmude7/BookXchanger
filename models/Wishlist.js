@@ -5,6 +5,19 @@ const WishListSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Book'
     },
+    bookName:{              //name of book
+        type:String,
+        required:true
+    },
+    selectedFile:{
+        type:String
+    },
+    price:{     //price of the book
+        type:Number,
+        required:true
+    },
+    description:String,
+    tags:[String],
     adder:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

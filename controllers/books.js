@@ -23,7 +23,7 @@ exports.createBookAd = async(req,res)=>{
         return res.status(403).json({msg:"Unauthorized"})
     try {
         //new Book Object
-        const newBook = new Book({...book,createdAt:new Date().toISOString(),owner:req.userId})
+        const newBook = new Book({...book,wishListedBy:[],createdAt:new Date().toISOString(),owner:req.userId})
         await newBook.save()
 
         //update the currentUser by pushing new book created into the user.books
@@ -51,33 +51,26 @@ exports.addToWishList = async(req,res)=>{
 
     if(!mongoose.Types.ObjectId.isValid(id))
         return res.status(404).json({msg:`No Book with id:${id}`})
+    // console.log("HEllo again")
     try{
         
-        const book = await Book.findById(id);
-        const currentUser = await User.findById(req.userId);
-        const wishListItem = {
-            book:book._id,
-            adder:currentUser._id,
-            bookName:book.bookName,
-            subject:book.subject,
-            price:book.price,
-            selectedFile:book.selectedFile,
-            tags:book.tags,
-            edition:book.edition,
-            description:book.description
+        const book = await Book.findById(id)
+        const userId = book.wishListedBy.findIndex(id=>id===String(req.userId))
+        console.log(userId);
+
+        if(userId==-1){
+            const newWish = new WishList({book:id,bookName:book.bookName,selectedFile:book.selectedFile,price:book.price,description:book.description,tags:book.tags,adder:req.userId})
+            newWish.save()
+            book.wishListedBy.push(req.userId)
+            console.log("WIshList")
+        }else{
+            await WishList.findOneAndDelete({book:id,adder:req.userId},()=>console.log("removed"))
+            book.wishListedBy = book.wishListedBy.filter(id=>id!==String(req.userId))
         }
-        const newWishList = await WishList.create(wishListItem)
+        // console.log(newWish.book.bookName)
+        const updatedBook = await Book.findByIdAndUpdate(id,book,{new:true})
 
-        // const wishList = currentUser.wishList;
-
-        // wishList.push(book)
-
-        //updated books array of User
-        // const updatedUser = await User.findOneAndUpdate({_id:req.userId},{wishList:wishList},{new:true})
-        // updatedUser.save();
-        // console.log(updatedUser)
-        console.log(currentUser.wishList)
-        return res.status(200).json({liked:true})
+        return res.json(updatedBook);
     }catch(err){
         return res.status(500).json({msg:"Something went wrong on Server.."})
     }

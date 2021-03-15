@@ -1,4 +1,4 @@
-import {FETCH_ALL,CREATE,FILTER_BOOKS} from '../constants/actions'
+import {FETCH_ALL,CREATE,ADD_FAV} from '../constants/actions'
 const api = require('../api/index')
 
 export const getBooks = ()=>async(dispatch)=>{
@@ -30,6 +30,7 @@ export const addToWishList = (id)=>async(dispatch)=>{
     try {
         const {data}= await api.addToWishList(id);
         console.log(data)
+        dispatch({type:ADD_FAV,payload:data})
     } catch (error) {
         console.log(error);
     }

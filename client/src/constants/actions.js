@@ -7,3 +7,4 @@ export const AUTH = 'AUTH'
 export const LOGOUT = 'LOGOUT'
 
 export const ADDFILTER='ADDFILTER'
+export const ADD_FAV='ADD_FAV'

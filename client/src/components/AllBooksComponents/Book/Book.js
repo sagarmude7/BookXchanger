@@ -7,7 +7,6 @@ import {
   Button,
   Typography,
 } from "@material-ui/core/";
-import { ThumbUpAltOutlined } from "@material-ui/icons";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -15,17 +14,30 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import {addToWishList} from '../../../actions/books'
-const Book = ({book}) => {
+import { addToWishList } from "../../../actions/books";
+const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("profile"));
   const addtofavourite = () => {
-      console.log("Adding To Favorites..")
-      dispatch(addToWishList(book?._id));
+    console.log("Adding To Favorites..");
+    dispatch(addToWishList(book?._id));
+  };
+  const Favorite = () => {
+    return book?.wishListedBy?.find((id) => id === user?.profile?._id) ? (
+      <FavoriteIcon />
+    ) : (
+      <FavoriteBorderIcon />
+    );
   };
   return (
     <Card className={classes.card}>
-      <CardMedia className={classes.media} image={book?.selectedFile} title={book?.title} />
+      <CardMedia
+        className={classes.media}
+        src="book"
+        image={book?.selectedFile}
+        title={book?.bookName}
+      />
       <div className={classes.overlay}>
         <Typography variant="h6">{book?.bookName}</Typography>
         <Typography variant="body2">
@@ -57,7 +69,7 @@ const Book = ({book}) => {
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button size="medium" color="secondary" onClick={addtofavourite}>
-          <FavoriteBorderIcon />
+          <Favorite />
         </Button>
       </CardActions>
     </Card>
