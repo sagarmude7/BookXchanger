@@ -1,4 +1,4 @@
-import {FETCH_ALL,CREATE,ADD_FAV} from '../constants/actions'
+import {FETCH_ALL,CREATE,ADD_FAV,GET_BOOK} from '../constants/actions'
 const api = require('../api/index')
 
 export const getBooks = ()=>async(dispatch)=>{
@@ -35,6 +35,21 @@ export const addToWishList = (id)=>async(dispatch)=>{
         console.log(error);
     }
 }
+
+export const showBookInfo = (id)=>async(dispatch)=>{
+    try {
+        const {data}= await api.showBookInfo(id);
+        console.log("Inside actions, data from API is" + data)
+        dispatch({type:GET_BOOK,payload:data})
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
+
 // export const getMyAds = ()=>async()=>{
 //     try {
 //         const {}

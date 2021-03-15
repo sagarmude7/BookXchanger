@@ -18,6 +18,8 @@ const createBookAd = (formData)=>API.post(`${urlBooks}/add`,formData)
 
 const addToWishList = (id)=>API.patch(`${urlBooks}/${id}/addWishList`,id)
 
+const showBookInfo = (id)=>API.get(`${urlBooks}/${id}/bookInfo`,id);
+
 // '${urlBooks}/userBooks'
 const urlUsers = '/users';
 
@@ -30,4 +32,4 @@ const getProfile = (id)=>API.get(`${urlUsers}/profile`);
 
 const getWishList = (id)=>API.get(`${urlUsers}/wishList`)
 
-module.exports = {fetchBooks,createBookAd,signUp,signIn,googleFacebookSignIn,addToWishList,getWishList,getProfile}
+module.exports = {fetchBooks,createBookAd,signUp,signIn,googleFacebookSignIn,addToWishList,getWishList,getProfile,showBookInfo}

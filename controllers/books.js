@@ -15,6 +15,22 @@ exports.getBooks = async(req,res)=>{
     }
 }
 
+exports.showBookInfo = async(req,res)=>{
+    const {id} = req.params;
+        console.log(id);
+    try{
+        const book = await Book.findById(id);
+        return res.status(201).json(book);
+    }
+    catch(err){
+        return res.status(404).json({msg:"No Book Found"})
+    }
+}
+
+
+
+
+
 exports.createBookAd = async(req,res)=>{
     const book = req.body
     console.log(req.userId)
