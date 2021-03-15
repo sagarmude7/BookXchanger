@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {
   Card,
   CardActions,
@@ -15,22 +15,18 @@ import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { addToWishList } from "../../../actions/books";
+
 const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+
   const user = JSON.parse(localStorage.getItem("profile"));
-  const addtofavourite = () => {
-    console.log("Adding To Favorites..");
-    dispatch(addToWishList(book?._id));
-  };
-  const Favorite = () => {
-    
-    return book?.wishListedBy?.find((id) => id === user?.profile?.id) ? (
-      <FavoriteIcon />
-    ) : (
-      <FavoriteBorderIcon />
-    );
-  };
+const [fav,setFav] = useState(book?.wishListedBy?.find((id) => id === user?.profile?.id));
+const addtofavourite = () => {
+  console.log("Adding To Favorites..");
+  fav ? setFav(false): setFav(true);
+  dispatch(addToWishList(book?._id));
+};
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -70,7 +66,7 @@ const Book = ({ book }) => {
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button size="medium" color="secondary" onClick={addtofavourite}>
-          <Favorite />
+         {fav ? <FavoriteIcon /> :  <FavoriteBorderIcon />}
         </Button>
       </CardActions>
     </Card>

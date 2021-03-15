@@ -56,6 +56,20 @@ const useStyles = makeStyles((theme) => ({
  gridItem :{
   border:"1px solid blue",
   borderRadius:"10px"
+ },
+ formControl :{
+   backgroundColor : "white",
+   border :"1 px solid grey",
+   borderRadius  :"8px"
+ },
+ adv : {
+   cursor : "pointer",
+   textAlign :"center",
+   width :"200px",
+   height :"40px",
+   position :"relative",
+   left :"800px",
+   fontSize : "20px"
  }
 }));
 
@@ -68,14 +82,17 @@ const SearchBox = () => {
     const [inputBranch,setInputBranch] = useState("");
     const [inputPrice,setInputPrice] = useState("");
     const [inputCondition,setInputCondition] = useState("");
+    const [inputTags,setInputTags] = useState("");
+    const [isadv,setIsadv] = useState(false);
     const history = useHistory();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const books = useSelector(state=>state.books);
     const [filteredbooksByName,setFilteredbooksByName] = useState([]);
     const [filteredbooksByBranch,setFilteredbooksByBranch] = useState([]);
     const [filteredbooksBySubject,setFilteredbooksBySubject] = useState([]);
     const [filteredbooksByPrice,setFilteredbooksByPrice] = useState([]);
     const [filteredbooksByCondition,setFilteredbooksByCondition] = useState([]);
+    const [filteredbooksByTags,setFilteredbooksByTags] = useState([]);
     useEffect(()=>{
       console.log("Getting Books")
       //accepts an action call as an argument -> goes to actions folder
@@ -102,7 +119,14 @@ const SearchBox = () => {
     function setCondition(value) {
       setInputCondition(value);
     }
- 
+    function setTags(value) {
+      setInputTags(value);
+    }
+
+    function showAdv(){
+      isadv ? setIsadv(false) : setIsadv(true);
+      
+    }
     const updateBooks =  ()=>{
         if(inputName!==""){
           setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
@@ -140,7 +164,14 @@ const SearchBox = () => {
         else{
           setFilteredbooksByCondition([]);
         }
-        const filteredbooks = [...filteredbooksByName,...filteredbooksByBranch,...filteredbooksBySubject,...filteredbooksByPrice,...filteredbooksByCondition]
+        if(inputTags!==""){
+          setFilteredbooksByTags(books.filter((book) => book.tags[0].toLowerCase().includes(inputTags.toLowerCase())));
+           console.log("Filtered By Tags",filteredbooksByTags);
+         }
+         else{
+           setFilteredbooksByTags([]);
+         }
+        const filteredbooks = [...filteredbooksByName,...filteredbooksByBranch,...filteredbooksBySubject,...filteredbooksByPrice,...filteredbooksByCondition,...filteredbooksByTags]
         var uniqueFilteredArray = filteredbooks.filter(function(item, pos) {
             return filteredbooks.indexOf(item) == pos;
         })
@@ -186,6 +217,8 @@ const SearchBox = () => {
           </div>
           <hr style={{borderWidth : "0px"}}/>
           <hr style={{borderWidth : "0px"}}/>
+          {
+            isadv ? 
         <Grid container spacing={4} className={classes.gridContainer} > 
             <Grid item xs={4} sm={2}>
                 <FormControl variant="outlined" border="blue" className={classes.formControl} fullWidth>
@@ -213,7 +246,7 @@ const SearchBox = () => {
                       name="priceType"
                       value={inputPrice}
                       onChange={(e) => setPrice(e.target.value)}
-                      placeholder={"Type Fixed / Negotiable"}
+                      placeholder="Select Price Type"
                       >
                           <MenuItem value="Fixed">
                               <em>Fixed</em>
@@ -223,8 +256,24 @@ const SearchBox = () => {
                       </Select>
                   </FormControl>
               </Grid>
+              <Grid item xs={4} sm={2} >
+                <input 
+                id="standard-basic" 
+                label="Tags" 
+                className={classes.input} 
+                key="random3"
+                value= {inputTags}
+                placeholder={"Type Tags"}
+                onChange = {(e) => {setTags(e.target.value)}}
+                />
+              </Grid>
+              
             </Grid>
+            :
+           <></>
+          }
           <button className={classes.button} onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
+          <p className={classes.adv} onClick={showAdv}>{isadv ? <p>Hide Advanced</p>  : <p>Advanced Search</p>}</p>
           <span className="hide">Double Click to search</span>
         </div> 
     </>
