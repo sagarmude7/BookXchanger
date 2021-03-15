@@ -6,7 +6,7 @@ const { WishList } = require('../models/WishList')
 
 exports.getBooks = async(req,res)=>{
     try{
-        console.log("Geti books")
+        // console.log("Geti books")
         const books = await Book.find()
         return res.status(200).json(books)
     }
@@ -41,7 +41,7 @@ exports.createBookAd = async(req,res)=>{
 }
 
 exports.addToWishList = async(req,res)=>{
-    console.log("Hello")
+    // console.log("Hello")
     //get book id
     const {id} = req.params;
     console.log(id);

@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const { regValidator, loginValidator } = require('../validators/joi-validator')
 
 exports.signUp = async(req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     const {firstName,lastName,email,college,location,password,confirmPassword} = req.body 
     console.log(password)
     const {error} = regValidator.validate(req.body)
@@ -52,7 +52,7 @@ exports.signIn = async(req,res)=>{
             return res.status(400).json({msg:error.details[0].message})
 
         const oldUser = await User.findOne({email:email})
-        console.log(oldUser)
+        // console.log(oldUser)
         if(!oldUser)
             return res.status(400).json({msg:"User doesn't exist"})
         
@@ -80,7 +80,7 @@ function random_password_generate(max,min)
 
 exports.googleFacebookSignIn = async(req,res)=>{
     const {email,name,profilePic} = req.body
-    console.log(email)
+    // console.log(email)
     try{
         const oldUser = await User.findOne({email:email})
 
@@ -88,14 +88,14 @@ exports.googleFacebookSignIn = async(req,res)=>{
 
         if(!oldUser){
             const password = random_password_generate(20,10);
-            console.log(name);
+            // console.log(name);
             //siMrjVb44!QFG
-            console.log(password);
+            // console.log(password);
             const hashedPassword = await bcrypt.hash(password,10);
-            console.log(hashedPassword)
+            // console.log(hashedPassword)
             const newUser = await User.create({name,email,password:hashedPassword,profilePic,createdAt:new Date().toISOString(),college:'ABC',location:'DEF',soldAds:0,books:[]})
 
-            console.log("newUser",newUser);
+            // console.log("newUser",newUser);
             const payload = {
                 email: newUser.email,
                 id:newUser._id
@@ -107,7 +107,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
         }
 
         const updatedUser = await User.findOneAndUpdate({email:email},{profilePic:profilePic},{new:true})
-        console.log(updatedUser);
+        // console.log(updatedUser);
         updatedUser.save()
         const token = jwt.sign({ profile: updatedUser, id: oldUser._id },process.env.TOKEN_SECRET, { expiresIn: "1h" });
         // console.log("Hello,token generated")
