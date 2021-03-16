@@ -15,6 +15,7 @@ import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { addToWishList } from "../../../actions/books";
+
 const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
