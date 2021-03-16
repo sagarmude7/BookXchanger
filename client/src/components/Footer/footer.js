@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <>
       <CssBaseline />
-      <div className={classes.mainfooter}>
+      <div className={classes.footer}>
         <div className={classes.flexContainer} style={{flexWrap:"wrap",}}>
           <div style={{flexGrow:"1" , flex:"auto", flexDirection:"row"}}>
             <Typography align="center">
@@ -59,7 +59,7 @@ const Footer = () => {
               <Typography style={{ fontSize: "20px", fontWeight: "bold" }} align="center" >
                 Quick Links
                 </Typography>
-              <Typography align="center"  >
+              <Typography align="center">
                 <li style={{ listStyleType: "none", textAlign: 'center' }} >
                   <ul style={{ listStyleType: "none", textAlign: 'center', paddingInlineStart: "0px" }}>
                     <Link to="/" component = {RouterLink} key="Home" color="inherit">
@@ -89,9 +89,9 @@ const Footer = () => {
        
 
         <div>
-          <Typography align="center" style={{ fontSize: "13px", position: "Centre", padding: "5px 0 5px 0", background: "black",color:"white"}} >
+          <Typography align="center"  style={{ fontSize: "13px", position: "Centre", padding: "5px 0 5px 0", background: "black",color:"white"}} >
             {'Copyright © '}
-            <Link color="inherit" href="#">
+            <Link color="inherit" to="/" component = {RouterLink} key="Home">
               Bookxchanger
             </Link>
             {' '}{new Date().getFullYear()}{'. '}

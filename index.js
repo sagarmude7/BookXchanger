@@ -1,5 +1,5 @@
 const express = require('express')
-const cors = require('cors')
+// const cors = require('cors')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 
@@ -12,9 +12,21 @@ dotenv.config({path:'./config/config.env'})
 
 const app = express()
 
+//cross origin request
+// app.use(cors())
+// app.options('*', cors())
 //connect to database
 connectDB()
 
+app.use((req, res, next) => {
+    // console.log("Running.")
+    res.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+    res.append('Access-Control-Allow-Headers','authorization,Content-Type');
+    res.append("Access-Control-Allow-Credentials","true");
+    // console.log(res.getHeader('Access-Control-Allow-Origin'))
+    next();
+});
 
 //body parser middleware for accepting json
 app.use(express.json({limit:"30mb",extended:true}))
@@ -27,8 +39,7 @@ app.use(express.urlencoded({limit:"30mb",extended:true}))
 // app.use(body_parser.json({limit:"30mb",extended:true}))
 // app.use(body_parser.urlencoded({limit:"30mb",extended:true}))
 
-//cross origin request
-app.use(cors())
+
 
 //routes
 app.use('/books/',require('./routes/books'))

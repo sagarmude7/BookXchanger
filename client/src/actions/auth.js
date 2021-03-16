@@ -5,6 +5,7 @@ import api from '../api/index'
 export const signUp = (formData,history)=>async(dispatch)=>{
     try{
         const {data} = await api.signUp(formData)
+        console.log("hello")
         dispatch({type:AUTH,payload:data})
         history.push('/')
     }catch(err){

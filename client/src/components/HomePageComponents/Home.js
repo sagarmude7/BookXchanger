@@ -7,19 +7,22 @@ import DisplayBooks from '../AllBooksComponents/AllBooks'
 import {getBooks} from '../../actions/books'
 import {useDispatch,useSelector} from 'react-redux'
 import Footer from "../Footer/footer.js"
+import BookSlider from "./BookSlider/BookSlider.js"
 import {useState} from "react";
 import FilteredBooks from "../AllBooksComponents/FilteredBooks/filteredBooks.js"
+import Feedback from "./Feedback/Feedback.js"
 const Home = () => {
     const dispatch = useDispatch()
  
     return (
         <>
          <Navbar />
-        <SearchBox /> 
+         
         <Description />
-        
-            {/* <Chatbot /> */}
-            <Footer/>
+        <BookSlider />
+        <Feedback />
+        <Chatbot /> 
+        <Footer/>
         </>
     )
 }

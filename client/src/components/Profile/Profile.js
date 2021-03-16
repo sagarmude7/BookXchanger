@@ -1,7 +1,6 @@
 import Navbar from '../Navbar/Navbar'
 import { TextField,Divider,Fab, Card,CardMedia, Container,Avatar , Button, Typography, Paper } from '@material-ui/core';
 import useStyles from "./styles.js";
-import './profile.css'
 import {React, useEffect, useState} from 'react'
 import img from './profilepic.png';
 import EditIcon from '@material-ui/icons/Edit';
@@ -332,6 +331,3 @@ const Profile = () => {
 }
 
 export default Profile;
-
-
-

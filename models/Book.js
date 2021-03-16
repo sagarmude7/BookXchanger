@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const BookSchema = mongoose.Schema({
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    },
     bookName:{              //name of book
         type:String,
         required:true
@@ -44,6 +48,10 @@ const BookSchema = mongoose.Schema({
     edition:{           //edition of the book
         type:String,
         required:true
+    },
+    wishListedBy:{
+        type:[String],
+        default:[]
     },
     description:String, //description of the book
     createdAt:{         //created At

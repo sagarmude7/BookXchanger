@@ -6,7 +6,7 @@ API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
       req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
     }
-  
+
     return req;
 });
 
@@ -16,6 +16,11 @@ const fetchBooks = ()=>API.get(`${urlBooks}/all`)
 
 const createBookAd = (formData)=>API.post(`${urlBooks}/add`,formData)
 
+const addToWishList = (id)=>API.patch(`${urlBooks}/${id}/addWishList`,id)
+
+const showBookInfo = (id)=>API.get(`${urlBooks}/${id}/bookInfo`,id);
+
+// '${urlBooks}/userBooks'
 const urlUsers = '/users';
 
 const signUp = (formData)=>API.post(`${urlUsers}/signUp`,formData)
@@ -26,4 +31,6 @@ const googleFacebookSignIn = (formData)=>API.post(`${urlUsers}/googleFacebookSig
 const getProfile = (id)=>API.get(`${urlUsers}/profile`);
 const editProfile = (id,updatedUser)=>API.patch(`${urlUsers}/${id}/profile`);
 
-module.exports = {fetchBooks,createBookAd,signUp,signIn,googleFacebookSignIn, editProfile, getProfile}
+const getWishList = (id)=>API.get(`${urlUsers}/wishList`)
+
+module.exports = {fetchBooks,createBookAd,signUp,signIn,googleFacebookSignIn,addToWishList,getWishList,getProfile,editProfile,showBookInfo}

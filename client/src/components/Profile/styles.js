@@ -5,8 +5,8 @@ import { CenterFocusStrong } from '@material-ui/icons';
 
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
-</style>
+  @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+</style>;
 
 export default makeStyles((theme) => ({
    

@@ -7,6 +7,7 @@ import FileBase from 'react-file-base64'
 import {useDispatch,useSelector} from 'react-redux'
 import useStyles from './style'
 import Navbar from "../Navbar/Navbar.js"
+import Footer from "../Footer/footer.js"
 import {createBookAd} from '../../actions/books'
 
 
@@ -21,15 +22,11 @@ const PostAdForm = () => {
     const [bookData,setBookData] = useState(initialState)
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const books = useSelector(state=>state.books)
 
     const handleChange=(e)=>{
         setBookData({...bookData,[e.target.name]:e.target.value})
     }
 
-    useEffect(()=>{
-        console.log(books)
-    },[books])
 
     useEffect(()=>{
         setUser(JSON.parse(localStorage.getItem('profile')))
@@ -46,10 +43,12 @@ const PostAdForm = () => {
     }
 
     return (
+        <>
+        <Navbar /> 
         <Grow in>
                
             <Container>
-            <Navbar />   
+              
             <Paper className={classes.paper}>
                 <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography color="secondary" variant="h6">Post a Book for Selling</Typography>
@@ -198,6 +197,8 @@ const PostAdForm = () => {
                 
             </Container>
         </Grow>
+        <Footer/>
+        </>
     )
 }
 

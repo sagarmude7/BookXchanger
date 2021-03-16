@@ -46,8 +46,8 @@ const styles = makeStyles((theme) => ({
                 marginLeft: '15px',
             },
             midNavbar : {
-                width:"900px"
-           
+                width:"700px",
+                justifyContent : "center"
             },
             mobileloginMenu :{
                float:"right",

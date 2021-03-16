@@ -9,7 +9,7 @@ var items = [
         heading : "Welcome To BookxChanger2",
         subHeading : "Your personalized old books exchanging Store2",
         description : "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
-        img : 'https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-e1464023124869.jpeg'
+        img : 'https://images.unsplash.com/photo-1521056787327-165dc2a32836?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8Ym9va3MlMjA1a3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
     },
     {
         heading : "Welcome To BookxChanger3",

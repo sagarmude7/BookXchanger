@@ -2,10 +2,10 @@ import { colors, makeStyles } from "@material-ui/core"
 import { text } from "body-parser";
 const styles = makeStyles((theme) => ({
 
-  mainfooter: {
-    background: "#400CCC",
-    padding: "auto",
-    position: "center"
+ footer: {
+    position: "center",
+    margin:"30px 0 0 0",
+    background: "#89f7fe"
   },
 
   flexContainer: {
@@ -21,7 +21,7 @@ const styles = makeStyles((theme) => ({
   image1: {
     width: "70px",
     margin: "5px 0px 30px 0px ",
-    position: "Centre"
+    position: "centre"
   },
 
   Icon: {
