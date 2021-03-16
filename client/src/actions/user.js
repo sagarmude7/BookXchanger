@@ -1,12 +1,23 @@
+import {FETCH_FAV, GET_PROFILE} from '../constants/actions'
 import api from '../api/index';
 
-export const getProfile = (id) => async (dispatch) => {
+export const getProfile = () => async (dispatch) => {
 
     try {
-        const {data} = await api.getProfile(id);
-        dispatch({ type: 'GET_PROFILE', payload: data });
+        const {data} = await api.getProfile();
+        dispatch({ type: GET_PROFILE, payload: data });
     } catch (error) {
         console.log(error);
     }
     
 };
+
+export const getWishList = (id) => async (dispatch)=>{
+    try {
+        const {data} = await api.getWishList(id);
+        console.log(data)
+        dispatch({type:FETCH_FAV,payload:data})
+    } catch (err) {
+        console.log(err)
+    }
+}

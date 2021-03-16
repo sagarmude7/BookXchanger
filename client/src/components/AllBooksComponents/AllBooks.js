@@ -7,7 +7,6 @@ import Navbar from '../Navbar/Navbar'
 import Footer from "../Footer/footer.js"
 import SearchBox from "../HomePageComponents/SearchBar/SearchBox.js"
 import {getBooks} from '../../actions/books'
-
 import FilteredBooks from "./FilteredBooks/filteredBooks.js"
 
 const AllBooks = () => {
@@ -59,7 +58,6 @@ const AllBooks = () => {
 
    
 
-  
 
     return (
         <>
@@ -125,6 +123,7 @@ const AllBooks = () => {
             }
             </Container>
         </div>
+            
         <Footer/>
         </>
             

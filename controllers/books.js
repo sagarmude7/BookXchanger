@@ -15,6 +15,22 @@ exports.getBooks = async(req,res)=>{
     }
 }
 
+exports.showBookInfo = async(req,res)=>{
+    const {id} = req.params;
+        console.log(id);
+    try{
+        const book = await Book.findById(id);
+        return res.status(201).json(book);
+    }
+    catch(err){
+        return res.status(404).json({msg:"No Book Found"})
+    }
+}
+
+
+
+
+
 exports.createBookAd = async(req,res)=>{
     const book = req.body
     console.log(req.userId)
@@ -59,9 +75,9 @@ exports.addToWishList = async(req,res)=>{
         console.log(userId);
 
         if(userId==-1){
-            const newWish = new WishList({book:id,bookName:book.bookName,selectedFile:book.selectedFile,price:book.price,description:book.description,tags:book.tags,adder:req.userId})
-            newWish.save()
             book.wishListedBy.push(req.userId)
+            const newWish = new WishList({book:id,bookName:book.bookName,selectedFile:book.selectedFile,price:book.price,wishListedBy:book.wishListedBy,description:book.description,tags:book.tags,adder:req.userId,createdAt:new Date().toISOString()})
+            newWish.save()
             console.log("WIshList")
         }else{
             await WishList.findOneAndDelete({book:id,adder:req.userId},()=>console.log("removed"))
@@ -76,10 +92,6 @@ exports.addToWishList = async(req,res)=>{
     }
 }
 
-// exports.getWishList = (req,res)=>{
-//     const currentUser = await User.findById(req.userId);
-//     return res.status(200).json({wishList:currentUser.wishList})
-// }
 
 // exports.soldBook = (req,res)=>{
 //     const currentUser = 

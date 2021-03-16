@@ -8,3 +8,6 @@ export const LOGOUT = 'LOGOUT'
 
 export const ADDFILTER='ADDFILTER'
 export const ADD_FAV='ADD_FAV'
+export const FETCH_FAV = 'FETCH_FAV'
+export const GET_PROFILE = 'GET_PROFILE'
+export const GET_BOOK = 'GET_BOOK'

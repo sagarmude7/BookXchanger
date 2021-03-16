@@ -11,7 +11,7 @@ import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
 import Wishlist from './components/WishlistComponent/Wishlist.js'
 import Footer from './components/Footer/footer'
-
+import BookInfo from "./components/AllBooksComponents/BookInfo/BookInfo"
 const App = ()=>{
 
     function displayLoading(){
@@ -33,6 +33,7 @@ const App = ()=>{
                     <Route exact path="/auth" component={Auth}/>
                     <Route exact path="/profile" component={Profile}/>  
                     <Route exact path="/wishlist" component={Wishlist}/>  
+                    <Route exact path="/all/bookInfo" component={BookInfo}/>  
                 </Switch>
             </Container>
         </Router>
