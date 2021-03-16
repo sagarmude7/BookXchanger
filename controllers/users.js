@@ -117,11 +117,24 @@ exports.googleFacebookSignIn = async(req,res)=>{
 }
 
 exports.getProfile = async(req,res)=>{
+
+    try{
+        const user = await User.findById(req.userId);
+        console.log(user)
+        res.status(200).json(user);
+    }catch(err){
+        return res.status(500).json({ msg: "Something went wrong" });
+    }
+}
+
+exports.editProfile = async(req,res)=>{
     const {id :_id} = req.params;
+    const user = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id`);
 
-    const user = await User.findById(_id);
+    const updatedUser = await User.findByIdAndUpdate(...user, _id, user, { new: true });
+    
 
-    res.json(user);
+    res.json(updatedUser);
 }

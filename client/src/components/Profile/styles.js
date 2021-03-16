@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react'
 import { green, pink } from '@material-ui/core/colors';
+import { CenterFocusStrong } from '@material-ui/icons';
 
 
 <style>
@@ -101,6 +102,12 @@ export default makeStyles((theme) => ({
         right:60,
       },
 
+      Chat:{
+        position:'fixed',
+        bottom:120,
+        right:60,
+      },
+
       button: {
         marginLeft:300,
         marginTop:40,
@@ -108,6 +115,37 @@ export default makeStyles((theme) => ({
         width:150,
       },
 
+      editBody:{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+      },
+
+      textBox:{
+        margin:20,
+        width:1000
+      },
+
+      changePassword :{
+        width:180,
+        marginLeft:1000,
+        
+      },
+
+      textField: {
+        width: '45ch',
+      },
+
+      margin: {
+        margin: theme.spacing(2),
+      },
+      
+      saveChanges:{
+        width:150,
+        marginBottom:30,
+        marginTop:30,
+        marginLeft:850,
+      },
 
     }));
     
