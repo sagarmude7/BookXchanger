@@ -116,7 +116,7 @@ const [open, setOpen] = React.useState(false);
         <CloseIcon />
       </IconButton>
       <Typography variant="h6" className={classes.title} >
-      {book.bookName}
+      {book?.bookName}
       </Typography>
     </Toolbar>
   </AppBar>
