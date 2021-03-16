@@ -7,6 +7,7 @@ router.post('/signIn',signIn)
 router.post('/signUp',signUp)
 router.post('/googleFacebookSignIn',googleFacebookSignIn)
 router.get('/profile',auth,getProfile)
+router.patch('/:id/profile',editProfile)
 router.get('/wishList',auth,getWishList);
 
 module.exports = router
