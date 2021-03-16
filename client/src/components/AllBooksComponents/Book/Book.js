@@ -122,26 +122,26 @@ const [open, setOpen] = React.useState(false);
   </AppBar>
   <List>
     <ListItem button>
-      <ListItemText primary="Branch" secondary={book.branch} />
+      <ListItemText primary="Branch" secondary={book?.branch} />
     </ListItem>
     <ListItem button>
-      <ListItemText primary="Subject" secondary={book.subject} />
+      <ListItemText primary="Subject" secondary={book?.subject} />
     </ListItem>
     <ListItem button>
-      <ListItemText primary="Price" secondary={book.price} />
+      <ListItemText primary="Price" secondary={book?.price} />
     </ListItem>
     <ListItem button>
-      <ListItemText primary="Condition" secondary={book.condition} />
+      <ListItemText primary="Condition" secondary={book?.condition} />
     </ListItem>
     <ListItem button>
-      <ListItemText primary="Date" secondary={book.createdAt} />
+      <ListItemText primary="Date" secondary={book?.createdAt} />
     </ListItem>
     <ListItem button>
-      <ListItemText primary="Last Updated" secondary={book.updatedAt} />
+      <ListItemText primary="Last Updated" secondary={book?.updatedAt} />
     </ListItem>
     <ListItem button>
     <ListItemText primary="Book Image" />
-     <img src={book.selectedFile} style={{position :"relative",right : "10px",top:"2px",width:"400px",height:"300px"}}/>
+     <img src={book?.selectedFile} style={{position :"relative",right : "10px",top:"2px",width:"400px",height:"300px"}}/>
     </ListItem>
     <Divider />
   </List>
