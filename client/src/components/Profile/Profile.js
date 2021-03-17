@@ -147,16 +147,7 @@ const Profile = () => {
             {user.name}
           </Typography>
 
-          {/* <Container className={classes.headRight}>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              endIcon={<LibraryBooksIcon />}
-            >
-              My Ads
-            </Button>
-          </Container> */}
+          
         </Container>
 
         <Dashboard />
@@ -263,6 +254,8 @@ const Profile = () => {
 
           <Container className={classes.headRight}></Container>
         </Container>
+
+        <Dashboard />
 
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
