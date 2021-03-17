@@ -147,7 +147,7 @@ const Navbar = () => {
         >
           <MenuItem>About Us</MenuItem>
         </Link>
-        <Link
+        {/* <Link
           to="/contact"
           component={RouterLink}
           color="inherit"
@@ -155,7 +155,7 @@ const Navbar = () => {
           key="Contact Us"
         >
           <MenuItem>Contact Us</MenuItem>
-        </Link>
+        </Link> */}
         <Link
           to="/add"
           component={RouterLink}
@@ -187,9 +187,9 @@ const Navbar = () => {
           <Button component={RouterLink} to="/aboutus" className={menuButton}>
             About Us
           </Button>
-          <Button component={RouterLink} to="/contact" className={menuButton}>
+          {/* <Button component={RouterLink} to="/contact" className={menuButton}>
             Contact Us
-          </Button>
+          </Button> */}
         </div>
         {user ? (
           <>
