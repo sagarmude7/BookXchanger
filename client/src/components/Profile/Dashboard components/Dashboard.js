@@ -33,18 +33,15 @@ function TabPanel(props) {
 
 const Dashboard = () => {
   // const user = JSON.parse(localStorage.getItem("profile"));
-  const user = useSelector(state=>state.user)
-  const addedBooks = user.books
+  const user = useSelector((state) => state.user);
+  const addedBooks = user.books;
   function card(book) {
     return (
       <Grid item xs={12} sm={3}>
-        <Book key={book._id} book={book}/>
+        <Book key={book._id} book={book} />
       </Grid>
     );
   }
-
-
-  
 
   const classes = useStyles();
 
@@ -95,23 +92,21 @@ const Dashboard = () => {
                 textColor="primary"
               >
                 <Tab label="Active Ads" {...a11yProps(0)} />
-                <Tab label="Pending Ads" {...a11yProps(1)} />
-                <Tab label="Sold Ads" {...a11yProps(2)} />
+                <Tab label="Sold Ads" {...a11yProps(1)} />
               </Tabs>
             </Paper>
 
             <TabPanel value={value} index={0}>
               <>
                 {user.books.length !== 0 ? (
-                  <>{user.books.map(card)}
-                  </>
+                  <>{user.books.map(card)}</>
                 ) : (
-                  <>
-                  No Active Ads
-                    
-                  </>
+                  <>No Active Ads</>
                 )}
               </>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <>Abhi tak function nahi likha hai</>
             </TabPanel>
           </>
         ) : (

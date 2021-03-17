@@ -31,8 +31,9 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import ChatIcon from "@material-ui/icons/Chat";
 import { editProfile, getProfile } from "../../actions/user";
 import { useDispatch, useSelector } from "react-redux";
-import Dashboard from "./Dashboard components/Dashboard"
+import Dashboard from "./Dashboard components/Dashboard";
 import { user } from "../../reducers/index";
+import Footer from "../Footer/footer.js";
 
 const Profile = () => {
   const classes = useStyles();
@@ -127,11 +128,7 @@ const Profile = () => {
   if (key) {
     return (
       <div className={classes.container}>
-        <Navbar></Navbar>
-
-        <Typography className={classes.heading} variant="h4">
-          My Profile
-        </Typography>
+        <Navbar />
 
         <Container className={classes.head}>
           <img
@@ -235,12 +232,13 @@ const Profile = () => {
         >
           <EditIcon />
         </Fab>
+        <Footer />
       </div>
     );
   } else {
     return (
       <div className={classes.container}>
-        <Navbar></Navbar>
+        <Navbar />
 
         <Typography className={classes.heading} variant="h4">
           My Profile
@@ -447,6 +445,7 @@ const Profile = () => {
             </Button>
           </form>
         </Container>
+        <Footer />
       </div>
     );
   }
