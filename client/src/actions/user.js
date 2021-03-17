@@ -16,13 +16,13 @@ export const getProfile = () => async (dispatch) => {
 };
 
 
-export const editProfile = (id,user) => async (dispatch) => {
+export const editProfile = (userData) => async (dispatch) => {
 
     try {
         console.log("in actions");
-        const {data} = await api.editProfile(id,user);
+        const {data} = await api.editProfile(userData);
         console.log(data);
-        dispatch({ type: EDIT_PROFILE, payload: data });
+        dispatch({type:EDIT_PROFILE,payload:data});
     } catch (error) {
         console.log(error);
     }

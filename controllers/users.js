@@ -133,18 +133,19 @@ exports.getProfile = async(req,res)=>{
 }
 
 exports.editProfile = async(req,res)=>{
-    const id = req.userId;
-    const {name, email, college, loaction, soldAds} = req.body;
-    
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No user with id`);
+    const {name, email, college, location} = req.body;
 
+    try{
+        const updateData = {name, email, college, location};
 
-    const updatedUser = {_id:id, name, email, college, loaction, soldAds};
+        const updatedUser = await User.findByIdAndUpdate(req.userId,updateData,{new:true})
+        
+        console.log("in controllers",updatedUser);
 
-    await User.findByIdAndUpdate(id, updatedUser, { new: true });
-    console.log("in controllers",updatedUser);
-
-    res.json(updatedUser);
+        return res.status(200).json(updatedUser);
+    }catch(err){
+        return res.status(500).json({ msg: "Something went wrong" });
+    }
 }
 
 

@@ -40,28 +40,30 @@ const Profile = () => {
   const dispatch = useDispatch();
   //const user1 = JSON.parse(localStorage.getItem('profile'));
   const user = useSelector((state) => state.user);
-  console.log("This is the person", user);
 
   useEffect(() => {
     dispatch(getProfile());
   }, [dispatch]);
 
+
   //console.log(person);
   const [userData, setUserData] = useState({
-    name: user.name,
-    email: "",
-    college: "",
-    location: "",
+    name:'',email:'',college:'',location:''
   });
   //console.log(typeof userData)
+
+  useEffect(()=>{
+    if(user)
+      setUserData({...userData,name:user.name,email:user.email,college:user.college,location:user.location})
+  },[user,setUserData])
 
   const [key, setKey] = useState(true);
 
   const [open, setOpen] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmitUserInfo = (e) => {
     e.preventDefault();
-    dispatch(editProfile(user._id, userData));
+    dispatch(editProfile(userData));
     //console.log("Submitted......")
     setKey(true);
   };
@@ -73,6 +75,10 @@ const Profile = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleChangeUserInfo = (e)=>{
+    setUserData({...userData,[e.target.name]:e.target.value})
+  }
 
   const [values1, setValues1] = useState({
     currentpassword: "",
@@ -162,7 +168,7 @@ const Profile = () => {
               Your Name :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.name}
+              {userData.name}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -172,7 +178,7 @@ const Profile = () => {
               Email Address :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.email}
+              {userData.email}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -182,7 +188,7 @@ const Profile = () => {
               College Name :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.college}
+              {userData.college}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -192,7 +198,7 @@ const Profile = () => {
               Location :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.location}
+              {userData.location}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -202,7 +208,7 @@ const Profile = () => {
               Number of Ads Sold :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {user.SoldAds}
+              {user.soldAds}
             </Typography>
           </Container>
 
@@ -390,7 +396,7 @@ const Profile = () => {
             className={classes.editBody}
             noValidate
             autoComplete="off"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmitUserInfo}
           >
             <TextField
               required
@@ -398,10 +404,9 @@ const Profile = () => {
               id="outlined-basic"
               label="Your Name"
               defaultValue={user.name}
+              name="name"
               variant="outlined"
-              onChange={(e) =>
-                setUserData({ ...userData, name: e.target.value })
-              }
+              onChange={handleChangeUserInfo}
             />
             <TextField
               required
@@ -409,7 +414,9 @@ const Profile = () => {
               id="outlined-basic"
               label="Email Address"
               defaultValue={user.email}
+              name="email"
               variant="outlined"
+              onChange={handleChangeUserInfo}
             />
             <TextField
               required
@@ -417,7 +424,9 @@ const Profile = () => {
               id="outlined-basic"
               label="College Name"
               defaultValue={user.college}
+              name="college"
               variant="outlined"
+              onChange={handleChangeUserInfo}
             />
             <TextField
               required
@@ -425,8 +434,10 @@ const Profile = () => {
               id="outlined-basic"
               label="Location"
               defaultValue={user.location}
+              name="location"
               variant="outlined"
               size="nornal"
+              onChange={handleChangeUserInfo}
             />
             <Button
               className={classes.saveChanges}
