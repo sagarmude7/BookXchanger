@@ -29,8 +29,9 @@ const signIn = (formData)=>API.post(`${urlUsers}/signIn`,formData)
 const googleFacebookSignIn = (formData)=>API.post(`${urlUsers}/googleFacebookSignIn`,formData);
 
 const getProfile = (id)=>API.get(`${urlUsers}/profile`);
-const editProfile = (id,updatedUser)=>API.patch(`${urlUsers}/${id}/profile`);
+const editProfile = (id,updatedUser)=>API.patch(`${urlUsers}/profile`,updatedUser);
 
 const getWishList = (id)=>API.get(`${urlUsers}/wishList`)
 
 module.exports = {fetchBooks,createBookAd,signUp,signIn,googleFacebookSignIn,addToWishList,getWishList,getProfile,editProfile,showBookInfo}
+

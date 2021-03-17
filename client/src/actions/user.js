@@ -1,4 +1,4 @@
-import {FETCH_FAV, GET_PROFILE} from '../constants/actions'
+import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE} from '../constants/actions'
 import api from '../api/index';
 
 export const getProfile = () => async (dispatch) => {
@@ -7,7 +7,7 @@ export const getProfile = () => async (dispatch) => {
         const {data} = await api.getProfile();
         //console.log(data);
         //console.log("before dispatch");
-        dispatch({ type: 'GET_PROFILE', payload: data });
+        dispatch({ type: GET_PROFILE, payload: data });
         //console.log("after dispatch");
     } catch (error) {
         console.log(error);
@@ -19,8 +19,10 @@ export const getProfile = () => async (dispatch) => {
 export const editProfile = (id,user) => async (dispatch) => {
 
     try {
+        console.log("in actions");
         const {data} = await api.editProfile(id,user);
-        dispatch({ type: 'EDIT_PROFILE', payload: data });
+        console.log(data);
+        dispatch({ type: EDIT_PROFILE, payload: data });
     } catch (error) {
         console.log(error);
     }

@@ -20,7 +20,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import ChatIcon from '@material-ui/icons/Chat';
 import {editProfile, getProfile} from '../../actions/user';
 import {useDispatch, useSelector} from 'react-redux';
-import {user} from '../../reducers/index';
+
 
 const Profile = () => {
 
@@ -308,7 +308,7 @@ const Profile = () => {
                     </div>
 
                     <form className={classes.editBody} noValidate autoComplete="off" onSubmit={handleSubmit}>
-                        <TextField required className={classes.textBox} id="outlined-basic" label="Your Name" defaultValue={userData.name} variant="outlined" onChange={(e) => setUserData({...userData, name:e.target.value})}/>
+                        <TextField required className={classes.textBox} id="outlined-basic" label="Your Name" defaultValue={user.name} variant="outlined" onChange={(e) => setUserData({...user, name:e.target.value})}/>
                         <TextField required className={classes.textBox} id="outlined-basic" label="Email Address" defaultValue={user.email} variant="outlined" />
                         <TextField required className={classes.textBox} id="outlined-basic" label="College Name" defaultValue={user.college} variant="outlined" />
                         <TextField required className={classes.textBox} id="outlined-basic" label="Location" defaultValue={user.location} variant="outlined" size="nornal" />
