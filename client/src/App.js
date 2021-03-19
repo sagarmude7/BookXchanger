@@ -11,12 +11,12 @@ import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
 import Wishlist from './components/WishlistComponent/Wishlist.js'
 import Footer from './components/Footer/footer'
-<<<<<<< Updated upstream
+
 import BookInfo from "./components/AllBooksComponents/BookInfo/BookInfo"
-=======
+
 import About from './components/AboutUsComponents/About.js'
 
->>>>>>> Stashed changes
+
 const App = ()=>{
 
     function displayLoading(){
