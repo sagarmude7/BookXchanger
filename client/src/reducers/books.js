@@ -12,7 +12,7 @@ export default (books=[],action)=>{
         case ADD_FAV:
             return books.map(book=>action.payload._id===book._id?action.payload:book);
         case GET_BOOK:
-            return action.payload;
+            return{ book : action.payload};
         case 'UPDATE_BOOKS':
             return action.payload;
         default:

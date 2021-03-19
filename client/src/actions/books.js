@@ -36,19 +36,16 @@ export const addToWishList = (id)=>async(dispatch)=>{
     }
 }
 
-export const showBookInfo = (id)=>async(dispatch)=>{
+export const showBookInfo = (bookId)=> async(dispatch)=>{
     try {
-        const {data}= await api.showBookInfo(id);
-        console.log("Inside actions, data from API is" + data)
+        console.log("Action here");
+        const {data} = await api.showBookInfo(bookId);
+        console.log("Inside actions, data from API is")
         dispatch({type:GET_BOOK,payload:data})
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
     }
 }
-
-
-
-
 
 // export const getMyAds = ()=>async()=>{
 //     try {
@@ -57,3 +54,5 @@ export const showBookInfo = (id)=>async(dispatch)=>{
         
 //     }
 // }
+
+

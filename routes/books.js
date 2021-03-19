@@ -10,7 +10,7 @@ const auth = require('../middleware/auth')
 // }
 
 router.get('/all',getBooks)
-router.get('/:id/bookInfo',auth,showBookInfo)
+router.get('/:bookId',auth,showBookInfo)
 router.post('/add',auth,createBookAd)
 router.patch('/:id/addWishList',auth,addToWishList)
 

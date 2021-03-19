@@ -6,7 +6,6 @@ const { WishList } = require('../models/WishList')
 
 exports.getBooks = async(req,res)=>{
     try{
-        
         const books = await Book.find()
         return res.status(200).json(books)
     }
@@ -15,11 +14,10 @@ exports.getBooks = async(req,res)=>{
     }
 }
 
-exports.showBookInfo = async(req,res)=>{
-    const {id} = req.params;
-        
+exports.showBookInfo = async(req,res)=>{ 
     try{
-        const book = await Book.findById(id);
+        const bookId = req.params.bookId;
+        const book = await Book.findById(bookId);
         return res.status(201).json(book);
     }
     catch(err){

@@ -25,7 +25,7 @@ import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { addToWishList } from "../../../actions/books";
-
+import {useHistory} from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -34,7 +34,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const user = JSON.parse(localStorage.getItem("profile"));
 const [fav,setFav] = useState(book?.wishListedBy?.find((id) => id === user?.profile?.id));
 const addtofavourite = () => {
@@ -45,18 +45,18 @@ const addtofavourite = () => {
 
 
 const getBook = () => {
-  console.log(book);
+  history.push(`all/book/${book._id}`)
 }
 
-const [open, setOpen] = React.useState(false);
+// const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+//   const handleClickOpen = () => {
+//     setOpen(true);
+//   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+//   const handleClose = () => {
+//     setOpen(false);
+//   };
   return (
     <>
     <Card className={classes.card}>
@@ -96,18 +96,18 @@ const [open, setOpen] = React.useState(false);
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="medium" color="secondary" onClick={addtofavourite}>
+        <Button size="medium" color="secondary" onClick={getBook}>
          {fav ? <FavoriteIcon /> :  <FavoriteBorderIcon />}
         </Button>
       </CardActions>
       <CardActions className={classes.cardActions}>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={getBook}>
           bookInfo
       </Button>
       </CardActions>
     </Card>
 
-<div>
+{/* <div>
 
 <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
   <AppBar className={classes.appBar}>
@@ -146,7 +146,7 @@ const [open, setOpen] = React.useState(false);
     <Divider />
   </List>
 </Dialog>
-</div>
+</div> */}
 
 </>
 
