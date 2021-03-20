@@ -98,7 +98,7 @@ const Dashboard = () => {
 
             <TabPanel value={value} index={0}>
               <>
-                {user.books.length !== 0 ? (
+                {user?.books.length !== 0 ? (
                   <>{user.books.map(card)}</>
                 ) : (
                   <>No Active Ads</>

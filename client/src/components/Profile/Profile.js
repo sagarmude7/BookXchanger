@@ -12,29 +12,28 @@ import {
   Paper,
 } from "@material-ui/core";
 import useStyles from "./styles.js";
-import img from './profilepic.png';
-import EditIcon from '@material-ui/icons/Edit';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import clsx from 'clsx';
-import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import ChatIcon from '@material-ui/icons/Chat';
-import {editProfile, getProfile} from '../../actions/user';
-import {useDispatch, useSelector} from 'react-redux';
+import img from "./profilepic.png";
+import EditIcon from "@material-ui/icons/Edit";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import clsx from "clsx";
+import IconButton from "@material-ui/core/IconButton";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import ChatIcon from "@material-ui/icons/Chat";
+import { editProfile, getProfile } from "../../actions/user";
+import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
 import Dashboard from "./Dashboard components/Dashboard";
 import Footer from "../Footer/footer.js";
 
-    
 const Profile = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -45,17 +44,25 @@ const Profile = () => {
     dispatch(getProfile());
   }, [dispatch]);
 
-
   //console.log(person);
   const [userData, setUserData] = useState({
-    name:'',email:'',college:'',location:''
+    name: "",
+    email: "",
+    college: "",
+    location: "",
   });
   //console.log(typeof userData)
 
-  useEffect(()=>{
-    if(user)
-      setUserData({...userData,name:user.name,email:user.email,college:user.college,location:user.location})
-  },[user,setUserData])
+  useEffect(() => {
+    if (user)
+      setUserData({
+        ...userData,
+        name: user.name,
+        email: user.email,
+        college: user.college,
+        location: user.location,
+      });
+  }, [user, setUserData]);
 
   const [key, setKey] = useState(true);
 
@@ -76,9 +83,9 @@ const Profile = () => {
     setOpen(false);
   };
 
-  const handleChangeUserInfo = (e)=>{
-    setUserData({...userData,[e.target.name]:e.target.value})
-  }
+  const handleChangeUserInfo = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
 
   const [values1, setValues1] = useState({
     currentpassword: "",
@@ -152,8 +159,6 @@ const Profile = () => {
           >
             {user.name}
           </Typography>
-
-          
         </Container>
 
         <Dashboard />
@@ -202,15 +207,6 @@ const Profile = () => {
             </Typography>
           </Container>
           <Divider></Divider>
-
-          <Container className={classes.bodyFields}>
-            <Typography className={classes.bodyText} variant="h6">
-              Number of Ads Sold :
-            </Typography>
-            <Typography className={classes.bodyTextValue} variant="h6">
-              {user.soldAds}
-            </Typography>
-          </Container>
 
           <Typography className={classes.bodyText}></Typography>
         </Container>
