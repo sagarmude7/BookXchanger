@@ -13,23 +13,26 @@ const BookInfo = ({match}) => {
  **************************/
 
  const dispatch = useDispatch();
-
+ const book = useSelector(state => state.book);
 /***************************
         Params
  **************************/
   const bookId = match.params.bookId;
-
+  console.log(bookId);
 
 /***************************
      LIFECYCLE Method
  **************************/
   useEffect(()=>{
     dispatch(showBookInfo(bookId));
-  },[dispatch])
+  },[dispatch,bookId])
   return (
     <>
      <h1>This is Book Info</h1>
-     {/* <h1>{book.bookName}</h1> */}
+     <h1>{book?.bookName}</h1>
+     <h1>{book?.price}</h1>
+     <h1>{book?.author}</h1>
+     <h1>{book?.subject}</h1>
     </>
   );
 };

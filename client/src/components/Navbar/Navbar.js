@@ -1,6 +1,7 @@
 //Navbar
 //Importing Required Hooks
 import React, { useEffect, useState } from "react";
+
 //UseState  : For initializing and seting the state as per requirement.
 //UseEffect : For : When window is loaded depending upon the size it displays corresponding view.
 import {
@@ -18,7 +19,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import useStyles from "./styles.js";
 import { useDispatch } from "react-redux";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink, useHistory,useLocation } from "react-router-dom";
 import SearchBar from "../HomePageComponents/SearchBar/SearchBox.js";
 import { LOGOUT } from "../../constants/actions";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
@@ -53,7 +54,7 @@ const Navbar = () => {
   const { mobileView, drawerOpen } = state;
 
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const bookLogo = (
     <div className={brandContainer}>
       <Typography component={Link} to="/" style={{ color: "white" }}>
@@ -90,7 +91,8 @@ const Navbar = () => {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("profile")));
     const token = user?.token;
-  }, []);
+    
+  }, [location,user?.token]);
 
   const getDrawerChoices = () => {
     // return navData.map(({label,href}) => {

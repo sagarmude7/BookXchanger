@@ -1,4 +1,4 @@
-import {FETCH_ALL,CREATE,FILTER_BOOKS,ADD_FAV, FETCH_FAV, GET_BOOK} from '../constants/actions'
+import {FETCH_ALL,CREATE,FILTER_BOOKS,ADD_FAV, FETCH_FAV} from '../constants/actions'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (books=[],action)=>{
@@ -11,8 +11,6 @@ export default (books=[],action)=>{
             return [...books,action.payload]
         case ADD_FAV:
             return books.map(book=>action.payload._id===book._id?action.payload:book);
-        case GET_BOOK:
-            return{ book : action.payload};
         case 'UPDATE_BOOKS':
             return action.payload;
         default:
