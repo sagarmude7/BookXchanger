@@ -25,6 +25,7 @@ import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { addToWishList } from "../../../actions/books";
+import { useHistory } from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -50,13 +51,13 @@ const Book = ({ book }) => {
 
   const [open, setOpen] = React.useState(false);
 
-  //   const handleClickOpen = () => {
-  //     setOpen(true);
-  //   };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-  //   const handleClose = () => {
-  //     setOpen(false);
-  //   };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <>
       <Card className={classes.card}>
