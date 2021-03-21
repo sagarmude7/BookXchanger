@@ -18,7 +18,7 @@ exports.showBookInfo = async(req,res)=>{
     console.log("IN Controller")
     try{
         const bookId = req.params.bookId;
-       
+        console.log("COntroller" + bookId)
         const book = await Book.findById(bookId);
         console.log("Control" + book)
         return res.status(200).json(book);
