@@ -15,7 +15,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { addToWishList } from "../../../../actions/books";
+import { addToWishList, updatedIsSold } from "../../../../actions/books";
 
 const Book = ({ book }) => {
   const classes = useStyles();
@@ -24,13 +24,19 @@ const Book = ({ book }) => {
   const [fav, setFav] = useState(
     book?.wishListedBy?.find((id) => id === user?.profile?.id)
   );
+  // const [book, setBook] = useState({});
   const addtofavourite = () => {
     console.log("Adding To Favorites..");
     fav ? setFav(false) : setFav(true);
     dispatch(addToWishList(book?._id));
   };
 
-  const sold = () => {};
+  const onClickSold = () => {
+    // console.log("Adding To isSold");
+    // book ? setBook(false) : setBook(true);
+    // dispatch(updatedIsSold(book));
+    // console.log("Updating isSold");
+  };
 
   return (
     <Card className={classes.card}>
@@ -79,7 +85,7 @@ const Book = ({ book }) => {
         </Button>
       </CardActions>
       <CardActions className={classes.cardActions}>
-        <Button variant="contained" color="primary" onClick={sold()}>
+        <Button variant="contained" color="primary" onClick={onClickSold()}>
           Sold
         </Button>
       </CardActions>

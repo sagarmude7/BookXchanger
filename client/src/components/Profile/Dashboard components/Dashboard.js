@@ -13,7 +13,6 @@ import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -45,7 +44,7 @@ const Dashboard = () => {
 
   const classes = useStyles();
 
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -98,8 +97,8 @@ const Dashboard = () => {
 
             <TabPanel value={value} index={0}>
               <>
-                {user?.books.length !== 0 ? (
-                  <>{user.books.map(card)}</>
+                {user?.books?.length !== 0 ? (
+                  <>{user?.books?.map(card)}</>
                 ) : (
                   <>No Active Ads</>
                 )}
