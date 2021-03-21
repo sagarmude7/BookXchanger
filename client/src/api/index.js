@@ -17,7 +17,7 @@ const createBookAd = (formData)=>API.post(`${urlBooks}/add`,formData)
 
 const addToWishList = (id)=>API.patch(`${urlBooks}/${id}/addWishList`,id)
 
-const showBookInfo = (bookId) =>API.get(`${urlBooks}/all/book/${bookId}`,bookId);
+const showBookInfo = (bookId) =>API.get(`${urlBooks}/book/${bookId}`);
 
 // '${urlBooks}/userBooks'
 const urlUsers = '/users';

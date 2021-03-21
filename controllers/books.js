@@ -15,10 +15,13 @@ exports.getBooks = async(req,res)=>{
 }
 
 exports.showBookInfo = async(req,res)=>{ 
+    console.log("IN Controller")
     try{
         const bookId = req.params.bookId;
+       
         const book = await Book.findById(bookId);
-        return res.status(201).json(book);
+        console.log("Control" + book)
+        return res.status(200).json(book);
     }
     catch(err){
         return res.status(404).json({msg:"No Book Found"})

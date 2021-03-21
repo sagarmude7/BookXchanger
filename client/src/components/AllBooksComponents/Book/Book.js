@@ -46,18 +46,18 @@ const Book = ({ book }) => {
   };
 
   const getBook = () => {
-    console.log(book);
+    history.push(`/all/book/${book._id}`)
   };
 
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
   return (
     <>
       <Card className={classes.card}>
@@ -102,13 +102,13 @@ const Book = ({ book }) => {
           </Button>
         </CardActions>
         <CardActions className={classes.cardActions}>
-          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+          <Button variant="outlined" color="primary" onClick={getBook}>
             bookInfo
           </Button>
         </CardActions>
       </Card>
 
-      <div>
+      {/* <div>
         <Dialog
           fullScreen
           open={open}
@@ -168,7 +168,7 @@ const Book = ({ book }) => {
             <Divider />
           </List>
         </Dialog>
-      </div>
+      </div> */}
     </>
   );
 };
