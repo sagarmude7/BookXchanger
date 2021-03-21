@@ -78,7 +78,7 @@ const Navbar = () => {
   useEffect(() => {
     //Function which returns the current view of the window.
     const setResponsiveness = () => {
-      return (window.innerWidth < 900 && window.innerWidth > 100)
+      return window.innerWidth < 900 && window.innerWidth > 100
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
@@ -129,7 +129,7 @@ const Navbar = () => {
         >
           <MenuItem>Books</MenuItem>
         </Link>
-        <Link
+        {/* <Link
           to="/wishlist"
           component={RouterLink}
           color="inherit"
@@ -137,7 +137,7 @@ const Navbar = () => {
           key="Wishlist"
         >
           <MenuItem>Wishlist</MenuItem>
-        </Link>
+        </Link> */}
         <Link
           to="/about"
           component={RouterLink}
@@ -163,7 +163,7 @@ const Navbar = () => {
           className={menuButton}
           key="Sell Books"
         >
-          <MenuItem>Sell Boooks</MenuItem>
+          <MenuItem>Sell Books</MenuItem>
         </Link>
       </>
     );
