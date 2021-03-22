@@ -3,7 +3,7 @@ import {
   CREATE,
   ADD_FAV,
   GET_BOOK,
-  IS_SOLD,
+  UPDATE_SOLD,
 } from "../constants/actions";
 const api = require("../api/index");
 
@@ -36,29 +36,29 @@ export const addToWishList = (id) => async (dispatch) => {
     const { data } = await api.addToWishList(id);
     console.log(data);
     dispatch({ type: ADD_FAV, payload: data });
-  } catch (error) {
+  } catch (error){
     console.log(error);
   }
 };
 
 export const showBookInfo = (bookId) => async (dispatch) => {
   try {
-    console.log("Action here");
-    console.log(bookId);
-    const { data } = await api.showBookInfo(bookId);
-    console.log("Inside actions, data from API is");
-    dispatch({ type: GET_BOOK, payload: data });
+    // console.log("Action here");
+    // console.log(bookId);
+    // const { data } = await api.showBookInfo(bookId);
+    // console.log("Inside actions, data from API is");
+    // dispatch({ type: GET_BOOK, payload: data });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const updatedIsSold = (book) => async (dispatch) => {
+export const updatedIsSold = (bookId) => async (dispatch) => {
   try {
     console.log("in isSold actions");
-    const { data } = await api.updatedIsSold(book);
+    const { data } = await api.updatedIsSold(bookId);
     console.log(data);
-    dispatch({ type: IS_SOLD, payload: data });
+    dispatch({ type: UPDATE_SOLD, payload: data });
   } catch (error) {
     console.log(error);
   }

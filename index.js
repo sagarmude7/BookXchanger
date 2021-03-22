@@ -33,10 +33,10 @@ app.use((req, res, next) => {
 });
 
 //body parser middleware for accepting json
-app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.json({ limit: "80mb", extended: true }));
 
 //middleware for accepting data from forms
-app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "80mb", extended: true }));
 
 // //sending and receiving images data through form or json
 // //limit : Controls the maximum request body size.
