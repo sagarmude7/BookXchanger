@@ -72,7 +72,7 @@ const Footer = () => {
                       </Link>
                   </ul>
                   <ul style={{ listStyleType: "none", textAlign: 'center', paddingInlineStart: "0px" }}>
-                    <Link  to="/about" component = {RouterLink}   key="About Us"  color="inherit">
+                    <Link  to="/aboutus" component = {RouterLink}   key="About Us"  color="inherit">
                       About Us
                       </Link>
                   </ul>

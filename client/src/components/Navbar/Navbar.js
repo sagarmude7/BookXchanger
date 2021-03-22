@@ -1,6 +1,7 @@
 //Navbar
 //Importing Required Hooks
 import React, { useEffect, useState } from "react";
+
 //UseState  : For initializing and seting the state as per requirement.
 //UseEffect : For : When window is loaded depending upon the size it displays corresponding view.
 import {
@@ -18,7 +19,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import useStyles from "./styles.js";
 import { useDispatch } from "react-redux";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink, useHistory,useLocation } from "react-router-dom";
 import SearchBar from "../HomePageComponents/SearchBar/SearchBox.js";
 import { LOGOUT } from "../../constants/actions";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
@@ -53,7 +54,7 @@ const Navbar = () => {
   const { mobileView, drawerOpen } = state;
 
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const bookLogo = (
     <div className={brandContainer}>
       <Typography component={Link} to="/" style={{ color: "white" }}>
@@ -78,7 +79,7 @@ const Navbar = () => {
   useEffect(() => {
     //Function which returns the current view of the window.
     const setResponsiveness = () => {
-      return (window.innerWidth < 900 && window.innerWidth > 100)
+      return window.innerWidth < 900 && window.innerWidth > 100
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
@@ -90,7 +91,8 @@ const Navbar = () => {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("profile")));
     const token = user?.token;
-  }, []);
+    
+  }, [location,user?.token]);
 
   const getDrawerChoices = () => {
     // return navData.map(({label,href}) => {
@@ -129,7 +131,7 @@ const Navbar = () => {
         >
           <MenuItem>Books</MenuItem>
         </Link>
-        <Link
+        {/* <Link
           to="/wishlist"
           component={RouterLink}
           color="inherit"
@@ -137,7 +139,7 @@ const Navbar = () => {
           key="Wishlist"
         >
           <MenuItem>Wishlist</MenuItem>
-        </Link>
+        </Link> */}
         <Link
           to="/about"
           component={RouterLink}
@@ -163,7 +165,7 @@ const Navbar = () => {
           className={menuButton}
           key="Sell Books"
         >
-          <MenuItem>Sell Boooks</MenuItem>
+          <MenuItem>Sell Books</MenuItem>
         </Link>
       </>
     );

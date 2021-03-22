@@ -9,7 +9,7 @@ const auth = (req,res,next)=>{
         if(token){
             const decodedData = jwt.verify(token,process.env.TOKEN_SECRET)
             //attach user id to request object
-            req.userId = decodedData?.id  
+            req.userId = decodedData?.id
         }
 
         next()

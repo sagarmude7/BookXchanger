@@ -233,6 +233,7 @@ const SearchBox = () => {
                     >
                         <MenuItem value="Used">Used</MenuItem>
                         <MenuItem value="New">New</MenuItem>
+                        <MenuItem value="">None</MenuItem>
                     </Select>
                 </FormControl>
               </Grid>
@@ -253,6 +254,7 @@ const SearchBox = () => {
                           </MenuItem>
                           <MenuItem value="Negotiable">Negotiable</MenuItem>
                           <MenuItem value="Price on Call">Price on Call</MenuItem>
+                          <MenuItem value="">None</MenuItem>
                       </Select>
                   </FormControl>
               </Grid>

@@ -11,7 +11,12 @@ import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
 import Wishlist from './components/WishlistComponent/Wishlist.js'
 import Footer from './components/Footer/footer'
+
 import BookInfo from "./components/AllBooksComponents/BookInfo/BookInfo"
+
+import About from './components/AboutUsComponents/About.js'
+
+
 const App = ()=>{
 
     function displayLoading(){
@@ -29,11 +34,12 @@ const App = ()=>{
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/all" component={DisplayBooks}/>
+                    <Route exact path="/aboutus" component={About}/>
                     <Route exact path="/add" component={PostAdForm}/>  
                     <Route exact path="/auth" component={Auth}/>
                     <Route exact path="/profile" component={Profile}/>  
                     <Route exact path="/wishlist" component={Wishlist}/>  
-                    <Route exact path="/all/bookInfo" component={BookInfo}/>  
+                    <Route exact path="/all/book/:bookId" component={BookInfo}/>  
                 </Switch>
             </Container>
         </Router>
