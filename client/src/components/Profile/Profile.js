@@ -155,7 +155,6 @@ const Profile = () => {
             variant="body1"
             color="textPrimary"
             className={classes.headUser}
-            variant="h6"
           >
             {user.name}
           </Typography>

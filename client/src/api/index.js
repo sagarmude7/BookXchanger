@@ -29,12 +29,10 @@ const urlUsers = "/users";
 const signUp = (formData) => API.post(`${urlUsers}/signUp`, formData);
 const signIn = (formData) => API.post(`${urlUsers}/signIn`, formData);
 
-const googleFacebookSignIn = (formData) =>
-  API.post(`${urlUsers}/googleFacebookSignIn`, formData);
+const googleFacebookSignIn = (formData) => API.post(`${urlUsers}/googleFacebookSignIn`, formData);
 
 const getProfile = () => API.get(`${urlUsers}/profile`);
-const editProfile = (updatedUser) =>
-  API.patch(`${urlUsers}/profile`, updatedUser);
+const editProfile = (updatedUser) => API.patch(`${urlUsers}/profile`, updatedUser);
 
 const getWishList = (id) => API.get(`${urlUsers}/wishList`);
 

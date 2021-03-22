@@ -8,8 +8,6 @@ export default (user={},action)=>{
             return action.payload
         case EDIT_PROFILE:
             return action.payload
-        case UPDATE_SOLD:
-            return action.payload
         default:
             return user;
     }

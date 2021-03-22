@@ -36,7 +36,7 @@ export const addToWishList = (id) => async (dispatch) => {
     const { data } = await api.addToWishList(id);
     console.log(data);
     dispatch({ type: ADD_FAV, payload: data });
-  } catch (error) {
+  } catch (error){
     console.log(error);
   }
 };

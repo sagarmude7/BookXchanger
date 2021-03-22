@@ -19,6 +19,10 @@ export default (books = [], action) => {
       return books.map((book) =>
         action.payload._id === book._id ? action.payload : book
       );
+    case UPDATE_SOLD:
+      return books.map((book) =>
+        action.payload._id === book._id ? action.payload : book
+      );
     case "UPDATE_BOOKS":
       return action.payload;
     default:

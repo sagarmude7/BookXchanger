@@ -47,7 +47,7 @@ const Book = ({ book }) => {
     console.log("Adding To Favorites..");
     fav ? setFav(false) : setFav(true);
     dispatch(addToWishList(book?._id));
-    dispatch(getBooks())
+    // dispatch(getBooks())
   };
 
   const getBook = () => {

@@ -7,7 +7,6 @@ const {
   createBookAd,
   addToWishList,
   getWishList,
-  showBookInfo,
   updateIsSold,
 } = require("../controllers/books");
 const auth = require("../middleware/auth");
@@ -18,9 +17,9 @@ const auth = require("../middleware/auth");
 // }
 
 router.get("/all", getBooks);
-router.get("/book/:bookId", auth, showBookInfo);
 router.post("/add", auth, createBookAd);
 router.patch("/:id/addWishList", auth, addToWishList);
 router.patch("/:id/sold", auth, updateIsSold);
+// router.get("/book/:bookId", auth, showBookInfo);
 
 module.exports = router;

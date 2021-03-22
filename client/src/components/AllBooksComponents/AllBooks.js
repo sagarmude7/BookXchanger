@@ -12,7 +12,8 @@ import FilteredBooks from "./FilteredBooks/filteredBooks.js"
 const AllBooks = () => {
     const dispatch = useDispatch()
     const classes = useStyles()
-    const books = useSelector(state=>state.books)
+    const allBooks = useSelector(state=>state.books)
+    const books = allBooks.filter(book=>book.isSold===false)
     const [sortbool,setSortbool] = useState(false)
 
     const [data, setData] = useState([]);

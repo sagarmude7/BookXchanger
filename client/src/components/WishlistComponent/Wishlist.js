@@ -17,7 +17,8 @@ const Wishlist = () => {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch({type:FETCH_FAV,payload:books.filter(book=>book.wishListedBy.includes(user.profile.id)===true)})
-  },[dispatch,user?.profile?.id])
+  },[dispatch,books])
+
   return (
     <>
       <Navbar />

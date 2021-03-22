@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
-const { WishList } = require('../models/WishList')
 const jwt = require('jsonwebtoken')
 const { regValidator, loginValidator } = require('../validators/joi-validator')
 
@@ -15,11 +14,9 @@ exports.signUp = async(req,res)=>{
     try {
         if(error)
             return res.status(400).json({msg:error.details[0].message})
-        console.log("Hello")
-        console.log("Finding if user exists")
+        
         const existingUser = await User.findOne({email:email})
         
-        console.log("checked")
         //if existing User is found
         if(existingUser)
             return res.status(400).json({msg:'User already exists with this email'})
@@ -30,18 +27,19 @@ exports.signUp = async(req,res)=>{
 
         const hashedPassword = await bcrypt.hash(password,10);
 
-        const newUser = await User.create({name:`${firstName} ${lastName}`,email:email,password:hashedPassword,createdAt:new Date().toISOString(),college:college,location:location,soldAds:0,books:[]})
+        const newUser = await User.create({name:`${firstName} ${lastName}`,email:email,password:hashedPassword,createdAt:new Date().toISOString(),college:college,location:location,postedBooks:[]})
 
         const payload = {
             email: newUser.email,
             id:newUser._id
         }
 
-        const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
+        const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"2h"})
 
+        console.log("New User created using sign Up")
         return res.status(200).json({ profile: {name:newUser.name,email:newUser.email,id:newUser._id}, token })
     } catch (err) {
-        return res.status(500).json({msg:"SOMEThing went wrong"})
+        return res.status(500).json({msg:"SomeThing went wrong"})
     }
 }
 
@@ -55,7 +53,6 @@ exports.signIn = async(req,res)=>{
             return res.status(400).json({msg:error.details[0].message})
         
         const oldUser = await User.findOne({email:email})
-        // console.log(oldUser)
         
         if(!oldUser)
             return res.status(400).json({msg:"User doesn't exist"})
@@ -66,7 +63,7 @@ exports.signIn = async(req,res)=>{
             return res.status(400).json({msg:"Password Incorrect"})
 
         const token = jwt.sign({ profile: oldUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
-        
+        console.log("User Signed In Normally")
         return res.status(200).json({ profile: {name:oldUser.name,email:oldUser.email,id:oldUser._id}, token });
     } catch (err) {
         return res.status(500).json({ msg: "Something went wrong" });
@@ -97,7 +94,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
             // console.log(password);
             const hashedPassword = await bcrypt.hash(password,10);
             // console.log(hashedPassword)
-            const newUser = await User.create({name,email,password:hashedPassword,profilePic,createdAt:new Date().toISOString(),college:'ABC',location:'DEF',soldAds:0,books:[]})
+            const newUser = await User.create({name,email,password:hashedPassword,profilePic,createdAt:new Date().toISOString(),college:'ABC',location:'DEF',postedBooks:[]})
 
             // console.log("newUser",newUser);
             const payload = {
@@ -111,10 +108,11 @@ exports.googleFacebookSignIn = async(req,res)=>{
         }
 
         const updatedUser = await User.findOneAndUpdate({email:email},{profilePic:profilePic},{new:true})
-        // console.log(updatedUser);
+        
         updatedUser.save()
         const token = jwt.sign({ profile: updatedUser, id: oldUser._id },process.env.TOKEN_SECRET, { expiresIn: "1h" });
-        // console.log("Hello,token generated")
+        
+        console.log("User Signed In using Google")
         return res.status(200).json({ profile: {name:updatedUser.name,email:updatedUser.email,profilePic:updatedUser.profilePic,id:updatedUser._id}, token });
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });
@@ -122,7 +120,6 @@ exports.googleFacebookSignIn = async(req,res)=>{
 }
 
 exports.getProfile = async(req,res)=>{
-
     try{
         const user = await User.findById(req.userId);
         // console.log(user)
@@ -149,13 +146,13 @@ exports.editProfile = async(req,res)=>{
 }
 
 
-exports.getWishList = async(req,res)=>{
-    try{
-        const wishList = await WishList.find({adder:req.userId})
-        // console.log(wishList);
-        console.log("Getting the wishlist of user")
-        return res.status(200).json(wishList)
-    }catch(err){
-        return res.status(500).json({ msg: "Something went wrong" });
-    }
-}
+// exports.getWishList = async(req,res)=>{
+//     try{
+//         const wishList = await WishList.find({adder:req.userId})
+//         // console.log(wishList);
+//         console.log("Getting the wishlist of user")
+//         return res.status(200).json(wishList)
+//     }catch(err){
+//         return res.status(500).json({ msg: "Something went wrong" });
+//     }
+// }

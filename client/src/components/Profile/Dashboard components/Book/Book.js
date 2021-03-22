@@ -74,19 +74,16 @@ const Book = ({ book }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="medium" color="secondary" onClick={addtofavourite}>
-          <FavoriteBorderIcon />
-        </Button>
-      </CardActions>
-      <CardActions className={classes.cardActions}>
         <Button size="medium" color="secondary">
           <DeleteIcon />
         </Button>
-      </CardActions>
-      <CardActions className={classes.cardActions}>
-        <Button variant="contained" color="primary" onClick={onClickSold}>
-          Sold
-        </Button>
+        {
+          book.isSold===false?(
+            <Button variant="contained" color="primary" onClick={onClickSold}>
+              Sold
+            </Button>
+          ):null
+        }
       </CardActions>
     </Card>
   );
