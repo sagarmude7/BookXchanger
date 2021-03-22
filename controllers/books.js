@@ -24,15 +24,8 @@ exports.showBookInfo = async(req,res)=>{
         return res.status(200).json(book);
     }
     catch(err){
-        return res.status(404).json({msg:"No Book Found"})
+      return res.status(500).json({ msg: "Something went wrong on Server.." });
     }
-    // console.log(newWish.book.bookName)
-    const updatedBook = await Book.findByIdAndUpdate(id, book, { new: true });
-
-    return res.json(updatedBook);
-  } catch (err) {
-    return res.status(500).json({ msg: "Something went wrong on Server.." });
-  }
 };
 
 exports.updateIsSold = async (req, res) => {

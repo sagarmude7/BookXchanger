@@ -85,7 +85,7 @@ const Book = ({ book }) => {
         </Button>
       </CardActions>
       <CardActions className={classes.cardActions}>
-        <Button variant="contained" color="primary" onClick={onClickSold()}>
+        <Button variant="contained" color="primary" onClick={onClickSold}>
           Sold
         </Button>
       </CardActions>

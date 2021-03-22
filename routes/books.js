@@ -1,7 +1,5 @@
-const { Router } = require("express");
 const express = require("express");
 const router = express.Router();
-// const cors = require('cors')
 const {
   getBooks,
   createBookAd,
