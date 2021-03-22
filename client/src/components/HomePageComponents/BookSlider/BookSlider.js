@@ -10,8 +10,9 @@ import {getBooks} from '../../../actions/books'
 const BookSlider = () => {
     const dispatch = useDispatch()
     const classes = useStyles()
-    const books = useSelector(state=>state.books)
-  const [sortbool,setSortbool] = useState(false)
+    const allBooks = useSelector(state=>state.books)
+    const books = allBooks.filter(book=>book.isSold===false)
+    const [sortbool,setSortbool] = useState(false)
 
     const [data, setData] = useState([]);
     const [sortType, setSortType] = useState();

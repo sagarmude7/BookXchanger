@@ -1,13 +1,10 @@
 const mongoose = require('mongoose')
-const { BookSchema} = require('./Book.js');
-const { WishListSchema} = require('./WishList.js');
 
 const UserSchema = mongoose.Schema({
     name:{
         type:String,
         required:true
     },
-    profilePic:String,
     email:{
         type:String,
         required:true
@@ -15,14 +12,6 @@ const UserSchema = mongoose.Schema({
     password:{
         type:String,
         required:true
-    },
-    createdAt :{
-        type: Date,
-        default:Date.now(),
-    },
-    updatedAt :{
-        type: Date,
-        default:Date.now()
     },
     college:{
         type:String,
@@ -32,8 +21,19 @@ const UserSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    soldAds:Number,
-    books: [BookSchema]
+    profilePic:String,
+    postedBooks:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Book'
+    }],
+    createdAt :{
+        type: Date,
+        default:Date.now(),
+    },
+    updatedAt :{
+        type: Date,
+        default:Date.now()
+    }
 })
 
 const User = mongoose.model('User',UserSchema)

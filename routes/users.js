@@ -8,6 +8,6 @@ router.post('/signUp',signUp)
 router.post('/googleFacebookSignIn',googleFacebookSignIn)
 router.get('/profile',auth,getProfile)
 router.patch('/profile',auth,editProfile)
-router.get('/wishList',auth,getWishList);
+// router.get('/wishList',auth,getWishList);
 
 module.exports = router

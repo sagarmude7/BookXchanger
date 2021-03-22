@@ -6,6 +6,6 @@ export default (book={},action)=>{
         case GET_BOOK:
             return action.payload;
         default:
-            return book;
+            return null;
     }
 }

@@ -21,8 +21,7 @@ const addToWishList = (id) => API.patch(`${urlBooks}/${id}/addWishList`, id);
 
 const showBookInfo = (bookId) => API.get(`${urlBooks}/book/${bookId}`);
 
-const updatedIsSold = (updateIsSold) =>
-  API.patch(`${urlBooks}/profile/`, updateIsSold);
+const updatedIsSold = (bookId) =>API.patch(`${urlBooks}/${bookId}/sold`);
 
 // '${urlBooks}/userBooks'
 const urlUsers = "/users";
@@ -30,12 +29,10 @@ const urlUsers = "/users";
 const signUp = (formData) => API.post(`${urlUsers}/signUp`, formData);
 const signIn = (formData) => API.post(`${urlUsers}/signIn`, formData);
 
-const googleFacebookSignIn = (formData) =>
-  API.post(`${urlUsers}/googleFacebookSignIn`, formData);
+const googleFacebookSignIn = (formData) => API.post(`${urlUsers}/googleFacebookSignIn`, formData);
 
 const getProfile = () => API.get(`${urlUsers}/profile`);
-const editProfile = (updatedUser) =>
-  API.patch(`${urlUsers}/profile`, updatedUser);
+const editProfile = (updatedUser) => API.patch(`${urlUsers}/profile`, updatedUser);
 
 const getWishList = (id) => API.get(`${urlUsers}/wishList`);
 

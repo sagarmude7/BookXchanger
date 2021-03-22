@@ -1,58 +1,56 @@
-const { response } = require("express");
 const mongoose = require("mongoose");
-const { Book } = require("../models/Book");
+const Book = require("../models/Book");
 const User = require("../models/User");
-const { WishList } = require("../models/WishList");
 
 exports.getBooks = async (req, res) => {
   try {
     const books = await Book.find();
+    console.log("Fetched All Books from backend");
     return res.status(200).json(books);
   } catch (err) {
     return res.status(404).json({ msg: "No Book Found" });
   }
 };
 
-exports.showBookInfo = async (req, res) => {
-  console.log("IN Controller");
-  try {
-    const bookId = req.params.bookId;
-
-    const book = await Book.findById(bookId);
-    console.log("Control" + book);
-    return res.status(200).json(book);
-  } catch (err) {
-    return res.status(404).json({ msg: "No Book Found" });
-  }
-};
+// exports.showBookInfo = async (req, res) => {
+//   try {
+//     const bookId = req.params.bookId;
+//     const book = await Book.findById(bookId);
+//     console.log("Got the info of a single book")
+//     return res.status(200).json(book);
+//   } catch (err) {
+//     return res.status(404).json({ msg: "No Book Found" });
+//   }
+// };
 
 exports.createBookAd = async (req, res) => {
   const book = req.body;
 
-  //getting current user
+  console.log("getting current user")
   if (!req.userId) return res.status(403).json({ msg: "Unauthorized" });
+  console.log("got current user")
   try {
     //new Book Object
     const newBook = new Book({
       ...book,
+      owner: req.userId,
       wishListedBy: [],
       createdAt: new Date().toISOString(),
-      owner: req.userId,
     });
     await newBook.save();
 
-    //update the currentUser by pushing new book created into the user.books
+    console.log("update the currentUser by pushing new book id created into the user.postedBooks")
     const currentUser = await User.findById(req.userId);
-    const books = currentUser.books;
-    books.push(newBook);
-    const updatedUser = await User.findOneAndUpdate(
-      { _id: req.userId },
-      { books: books },
+    const books = currentUser.postedBooks;
+    books.push(newBook._id);
+    const updatedUser = await User.findByIdAndUpdate(
+      req.userId,
+      { postedBooks: books },
       { new: true }
     );
     updatedUser.save();
 
-    console.log("Book added");
+    console.log("Book added to database");
     return res.status(201).json(newBook);
   } catch (err) {
     return res.status(409).json({ msg: err });
@@ -60,7 +58,6 @@ exports.createBookAd = async (req, res) => {
 };
 
 exports.addToWishList = async (req, res) => {
-  // console.log("Hello")
   //get book id
   const { id } = req.params;
 
@@ -68,7 +65,7 @@ exports.addToWishList = async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).json({ msg: `No Book with id:${id}` });
-  // console.log("HEllo again")
+
   try {
     const book = await Book.findById(id);
     const userId = book.wishListedBy.findIndex(
@@ -77,30 +74,16 @@ exports.addToWishList = async (req, res) => {
 
     if (userId == -1) {
       book.wishListedBy.push(req.userId);
-      const newWish = new WishList({
-        book: id,
-        bookName: book.bookName,
-        selectedFile: book.selectedFile,
-        price: book.price,
-        wishListedBy: book.wishListedBy,
-        description: book.description,
-        tags: book.tags,
-        adder: req.userId,
-        createdAt: new Date().toISOString(),
-      });
-      newWish.save();
-      console.log("WishList");
+      console.log("Book added To wishList");
     } else {
-      await WishList.findOneAndDelete({ book: id, adder: req.userId }, () =>
-        console.log("removed")
-      );
       book.wishListedBy = book.wishListedBy.filter(
         (id) => id !== String(req.userId)
       );
+      console.log("Book Removed To wishList");
     }
-    // console.log(newWish.book.bookName)
-    const updatedBook = await Book.findByIdAndUpdate(id, book, { new: true });
 
+    const updatedBook = await Book.findByIdAndUpdate(id, book, { new: true });
+    console.log("Book added To wishList");
     return res.json(updatedBook);
   } catch (err) {
     return res.status(500).json({ msg: "Something went wrong on Server.." });
@@ -109,16 +92,18 @@ exports.addToWishList = async (req, res) => {
 
 exports.updateIsSold = async (req, res) => {
   try {
-    const { bookId } = req.params;
-    const book = req.body;
-    if (!mongoose.Types.ObjectId.isValid(bookId))
-      return res.status(404).json({ msg: `No Book with id:${bookId}` });
+    const { id } = req.params;
 
-    const updatedIsSold = await Book.findByIdAndUpdate(bookId, book, {
-      new: true,
-    });
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).json({ msg: `No Book with id:${id}` });
 
-    return res.json(updatedIsSold);
+    const updatedBook = await Book.findByIdAndUpdate(
+      id,
+      { isSold: true },
+      { new: true }
+    );
+    console.log("Book marked as sold");
+    return res.json(updatedBook);
   } catch (error) {
     return res.status(500).json({ msg: "Something went wrong on isSold" });
   }
