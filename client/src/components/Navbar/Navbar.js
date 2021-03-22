@@ -199,7 +199,7 @@ const Navbar = () => {
               onClick={handleClick}
             >
               <Avatar src={user?.profile?.profilePic} alt={user?.profile?.name}>
-                {user?.profile?.name.charAt(0)}
+                {user?.profile?.name?.charAt(0)}
               </Avatar>
             </Button>
             <Menu

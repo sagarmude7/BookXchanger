@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const { BookSchema} = require('./Book.js');
-const { WishListSchema} = require('./WishList.js');
 
 const UserSchema = mongoose.Schema({
     name:{

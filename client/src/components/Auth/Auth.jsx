@@ -53,7 +53,11 @@ const Auth = () => {
 
     const googleSuccess = async(res)=>{
         console.log(res)
-        dispatch(googleFacebookSignIn({email:res.profileObj.email,name:res.profileObj.name,profilePic:res.profileObj.imageUrl},history))
+        try{
+            dispatch(googleFacebookSignIn({email:res.profileObj.email,name:res.profileObj.name,profilePic:res.profileObj.imageUrl},history))
+        }catch(err){
+            console.log(err)
+        }
         // const profile = {
         //     profile:res?.profileObj,
         //     token:res?.tokenId
