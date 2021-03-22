@@ -21,6 +21,6 @@ router.get("/all", getBooks);
 router.get("/book/:bookId", auth, showBookInfo);
 router.post("/add", auth, createBookAd);
 router.patch("/:id/addWishList", auth, addToWishList);
-router.patch("/profile/:bookId", auth, updateIsSold);
+router.patch("/:id/sold", auth, updateIsSold);
 
 module.exports = router;

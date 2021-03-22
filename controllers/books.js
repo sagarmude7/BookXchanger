@@ -6,7 +6,9 @@ const { WishList } = require("../models/WishList");
 
 exports.getBooks = async (req, res) => {
   try {
+    
     const books = await Book.find();
+    console.log("Fetched All Books from backend")
     return res.status(200).json(books);
   } catch (err) {
     return res.status(404).json({ msg: "No Book Found" });
@@ -14,12 +16,10 @@ exports.getBooks = async (req, res) => {
 };
 
 exports.showBookInfo = async (req, res) => {
-  console.log("IN Controller");
   try {
     const bookId = req.params.bookId;
-
     const book = await Book.findById(bookId);
-    console.log("Control" + book);
+    console.log("Got the info of a single book")
     return res.status(200).json(book);
   } catch (err) {
     return res.status(404).json({ msg: "No Book Found" });
@@ -52,7 +52,7 @@ exports.createBookAd = async (req, res) => {
     );
     updatedUser.save();
 
-    console.log("Book added");
+    console.log("Book added to database");
     return res.status(201).json(newBook);
   } catch (err) {
     return res.status(409).json({ msg: err });
@@ -100,7 +100,7 @@ exports.addToWishList = async (req, res) => {
     }
     // console.log(newWish.book.bookName)
     const updatedBook = await Book.findByIdAndUpdate(id, book, { new: true });
-
+    console.log("Book added To wishList")
     return res.json(updatedBook);
   } catch (err) {
     return res.status(500).json({ msg: "Something went wrong on Server.." });
@@ -109,16 +109,19 @@ exports.addToWishList = async (req, res) => {
 
 exports.updateIsSold = async (req, res) => {
   try {
-    const { bookId } = req.params;
-    const book = req.body;
-    if (!mongoose.Types.ObjectId.isValid(bookId))
-      return res.status(404).json({ msg: `No Book with id:${bookId}` });
+    const {id} = req.params;
+    const currentUser = await User.findById(req.userId);
 
-    const updatedIsSold = await Book.findByIdAndUpdate(bookId, book, {
-      new: true,
-    });
+    const changeBook = currentUser.books.find(book=>(book._id==id))
+    changeBook.isSold = true;
+    currentUser.books.map(book=>(book._id===id)?changeBook:book);
+    console.log(currentUser);
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).json({ msg: `No Book with id:${id}` });
 
-    return res.json(updatedIsSold);
+    const updatedIsSold = await Book.findByIdAndUpdate(id, {isSold:true}, {new: true});
+    console.log("Book marked as sold");
+    return res.json(currentUser);
   } catch (error) {
     return res.status(500).json({ msg: "Something went wrong on isSold" });
   }

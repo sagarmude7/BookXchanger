@@ -97,7 +97,7 @@ const Dashboard = () => {
 
             <TabPanel value={value} index={0}>
               <>
-                {user?.books?.length !== 0 ? (
+                {user?.books?.filter(book=>book.isSold===false).length !== 0 ? (
                   <>{user?.books?.map(card)}</>
                 ) : (
                   <>No Active Ads</>
@@ -105,7 +105,13 @@ const Dashboard = () => {
               </>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <>Abhi tak function nahi likha hai</>
+              <>
+                {user?.books?.filter(book=>book.isSold===true).length !== 0 ? (
+                  <>{user?.books?.map(card)}</>
+                ) : (
+                  <>No Active Ads</>
+                )}
+              </>
             </TabPanel>
           </>
         ) : (

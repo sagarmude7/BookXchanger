@@ -21,8 +21,7 @@ const addToWishList = (id) => API.patch(`${urlBooks}/${id}/addWishList`, id);
 
 const showBookInfo = (bookId) => API.get(`${urlBooks}/book/${bookId}`);
 
-const updatedIsSold = (updateIsSold) =>
-  API.patch(`${urlBooks}/profile/`, updateIsSold);
+const updatedIsSold = (bookId) =>API.patch(`${urlBooks}/${bookId}/sold`);
 
 // '${urlBooks}/userBooks'
 const urlUsers = "/users";

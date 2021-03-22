@@ -32,10 +32,9 @@ const Book = ({ book }) => {
   };
 
   const onClickSold = () => {
-    // console.log("Adding To isSold");
-    // book ? setBook(false) : setBook(true);
-    // dispatch(updatedIsSold(book));
-    // console.log("Updating isSold");
+    console.log("Adding To isSold");
+    dispatch(updatedIsSold(book._id));
+    console.log("Updating isSold");
   };
 
   return (
@@ -75,7 +74,7 @@ const Book = ({ book }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="medium" color="secondary" onClick={addtofavourite()}>
+        <Button size="medium" color="secondary" onClick={addtofavourite}>
           <FavoriteBorderIcon />
         </Button>
       </CardActions>
@@ -85,7 +84,7 @@ const Book = ({ book }) => {
         </Button>
       </CardActions>
       <CardActions className={classes.cardActions}>
-        <Button variant="contained" color="primary" onClick={onClickSold()}>
+        <Button variant="contained" color="primary" onClick={onClickSold}>
           Sold
         </Button>
       </CardActions>

@@ -18,11 +18,11 @@ const AllBooks = () => {
     const [data, setData] = useState([]);
     const [sortType, setSortType] = useState();
 
-    useEffect(()=>{
-            console.log("Getting Books")
-            //accepts an action call as an argument -> goes to actions folder
-            dispatch(getBooks())
-    },[dispatch])
+    // useEffect(()=>{
+    //         console.log("Getting Books")
+    //         //accepts an action call as an argument -> goes to actions folder
+    //         dispatch(getBooks())
+    // },[dispatch])
     
     useEffect(() =>{   
         const sortArray = type => {

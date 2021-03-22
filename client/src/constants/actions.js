@@ -12,4 +12,4 @@ export const FETCH_FAV = "FETCH_FAV";
 export const GET_PROFILE = "GET_PROFILE";
 export const EDIT_PROFILE = "EDIT_PROFILE";
 export const GET_BOOK = "GET_BOOK";
-export const IS_SOLD = "IS_SOLD";
+export const UPDATE_SOLD = "UPDATE_SOLD";

@@ -125,7 +125,7 @@ exports.getProfile = async(req,res)=>{
 
     try{
         const user = await User.findById(req.userId);
-        console.log(user)
+        // console.log(user)
         res.status(200).json(user);
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });
@@ -152,7 +152,8 @@ exports.editProfile = async(req,res)=>{
 exports.getWishList = async(req,res)=>{
     try{
         const wishList = await WishList.find({adder:req.userId})
-        console.log(wishList);
+        // console.log(wishList);
+        console.log("Getting the wishlist of user")
         return res.status(200).json(wishList)
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });

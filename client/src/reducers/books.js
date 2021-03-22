@@ -3,16 +3,13 @@ import {
   CREATE,
   FILTER_BOOKS,
   ADD_FAV,
-  FETCH_FAV,
-  IS_SOLD,
+  UPDATE_SOLD,
 } from "../constants/actions";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (books = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
-      return action.payload;
-    case IS_SOLD:
       return action.payload;
     case FILTER_BOOKS:
       return action.payload;
