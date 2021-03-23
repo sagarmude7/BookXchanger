@@ -118,7 +118,8 @@ exports.deleteaBook = async(req,res)=>{
         return res.status(404).json({ msg: `No Book with id:${id}` });
     
       await Book.findByIdAndRemove(id)
-      return res.status(200).json({msg:"Book Deleted Successfully"})
+      console.log("Book deleted successfully")
+      return res.status(204).json({msg:"Book Deleted Successfully"})
     }catch(err){
       console.log(err)
     }

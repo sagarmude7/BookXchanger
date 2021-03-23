@@ -123,7 +123,7 @@ exports.getProfile = async(req,res)=>{
     try{
         const user = await User.findById(req.userId);
         // console.log(user)
-        res.status(200).json(user);
+        return res.status(200).json(user);
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });
     }
