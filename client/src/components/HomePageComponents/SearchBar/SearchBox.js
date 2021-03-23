@@ -196,7 +196,7 @@ const SearchBox = () => {
             placeholder={"Search Name"}
             onChange = {(e) => {setName(e.target.value)}}
             />
-            <FormControl variant="outlined" border="blue" className={classes.formControl} fullWidth>
+            <FormControl variant="outlined" border="blue" style={{width:"420px"}} fullWidth>
                 <InputLabel id="branchTypeLabel">Branch</InputLabel>
                     <Select
                     labelId="branchLabel"
