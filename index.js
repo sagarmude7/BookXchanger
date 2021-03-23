@@ -13,7 +13,6 @@ const app = express();
 
 //cross origin request
 // app.use(cors())
-// app.options('*', cors())
 
 
 //connect to databases
@@ -24,11 +23,16 @@ app.use((req, res, next) => {
   res.append("Access-Control-Allow-Origin", "http://localhost:3000");
   res.append(
     "Access-Control-Allow-Methods",
-    "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    "GET,PUT,POST,DELETE,PATCH"
   );
-  res.append("Access-Control-Allow-Headers", "authorization,Content-Type");
+  res.append("Access-Control-Allow-Headers", "authorization,Content-Type,origin, x-requested-with");
   res.append("Access-Control-Allow-Credentials", "true");
-  // console.log(res.getHeader('Access-Control-Allow-Origin'))
+  res.append("Origin","http://localhost:3000")
+  // res.append("optionsSuccessStatus","200")
+  res.append("Access-Control-Max-Age","86400")
+  // if(req.method=="OPTIONS")
+  //   res.sendStatus(200)
+  console.log(res.statusCode)
   next();
 });
 

@@ -108,3 +108,18 @@ exports.updateIsSold = async (req, res) => {
     return res.status(500).json({ msg: "Something went wrong on isSold" });
   }
 };
+
+exports.deleteaBook = async(req,res)=>{
+    console.log("actual")
+    const {id} = req.params;
+    console.log(id);
+    try{
+      if (!mongoose.Types.ObjectId.isValid(id))
+        return res.status(404).json({ msg: `No Book with id:${id}` });
+    
+      await Book.findByIdAndRemove(id)
+      return res.status(200).json({msg:"Book Deleted Successfully"})
+    }catch(err){
+      console.log(err)
+    }
+}
