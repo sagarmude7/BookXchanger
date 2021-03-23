@@ -196,15 +196,6 @@ const SearchBox = () => {
             placeholder={"Search Name"}
             onChange = {(e) => {setName(e.target.value)}}
             />
-          <input 
-            id="standard-basic" 
-            label="Branch" 
-            className={classes.input} 
-            key="random2"
-            value= {inputBranch}
-            placeholder={"Search Branch"}
-            onChange = {(e) => {setBranch(e.target.value)}}
-            />
             <FormControl variant="outlined" border="blue" className={classes.formControl} fullWidth>
                 <InputLabel id="branchTypeLabel">Branch</InputLabel>
                     <Select
