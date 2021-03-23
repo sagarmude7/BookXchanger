@@ -13,7 +13,7 @@ import Wishlist from './components/WishlistComponent/Wishlist.js'
 import Footer from './components/Footer/footer'
 
 import BookInfo from "./components/AllBooksComponents/BookInfo/BookInfo"
-
+import EditBook from './components/EditBookComponents/Form'
 import About from './components/AboutUsComponents/About.js'
 import { useDispatch } from 'react-redux'
 import {getBooks} from './actions/books'
@@ -47,6 +47,7 @@ const App = ()=>{
                     <Route exact path="/profile" component={Profile}/>  
                     <Route exact path="/wishlist" component={Wishlist}/>  
                     <Route exact path="/all/book/:bookId" component={BookInfo}/>  
+                    <Route exact path="/editBook/:bookId" component={EditBook}/>  
                 </Switch>
             </Container>
         </Router>

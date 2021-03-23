@@ -14,13 +14,14 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./style";
 import moment from "moment";
+import {useHistory} from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { updatedIsSold,deleteaBook } from "../../../../actions/books";
 
 const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  
+  const history = useHistory();
   // const [book, setBook] = useState({});
   const onClickSold = () => {
     console.log("Adding To isSold");
@@ -32,6 +33,10 @@ const Book = ({ book }) => {
     console.log("Delete a Book")
     dispatch(deleteaBook(book._id))
 
+  }
+
+  const editaBook = () =>{
+    history.push(`/editBook/${book._id}`)
   }
 
   return (
@@ -48,7 +53,7 @@ const Book = ({ book }) => {
         </Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button color="primary" size="small">
+        <Button color="primary" size="small" onClick={editaBook}>
           <MoreHorizIcon fontSize="default" />
         </Button>
       </div>

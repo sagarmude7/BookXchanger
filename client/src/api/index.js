@@ -25,6 +25,8 @@ const updatedIsSold = (bookId) =>API.patch(`${urlBooks}/${bookId}/sold`);
 
 const deleteaBook = (bookId)=>API.delete(`${urlBooks}/${bookId}`)
 
+const editaBook = (id,formData)=>API.patch(`${urlBooks}/${id}`,formData)
+
 // '${urlBooks}/userBooks'
 const urlUsers = "/users";
 
@@ -49,5 +51,6 @@ module.exports = {
   editProfile,
   showBookInfo,
   updatedIsSold,
-  deleteaBook
+  deleteaBook,
+  editaBook
 };

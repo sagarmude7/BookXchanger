@@ -4,7 +4,8 @@ import {
   FILTER_BOOKS,
   ADD_FAV,
   UPDATE_SOLD,
-  DELETE_BOOK
+  DELETE_BOOK,
+  UPDATE_BOOKS
 } from "../constants/actions";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -24,10 +25,12 @@ export default (books = [], action) => {
       return books.map((book) =>
         action.payload._id === book._id ? action.payload : book
       );
+    case UPDATE_BOOKS:
+      return books.map((book) =>
+        action.payload._id === book._id ? action.payload : book
+      );
     case DELETE_BOOK:
       return books.filter((book)=>action.payload!==book._id)
-    case "UPDATE_BOOKS":
-      return action.payload;
     default:
       return books;
   }

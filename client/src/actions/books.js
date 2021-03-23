@@ -4,7 +4,8 @@ import {
   ADD_FAV,
   GET_BOOK,
   UPDATE_SOLD,
-  DELETE_BOOK
+  DELETE_BOOK,
+  UPDATE_BOOKS
 } from "../constants/actions";
 const api = require("../api/index");
 
@@ -70,6 +71,16 @@ export const deleteaBook = (bookId) =>async(dispatch) =>{
     await api.deleteaBook(bookId)
     dispatch({type:DELETE_BOOK,payload:bookId})
   }catch(err){
+    console.log(err)
+  }
+}
+
+export const editaBook = (id,formData) =>async(dispatch)=>{
+  try {
+    console.log(id);
+    const {data} = await api.editaBook(id,formData)
+    dispatch({type:UPDATE_BOOKS,payload:data})
+  } catch (err) {
     console.log(err)
   }
 }
