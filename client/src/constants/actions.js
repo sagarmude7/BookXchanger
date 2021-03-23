@@ -13,3 +13,4 @@ export const GET_PROFILE = "GET_PROFILE";
 export const EDIT_PROFILE = "EDIT_PROFILE";
 export const GET_BOOK = "GET_BOOK";
 export const UPDATE_SOLD = "UPDATE_SOLD";
+export const DELETE_BOOK = "DELETE_BOOK";

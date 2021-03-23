@@ -23,8 +23,8 @@ export const editProfile = (userData) => async (dispatch) => {
         const {data} = await api.editProfile(userData);
         console.log(data);
         dispatch({type:EDIT_PROFILE,payload:data});
-    } catch (error) {
-        console.log(error);
+    } catch (err) {
+        console.log(err)
     }
     
 };

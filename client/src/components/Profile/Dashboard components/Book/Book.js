@@ -15,27 +15,24 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { addToWishList, updatedIsSold } from "../../../../actions/books";
+import { updatedIsSold,deleteaBook } from "../../../../actions/books";
 
 const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("profile"));
-  const [fav, setFav] = useState(
-    book?.wishListedBy?.find((id) => id === user?.profile?.id)
-  );
+  
   // const [book, setBook] = useState({});
-  const addtofavourite = () => {
-    console.log("Adding To Favorites..");
-    fav ? setFav(false) : setFav(true);
-    dispatch(addToWishList(book?._id));
-  };
-
   const onClickSold = () => {
     console.log("Adding To isSold");
     dispatch(updatedIsSold(book._id));
     console.log("Updating isSold");
   };
+
+  const deleteBook = () =>{
+    console.log("Delete a Book")
+    dispatch(deleteaBook(book._id))
+
+  }
 
   return (
     <Card className={classes.card}>
@@ -74,7 +71,7 @@ const Book = ({ book }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="medium" color="secondary">
+        <Button size="medium" color="secondary" onClick={deleteBook}>
           <DeleteIcon />
         </Button>
         {
