@@ -121,8 +121,10 @@ exports.googleFacebookSignIn = async(req,res)=>{
 
 exports.getProfile = async(req,res)=>{
     try{
-        const user = await User.findById(req.userId);
-        // console.log(user)
+        const {id} = req.params;
+        
+        const user = await User.findById(id);
+        console.log("Users Details Found")
         return res.status(200).json(user);
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });

@@ -1,10 +1,10 @@
 import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR} from '../constants/actions'
 import api from '../api/index';
 
-export const getProfile = () => async (dispatch) => {
+export const getProfile = (id) => async (dispatch) => {
 
     try {
-        const {data} = await api.getProfile();
+        const {data} = await api.getProfile(id);
         //console.log(data);
         //console.log("before dispatch");
         dispatch({ type: GET_PROFILE, payload: data });

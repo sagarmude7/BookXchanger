@@ -38,7 +38,7 @@ const PostAdForm = () => {
     const handleSubmit = (e)=>{
         e.preventDefault()
         console.log(bookData)
-        dispatch(createBookAd({...bookData,price:Number(bookData.price),mrp:Number(bookData.mrp),noOfPages:Number(bookData.noOfPages)}))
+        dispatch(createBookAd({...bookData,price:Number(bookData.price),mrp:Number(bookData.mrp),noOfPages:Number(bookData.noOfPages),ownerName : user.profile.name}))
         history.push('/')
     }
 

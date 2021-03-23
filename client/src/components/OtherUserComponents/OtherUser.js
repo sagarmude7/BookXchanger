@@ -32,18 +32,18 @@ import ChatIcon from "@material-ui/icons/Chat";
 import { editProfile, getProfile } from "../../actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
-import Dashboard from "./Dashboard components/Dashboard";
 import Footer from "../Footer/footer.js";
-
-const Profile = () => {
+import Dashboard from "./Dashboard components/Dashboard";
+const OtherUser = ({match}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user1 = JSON.parse(localStorage.getItem('profile'));
   const user = useSelector((state) => state.user);
   const [err,setErr] = useState(false) 
 
+  const userId = match.params.userId;
   useEffect(() => {
-    dispatch(getProfile(user1.profile.id));
+    dispatch(getProfile(userId));
   }, [dispatch]);
 
   //console.log(person);
@@ -183,7 +183,7 @@ const Profile = () => {
           </Typography>
         </Container>
 
-        <Dashboard />
+        <Dashboard userId={userId}/>
 
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
@@ -279,7 +279,7 @@ const Profile = () => {
           <Container className={classes.headRight}></Container>
         </Container>
 
-        <Dashboard />
+        <Dashboard userId={userId} />
 
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
@@ -481,4 +481,4 @@ const Profile = () => {
   }
 };
 
-export default Profile;
+export default OtherUser;

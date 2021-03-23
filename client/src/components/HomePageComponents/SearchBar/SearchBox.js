@@ -205,6 +205,28 @@ const SearchBox = () => {
             placeholder={"Search Branch"}
             onChange = {(e) => {setBranch(e.target.value)}}
             />
+            <FormControl variant="outlined" border="blue" className={classes.formControl} fullWidth>
+                <InputLabel id="branchTypeLabel">Branch</InputLabel>
+                    <Select
+                    labelId="branchLabel"
+                    id="branch"
+                    label="branch Of Book"
+                    onChange={(e) => setBranch(e.target.value)}
+                    value={inputBranch}
+                    name="branch"
+                    >
+                        <MenuItem value="Computer Engineering">
+                                            <em>Computer Engineering</em>
+                                        </MenuItem>
+                        <MenuItem value="Information Technology">Information Technology</MenuItem>
+                        <MenuItem value="Electronics Engineering">Electronics Engineering</MenuItem>
+                        <MenuItem value="Electronics and Telecommunication Engineering">Electronics and Telecommunication Engineering</MenuItem>
+                        <MenuItem value="Mechanical Engineering">Mechanical Engineering</MenuItem>
+                        <MenuItem value="Civil Engineering">Civil Engineering</MenuItem>
+                        <MenuItem value="Production Engineering">Production Engineering</MenuItem>
+                        <MenuItem value="Textile Engineering">Textile Engineering</MenuItem>
+                    </Select>
+                </FormControl>
             <input 
             id="standard-basic" 
             label="Subject" 
