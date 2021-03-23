@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
-const { regValidator, loginValidator } = require('../validators/joi-validator')
+const { regValidator, loginValidator, editValidator } = require('../validators/joi-validator')
 
 
 exports.signUp = async(req,res)=>{
@@ -131,13 +131,17 @@ exports.getProfile = async(req,res)=>{
 
 exports.editProfile = async(req,res)=>{
     const {name, email, college, location} = req.body;
-
+    const {error} = editValidator.validate(req.body);
+    console.log("in controllers error",error);
+    console.log("in controllers error");
     try{
+        if(error)
+            return res.status(400).json({msg:error.details[0].message})
         const updateData = {name, email, college, location};
 
         const updatedUser = await User.findByIdAndUpdate(req.userId,updateData,{new:true})
         
-        console.log("in controllers",updatedUser);
+        console.log("this",updatedUser);
 
         return res.status(200).json(updatedUser);
     }catch(err){

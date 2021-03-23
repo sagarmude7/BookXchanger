@@ -25,6 +25,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import clsx from "clsx";
+import { Alert, AlertTitle } from '@material-ui/lab';
 import IconButton from "@material-ui/core/IconButton";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import ChatIcon from "@material-ui/icons/Chat";
@@ -39,6 +40,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   //const user1 = JSON.parse(localStorage.getItem('profile'));
   const user = useSelector((state) => state.user);
+  const [err,setErr] = useState(false) 
 
   useEffect(() => {
     dispatch(getProfile());
@@ -68,12 +70,33 @@ const Profile = () => {
 
   const [open, setOpen] = useState(false);
 
+ 
+
   const handleSubmitUserInfo = (e) => {
     e.preventDefault();
+
     dispatch(editProfile(userData));
-    //console.log("Submitted......")
-    setKey(true);
+      
   };
+
+  console.log("1212121222222222",user.msg);
+    
+  console.log("in blank ",user.msg);
+  useEffect(()=>{
+    if(user.msg){
+      setErr(true);
+      setUserData(userData);
+      //console.log(user,"in 33333333333333")
+    }
+    else{
+      //console.log(user,"in 44444444444444444444444")
+      setErr(false);
+      setKey(true);
+    }
+  },[user])
+    
+
+  console.log("main page ....*****",user.msg);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -172,7 +195,7 @@ const Profile = () => {
               Your Name :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {userData.name}
+              {user.name}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -182,7 +205,7 @@ const Profile = () => {
               Email Address :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {userData.email}
+              {user.email}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -192,7 +215,7 @@ const Profile = () => {
               College Name :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {userData.college}
+              {user.college}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -202,7 +225,7 @@ const Profile = () => {
               Location :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {userData.location}
+              {user.location}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -386,6 +409,14 @@ const Profile = () => {
               </DialogActions>
             </Dialog>
           </div>
+          
+          {
+            user.msg?(
+                <Alert severity="error">
+                    <strong>{user?.msg}</strong>
+                </Alert>
+            ):null
+          }
 
           <form
             className={classes.editBody}
@@ -398,7 +429,7 @@ const Profile = () => {
               className={classes.textBox}
               id="outlined-basic"
               label="Your Name"
-              defaultValue={user.name}
+              defaultValue={userData.name}
               name="name"
               variant="outlined"
               onChange={handleChangeUserInfo}
@@ -408,7 +439,7 @@ const Profile = () => {
               className={classes.textBox}
               id="outlined-basic"
               label="Email Address"
-              defaultValue={user.email}
+              defaultValue={userData.email}
               name="email"
               variant="outlined"
               onChange={handleChangeUserInfo}
@@ -418,7 +449,7 @@ const Profile = () => {
               className={classes.textBox}
               id="outlined-basic"
               label="College Name"
-              defaultValue={user.college}
+              defaultValue={userData.college}
               name="college"
               variant="outlined"
               onChange={handleChangeUserInfo}
@@ -428,7 +459,7 @@ const Profile = () => {
               className={classes.textBox}
               id="outlined-basic"
               label="Location"
-              defaultValue={user.location}
+              defaultValue={userData.location}
               name="location"
               variant="outlined"
               size="nornal"
