@@ -1,5 +1,5 @@
   
-import { GET_PROFILE , EDIT_PROFILE} from "../constants/actions";
+import { GET_PROFILE , EDIT_PROFILE, ERROR} from "../constants/actions";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (user={},action)=>{
@@ -7,7 +7,11 @@ export default (user={},action)=>{
         case GET_PROFILE:
             return action.payload
         case EDIT_PROFILE:
-            return action.payload
+            console.log("in reducers error",action.payload);
+            return action.payload;
+        case ERROR:
+            console.log(action.payload,"in reduce");
+            return action.payload;
         default:
             return user;
     }

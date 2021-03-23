@@ -1,4 +1,4 @@
-import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE} from '../constants/actions'
+import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR} from '../constants/actions'
 import api from '../api/index';
 
 export const getProfile = () => async (dispatch) => {
@@ -25,6 +25,8 @@ export const editProfile = (userData) => async (dispatch) => {
         dispatch({type:EDIT_PROFILE,payload:data});
     } catch (error) {
         console.log(error);
+        const data = error.response.data;
+        dispatch({type:ERROR,payload:data});
     }
     
 };

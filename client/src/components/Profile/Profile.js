@@ -25,6 +25,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import clsx from "clsx";
+import { Alert, AlertTitle } from '@material-ui/lab';
 import IconButton from "@material-ui/core/IconButton";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import ChatIcon from "@material-ui/icons/Chat";
@@ -39,6 +40,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   //const user1 = JSON.parse(localStorage.getItem('profile'));
   const user = useSelector((state) => state.user);
+  const [err,setErr] = useState(false) 
 
   useEffect(() => {
     dispatch(getProfile());
@@ -68,11 +70,22 @@ const Profile = () => {
 
   const [open, setOpen] = useState(false);
 
-  const handleSubmitUserInfo = (e) => {
+  const handleSubmitUserInfo = async(e) => {
     e.preventDefault();
-    dispatch(editProfile(userData));
+    try {
+      const k = await dispatch(editProfile(userData));
+      console.log("1111111111111",k);
+      console.log("1111111111111");
+      setKey(true);
+      console.log("2222222222222");
+    } catch (error) {
+      /*setErr(true);
+      console.log("main page ....*****",user?.msg);*/
+      console.log("Error has occured",error);
+    }
+    
     //console.log("Submitted......")
-    setKey(true);
+    
   };
 
   const handleClickOpen = () => {
@@ -173,7 +186,7 @@ const Profile = () => {
               Your Name :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {userData.name}
+              {user.name}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -183,7 +196,7 @@ const Profile = () => {
               Email Address :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {userData.email}
+              {user.email}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -193,7 +206,7 @@ const Profile = () => {
               College Name :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {userData.college}
+              {user.college}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -203,7 +216,7 @@ const Profile = () => {
               Location :
             </Typography>
             <Typography className={classes.bodyTextValue} variant="h6">
-              {userData.location}
+              {user.location}
             </Typography>
           </Container>
           <Divider></Divider>
@@ -387,6 +400,14 @@ const Profile = () => {
               </DialogActions>
             </Dialog>
           </div>
+          
+          {
+            err?(
+                <Alert severity="error">
+                    <strong>{user?.msg}</strong>
+                </Alert>
+            ):null
+          }
 
           <form
             className={classes.editBody}
