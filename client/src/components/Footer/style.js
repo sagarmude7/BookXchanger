@@ -33,6 +33,17 @@ const styles = makeStyles((theme) => ({
     },
   },
 
+  link: {
+    listStyleType: "none",
+    textAlign: "center",
+    paddingInlineStart: "0px",
+    "&:hover": {
+      color: "#00ffff",
+      transform: "scale(1.05)",
+      textShadow: "0 0 5px #00ffff",
+    },
+  },
+
   Icon: {
     margin: "10px 10px 10px 10px",
     fontSize: "40px",

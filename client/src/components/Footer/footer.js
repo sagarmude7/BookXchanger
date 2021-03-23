@@ -94,13 +94,7 @@ const Footer = () => {
             </Typography>
             <Typography align="center">
               <li style={{ listStyleType: "none", textAlign: "center" }}>
-                <ul
-                  style={{
-                    listStyleType: "none",
-                    textAlign: "center",
-                    paddingInlineStart: "0px",
-                  }}
-                >
+                <ul className={classes.link}>
                   <Link
                     to="/"
                     component={RouterLink}
@@ -110,13 +104,7 @@ const Footer = () => {
                     Home
                   </Link>
                 </ul>
-                <ul
-                  style={{
-                    listStyleType: "none",
-                    textAlign: "center",
-                    paddingInlineStart: "0px",
-                  }}
-                >
+                <ul className={classes.link}>
                   <Link
                     to="/all"
                     component={RouterLink}
@@ -126,13 +114,7 @@ const Footer = () => {
                     Books
                   </Link>
                 </ul>
-                <ul
-                  style={{
-                    listStyleType: "none",
-                    textAlign: "center",
-                    paddingInlineStart: "0px",
-                  }}
-                >
+                <ul className={classes.link}>
                   <Link
                     to="/aboutus"
                     component={RouterLink}
@@ -142,17 +124,11 @@ const Footer = () => {
                     About Us
                   </Link>
                 </ul>
-                <ul
-                  style={{
-                    listStyleType: "none",
-                    textAlign: "center",
-                    paddingInlineStart: "0px",
-                  }}
-                >
+                <ul className={classes.link}>
                   <Link
-                    to="/contact"
+                    to="/aboutus"
                     component={RouterLink}
-                    key="Contact Us"
+                    key="About Us"
                     color="inherit"
                   >
                     Contact Us
