@@ -6,15 +6,19 @@ import {useDispatch,useSelector} from 'react-redux'
 import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormControlLabel,Radio} from '@material-ui/core';
 import useStyles from "./style.js";
 import {getWishList} from '../../actions/user'
+import {FETCH_FAV} from '../../constants/actions'
 
 const Wishlist = () => {
   const classes = useStyles()
   const user = JSON.parse(localStorage.getItem("profile"));
   const wishList = useSelector(state=>state.wishList)
+  const books = useSelector(state=>state.books)
+
   const dispatch = useDispatch()
   useEffect(()=>{
-    dispatch(getWishList(user?.profile?.id))
-  },[dispatch,user?.profile?.id])
+    dispatch({type:FETCH_FAV,payload:books.filter(book=>book.wishListedBy.includes(user.profile.id)===true)})
+  },[dispatch,books])
+
   return (
     <>
       <Navbar />

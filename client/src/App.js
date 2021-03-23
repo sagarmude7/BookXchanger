@@ -15,10 +15,17 @@ import Footer from './components/Footer/footer'
 import BookInfo from "./components/AllBooksComponents/BookInfo/BookInfo"
 
 import About from './components/AboutUsComponents/About.js'
-
+import { useDispatch } from 'react-redux'
+import {getBooks} from './actions/books'
 
 const App = ()=>{
+    const dispatch = useDispatch()
 
+    useEffect(()=>{
+        console.log("Getting Books")
+        //accepts an action call as an argument -> goes to actions folder
+        dispatch(getBooks())
+    },[dispatch])
     function displayLoading(){
         return(
             <Loading />

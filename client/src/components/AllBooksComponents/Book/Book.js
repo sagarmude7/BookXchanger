@@ -24,7 +24,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { addToWishList } from "../../../actions/books";
+import { addToWishList,getBooks } from "../../../actions/books";
 import { useHistory } from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -39,25 +39,21 @@ const Book = ({ book }) => {
   const [fav, setFav] = useState(
     book?.wishListedBy?.find((id) => id === user?.profile?.id)
   );
+  useEffect(()=>{
+    if(book)
+      setFav(book.wishListedBy.find((id) => id === user.profile.id))
+  },[])
   const addtofavourite = () => {
     console.log("Adding To Favorites..");
     fav ? setFav(false) : setFav(true);
     dispatch(addToWishList(book?._id));
+    // dispatch(getBooks())
   };
 
   const getBook = () => {
     history.push(`/all/book/${book._id}`)
   };
 
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
   return (
     <>
       <Card className={classes.card}>

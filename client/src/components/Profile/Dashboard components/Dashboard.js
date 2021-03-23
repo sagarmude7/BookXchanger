@@ -13,7 +13,6 @@ import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -32,9 +31,10 @@ function TabPanel(props) {
 }
 
 const Dashboard = () => {
-  // const user = JSON.parse(localStorage.getItem("profile"));
+  const userId = JSON.parse(localStorage.getItem("profile")).profile.id;
   const user = useSelector((state) => state.user);
-  const addedBooks = user.books;
+  const books = useSelector((state)=>state.books)
+  
   function card(book) {
     return (
       <Grid item xs={12} sm={3}>
@@ -45,7 +45,7 @@ const Dashboard = () => {
 
   const classes = useStyles();
 
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -97,16 +97,32 @@ const Dashboard = () => {
             </Paper>
 
             <TabPanel value={value} index={0}>
-              <>
-                {user?.books.length !== 0 ? (
-                  <>{user.books.map(card)}</>
+                <Grid
+                  className={classes.container}
+                  container
+                  alignItems="stretch"
+                  spacing={3}
+                >
+                {books.filter(book=>(book.owner===userId)&&(book.isSold===false)).length !== 0 ? (
+                  <>{books.filter(book=>(book.owner===userId)&&(book.isSold===false))?.map(card)}</>
                 ) : (
                   <>No Active Ads</>
                 )}
-              </>
+                </Grid>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <>Abhi tak function nahi likha hai</>
+                <Grid
+                  className={classes.container}
+                  container
+                  alignItems="stretch"
+                  spacing={3}
+                >
+                {books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length !== 0 ? (
+                  <>{books.filter(book=>(book.owner===userId)&&(book.isSold===true)).map(card)}</>
+                ) : (
+                  <>No Sold Ads</>
+                )}
+                </Grid>
             </TabPanel>
           </>
         ) : (

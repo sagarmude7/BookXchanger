@@ -12,17 +12,18 @@ import FilteredBooks from "./FilteredBooks/filteredBooks.js"
 const AllBooks = () => {
     const dispatch = useDispatch()
     const classes = useStyles()
-    const books = useSelector(state=>state.books)
+    const allBooks = useSelector(state=>state.books)
+    const books = allBooks.filter(book=>book.isSold===false)
     const [sortbool,setSortbool] = useState(false)
 
     const [data, setData] = useState([]);
     const [sortType, setSortType] = useState();
 
-    useEffect(()=>{
-            console.log("Getting Books")
-            //accepts an action call as an argument -> goes to actions folder
-            dispatch(getBooks())
-    },[dispatch])
+    // useEffect(()=>{
+    //         console.log("Getting Books")
+    //         //accepts an action call as an argument -> goes to actions folder
+    //         dispatch(getBooks())
+    // },[dispatch])
     
     useEffect(() =>{   
         const sortArray = type => {

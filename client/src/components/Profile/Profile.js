@@ -70,23 +70,33 @@ const Profile = () => {
 
   const [open, setOpen] = useState(false);
 
-  const handleSubmitUserInfo = async(e) => {
+ 
+
+  const handleSubmitUserInfo = (e) => {
     e.preventDefault();
-    try {
-      const k = await dispatch(editProfile(userData));
-      console.log("1111111111111",k);
-      console.log("1111111111111");
-      setKey(true);
-      console.log("2222222222222");
-    } catch (error) {
-      /*setErr(true);
-      console.log("main page ....*****",user?.msg);*/
-      console.log("Error has occured",error);
-    }
-    
-    //console.log("Submitted......")
-    
+
+    dispatch(editProfile(userData));
+      
   };
+
+  console.log("1212121222222222",user.msg);
+    
+  console.log("in blank ",user.msg);
+  useEffect(()=>{
+    if(user.msg){
+      setErr(true);
+      setUserData(userData);
+      //console.log(user,"in 33333333333333")
+    }
+    else{
+      //console.log(user,"in 44444444444444444444444")
+      setErr(false);
+      setKey(true);
+    }
+  },[user])
+    
+
+  console.log("main page ....*****",user.msg);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -168,7 +178,6 @@ const Profile = () => {
             variant="body1"
             color="textPrimary"
             className={classes.headUser}
-            variant="h6"
           >
             {user.name}
           </Typography>
@@ -402,7 +411,7 @@ const Profile = () => {
           </div>
           
           {
-            err?(
+            user.msg?(
                 <Alert severity="error">
                     <strong>{user?.msg}</strong>
                 </Alert>
@@ -420,7 +429,7 @@ const Profile = () => {
               className={classes.textBox}
               id="outlined-basic"
               label="Your Name"
-              defaultValue={user.name}
+              defaultValue={userData.name}
               name="name"
               variant="outlined"
               onChange={handleChangeUserInfo}
@@ -430,7 +439,7 @@ const Profile = () => {
               className={classes.textBox}
               id="outlined-basic"
               label="Email Address"
-              defaultValue={user.email}
+              defaultValue={userData.email}
               name="email"
               variant="outlined"
               onChange={handleChangeUserInfo}
@@ -440,7 +449,7 @@ const Profile = () => {
               className={classes.textBox}
               id="outlined-basic"
               label="College Name"
-              defaultValue={user.college}
+              defaultValue={userData.college}
               name="college"
               variant="outlined"
               onChange={handleChangeUserInfo}
@@ -450,7 +459,7 @@ const Profile = () => {
               className={classes.textBox}
               id="outlined-basic"
               label="Location"
-              defaultValue={user.location}
+              defaultValue={userData.location}
               name="location"
               variant="outlined"
               size="nornal"

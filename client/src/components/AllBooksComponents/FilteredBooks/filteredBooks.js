@@ -3,18 +3,22 @@ import {useSelector,useDispatch} from 'react-redux'
 import { Grid,CircularProgress,Grow,Container} from '@material-ui/core';
 import Book from '../Book/Book'
 import useStyles from '../style' 
+import { set } from 'mongoose';
 const FilteredBooks = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const filterData = useSelector(state=>state.filterData)
+   
     useEffect(()=>{
         console.log("Getting Filtered Books")
     },[dispatch])
 
   
     // console.log(filterData);
-    if(filterData.length === 0 ) {
-            return(<h1>No Books Found..</h1>);
+   
+    if(filterData.length === 0){
+
+        return(<h1>No books Found...</h1>)
     }
     else {
 

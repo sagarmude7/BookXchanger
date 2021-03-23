@@ -5,6 +5,14 @@ const BookSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  wishListedBy: [{
+    type: [mongoose.Schema.Types.ObjectId],
+    ref:'User'
+  }],
+  isSold: {
+    type: Boolean,
+    default: false,
+  },
   bookName: {
     //name of book
     type: String,
@@ -14,10 +22,6 @@ const BookSchema = mongoose.Schema({
     //subject -> Engineering subject
     type: String,
     required: true,
-  },
-  isSold: {
-    type: Boolean,
-    default: false,
   },
   branch: {
     type: String,
@@ -61,10 +65,6 @@ const BookSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  wishListedBy: {
-    type: [String],
-    default: [],
-  },
   description: String, //description of the book
   createdAt: {
     //created At
@@ -78,5 +78,6 @@ const BookSchema = mongoose.Schema({
   },
 });
 
-module.exports.BookSchema = BookSchema;
-module.exports.Book = mongoose.model("Book", BookSchema);
+const Book = mongoose.model('Book',BookSchema)
+
+module.exports = Book;
