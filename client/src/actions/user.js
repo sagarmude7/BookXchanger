@@ -1,4 +1,4 @@
-import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR} from '../constants/actions'
+import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR, CHANGE_PASSWORD} from '../constants/actions'
 import api from '../api/index';
 
 export const getProfile = () => async (dispatch) => {
@@ -40,3 +40,18 @@ export const getWishList = (id) => async (dispatch)=>{
         console.log(err)
     }
 }
+
+export const changePassword = (passData) => async (dispatch) => {
+
+    try {
+        console.log("in actions",passData);
+        const {data} = await api.changePassword(passData);
+        console.log(data);
+        dispatch({type:CHANGE_PASSWORD,payload:data});
+    } catch (error) {
+        console.log(error);
+        const data = error.response.data;
+        dispatch({type:ERROR,payload:data});
+    }
+    
+};

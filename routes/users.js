@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const auth = require('../middleware/auth')
-const {signIn,signUp,googleFacebookSignIn, getProfile,getWishList,editProfile} = require('../controllers/users')
+const {signIn,signUp,googleFacebookSignIn, getProfile,getWishList,editProfile, changePassword} = require('../controllers/users')
 
 router.post('/signIn',signIn)
 router.post('/signUp',signUp)
 router.post('/googleFacebookSignIn',googleFacebookSignIn)
 router.get('/profile',auth,getProfile)
 router.patch('/profile',auth,editProfile)
+router.patch('/profile',auth,changePassword)
 // router.get('/wishList',auth,getWishList);
 
 module.exports = router

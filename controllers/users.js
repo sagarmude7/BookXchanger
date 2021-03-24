@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
-const { regValidator, loginValidator, editValidator } = require('../validators/joi-validator')
+const { regValidator, loginValidator, editValidator, changePasswordValidator } = require('../validators/joi-validator')
 
 
 exports.signUp = async(req,res)=>{
@@ -149,6 +149,25 @@ exports.editProfile = async(req,res)=>{
     }
 }
 
+exports.changePassword = async(req,res)=>{
+    const {currentPassword, newPassword, confirmPassword} = req.body;
+    const {error} = changePasswordValidator.validate(req.body);
+    console.log("in controllers error",error);
+    console.log("in controllers error");
+    try{
+        if(error)
+            return res.status(400).json({msg:error.details[0].message})
+        const updatedPassword = {newPassword};
+
+        const updatedUser = await User.findByIdAndUpdate(req.userId,updatedPassword,{new:true})
+        
+        console.log("this",updatedUser);
+
+        return res.status(200).json(updatedUser);
+    }catch(err){
+        return res.status(500).json({ msg: "Something went wrong" });
+    }
+}
 
 // exports.getWishList = async(req,res)=>{
 //     try{

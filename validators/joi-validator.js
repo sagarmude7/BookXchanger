@@ -22,6 +22,13 @@ const editValidator = joi.object({
     location:joi.string().required(),
 })
 
+const changePasswordValidator = joi.object({
+    currentPassword:joi.string().min(6).required(),
+    newPassword:joi.string().min(6).required(),
+    confirmPassword:joi.string().min(6).required()
+})
+
 module.exports.loginValidator = loginValidator
 module.exports.regValidator = regValidator
 module.exports.editValidator = editValidator
+module.exports.changePasswordValidator = changePasswordValidator

@@ -35,6 +35,7 @@ const googleFacebookSignIn = (formData) => API.post(`${urlUsers}/googleFacebookS
 
 const getProfile = () => API.get(`${urlUsers}/profile`);
 const editProfile = (updatedUser) => API.patch(`${urlUsers}/profile`, updatedUser);
+const changePassword = (updatedPassword) => API.patch(`${urlUsers}/profile`, updatedPassword);
 
 // const getWishList = (id) => API.get(`${urlUsers}/wishList`);
 

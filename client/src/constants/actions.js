@@ -11,6 +11,7 @@ export const ADD_FAV='ADD_FAV'
 export const FETCH_FAV = 'FETCH_FAV'
 export const GET_PROFILE = 'GET_PROFILE'
 export const EDIT_PROFILE = 'EDIT_PROFILE'
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD'
 export const ERROR = 'ERROR'
 export const GET_BOOK = 'GET_BOOK'
 export const UPDATE_SOLD = "UPDATE_SOLD";
