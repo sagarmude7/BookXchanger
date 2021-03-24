@@ -151,7 +151,13 @@ const Footer = () => {
             }}
           >
             {"Copyright © "}
-            <Link color="inherit" to="/" component={RouterLink} key="Home">
+            <Link
+              color="inherit"
+              to="/"
+              component={RouterLink}
+              key="Home"
+              className={classes.name}
+            >
               Bookxchanger
             </Link>{" "}
             {new Date().getFullYear()}
