@@ -25,6 +25,8 @@ const updatedIsSold = (bookId) =>API.patch(`${urlBooks}/${bookId}/sold`);
 
 const deleteaBook = (bookId)=>API.delete(`${urlBooks}/${bookId}`)
 
+const editaBook = (id,formData)=>API.patch(`${urlBooks}/${id}`,formData)
+
 // '${urlBooks}/userBooks'
 const urlUsers = "/users";
 
@@ -33,7 +35,7 @@ const signIn = (formData) => API.post(`${urlUsers}/signIn`, formData);
 
 const googleFacebookSignIn = (formData) => API.post(`${urlUsers}/googleFacebookSignIn`, formData);
 
-const getProfile = () => API.get(`${urlUsers}/profile`);
+const getProfile = (id) => API.get(`${urlUsers}/profile/${id}`);
 const editProfile = (updatedUser) => API.patch(`${urlUsers}/profile`, updatedUser);
 const changePassword = (updatedPassword) => API.patch(`${urlUsers}/profile`, updatedPassword);
 
@@ -50,5 +52,6 @@ module.exports = {
   editProfile,
   showBookInfo,
   updatedIsSold,
-  deleteaBook
+  deleteaBook,
+  editaBook
 };

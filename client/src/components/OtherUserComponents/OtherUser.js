@@ -29,23 +29,21 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import IconButton from "@material-ui/core/IconButton";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import ChatIcon from "@material-ui/icons/Chat";
-import { editProfile, getProfile, changePassword } from "../../actions/user";
+import { editProfile, getProfile } from "../../actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
-import Dashboard from "./Dashboard components/Dashboard";
 import Footer from "../Footer/footer.js";
-
-const Profile = () => {
+import Dashboard from "./Dashboard components/Dashboard";
+const OtherUser = ({match}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user1 = JSON.parse(localStorage.getItem('profile'));
   const user = useSelector((state) => state.user);
   const [err,setErr] = useState(false) 
 
- 
-
+  const userId = match.params.userId;
   useEffect(() => {
-    dispatch(getProfile(user1.profile.id));
+    dispatch(getProfile(userId));
   }, [dispatch]);
 
   //console.log(person);
@@ -55,18 +53,8 @@ const Profile = () => {
     college: "",
     location: "",
   });
-
-  const [passData,setPassData] = useState({
-    currentPassword:"",
-    newPassword:"",
-    confirmPassword:""
-  });
   //console.log(typeof userData)
 
-  const handleSubmitPassword = (e) => {
-    e.preventDefault();
-    dispatch(changePassword(values1.currentpassword ,values2.password ,values3.password));
-  };
   useEffect(() => {
     if (user)
       setUserData({
@@ -91,9 +79,9 @@ const Profile = () => {
       
   };
 
-  //console.log("1212121222222222",user.msg);
+  console.log("1212121222222222",user.msg);
     
-  //console.log("in blank ",user.msg);
+  console.log("in blank ",user.msg);
   useEffect(()=>{
     if(user.msg){
       setErr(true);
@@ -108,7 +96,7 @@ const Profile = () => {
   },[user])
     
 
-  //console.log("main page ....*****",user.msg);
+  console.log("main page ....*****",user.msg);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -195,7 +183,7 @@ const Profile = () => {
           </Typography>
         </Container>
 
-        <Dashboard />
+        <Dashboard userId={userId}/>
 
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
@@ -291,7 +279,7 @@ const Profile = () => {
           <Container className={classes.headRight}></Container>
         </Container>
 
-        <Dashboard />
+        <Dashboard userId={userId} />
 
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
@@ -316,7 +304,6 @@ const Profile = () => {
                 Change Account Password
               </DialogTitle>
               <DialogContent>
-              <form noValidate autoComplete="off" onSubmit={handleSubmitPassword}>
                 <FormControl
                   className={clsx(classes.margin, classes.textField)}
                   variant="outlined"
@@ -410,7 +397,6 @@ const Profile = () => {
                     labelWidth={180}
                   />
                 </FormControl>
-                </form>
               </DialogContent>
 
               <DialogActions>
@@ -495,4 +481,4 @@ const Profile = () => {
   }
 };
 
-export default Profile;
+export default OtherUser;

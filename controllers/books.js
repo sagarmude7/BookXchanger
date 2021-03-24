@@ -105,12 +105,12 @@ exports.updateIsSold = async (req, res) => {
     console.log("Book marked as sold");
     return res.json(updatedBook);
   } catch (error) {
-    return res.status(500).json({ msg: "Something went wrong on isSold" });
+    return res.status(500).json({ msg: "Something went wrong on Server.." });
   }
 };
 
 exports.deleteaBook = async(req,res)=>{
-    console.log("actual")
+    console.log("Starting Book deletion")
     const {id} = req.params;
     console.log(id);
     try{
@@ -118,8 +118,23 @@ exports.deleteaBook = async(req,res)=>{
         return res.status(404).json({ msg: `No Book with id:${id}` });
     
       await Book.findByIdAndRemove(id)
-      return res.status(200).json({msg:"Book Deleted Successfully"})
+      console.log("Book deleted successfully")
+      return res.status(204).json({msg:"Book Deleted Successfully"})
     }catch(err){
-      console.log(err)
+      return res.status(500).json({ msg: "Something went wrong on Server.." });
     }
+}
+
+exports.editBook = async(req,res) =>{
+  const {id} = req.params;
+  const toUpDate = req.body;
+  try{
+    if (!mongoose.Types.ObjectId.isValid(id))
+        return res.status(404).json({ msg: `No Book with id:${id}` });
+    
+    const updatedBook = await Book.findByIdAndUpdate(id,{...toUpDate,updatedAt:new Date().toISOString()},{new:true});
+    return res.status(200).json(updatedBook);
+  }catch(err){
+    return res.status(500).json({ msg: "Something went wrong on Server.." });
+  }
 }

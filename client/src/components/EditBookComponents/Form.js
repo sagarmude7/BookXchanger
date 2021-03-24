@@ -5,16 +5,16 @@ import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import FileBase from 'react-file-base64'
 import {useDispatch,useSelector} from 'react-redux'
-import useStyles from './style'
+import useStyles from './styles'
 import Navbar from "../Navbar/Navbar.js"
 import Footer from "../Footer/footer.js"
-import {createBookAd} from '../../actions/books'
+import {editaBook} from '../../actions/books'
 
 
 const initialState={
     bookName:'',subject:'',price:'',condition:'',author:'',priceType:'',mrp:'',branch:'',tags:[],noOfPages:'',edition:'',description:''
 }
-const PostAdForm = () => {
+const EditBook = ({ match }) => {
     const classes = useStyles()
     const history = useHistory()
     const [next,setNext] = useState(false)
@@ -22,6 +22,11 @@ const PostAdForm = () => {
     const [bookData,setBookData] = useState(initialState)
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
+    const bookId = match.params.bookId
+
+    const books = useSelector(state=>state.books)
+    
+    const book = books.find(book=>book._id===bookId)
 
     const handleChange=(e)=>{
         setBookData({...bookData,[e.target.name]:e.target.value})
@@ -38,9 +43,14 @@ const PostAdForm = () => {
     const handleSubmit = (e)=>{
         e.preventDefault()
         console.log(bookData)
-        dispatch(createBookAd({...bookData,price:Number(bookData.price),mrp:Number(bookData.mrp),noOfPages:Number(bookData.noOfPages),ownerName : user.profile.name}))
+        dispatch(editaBook(book._id,{...bookData,price:Number(bookData.price),mrp:Number(bookData.mrp),noOfPages:Number(bookData.noOfPages)}))
         history.push('/')
     }
+
+    useEffect(()=>{
+        if(book)
+            setBookData(book)
+    },[book])
 
     return (
         <>
@@ -51,7 +61,7 @@ const PostAdForm = () => {
               
             <Paper className={classes.paper}>
                 <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <Typography color="secondary" variant="h6">Post a Book for Selling</Typography>
+                <Typography color="secondary" variant="h6">Update Any of the attributes You want</Typography>
                     {!next?(    
                         <>         
                             <TextField name="bookName" variant="outlined" label="Name of Book" fullWidth value={bookData.bookName} onChange={handleChange} />
@@ -202,4 +212,4 @@ const PostAdForm = () => {
     )
 }
 
-export default PostAdForm
+export default EditBook

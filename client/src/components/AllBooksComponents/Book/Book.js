@@ -26,7 +26,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { addToWishList,getBooks } from "../../../actions/books";
 import { useHistory } from "react-router-dom";
-
+import {Link} from "react-router-dom"
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -82,6 +82,12 @@ const Book = ({ book }) => {
         >
           ${book?.price}
         </Typography>
+        <Link
+          className={classes.title}
+          to={`/user/${book?.owner}`}
+        >
+          <span>Posted By : {book?.ownerName}</span>
+        </Link>
         <div className={classes.details}>
           <Typography variant="body2" color="secondary" component="h2">
             {book?.description}

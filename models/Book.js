@@ -5,6 +5,10 @@ const BookSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  ownerName : {
+    type : String,
+    required : true
+  },
   wishListedBy: [{
     type: [mongoose.Schema.Types.ObjectId],
     ref:'User'

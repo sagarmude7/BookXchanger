@@ -20,6 +20,7 @@ connectDB();
 
 app.use((req, res, next) => {
   // console.log("Running.")
+  console.log(req.method)
   res.append("Access-Control-Allow-Origin", "http://localhost:3000");
   res.append(
     "Access-Control-Allow-Methods",
