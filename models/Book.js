@@ -5,14 +5,16 @@ const BookSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  ownerName : {
-    type : String,
-    required : true
+  ownerName: {
+    type: String,
+    required: true,
   },
-  wishListedBy: [{
-    type: [mongoose.Schema.Types.ObjectId],
-    ref:'User'
-  }],
+  wishListedBy: [
+    {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
+    },
+  ],
   isSold: {
     type: Boolean,
     default: false,
@@ -66,7 +68,7 @@ const BookSchema = mongoose.Schema({
   },
   edition: {
     //edition of the book
-    type: String,
+    type: Number,
     required: true,
   },
   description: String, //description of the book
@@ -82,6 +84,6 @@ const BookSchema = mongoose.Schema({
   },
 });
 
-const Book = mongoose.model('Book',BookSchema)
+const Book = mongoose.model("Book", BookSchema);
 
 module.exports = Book;
