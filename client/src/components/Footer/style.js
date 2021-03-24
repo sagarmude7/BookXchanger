@@ -37,6 +37,7 @@ const styles = makeStyles((theme) => ({
     listStyleType: "none",
     textAlign: "center",
     paddingInlineStart: "0px",
+    transition: "1s",
     "&:hover": {
       color: "#00ffff",
 
