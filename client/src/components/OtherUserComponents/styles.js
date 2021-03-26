@@ -10,8 +10,10 @@ import { CenterFocusStrong } from '@material-ui/icons';
 
 export default makeStyles((theme) => ({
    
-    Container:{
-        
+    container:{
+      backgroundColor: "#286FB4",
+      backgroundImage: `url(${'https://www.transparenttextures.com/patterns/concrete-wall-2.png'})`
+
         
     },
       
@@ -32,12 +34,11 @@ export default makeStyles((theme) => ({
 
 
       head: {
-        backgroundColor:'#F0F8FF',
-          display:'flex',
-          flexDirection:'row',
-          
+        backgroundColor:'#FFFFFF',
+        display:'flex',
+        flexDirection:'row',
+        backgroundImage: `url(${'https://www.transparenttextures.com/patterns/stacked-circles.png'})`,
       },
-
       headRight:{
         display:'flex',
         flexDirection:'column',
@@ -45,10 +46,7 @@ export default makeStyles((theme) => ({
       },
 
       headUser: {
-          marginTop:60,
-          marginLeft:90,
-          fontWeight:300,
-          fontSize:30,
+        padding : "10px"
       },
       heading: {
           
@@ -56,25 +54,51 @@ export default makeStyles((theme) => ({
           marginLeft:200,
           
       },
-
-      pic:{
-          margin:35,
+      userDetails : {
+        marginTop :"50px"
       },
-
+      pic:{
+          margin:25,
+          borderRadius :"50%",
+          color : "pointer",
+      },
+      ads : {
+        display : "flex",
+        alignItems :"center",
+        justifyContent :"space-between",
+        position : "absolute",
+        right :"30px",
+      },
+      adsSold : {
+        margin : "50px 20px 50px ",
+        padding : "10px",
+        borderRadius : "20px",
+        fontWeight :"800",
+        fontSize :"1.8rem",
+        fontFamily : "New Tegomin, serif",
+        backgroundColor: "#286FB4",
+        backgroundImage: `url(${'https://www.transparenttextures.com/patterns/brushed-alum.png'})`
+      },
       body:{
-        backgroundColor:'#F0F8FF',
         display:'flex',
         flexDirection:'column',
         marginTop:20,
+        marginLeft :37 ,
+        transition: "all 0.1s ease-in",
+        "&:hover" : {
+          boxShadow : "1px 2px 10px 1px grey",
+        },
+        backgroundColor: "#FFFFFF",
+        backgroundImage: `url(${'https://www.transparenttextures.com/patterns/asfalt-light.png'})`,
       },
       bodyFields:{
         display:'flex',
         flexDirection:'row',
+        flex :"wrap"
       },
 
       bodyText:{
-        
-        margin:16,
+        margin:10,
         fontSize:15,
         fontweight:200,
       },
@@ -82,7 +106,7 @@ export default makeStyles((theme) => ({
 
       bodyTextValue:{
         position:'absolute',
-        left:500,
+        left:300,
         margin:15,
         fontSize:15,
         fontWeight:50,

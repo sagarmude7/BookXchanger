@@ -5,7 +5,7 @@ import 'react-chat-widget/lib/styles.css';
 
 const Chatbot = () => {
     useEffect(() => {
-        addResponseMessage('Welcome to this awesome chat!');
+        addResponseMessage('Welcome to Bookxchanger!');
       }, []);
      
       const handleNewUserMessage = (newMessage) => {
@@ -13,15 +13,15 @@ const Chatbot = () => {
         // Now send the message throught the backend API
       };
     return (
-        <>
-             <div className="App">
-        <Widget
-          handleNewUserMessage={handleNewUserMessage}
-          title="My new awesome title"
-          subtitle="And my cool subtitle"
-        />
-      </div>
-        </>
+      <>
+          <div className="App">
+            <Widget
+              handleNewUserMessage={handleNewUserMessage}
+              title="Bookxchanger"
+              subtitle="How may I help you"
+            />
+        </div>
+      </>
     )
 }
 

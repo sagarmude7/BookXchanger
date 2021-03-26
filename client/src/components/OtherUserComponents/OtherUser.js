@@ -10,7 +10,9 @@ import {
   Button,
   Typography,
   Paper,
+  Grid
 } from "@material-ui/core";
+import Contact from "./ContactForm/Contact"
 import useStyles from "./styles.js";
 import img from "./profilepic.png";
 import EditIcon from "@material-ui/icons/Edit";
@@ -161,33 +163,61 @@ const OtherUser = ({match}) => {
     event.preventDefault();
   };
 
-  if (key) {
+
     return (
       <div className={classes.container}>
         <Navbar />
-
         <Container className={classes.head}>
           <img
             className={classes.pic}
-            src={img}
+            src={user.profilePic}
             alt="M"
             width="175"
             height="190"
-          ></img>
+          />
+          <div className={classes.userDetails}>
           <Typography
-            variant="body1"
+            variant="h5"
             color="textPrimary"
             className={classes.headUser}
           >
             {user.name}
           </Typography>
+          <Typography
+            variant="h5"
+            color="textPrimary"
+            className={classes.headUser}
+          >
+            {user.college}
+          </Typography>
+          <Typography
+            variant="h5"
+            color="textPrimary"
+            className={classes.headUser}
+          >
+            {user.location}
+          </Typography>
+          </div>
+          <div className={classes.ads}>
+          <div className={classes.adsSold}>
+          <h2>
+            Ads Sold : 04
+          </h2>
+          </div>
+          <div className={classes.adsSold}>
+          <h2>
+            Total Listing : 04
+          </h2>
+          </div>
+          </div>
         </Container>
 
         <Dashboard userId={userId}/>
-
+        <Grid container xs={12}>
+          <Grid item xs={6}>
         <Container className={classes.body}>
-          <Typography className={classes.bodyHead}>
-            Manage Your Profile
+          <Typography  className={classes.bodyHead}>
+          <h2>{user.name} Profile</h2> 
           </Typography>
 
           <Container className={classes.bodyFields}>
@@ -232,253 +262,15 @@ const OtherUser = ({match}) => {
 
           <Typography className={classes.bodyText}></Typography>
         </Container>
-
-        <Fab
-          aria-label="chat"
-          className={`${classes.green} ${classes.Chat} ${classes.large}`}
-        >
-          <ChatIcon />
-        </Fab>
-
-        <Fab
-          onClick={() => setKey(false)}
-          aria-label="edit"
-          className={`${classes.pink} ${classes.Edit} ${classes.large}`}
-        >
-          <EditIcon />
-        </Fab>
+        </Grid>
+        <Grid item>
+        {/* <Contact /> */}
+        <h1 style={{color :"white",margin :"100px"}}>Contact User Here</h1>
+        </Grid>
+        </Grid>
         <Footer />
       </div>
     );
-  } else {
-    return (
-      <div className={classes.container}>
-        <Navbar />
-
-        <Typography className={classes.heading} variant="h4">
-          My Profile
-        </Typography>
-
-        <Container className={classes.head}>
-          <img
-            className={classes.pic}
-            src={img}
-            alt="M"
-            width="175"
-            height="190"
-          ></img>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-            className={classes.headUser}
-            variant="h6"
-          >
-            {user.name}
-          </Typography>
-
-          <Container className={classes.headRight}></Container>
-        </Container>
-
-        <Dashboard userId={userId} />
-
-        <Container className={classes.body}>
-          <Typography className={classes.bodyHead}>
-            Edit Your Profile
-          </Typography>
-
-          <div>
-            <Button
-              className={classes.changePassword}
-              variant="outlined"
-              color="primary"
-              onClick={handleClickOpen}
-            >
-              Change Password
-            </Button>
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="form-dialog-title"
-            >
-              <DialogTitle id="form-dialog-title">
-                Change Account Password
-              </DialogTitle>
-              <DialogContent>
-                <FormControl
-                  className={clsx(classes.margin, classes.textField)}
-                  variant="outlined"
-                >
-                  <InputLabel htmlFor="current-password">
-                    Current Password
-                  </InputLabel>
-                  <OutlinedInput
-                    id="current-password"
-                    type={values1.showPassword ? "text" : "password"}
-                    value={values1.password}
-                    onChange={handleChange1("password")}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword1}
-                          onMouseDown={handleMouseDownPassword1}
-                          edge="end"
-                        >
-                          {values1.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    labelWidth={140}
-                  />
-                </FormControl>
-
-                <FormControl
-                  className={clsx(classes.margin, classes.textField)}
-                  variant="outlined"
-                >
-                  <InputLabel htmlFor="new-password">New Password</InputLabel>
-                  <OutlinedInput
-                    id="new-password"
-                    type={values2.showPassword ? "text" : "password"}
-                    value={values2.password}
-                    onChange={handleChange2("password")}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword2}
-                          onMouseDown={handleMouseDownPassword2}
-                          edge="end"
-                        >
-                          {values2.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    labelWidth={120}
-                  />
-                </FormControl>
-
-                <FormControl
-                  className={clsx(classes.margin, classes.textField)}
-                  variant="outlined"
-                >
-                  <InputLabel htmlFor="confirm-new-password">
-                    Confirm New Password
-                  </InputLabel>
-                  <OutlinedInput
-                    id="confirm-new-password"
-                    type={values3.showPassword ? "text" : "password"}
-                    value={values3.password}
-                    onChange={handleChange3("password")}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword3}
-                          onMouseDown={handleMouseDownPassword3}
-                          edge="end"
-                        >
-                          {values2.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    labelWidth={180}
-                  />
-                </FormControl>
-              </DialogContent>
-
-              <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                  Cancel
-                </Button>
-                <Button onClick={handleClose} color="primary">
-                  Reset Password
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </div>
-          
-          {
-            user.msg?(
-                <Alert severity="error">
-                    <strong>{user?.msg}</strong>
-                </Alert>
-            ):null
-          }
-
-          <form
-            className={classes.editBody}
-            noValidate
-            autoComplete="off"
-            onSubmit={handleSubmitUserInfo}
-          >
-            <TextField
-              required
-              className={classes.textBox}
-              id="outlined-basic"
-              label="Your Name"
-              defaultValue={userData.name}
-              name="name"
-              variant="outlined"
-              onChange={handleChangeUserInfo}
-            />
-            <TextField
-              required
-              className={classes.textBox}
-              id="outlined-basic"
-              label="Email Address"
-              defaultValue={userData.email}
-              name="email"
-              variant="outlined"
-              onChange={handleChangeUserInfo}
-            />
-            <TextField
-              required
-              className={classes.textBox}
-              id="outlined-basic"
-              label="College Name"
-              defaultValue={userData.college}
-              name="college"
-              variant="outlined"
-              onChange={handleChangeUserInfo}
-            />
-            <TextField
-              required
-              className={classes.textBox}
-              id="outlined-basic"
-              label="Location"
-              defaultValue={userData.location}
-              name="location"
-              variant="outlined"
-              size="nornal"
-              onChange={handleChangeUserInfo}
-            />
-            <Button
-              className={classes.saveChanges}
-              variant="contained"
-              color="secondary"
-              type="submit"
-            >
-              Save Changes
-            </Button>
-          </form>
-        </Container>
-        <Footer />
-      </div>
-    );
-  }
 };
 
 export default OtherUser;

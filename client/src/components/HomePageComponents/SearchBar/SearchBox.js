@@ -127,27 +127,27 @@ const SearchBox = () => {
       isadv ? setIsadv(false) : setIsadv(true);
       
     }
-    const updateBooks =  ()=>{
+    const updateBooks =  async ()=>{
         if(inputName!==""){
-          setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
+          await setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
           console.log("Filtered By Name",filteredbooksByName);
         }
         else{
-          setFilteredbooksByName([]);
+          await setFilteredbooksByName([]);
         }
         if(inputSubject!==""){
-          setFilteredbooksBySubject(books.filter((book) => book.subject.toLowerCase().includes(inputSubject.toLowerCase())));
+          await setFilteredbooksBySubject(books.filter((book) => book.subject.toLowerCase().includes(inputSubject.toLowerCase())));
           console.log("Filtered By Subject",filteredbooksBySubject);
         }
         else{
-          setFilteredbooksBySubject([]);
+          await setFilteredbooksBySubject([]);
         }
         if(inputBranch!==""){
-          setFilteredbooksByBranch(books.filter((book) => book.branch.toLowerCase().includes(inputBranch.toLowerCase())));
+          await setFilteredbooksByBranch(books.filter((book) => book.branch.toLowerCase().includes(inputBranch.toLowerCase())));
           console.log("Filtered By Branch",filteredbooksByBranch);
         }
         else{
-          setFilteredbooksByBranch([]);
+          await setFilteredbooksByBranch([]);
         }
         if(inputPrice!==""){
           setFilteredbooksByPrice(books.filter((book) => book.priceType.toLowerCase().includes(inputPrice.toLowerCase())));
@@ -287,7 +287,7 @@ const SearchBox = () => {
             :
            <></>
           }
-          <button className={classes.button} onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
+          <button className={classes.button} type="button" onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
           <p className={classes.adv} onClick={showAdv}>{isadv ? <p>Hide Advanced</p>  : <p>Advanced Search</p>}</p>
           <span className="hide">Double Click to search</span>
         </div> 

@@ -12,11 +12,13 @@ const styles = makeStyles(() => ({
        marginLeft :"0px",
        marginRight :"0px",
        overflow :  "none",
-       width :"100%"
-            },
+       width :"100%",
+       zIndex :"-1",
+       transform : "translateY(10%,0%)",
+        },
     content : {
         textAlign : "center",
-        zIndex :"12",
+        zIndex :"10",
         fontSize :"20px",
         fontWeight : "400",
         fontFamily :"'Source Code Pro', monospace",
@@ -28,7 +30,6 @@ const styles = makeStyles(() => ({
     },
     parent : {
        width :"100%",
-       backgroundColor :"green",
        marginTop :"20px",
 
     }
