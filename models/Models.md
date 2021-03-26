@@ -1,16 +1,17 @@
 ## User Model
-- _id
+
+- \_id
 - name
 - email
 - password
-- college 
+- college
 - location
 - profilePic
 - postedBooks(Array of bookIds)
 
-
 ## Book Model
-- _id
+
+- \_id
 - wishListedBy(Array of User Ids)
 - bookName
 - subject
@@ -24,4 +25,7 @@
 - tags
 - edition
 - description
-- 
+
+## Color Pallete
+
+-
