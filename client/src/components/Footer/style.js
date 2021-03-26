@@ -4,13 +4,13 @@ const styles = makeStyles((theme) => ({
   footer: {
     position: "center",
     margin: "30px 0 0 0",
-    background: "#400CCC",
+    background: "#286FB4",
   },
 
   flexContainer: {
     display: "flex",
     flexFlow: "row nowrap",
-    background: "#400CCC",
+    background: "#286FB4",
     padding: "30px 0px 10px 0px",
     justifyContent: "center",
     alignItems: "ceter",
@@ -39,9 +39,16 @@ const styles = makeStyles((theme) => ({
     paddingInlineStart: "0px",
     transition: "1s",
     "&:hover": {
-      color: "#00ffff",
+      color: "#ffffff",
 
-      textShadow: "0 0 5px #00ffff",
+      textShadow: "0 0 5px #ffffff",
+    },
+  },
+
+  name: {
+    color: "#DF4C73",
+    "&:hover": {
+      color: "#E2F0F9",
     },
   },
 
@@ -58,9 +65,9 @@ const styles = makeStyles((theme) => ({
     },
 
     "&:hover": {
-      color: "#00ffff",
+      color: "#ffffff",
       transform: "scale(1.3)",
-      textShadow: "0 0 5px #00ffff",
+      textShadow: "0 0 5px #ffffff",
     },
   },
 }));
