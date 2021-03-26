@@ -9,6 +9,7 @@ export default (user={},action)=>{
             console.log("in reducers error",action.payload);
             return action.payload;
         case CHANGE_PASSWORD:
+            console.log("in reducer ", action.payload);
             return action.payload;
         case ERROR:
             console.log(action.payload,"in reduce");

@@ -134,8 +134,8 @@ exports.getProfile = async(req,res)=>{
 exports.editProfile = async(req,res)=>{
     const {name, email, college, location} = req.body;
     const {error} = editValidator.validate(req.body);
-    console.log("in controllers error",error);
-    console.log("in controllers error");
+    //console.log("in controllers error",error);
+    //console.log("in controllers error");
     try{
         if(error)
             return res.status(400).json({msg:error.details[0].message})
@@ -143,7 +143,7 @@ exports.editProfile = async(req,res)=>{
 
         const updatedUser = await User.findByIdAndUpdate(req.userId,updateData,{new:true})
         
-        console.log("this",updatedUser);
+        //console.log("this",updatedUser);
 
         return res.status(200).json(updatedUser);
     }catch(err){
@@ -153,17 +153,31 @@ exports.editProfile = async(req,res)=>{
 
 exports.changePassword = async(req,res)=>{
     const {currentPassword, newPassword, confirmPassword} = req.body;
+    console.log("55555555555555",req.body)
     const {error} = changePasswordValidator.validate(req.body);
+    console.log("in controllers ",newPassword);
     console.log("in controllers error",error);
-    console.log("in controllers error");
     try{
+
         if(error)
-            return res.status(400).json({msg:error.details[0].message})
-        const updatedPassword = {newPassword};
+            return res.status(400).json({message:error.details[0].message})
+
+        const user = await User.findById(req.userId);
+        const isPasswordcorrect = await bcrypt.compare(currentPassword,user.password)
+
+        if(!isPasswordcorrect)
+            return res.status(400).json({message:"Password Incorrect"})
+
+        if(newPassword!=confirmPassword)
+            return res.status(400).json({message:"Password don't match"})
+
+        const hashedPassword = await bcrypt.hash(newPassword,10);
+        const updatedPassword = {password:hashedPassword};
+        console.log(updatedPassword);
 
         const updatedUser = await User.findByIdAndUpdate(req.userId,updatedPassword,{new:true})
         
-        console.log("this",updatedUser);
+        console.log("here is new user",updatedUser);
 
         return res.status(200).json(updatedUser);
     }catch(err){

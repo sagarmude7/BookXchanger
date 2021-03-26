@@ -37,7 +37,7 @@ const googleFacebookSignIn = (formData) => API.post(`${urlUsers}/googleFacebookS
 
 const getProfile = (id) => API.get(`${urlUsers}/profile/${id}`);
 const editProfile = (updatedUser) => API.patch(`${urlUsers}/profile`, updatedUser);
-const changePassword = (updatedPassword) => API.patch(`${urlUsers}/profile`, updatedPassword);
+const changePassword = (updatedPassword) => API.patch(`${urlUsers}/profile/password`, updatedPassword);
 
 // const getWishList = (id) => API.get(`${urlUsers}/wishList`);
 
@@ -53,5 +53,6 @@ module.exports = {
   showBookInfo,
   updatedIsSold,
   deleteaBook,
-  editaBook
+  editaBook,
+  changePassword,
 };

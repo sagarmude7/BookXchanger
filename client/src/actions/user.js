@@ -46,7 +46,7 @@ export const changePassword = (passData) => async (dispatch) => {
     try {
         console.log("in actions",passData);
         const {data} = await api.changePassword(passData);
-        console.log(data);
+        console.log(data,"after actions");
         dispatch({type:CHANGE_PASSWORD,payload:data});
     } catch (error) {
         console.log(error);

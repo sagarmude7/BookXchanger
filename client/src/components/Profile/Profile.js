@@ -41,8 +41,10 @@ const Profile = () => {
   const user1 = JSON.parse(localStorage.getItem('profile'));
   const user = useSelector((state) => state.user);
   const [err,setErr] = useState(false) 
+  const [passErr,setPassErr] = useState(false)
+  const [key, setKey] = useState(true);
+  const [open, setOpen] = useState(false);
 
- 
 
   useEffect(() => {
     dispatch(getProfile(user1.profile.id));
@@ -56,19 +58,48 @@ const Profile = () => {
     location: "",
   });
 
-  const [passData,setPassData] = useState({
-    currentPassword:"",
-    newPassword:"",
-    confirmPassword:""
-  });
-  //console.log(typeof userData)
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   const handleSubmitPassword = (e) => {
     e.preventDefault();
-    dispatch(changePassword(values1.currentpassword ,values2.password ,values3.password));
+    console.log("in submit", values1.password ,values2.password ,values3.password);
+
+    const passData={
+      currentPassword : values1.password,
+      newPassword : values2.password,
+      confirmPassword : values3.password
+    }
+    
+    dispatch(changePassword(passData));
   };
+
+  useEffect(()=>{
+    //console.log("i submit     ",user.message);
+    setUserData(userData);
+    if(user.message){
+      setPassErr(true);
+      setKey(false);
+      setPassErr(false);
+      //setUserData(userData);
+      //console.log(user,"in 33333333333333")
+    }
+    else{
+      //console.log(user,"in 44444444444444444444444")
+      setPassErr(false);
+      //setUserData(userData);
+      handleClose();
+    }
+  },[user])
+
   useEffect(() => {
-    if (user)
+    if (user && user.name && user.email && user.college && user.location)
       setUserData({
         ...userData,
         name: user.name,
@@ -78,10 +109,7 @@ const Profile = () => {
       });
   }, [user, setUserData]);
 
-  const [key, setKey] = useState(true);
-
-  const [open, setOpen] = useState(false);
-
+  
  
 
   const handleSubmitUserInfo = (e) => {
@@ -95,35 +123,31 @@ const Profile = () => {
     
   //console.log("in blank ",user.msg);
   useEffect(()=>{
-    if(user.msg){
-      setErr(true);
-      setUserData(userData);
-      //console.log(user,"in 33333333333333")
-    }
-    else{
-      //console.log(user,"in 44444444444444444444444")
-      setErr(false);
-      setKey(true);
+    if(!user.message){
+      if(user.msg){
+        setErr(true);
+        setUserData(userData);
+        //console.log(user,"in 33333333333333")
+      }
+      else{
+        console.log(user,"in 44444444444444444444444")
+        setErr(false);
+        setKey(true);
+      }
     }
   },[user])
     
 
-  //console.log("main page ....*****",user.msg);
+  console.log("main page ....*****",user.message);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
 
   const handleChangeUserInfo = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
   const [values1, setValues1] = useState({
-    currentpassword: "",
+    password: "",
     showPassword: false,
   });
 
@@ -304,19 +328,28 @@ const Profile = () => {
               variant="outlined"
               color="primary"
               onClick={handleClickOpen}
+
             >
               Change Password
             </Button>
             <Dialog
               open={open}
-              onClose={handleClose}
+              
               aria-labelledby="form-dialog-title"
             >
+            <form noValidate autoComplete="off" onSubmit={handleSubmitPassword}>
               <DialogTitle id="form-dialog-title">
                 Change Account Password
               </DialogTitle>
+              {
+                user.message?(
+                    <Alert severity="error">
+                        <strong>{user?.message}</strong>
+                    </Alert>
+                ):null
+                }
               <DialogContent>
-              <form noValidate autoComplete="off" onSubmit={handleSubmitPassword}>
+              
                 <FormControl
                   className={clsx(classes.margin, classes.textField)}
                   variant="outlined"
@@ -399,7 +432,7 @@ const Profile = () => {
                           onMouseDown={handleMouseDownPassword3}
                           edge="end"
                         >
-                          {values2.showPassword ? (
+                          {values3.showPassword ? (
                             <Visibility />
                           ) : (
                             <VisibilityOff />
@@ -410,22 +443,24 @@ const Profile = () => {
                     labelWidth={180}
                   />
                 </FormControl>
-                </form>
+                
               </DialogContent>
 
               <DialogActions>
                 <Button onClick={handleClose} color="primary">
                   Cancel
                 </Button>
-                <Button onClick={handleClose} color="primary">
+                <Button color="primary" type="submit">
                   Reset Password
                 </Button>
               </DialogActions>
+              </form>
             </Dialog>
+            
           </div>
           
           {
-            user.msg?(
+            err?(
                 <Alert severity="error">
                     <strong>{user?.msg}</strong>
                 </Alert>
