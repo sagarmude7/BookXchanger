@@ -39,6 +39,7 @@ const getProfile = (id) => API.get(`${urlUsers}/profile/${id}`);
 const editProfile = (updatedUser) => API.patch(`${urlUsers}/profile`, updatedUser);
 const changePassword = (updatedPassword) => API.patch(`${urlUsers}/profile/password`, updatedPassword);
 
+const sendMail = (feedData) => API.post(`${urlUsers}/send-email`,feedData);
 // const getWishList = (id) => API.get(`${urlUsers}/wishList`);
 
 module.exports = {
@@ -55,4 +56,5 @@ module.exports = {
   deleteaBook,
   editaBook,
   changePassword,
+  sendMail
 };

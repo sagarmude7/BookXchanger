@@ -42,7 +42,7 @@ const OtherUser = ({match}) => {
   const user1 = JSON.parse(localStorage.getItem('profile'));
   const user = useSelector((state) => state.user);
   const [err,setErr] = useState(false) 
-
+  const books = useSelector(state=>state.books)
   const userId = match.params.userId;
   useEffect(() => {
     dispatch(getProfile(userId));
@@ -81,9 +81,7 @@ const OtherUser = ({match}) => {
       
   };
 
-  console.log("1212121222222222",user.msg);
-    
-  console.log("in blank ",user.msg);
+
   useEffect(()=>{
     if(user.msg){
       setErr(true);
@@ -98,7 +96,6 @@ const OtherUser = ({match}) => {
   },[user])
     
 
-  console.log("main page ....*****",user.msg);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -201,12 +198,12 @@ const OtherUser = ({match}) => {
           <div className={classes.ads}>
           <div className={classes.adsSold}>
           <h2>
-            Ads Sold : 04
+            Ads Sold : {books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length}
           </h2>
           </div>
           <div className={classes.adsSold}>
           <h2>
-            Total Listing : 04
+            Total Listing : {books.filter(book=>(book.owner===userId)).length}
           </h2>
           </div>
           </div>

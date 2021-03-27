@@ -1,4 +1,4 @@
-import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR, CHANGE_PASSWORD} from '../constants/actions'
+import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR, CHANGE_PASSWORD, FEEDBACK} from '../constants/actions'
 import api from '../api/index';
 
 export const getProfile = (id) => async (dispatch) => {
@@ -55,3 +55,15 @@ export const changePassword = (passData) => async (dispatch) => {
     }
     
 };
+
+export const postFeedBackForm = (feedData) => async (dispatch)=>{
+    try{
+        console.log(feedData)
+        const {data} = await api.sendMail(feedData);
+        console.log(data);
+    }catch(error){
+        console.log(error);
+        const data = error.response.data;
+        dispatch({type:FEEDBACK,payload:data});
+    }
+}

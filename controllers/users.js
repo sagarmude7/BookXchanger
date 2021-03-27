@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
+const nodemailer = require('nodemailer')
 const { regValidator, loginValidator, editValidator, changePasswordValidator } = require('../validators/joi-validator')
 
 
@@ -195,3 +196,41 @@ exports.changePassword = async(req,res)=>{
 //         return res.status(500).json({ msg: "Something went wrong" });
 //     }
 // }
+
+exports.sendMail = async(req,res)=>{
+    try{
+        const receiver = 'bookxchanger7@gmail.com';
+        const message = req.body.message;
+        const subject = `Feedback from ${req.body.name}-${req.body.email}`
+
+        const transporter = nodemailer.createTransport({
+            host:'smtp.gmail.com',
+            port:587,
+            secure:false,
+            requireTLS:true,
+            auth:{
+                user:'reply.bookxchanger@gmail.com',
+                pass:'Book@12341234'
+            }
+        })
+
+        const mailOptions = {
+            from:'reply.bookxchanger@gmail.com',
+            to: receiver,
+            subject: subject,
+            text: message
+        }
+
+        transporter.sendMail(mailOptions,(err,info)=>{
+            if(err){
+                console.log(error);
+            }else{
+                console.log('Email was sent successfully!'+info.response)
+            }
+        })
+        return res.status(200).json({msg:"Email sent successfully!"})
+    }catch(err){
+        return res.status(500).json({ msg: "Something went wrong" });
+    }
+    
+}

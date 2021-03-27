@@ -23,21 +23,9 @@ const Book = ({ book }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   // const [book, setBook] = useState({});
-  const onClickSold = () => {
-    console.log("Adding To isSold");
-    dispatch(updatedIsSold(book._id));
-    console.log("Updating isSold");
-  };
+  
 
-  const deleteBook = () =>{
-    console.log("Delete a Book")
-    dispatch(deleteaBook(book._id))
 
-  }
-
-  const editaBook = () =>{
-    history.push(`/editBook/${book._id}`)
-  }
 
   return (
     <Card className={classes.card}>
@@ -52,11 +40,11 @@ const Book = ({ book }) => {
           {moment(book?.createdAt).fromNow()}
         </Typography>
       </div>
-      <div className={classes.overlay2}>
+      {/* <div className={classes.overlay2}>
         <Button color="primary" size="small" onClick={editaBook}>
           <MoreHorizIcon fontSize="default" />
         </Button>
-      </div>
+      </div> */}
       <Typography
         className={classes.title}
         gutterBottom
@@ -75,7 +63,7 @@ const Book = ({ book }) => {
           {book?.tags.map((tag) => `#${tag} `)}
         </Typography>
       </CardContent>
-      <CardActions className={classes.cardActions}>
+      {/* <CardActions className={classes.cardActions}>
         <Button size="medium" color="secondary" onClick={deleteBook}>
           <DeleteIcon />
         </Button>
@@ -86,7 +74,7 @@ const Book = ({ book }) => {
             </Button>
           ):null
         }
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 };

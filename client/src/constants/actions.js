@@ -13,6 +13,8 @@ export const GET_PROFILE = 'GET_PROFILE'
 export const EDIT_PROFILE = 'EDIT_PROFILE'
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD'
 export const ERROR = 'ERROR'
+export const FEEDBACK ='FEEDBACK'
+
 export const GET_BOOK = 'GET_BOOK'
 export const UPDATE_SOLD = "UPDATE_SOLD";
 export const DELETE_BOOK = "DELETE_BOOK";
