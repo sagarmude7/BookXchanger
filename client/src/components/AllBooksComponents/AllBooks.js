@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Button,
-  Grid,
-  CircularProgress,
-  Grow,
-  Container,
-  Paper,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-} from "@material-ui/core";
+import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormControlLabel,Radio,Select,MenuItem,InputLabel,FormControl} from '@material-ui/core';
 import Book from "./Book/Book";
 import useStyles from "./style";
 import Navbar from "../Navbar/Navbar";
@@ -25,6 +15,8 @@ const AllBooks = () => {
   const allBooks = useSelector((state) => state.books);
   const books = allBooks.filter((book) => book.isSold === false);
   const [sortbool, setSortbool] = useState(false);
+  const [type, settype] = useState("")
+
 
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState();
@@ -71,71 +63,49 @@ const AllBooks = () => {
   return (
     <>
       <Navbar />
+      <div className={classes.maincontainer}>
+
       <SearchBox />
       <FilteredBooks />
       <br />
-      <h1>All Books : </h1>
+      <hr color="red" height="2px" width="85%"></hr>
+      {/* <h1>All Books : </h1> */}
 
       <div style={{ marginTop: "20px" }}>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          className={classes.sortButton}
-          onClick={() => setSortbool(!sortbool)}
-        >
-          Sort
-        </Button>
+      <button className={classes.sortButton} onClick={()=>setSortbool(!sortbool)}><span style={{fontSize:"1.1rem"}}>Sort</span></button>
+
         {sortbool === true ? (
           <>
-            <RadioGroup aria-label="gender" name="gender1">
-              <Grid container spacing={3}>
-                <Grid item xs={3}>
-                  <Paper className={classes.paper}>
-                    <FormControlLabel
-                      value="pricehighest"
-                      control={
-                        <Radio onClick={(e) => setSortType(e.target.value)} />
-                      }
-                      label="Price (Highest)"
-                    />
-                  </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                  <Paper className={classes.paper}>
-                    <FormControlLabel
-                      value="pricelowest"
-                      control={
-                        <Radio onClick={(e) => setSortType(e.target.value)} />
-                      }
-                      label="Price (Lowest)"
-                    />
-                  </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                  <Paper className={classes.paper}>
-                    <FormControlLabel
-                      value="datenewest"
-                      control={
-                        <Radio onClick={(e) => setSortType(e.target.value)} />
-                      }
-                      label="Date Added (Newest)"
-                    />
-                  </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                  <Paper className={classes.paper}>
-                    <FormControlLabel
-                      value="dateoldest"
-                      control={
-                        <Radio onClick={(e) => setSortType(e.target.value)} />
-                      }
-                      label="Date Added (Oldest)"
-                    />
-                  </Paper>
-                </Grid>
-              </Grid>
-            </RadioGroup>
+          <FormControl variant="outlined" color="red" style={{width:"300px",marginLeft:"600px"}} fullWidth>
+                <InputLabel id="Sort ByTypeLabel">Sort By</InputLabel>
+                    <Select
+                    labelId="SortByLabel"
+                    id="SortBy"
+                    label="SortBy"
+                    value={type}
+                    >
+                        <MenuItem value="Price Lowest">
+                            <Paper className={classes.paper}>
+                                <FormControlLabel value="pricelowest" control={<Radio onClick={(e) => setSortType(e.target.value)} />}   label="Price (Lowest)" />
+                            </Paper>
+                        </MenuItem>
+                        <MenuItem value="Price Highest">
+                            <Paper className={classes.paper}>
+                                <FormControlLabel value="pricehighest" control={<Radio onClick={(e) => setSortType(e.target.value)} />}   label="Price (Highest)" />
+                            </Paper>
+                        </MenuItem>
+                        <MenuItem value="Date Newest">
+                            <Paper className={classes.paper}>
+                                <FormControlLabel value="datenewest" control={<Radio onClick={(e) => setSortType(e.target.value)} />}  label="Date Added (Newest)" />
+                            </Paper>
+                        </MenuItem>
+                        <MenuItem value="Date Oldest">
+                            <Paper className={classes.paper}>
+                                <FormControlLabel value="dateoldest" control={<Radio onClick={(e) => setSortType(e.target.value)} />}   label="Date Added (Oldest)" />
+                            </Paper>
+                        </MenuItem>
+                    </Select>
+        </FormControl>
           </>
         ) : (
           <></>
@@ -166,7 +136,7 @@ const AllBooks = () => {
           )}
         </Container>
       </div>
-
+      </div> 
       <Footer />
     </>
   );
