@@ -24,9 +24,9 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { addToWishList,getBooks } from "../../../actions/books";
+import { addToWishList, getBooks } from "../../../actions/books";
 import { useHistory } from "react-router-dom";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -39,10 +39,9 @@ const Book = ({ book }) => {
   const [fav, setFav] = useState(
     book?.wishListedBy?.find((id) => id === user?.profile?.id)
   );
-  useEffect(()=>{
-    if(book)
-      setFav(book.wishListedBy.find((id) => id === user.profile.id))
-  },[])
+  useEffect(() => {
+    if (book) setFav(book.wishListedBy.find((id) => id === user.profile.id));
+  }, []);
   const addtofavourite = () => {
     console.log("Adding To Favorites..");
     fav ? setFav(false) : setFav(true);
@@ -51,7 +50,7 @@ const Book = ({ book }) => {
   };
 
   const getBook = () => {
-    history.push(`/all/book/${book._id}`)
+    history.push(`/all/book/${book._id}`);
   };
 
   return (
@@ -82,17 +81,14 @@ const Book = ({ book }) => {
         >
           ${book?.price}
         </Typography>
-        <Link
-          className={classes.title}
-          to={`/user/${book?.owner}`}
-        >
+        <Link className={classes.title} to={`/user/${book?.owner}`}>
           <span>Posted By : {book?.ownerName}</span>
         </Link>
-        <div className={classes.details}>
+        {/* <div className={classes.details}>
           <Typography variant="body2" color="secondary" component="h2">
             {book?.description}
           </Typography>
-        </div>
+        </div> */}
         <CardContent>
           <Typography variant="body2" color="secondary" component="p">
             {book?.tags?.map((tag) => `#${tag} `)}

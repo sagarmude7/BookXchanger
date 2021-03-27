@@ -12,6 +12,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
+import Avatar from "@material-ui/core/Avatar";
 import SendIcon from "@material-ui/icons/Send";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../Footer/footer";
@@ -44,11 +45,10 @@ import {
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { useParams } from "react-router";
 import { GET_BOOK } from "../../../constants/actions";
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Book from "../../AllBooksComponents/Book/Book";
-import useStyle from "./style";
+
 import { getBooks } from "../../../actions/books";
 
 const BookInfo = ({ match }) => {
@@ -79,10 +79,12 @@ const BookInfo = ({ match }) => {
 
   //Similar books
 
-  const classe = useStyle();
   const allBooks = useSelector((state) => state.books);
   const filterbooks = allBooks.filter(
-    (books) => books.isSold === false && books.branch === book.branch
+    (books) =>
+      books.isSold === false &&
+      books.branch === book.branch &&
+      books.createdAt != book.createdAt
   );
   const [sortbool, setSortbool] = useState(false);
 
@@ -135,137 +137,176 @@ const BookInfo = ({ match }) => {
               {"Posted on: "}
               {moment(book?.createdAt).format("DD MMM, YYYY")}
             </div>
+            <div className={classes.price}>
+              {book.price}
+              {"₹ ("}
+              {book.priceType}
+              {")"}
+            </div>
           </Typography>
         </div>
 
         <div className={classes.middleContainer}>
-          <div>
-            <img className={classes.bookImage} src={book.selectedFile} alt="" />
-          </div>
-          <div className={classes.bookInfo}>
-            <ul style={{ listStyleType: "none" }}>
-              <li>
-                Name: <span>{book.bookName}</span>
-              </li>
+          <div className={classes.bookDetails}>
+            <div style={{ flex: "auto", flexDirection: "row" }}>
+              <img
+                className={classes.bookImage}
+                src={book.selectedFile}
+                alt=""
+              />
+            </div>
+            <div
+              className={classes.bookInfo}
+              style={{ flex: "auto", flexDirection: "row" }}
+            >
+              <ul style={{ listStyleType: "none" }} className={classes.list}>
+                <li>
+                  Name: <span className={classes.name}>{book.bookName}</span>
+                </li>
 
-              <li>
-                Subject: <span>{book.subject}</span>
-              </li>
+                <li>
+                  Subject: <span className={classes.name}>{book.subject}</span>
+                </li>
 
-              <li>
-                Branch: <span>{book.branch}</span>
-              </li>
-              <li>
-                Edition:{" "}
-                <span>
-                  {book.edition}
-                  {"th"}
-                </span>
-              </li>
-              <li>
-                Price:{" "}
-                <span>
-                  {book.price}
-                  {" ("}
-                  {book.priceType}
-                  {")"}
-                </span>
-              </li>
-              <li>
-                Condition: <span>{book.condition}</span>
-              </li>
-              <li>
-                MRP{"(₹)"}: <span>{book.mrp}</span>
-              </li>
-              <li>
-                Author/Publication: <span>{book.author}</span>
-              </li>
-              <li>
-                Number of pages: <span>{book.noOfPages}</span>
-              </li>
-            </ul>
-          </div>
-          <div className={classes.bookDescription}>
-            <Typography>Description</Typography>
-            <Typography>{book.description}</Typography>
-          </div>
-          <div>
-            <FacebookShareButton
-              url={window.location.href}
-              quote={
-                "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
-              }
-              hashtag="#bookxchanger"
+                <li>
+                  Branch: <span className={classes.name}>{book.branch}</span>
+                </li>
+                <li>
+                  Edition:{" "}
+                  <span className={classes.name}>
+                    {book.edition}
+                    {"th"}
+                  </span>
+                </li>
+                <li>
+                  Price{"(₹)"}:{" "}
+                  <span className={classes.name}>
+                    {book.price}
+                    {" ("}
+                    {book.priceType}
+                    {")"}
+                  </span>
+                </li>
+                <li>
+                  Condition:{" "}
+                  <span className={classes.name}>{book.condition}</span>
+                </li>
+                <li>
+                  MRP{"(₹)"}: <span className={classes.name}>{book.mrp}</span>
+                </li>
+                <li>
+                  Author/Publication:{" "}
+                  <span className={classes.name}>{book.author}</span>
+                </li>
+                <li>
+                  Number of pages:{" "}
+                  <span className={classes.name}>
+                    {book.noOfPages}
+                    {"+"}
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div
+              className={classes.bookDescription}
+              style={{ flex: "auto", flexDirection: "row" }}
             >
-              <FacebookIcon size={36} className={classes.socialMediaButton} />
-            </FacebookShareButton>
-            <TwitterShareButton
-              title={
-                "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
-              }
-              via={window.location.href}
-              hashtags="#bookxchanger"
-            >
-              <TwitterIcon size={36} className={classes.socialMediaButton} />
-            </TwitterShareButton>
-            <WhatsappShareButton
-              title={
-                "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
-              }
-              seperator={window.location.href}
-            >
-              <WhatsappIcon size={36} className={classes.socialMediaButton} />
-            </WhatsappShareButton>
-            <EmailShareButton
-              subject={"Buy second hand books on Bookxchanger"}
-              body={window.location.href}
-              seperator={
-                "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
-              }
-            >
-              <EmailIcon size={36} className={classes.socialMediaButton} />
-            </EmailShareButton>
-          </div>
-          <div>
-            <Typography
-              align="center"
-              style={{
-                fontSize: "20px",
-                position: "Centre",
-                padding: "5px 0 5px 0",
+              <Typography variant="h5">Description</Typography>
+              <Typography variant="body1">{book.description}</Typography>
+              <div>
+                <FacebookShareButton
+                  url={window.location.href}
+                  quote={
+                    "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
+                  }
+                  hashtag="#bookxchanger"
+                >
+                  <FacebookIcon
+                    size={36}
+                    className={classes.socialMediaButton}
+                  />
+                </FacebookShareButton>
+                <TwitterShareButton
+                  title={
+                    "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
+                  }
+                  via={window.location.href}
+                  hashtags="#bookxchanger"
+                >
+                  <TwitterIcon
+                    size={36}
+                    className={classes.socialMediaButton}
+                  />
+                </TwitterShareButton>
+                <WhatsappShareButton
+                  title={
+                    "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
+                  }
+                  seperator={window.location.href}
+                >
+                  <WhatsappIcon
+                    size={36}
+                    className={classes.socialMediaButton}
+                  />
+                </WhatsappShareButton>
+                <EmailShareButton
+                  subject={"Buy second hand books on Bookxchanger"}
+                  body={window.location.href}
+                  seperator={
+                    "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
+                  }
+                >
+                  <EmailIcon size={36} className={classes.socialMediaButton} />
+                </EmailShareButton>
+              </div>
+              <div>
+                <Typography
+                  align="center"
+                  style={{
+                    fontSize: "20px",
+                    position: "Centre",
+                    padding: "5px 0 5px 0",
 
-                color: "white",
-              }}
-            >
-              {"Mention "}
-              <Link
-                color="inherit"
-                to="/"
-                component={RouterLink}
-                key="Home"
-                className={classes.name}
-              >
-                Bookxchanger
-              </Link>{" "}
-              {" when contacting seller to get a good deal."}
-            </Typography>
+                    color: "white",
+                  }}
+                >
+                  {"Mention "}
+                  <Link
+                    color="inherit"
+                    to="/"
+                    component={RouterLink}
+                    key="Home"
+                    className={classes.name}
+                  >
+                    Bookxchanger
+                  </Link>{" "}
+                  {" when contacting seller to get a good deal."}
+                </Typography>
+              </div>
+            </div>
           </div>
-          <div className={classes.contactUser}>
+          <div
+            className={classes.contactUser}
+            style={{ flex: "auto", flexDirection: "row" }}
+          >
             <div className={classes.UserInfo}>
               <img
                 className={classes.userProfilePic}
-                src={book.selectedFile}
+                src="http://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png"
                 alt="User Profile"
               />
-              <Typography>User Name</Typography>
-              <Typography>View Profile</Typography>
+              {/* <Avatar>{book.ownerName[0]}</Avatar> */}
+              <Typography variant="h5">{book.ownerName}</Typography>
+              <Typography variant="body2" className={classes.name}>
+                View Profile
+              </Typography>
             </div>
-            <div>
-              <Typography>Send Message</Typography>
+            <div className={classes.chatBox}>
+              <Typography variant="h6">Send Message</Typography>
               <TextField
                 id="outlined-multiline-static"
                 multiline
-                rows={5}
+                rows={7}
                 variant="outlined"
               />
               <Button
@@ -290,15 +331,13 @@ const BookInfo = ({ match }) => {
             <hr style={{ border: "1px solid black", width: "150px" }} />
             <hr style={{ borderWidth: "0px" }} />
             <Carousel responsive={responsive}>
-              <Container>
-                <Book key={1} book={filterbooks[0]} />
-              </Container>
-              <Container>
-                <Book key={2} book={filterbooks[1]} />
-              </Container>
-              <Container>
-                <Book key={3} book={filterbooks[3]} />
-              </Container>
+              {filterbooks.map((book) => (
+                <Grid>
+                  <Container>
+                    <Book key={book._id} book={book} />
+                  </Container>
+                </Grid>
+              ))}
             </Carousel>
           </div>
         </div>
