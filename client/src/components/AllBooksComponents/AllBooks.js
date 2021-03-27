@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormControlLabel,Radio,Select,MenuItem,InputLabel,FormControl} from '@material-ui/core';
+import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormControlLabel,Radio,Select,MenuItem,InputLabel,FormControl,Box} from '@material-ui/core';
 import Book from "./Book/Book";
 import useStyles from "./style";
 import Navbar from "../Navbar/Navbar";
@@ -67,7 +67,9 @@ const AllBooks = () => {
 
       <SearchBox />
       <FilteredBooks />
-      <br />
+      <br/>
+      <br/>
+      <br/>
       <hr color="red" height="2px" width="85%"></hr>
       {/* <h1>All Books : </h1> */}
 
@@ -76,7 +78,8 @@ const AllBooks = () => {
 
         {sortbool === true ? (
           <>
-          <FormControl variant="outlined" color="red" style={{width:"300px",marginLeft:"600px"}} fullWidth>
+          <Box textAlign='center'>
+          <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel id="Sort ByTypeLabel">Sort By</InputLabel>
                     <Select
                     labelId="SortByLabel"
@@ -105,7 +108,8 @@ const AllBooks = () => {
                             </Paper>
                         </MenuItem>
                     </Select>
-        </FormControl>
+          </FormControl>
+          </Box>
           </>
         ) : (
           <></>

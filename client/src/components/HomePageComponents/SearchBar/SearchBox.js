@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search"
 import {useSelector,useDispatch} from 'react-redux';
 import {getBooks} from '../../../actions/books'
 import { makeStyles } from '@material-ui/core/styles';
-import {Container,Grow,Grid,Paper,Typography,TextField,Button,Select,MenuItem,FormControl,InputLabel} from '@material-ui/core';
+import {Container,Grow,Grid,Paper,Typography,TextField,Button,Select,MenuItem,FormControl,InputLabel, Box} from '@material-ui/core';
 import { Link,useHistory } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import Accordion from '@material-ui/core/Accordion';
@@ -14,7 +14,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FilteredBooks from '../../AllBooksComponents/FilteredBooks/filteredBooks';
-import { blue } from '@material-ui/core/colors';
+import { blue, lightBlue, lightGreen } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow :"1",
@@ -26,25 +26,20 @@ const useStyles = makeStyles((theme) => ({
   input : {
     padding: theme.spacing(2), 
     textAlign: 'center',
-    marginLeft: '110px',
     border  :"1px solid red"
   },
-  input1 : {
-    padding: theme.spacing(2), 
-    textAlign: 'center',
-    marginLeft: '0px',
-  },
   button:{
-    position :"relative",
-    top : "0px",
-    left : "45%",
+    // position :"relative",
+    // top : "0px",
+    // left : "45%",
+    justifyContent:'center',
     backgroundColor:"#DF4C73"
   },
   advance:{
-    position:"relative",
-    top:"0%",
-    left:"70%",
-    backgroundColor:"#DF4C73"
+    backgroundColor:"#DF4C73",
+    float:'right',
+    marginBottom:'10px',
+    marginRight: '60px'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -59,11 +54,11 @@ const useStyles = makeStyles((theme) => ({
   AlignItems:"center",
   justifyContent : "center"
  },
- gridContainer: {
-  display:"flex",
-  alignItems:"center",
-  justifyContent:"center",
- },
+//  gridContainer: {
+//   display:"flex",
+//   alignItems:"center",
+//   justifyContent:"center",
+//  },
  gridItem :{
   border:"1px solid blue",
   borderRadius:"10px"
@@ -73,15 +68,18 @@ const useStyles = makeStyles((theme) => ({
    border :"1 px solid grey",
    borderRadius  :"8px"
  },
- adv : {
-   cursor : "pointer",
-   textAlign :"center",
-   width :"200px",
-   height :"40px",
-   position :"relative",
-   left :"800px",
-   fontSize : "20px"
- }
+//  adv : {
+//    cursor : "pointer",
+//    textAlign :"center",
+//    width :"200px",
+//    height :"40px",
+//    position :"relative",
+//    left :"800px",
+//    fontSize : "20px"
+//  },
+ paper:{
+   textAlign:'center',
+ },
 }));
 
 
@@ -197,9 +195,9 @@ const SearchBox = () => {
         <>
         <Typography variant="h5"  className="heading"> Search a Book </Typography>
         <div noValidate autoComplete="off" >
-          <div  className={classes.root} >
+        <div>
         <Grid container spacing={4}>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}  className={classes.paper}>
           <input 
             id="standard-basic" 
             label="Name" 
@@ -210,8 +208,8 @@ const SearchBox = () => {
             onChange = {(e) => {setName(e.target.value)}}
             />
           </Grid>
-          <Grid item xs={4}>
-          <FormControl variant="outlined" border="blue" style={{width:"420px"}} fullWidth>
+          <Grid item xs={12} sm={4}  className={classes.paper} >
+          <FormControl variant="outlined" className={classes.formControl} fullWidth>
                 <InputLabel id="branchTypeLabel">Branch</InputLabel>
                     <Select
                     labelId="branchLabel"
@@ -234,7 +232,7 @@ const SearchBox = () => {
                     </Select>
                 </FormControl>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4} className={classes.paper}>
           <input 
             id="standard-basic" 
             label="Subject" 
@@ -252,7 +250,7 @@ const SearchBox = () => {
           {
             isadv ? 
         <Grid container spacing={4} className={classes.gridContainer} > 
-            <Grid item xs={4} sm={2}>
+            <Grid item xs={12} sm={4} className={classes.paper}>
                 <FormControl variant="outlined" border="blue" className={classes.formControl} fullWidth>
                 <InputLabel id="conditionTypeLabel">Condition Of Book</InputLabel>
                     <Select
@@ -269,7 +267,7 @@ const SearchBox = () => {
                     </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={4} sm={2} >
+              <Grid item xs={12} sm={4} className={classes.paper} >
                   <FormControl variant="outlined" className={classes.formControl} fullWidth>
                       <InputLabel id="type-label">Price Type</InputLabel>
                       <Select
@@ -290,11 +288,11 @@ const SearchBox = () => {
                       </Select>
                   </FormControl>
               </Grid>
-              <Grid item xs={4} sm={2} >
+              <Grid item xs={12} sm={4} className={classes.paper} >
                 <input 
                 id="standard-basic" 
                 label="Tags" 
-                className={classes.input1} 
+                className={classes.input} 
                 key="random3"
                 value= {inputTags}
                 placeholder={"Type Tags"}
@@ -306,7 +304,9 @@ const SearchBox = () => {
             :
            <></>
           }
-          <button className={classes.button} type="button" onClick={updateBooks}><span style={{fontSize:"1.3rem"}}>Search</span></button>
+          <Box textAlign='center'>
+              <button className={classes.button} type="button" onClick={updateBooks}><span style={{fontSize:"1.3rem"}}>Search</span></button>
+          </Box>
           <p className={classes.adv} onClick={showAdv}>{isadv ? 
           <button className={classes.advance} type="button"><span style={{fontSize:"0.8rem"}}>Hide Advanced</span></button>
            : 
