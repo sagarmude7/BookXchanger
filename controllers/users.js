@@ -35,7 +35,7 @@ exports.signUp = async(req,res)=>{
             id:newUser._id
         }
 
-        const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"2h"})
+        const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"4h"})
 
         console.log("New User created using sign Up")
         return res.status(200).json({ profile: {name:newUser.name,email:newUser.email,id:newUser._id}, token })
@@ -63,7 +63,7 @@ exports.signIn = async(req,res)=>{
         if(!isPasswordIncorrect)
             return res.status(400).json({msg:"Password Incorrect"})
 
-        const token = jwt.sign({ profile: oldUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ profile: oldUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "4h" });
         console.log("User Signed In Normally")
         return res.status(200).json({ profile: {name:oldUser.name,email:oldUser.email,id:oldUser._id}, token });
     } catch (err) {
@@ -103,7 +103,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
                 id:newUser._id
             }
 
-            const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"1h"})
+            const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"4h"})
 
             return res.status(200).json({ profile: {name:newUser.name,email:newUser.email,profilePic:newUser.profilePic,id:newUser._id}, token })
         }
@@ -111,7 +111,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
         const updatedUser = await User.findOneAndUpdate({email:email},{profilePic:profilePic},{new:true})
         
         updatedUser.save()
-        const token = jwt.sign({ profile: updatedUser, id: oldUser._id },process.env.TOKEN_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ profile: updatedUser, id: oldUser._id },process.env.TOKEN_SECRET, { expiresIn: "4h" });
         
         console.log("User Signed In using Google")
         return res.status(200).json({ profile: {name:updatedUser.name,email:updatedUser.email,profilePic:updatedUser.profilePic,id:updatedUser._id}, token });

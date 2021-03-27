@@ -12,6 +12,7 @@ import {
   Paper,
   Grid
 } from "@material-ui/core";
+import ChatBox from "./ChatBox/ChatBox"
 import Contact from "./ContactForm/Contact"
 import useStyles from "./styles.js";
 import img from "./profilepic.png";
@@ -260,9 +261,16 @@ const OtherUser = ({match}) => {
           <Typography className={classes.bodyText}></Typography>
         </Container>
         </Grid>
-        <Grid item>
+        <Grid item xs={6}
+        style=
+        {{
+          display : "flex",
+          alignItems : "center",
+          justifyContent : "center",
+          border :"1px solid red"
+         }}> 
         {/* <Contact /> */}
-        <h1 style={{color :"white",margin :"100px"}}>Contact User Here</h1>
+        <ChatBox />
         </Grid>
         </Grid>
         <Footer />

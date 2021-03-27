@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {ADDFILTER, UPDATE_BOOKS} from '../../constants/actions'
 import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormControlLabel,Radio,Select,MenuItem,InputLabel,FormControl} from '@material-ui/core';
 import Book from "./Book/Book";
 import useStyles from "./style";
@@ -20,12 +21,22 @@ const AllBooks = () => {
 
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState();
+  const filterData = useSelector(state=>state.filterData)
 
-  // useEffect(()=>{
-  //         console.log("Getting Books")
-  //         //accepts an action call as an argument -> goes to actions folder
-  //         dispatch(getBooks())
-  // },[dispatch])
+    useEffect(() => {
+      dispatch({type:ADDFILTER,payload:books})
+    },[dispatch])
+
+
+    useEffect(() => {
+      if(sortbool == true){
+        dispatch({type:ADDFILTER,payload:data})
+      }
+    },[dispatch,data])
+
+const removeFilters = () => {
+  dispatch({type:ADDFILTER,payload:books});
+}
 
   useEffect(() => {
     const sortArray = (type) => {
@@ -63,14 +74,8 @@ const AllBooks = () => {
   return (
     <>
       <Navbar />
-      <div className={classes.maincontainer}>
-
       <SearchBox />
-      <FilteredBooks />
-      <br />
-      <hr color="red" height="2px" width="85%"></hr>
-      {/* <h1>All Books : </h1> */}
-
+      <button className={classes.sortButton} onClick={removeFilters}><span style={{fontSize:"1.1rem"}}>Remove Filters</span></button>
       <div style={{ marginTop: "20px" }}>
       <button className={classes.sortButton} onClick={()=>setSortbool(!sortbool)}><span style={{fontSize:"1.1rem"}}>Sort</span></button>
 
@@ -110,7 +115,44 @@ const AllBooks = () => {
         ) : (
           <></>
         )}
+      <span style={{margin : "0px",padding:"5px",}}><h2>Books</h2></span>
+            <div style={{"marginTop":"2px"}}>
+                <Container>
+                {filterData.length===0?<CircularProgress/>:(
+                    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                    {filterData.map((book)=>(
+                            <Grid item xs={12} sm={3}>
+                                <Book key={book._id} book={book}/>
+                            </Grid>
+                    ))}
+                    </Grid>
+                    )
+                }
+                </Container>
+            </div>
+      <div className={classes.maincontainer}>
+      <br />
+      <hr color="red" height="2px" width="85%"></hr>
+      {/* <h1>All Books : </h1> */}
 
+ 
+      {/* <span style={{margin : "0px",padding:"5px",}}><h2>Books</h2></span>
+        <div style={{"marginTop":"2px"}}>
+                <Container>
+                  {filterData.length===0?<CircularProgress/>:(
+                      <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                      {filterData.map((book)=>(
+                              <Grid item xs={12} sm={3}>
+                                  <Book key={book._id} book={book}/>
+                              </Grid>
+                      ))}
+                      </Grid>
+                      )
+                  }
+                </Container>
+        </div> */}
+      
+{/* 
         <Container>
           {books.length === 0 ? (
             <CircularProgress />
@@ -134,7 +176,7 @@ const AllBooks = () => {
                   ))}
             </Grid>
           )}
-        </Container>
+        </Container> */}
       </div>
       </div> 
       <Footer />
