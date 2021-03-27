@@ -24,16 +24,27 @@ const useStyles = makeStyles((theme) => ({
     width : "100%"
   },
   input : {
-    padding: theme.spacing(6),
-    marginLeft :"10px",
-    marginRight : "10px", 
+    padding: theme.spacing(2), 
     textAlign: 'center',
-    border  :"1px solid grey"
+    marginLeft: '110px',
+    border  :"1px solid red"
+  },
+  input1 : {
+    padding: theme.spacing(2), 
+    textAlign: 'center',
+    marginLeft: '0px',
   },
   button:{
     position :"relative",
     top : "0px",
-    left : "45%"
+    left : "45%",
+    backgroundColor:"#DF4C73"
+  },
+  advance:{
+    position:"relative",
+    top:"0%",
+    left:"70%",
+    backgroundColor:"#DF4C73"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -184,10 +195,12 @@ const SearchBox = () => {
         };
     return ( 
         <>
-      <Typography variant="h5"  className="heading"> Search a Book </Typography>
+        <Typography variant="h5"  className="heading"> Search a Book </Typography>
         <div noValidate autoComplete="off" >
           <div  className={classes.root} >
-            <input 
+        <Grid container spacing={4}>
+          <Grid item xs={4}>
+          <input 
             id="standard-basic" 
             label="Name" 
             className={classes.input} 
@@ -196,7 +209,9 @@ const SearchBox = () => {
             placeholder={"Search Name"}
             onChange = {(e) => {setName(e.target.value)}}
             />
-            <FormControl variant="outlined" border="blue" style={{width:"420px"}} fullWidth>
+          </Grid>
+          <Grid item xs={4}>
+          <FormControl variant="outlined" border="blue" style={{width:"420px"}} fullWidth>
                 <InputLabel id="branchTypeLabel">Branch</InputLabel>
                     <Select
                     labelId="branchLabel"
@@ -218,7 +233,9 @@ const SearchBox = () => {
                         <MenuItem value="Textile Engineering">Textile Engineering</MenuItem>
                     </Select>
                 </FormControl>
-            <input 
+          </Grid>
+          <Grid item xs={4}>
+          <input 
             id="standard-basic" 
             label="Subject" 
             className={classes.input} 
@@ -227,6 +244,8 @@ const SearchBox = () => {
             placeholder={"Search Subject"}
             onChange = {(e) => {setSubject(e.target.value)}}
             />
+          </Grid>
+        </Grid>
           </div>
           <hr style={{borderWidth : "0px"}}/>
           <hr style={{borderWidth : "0px"}}/>
@@ -275,7 +294,7 @@ const SearchBox = () => {
                 <input 
                 id="standard-basic" 
                 label="Tags" 
-                className={classes.input} 
+                className={classes.input1} 
                 key="random3"
                 value= {inputTags}
                 placeholder={"Type Tags"}
@@ -287,8 +306,13 @@ const SearchBox = () => {
             :
            <></>
           }
-          <button className={classes.button} type="button" onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
-          <p className={classes.adv} onClick={showAdv}>{isadv ? <p>Hide Advanced</p>  : <p>Advanced Search</p>}</p>
+          <button className={classes.button} type="button" onClick={updateBooks}><span style={{fontSize:"1.3rem"}}>Search</span></button>
+          <p className={classes.adv} onClick={showAdv}>{isadv ? 
+          <button className={classes.advance} type="button"><span style={{fontSize:"0.8rem"}}>Hide Advanced</span></button>
+           : 
+           <button className={classes.advance} type="button"><span style={{fontSize:"0.8rem"}}>Advanced Search</span></button>
+           }</p>
+
           <span className="hide">Double Click to search</span>
         </div> 
     </>
@@ -332,5 +356,113 @@ export default SearchBox;
           </div>
         </AccordionDetails>
       </Accordion> */}
+    //   <Typography variant="h5"  className="heading"> Search a Book </Typography>
+    //     <div noValidate autoComplete="off" >
+    //       <div  className={classes.root} >
+    //         <input 
+    //         id="standard-basic" 
+    //         label="Name" 
+    //         className={classes.input} 
+    //         key="random1"
+    //         value= {inputName}
+    //         placeholder={"Search Name"}
+    //         onChange = {(e) => {setName(e.target.value)}}
+    //         />
+    //         <FormControl variant="outlined" border="blue" style={{width:"420px"}} fullWidth>
+    //             <InputLabel id="branchTypeLabel">Branch</InputLabel>
+    //                 <Select
+    //                 labelId="branchLabel"
+    //                 id="branch"
+    //                 label="branch Of Book"
+    //                 onChange={(e) => setBranch(e.target.value)}
+    //                 value={inputBranch}
+    //                 name="branch"
+    //                 >
+    //                     <MenuItem value="Computer Engineering">
+    //                                         <em>Computer Engineering</em>
+    //                                     </MenuItem>
+    //                     <MenuItem value="Information Technology">Information Technology</MenuItem>
+    //                     <MenuItem value="Electronics Engineering">Electronics Engineering</MenuItem>
+    //                     <MenuItem value="Electronics and Telecommunication Engineering">Electronics and Telecommunication Engineering</MenuItem>
+    //                     <MenuItem value="Mechanical Engineering">Mechanical Engineering</MenuItem>
+    //                     <MenuItem value="Civil Engineering">Civil Engineering</MenuItem>
+    //                     <MenuItem value="Production Engineering">Production Engineering</MenuItem>
+    //                     <MenuItem value="Textile Engineering">Textile Engineering</MenuItem>
+    //                 </Select>
+    //             </FormControl>
+    //         <input 
+    //         id="standard-basic" 
+    //         label="Subject" 
+    //         className={classes.input} 
+    //         key="random3"
+    //         value= {inputSubject}
+    //         placeholder={"Search Subject"}
+    //         onChange = {(e) => {setSubject(e.target.value)}}
+    //         />
+    //       </div>
+    //       <hr style={{borderWidth : "0px"}}/>
+    //       <hr style={{borderWidth : "0px"}}/>
+    //       {
+    //         isadv ? 
+    //     <Grid container spacing={4} className={classes.gridContainer} > 
+    //         <Grid item xs={4} sm={2}>
+    //             <FormControl variant="outlined" border="blue" className={classes.formControl} fullWidth>
+    //             <InputLabel id="conditionTypeLabel">Condition Of Book</InputLabel>
+    //                 <Select
+    //                 labelId="conditionLabel"
+    //                 id="condition"
+    //                 label="Condition Of Book"
+    //                 onChange={(e) => setCondition(e.target.value)}
+    //                 value={inputCondition}
+    //                 name="condition"
+    //                 >
+    //                     <MenuItem value="Used">Used</MenuItem>
+    //                     <MenuItem value="New">New</MenuItem>
+    //                     <MenuItem value="">None</MenuItem>
+    //                 </Select>
+    //             </FormControl>
+    //           </Grid>
+    //           <Grid item xs={4} sm={2} >
+    //               <FormControl variant="outlined" className={classes.formControl} fullWidth>
+    //                   <InputLabel id="type-label">Price Type</InputLabel>
+    //                   <Select
+    //                   labelId="type-label"
+    //                   id="priceType"
+    //                   label="Price Type"
+    //                   name="priceType"
+    //                   value={inputPrice}
+    //                   onChange={(e) => setPrice(e.target.value)}
+    //                   placeholder="Select Price Type"
+    //                   >
+    //                       <MenuItem value="Fixed">
+    //                           <em>Fixed</em>
+    //                       </MenuItem>
+    //                       <MenuItem value="Negotiable">Negotiable</MenuItem>
+    //                       <MenuItem value="Price on Call">Price on Call</MenuItem>
+    //                       <MenuItem value="">None</MenuItem>
+    //                   </Select>
+    //               </FormControl>
+    //           </Grid>
+    //           <Grid item xs={4} sm={2} >
+    //             <input 
+    //             id="standard-basic" 
+    //             label="Tags" 
+    //             className={classes.input} 
+    //             key="random3"
+    //             value= {inputTags}
+    //             placeholder={"Type Tags"}
+    //             onChange = {(e) => {setTags(e.target.value)}}
+    //             />
+    //           </Grid>
+              
+    //         </Grid>
+    //         :
+    //        <></>
+    //       }
+    //       <button className={classes.button} type="button" onClick={updateBooks}><span style={{fontSize:"1.4rem"}}>Search</span></button>
+    //       <p className={classes.adv} onClick={showAdv}>{isadv ? <p>Hide Advanced</p>  : <p>Advanced Search</p>}</p>
+    //       <span className="hide">Double Click to search</span>
+    //     </div> 
+    // </>
 
     
