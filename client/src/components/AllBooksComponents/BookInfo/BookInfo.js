@@ -12,10 +12,10 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
+import SendIcon from "@material-ui/icons/Send";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../Footer/footer";
 import moment from "moment";
-
 import {
   Button,
   Grid,
@@ -23,6 +23,7 @@ import {
   Grow,
   Container,
   Paper,
+  Icon,
   RadioGroup,
   FormControlLabel,
   Radio,
@@ -36,12 +37,19 @@ import {
   IconButton,
   Toolbar,
   AppBar,
+  TextField,
   Link,
   Divider,
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { useParams } from "react-router";
 import { GET_BOOK } from "../../../constants/actions";
+
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Book from "../../AllBooksComponents/Book/Book";
+import useStyle from "./style";
+import { getBooks } from "../../../actions/books";
 
 const BookInfo = ({ match }) => {
   /***************************
@@ -68,6 +76,44 @@ const BookInfo = ({ match }) => {
   }, [dispatch]);
 
   const bookImage = book?.selectedFile;
+
+  //Similar books
+
+  const classe = useStyle();
+  const allBooks = useSelector((state) => state.books);
+  const filterbooks = allBooks.filter(
+    (books) => books.isSold === false && books.branch === book.branch
+  );
+  const [sortbool, setSortbool] = useState(false);
+
+  const [data, setData] = useState([]);
+  const [sortType, setSortType] = useState();
+  useEffect(() => {
+    console.log("Getting Books");
+    //accepts an action call as an argument -> goes to actions folder
+    dispatch(getBooks());
+  }, [dispatch]);
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 264, min: 0 },
+      items: 1,
+    },
+  };
+  //Similar books
 
   return (
     <>
@@ -214,8 +260,47 @@ const BookInfo = ({ match }) => {
               <Typography>User Name</Typography>
               <Typography>View Profile</Typography>
             </div>
+            <div>
+              <Typography>Send Message</Typography>
+              <TextField
+                id="outlined-multiline-static"
+                multiline
+                rows={5}
+                variant="outlined"
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.SendButton}
+                endIcon={<SendIcon />}
+              >
+                Send
+              </Button>
+            </div>
           </div>
-          <div className={classes.similarBooks}></div>
+          <div className={classes.similarBooks}>
+            <hr style={{ borderWidth: "0px" }} />
+
+            <Typography
+              variant="h6"
+              style={{ textAlign: "center", color: "black" }}
+            >
+              Similar Books
+            </Typography>
+            <hr style={{ border: "1px solid black", width: "150px" }} />
+            <hr style={{ borderWidth: "0px" }} />
+            <Carousel responsive={responsive}>
+              <Container>
+                <Book key={1} book={filterbooks[0]} />
+              </Container>
+              <Container>
+                <Book key={2} book={filterbooks[1]} />
+              </Container>
+              <Container>
+                <Book key={3} book={filterbooks[3]} />
+              </Container>
+            </Carousel>
+          </div>
         </div>
       </div>
 

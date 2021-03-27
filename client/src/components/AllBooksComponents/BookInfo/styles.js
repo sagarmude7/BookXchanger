@@ -13,6 +13,7 @@ const styles = makeStyles({
     backgroundImage: "linear-gradient(0deg, #B0DDE4, #E2F0F9)",
     "@media (max-width : 700px)": {
       height: "225px",
+      paddingTop: "40px",
     },
   },
 
@@ -30,8 +31,7 @@ const styles = makeStyles({
 
   topLeft: {
     color: "black",
-    top: "5px",
-    left: "35px",
+    margin: "10px",
     fontSize: "35px",
   },
 
@@ -77,6 +77,7 @@ const styles = makeStyles({
     paddingTop: "20px",
     paddingLeft: "8%",
     paddingRight: "8%",
+    paddingBottom: "20px",
     position: "relative",
     width: "100%",
     color: "white",
@@ -108,6 +109,10 @@ const styles = makeStyles({
     height: "70px",
     width: "70px",
     borderRadius: "50%",
+  },
+
+  SendButton: {
+    margin: "2px",
   },
 });
 
