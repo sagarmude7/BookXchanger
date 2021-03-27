@@ -170,6 +170,11 @@ export default makeStyles((theme) => ({
         marginTop:30,
         marginLeft:850,
       },
+      contactform:{
+        backgroundColor:'white',
+        width:'70%',
+        borderRadius:'15px',
+      }
 
     }));
     

@@ -26,7 +26,14 @@ export default makeStyles((theme) => ({
   },
   sortButton:{
     marginRight: '50px',
+    marginTop:'0px',
     backgroundColor:"#DF4C73",
     float:'right'
+  },
+  formControl:{
+    backgroundColor:'white',
+    border :"1 px solid grey",
+    borderRadius  :"8px",
+    width:'300px'
   }
 }));

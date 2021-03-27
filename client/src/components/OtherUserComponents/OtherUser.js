@@ -10,7 +10,9 @@ import {
   Button,
   Typography,
   Paper,
-  Grid
+  Grid,
+  TextareaAutosize,
+  Box
 } from "@material-ui/core";
 import ChatBox from "./ChatBox/ChatBox"
 import Contact from "./ContactForm/Contact"
@@ -209,69 +211,106 @@ const OtherUser = ({match}) => {
           </div>
           </div>
         </Container>
-
         <Dashboard userId={userId}/>
-        <Grid container xs={12}>
-          <Grid item xs={6}>
-        <Container className={classes.body}>
-          <Typography  className={classes.bodyHead}>
-          <h2>{user.name} Profile</h2> 
-          </Typography>
 
-          <Container className={classes.bodyFields}>
-            <Typography className={classes.bodyText} variant="h6">
-              Your Name :
-            </Typography>
-            <Typography className={classes.bodyTextValue} variant="h6">
-              {user.name}
-            </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={6}>
+            <Container className={classes.body}>
+              <Typography  className={classes.bodyHead}>
+              <h2>{user.name} Profile</h2> 
+              </Typography>
+
+              <Container className={classes.bodyFields}>
+                <Typography className={classes.bodyText} variant="h6">
+                  Your Name :
+                </Typography>
+                <Typography className={classes.bodyTextValue} variant="h6">
+                  {user.name}
+                </Typography>
+              </Container>
+              <Divider></Divider>
+
+              <Container className={classes.bodyFields}>
+                <Typography className={classes.bodyText} variant="h6">
+                  Email Address :
+                </Typography>
+                <Typography className={classes.bodyTextValue} variant="h6">
+                  {user.email}
+                </Typography>
+              </Container>
+              <Divider></Divider>
+
+              <Container className={classes.bodyFields}>
+                <Typography className={classes.bodyText} variant="h6">
+                  College Name :
+                </Typography>
+                <Typography className={classes.bodyTextValue} variant="h6">
+                  {user.college}
+                </Typography>
+              </Container>
+              <Divider></Divider>
+
+              <Container className={classes.bodyFields}>
+                <Typography className={classes.bodyText} variant="h6">
+                  Location :
+                </Typography>
+                <Typography className={classes.bodyTextValue} variant="h6">
+                  {user.location}
+                </Typography>
+              </Container>
+              <Divider></Divider>
+
+              <Typography className={classes.bodyText}></Typography>
+            </Container>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+          {/* <Contact /> */}
+          <h1 style={{color :"white",textAlign:'center'}}>Contact User</h1>
+          <Container className={classes.contactform}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="Name"
+              label="Name"
+              type="Name"
+              id="Name"
+              autoComplete="Name"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              name="description"
+              variant="outlined"
+              margin="normal"
+              label="Message"
+              fullWidth
+              multiline
+              rows={3}
+            />
+            <Box textAlign="center" marginBottom="0px">
+            <Button
+              type="submit"
+              width='30%'
+              variant="contained"
+              color="primary"
+              justifyContent='center'
+            >
+              Submit
+            </Button>
+            </Box> 
           </Container>
-          <Divider></Divider>
-
-          <Container className={classes.bodyFields}>
-            <Typography className={classes.bodyText} variant="h6">
-              Email Address :
-            </Typography>
-            <Typography className={classes.bodyTextValue} variant="h6">
-              {user.email}
-            </Typography>
-          </Container>
-          <Divider></Divider>
-
-          <Container className={classes.bodyFields}>
-            <Typography className={classes.bodyText} variant="h6">
-              College Name :
-            </Typography>
-            <Typography className={classes.bodyTextValue} variant="h6">
-              {user.college}
-            </Typography>
-          </Container>
-          <Divider></Divider>
-
-          <Container className={classes.bodyFields}>
-            <Typography className={classes.bodyText} variant="h6">
-              Location :
-            </Typography>
-            <Typography className={classes.bodyTextValue} variant="h6">
-              {user.location}
-            </Typography>
-          </Container>
-          <Divider></Divider>
-
-          <Typography className={classes.bodyText}></Typography>
-        </Container>
-        </Grid>
-        <Grid item xs={6}
-        style=
-        {{
-          display : "flex",
-          alignItems : "center",
-          justifyContent : "center",
-          border :"1px solid red"
-         }}> 
-        {/* <Contact /> */}
-        <ChatBox />
-        </Grid>
+          </Grid>
         </Grid>
         <Footer />
       </div>
