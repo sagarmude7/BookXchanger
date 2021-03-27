@@ -1,9 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+</style>;
+
+
 export default makeStyles((theme) => ({
-  mainContainer: {
-    display: 'flex',
-    alignItems: 'center',
+  maincontainer: {
+    backgroundColor: "#286FB4",
+    backgroundImage: `url(${'https://www.transparenttextures.com/patterns/concrete-wall-2.png'})`,
   },
   smMargin: {
     margin: theme.spacing(1),
@@ -15,11 +20,13 @@ export default makeStyles((theme) => ({
     textAlign: 'center',
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(0.5),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
+    color: "#df4c73",
   },
   sortButton:{
-    margin: '20px',
+    marginRight: '50px',
+    backgroundColor:"#DF4C73",
+    float:'right'
   }
 }));

@@ -18,13 +18,13 @@ const FilteredBooks = () => {
    
     if(filterData.length === 0){
 
-        return(<h1>No books Found...</h1>)
+        return(<div></div>)
     }
     else {
 
         return (
             <>
-            <span style={{margin : "0px",padding:"5px"}}>Filtered Books</span>
+            <span style={{margin : "0px",padding:"5px",}}><h2>Filtered Books</h2></span>
             <div style={{"marginTop":"2px"}}>
                 <Container>
                 {filterData.length===0?<CircularProgress/>:(
