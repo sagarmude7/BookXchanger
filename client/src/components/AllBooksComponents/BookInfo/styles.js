@@ -34,6 +34,10 @@ const styles = makeStyles((theme) => ({
     color: "black",
     margin: "10px",
     fontSize: "35px",
+    "@media (max-width : 700px)": {
+      margin: "5px",
+      fontSize: "25px",
+    },
   },
 
   edition: {
@@ -68,60 +72,93 @@ const styles = makeStyles((theme) => ({
       fontSize: "9px",
     },
   },
+
+  bookMain: {
+    display: "inline-block",
+  },
   price: {
+    display: "inline-block",
     fontSize: "25px",
     fontWeight: "600",
     color: "#df4c73",
-  },
-
-  details: {
-    fontFamily: "Lucida Console, Courier New,monospace",
-    display: "flex",
-    flexDirection: "column",
-  },
-
-  middleContainer: {
-    position: "relative",
-    paddingTop: "20px",
-    paddingLeft: "8%",
-    paddingRight: "8%",
-    paddingBottom: "20px",
-    position: "relative",
-    width: "100%",
-    color: "white",
-    margin: "auto",
-    background: "#d5e7f2",
+    marginLeft: "100px",
     "@media (max-width : 700px)": {
-      paddingLeft: "4%",
-      paddingRight: "4%",
+      fontSize: "15px",
+      marginLeft: "0px",
     },
   },
 
-  bookDetails: {
-    backgroundColor: "black",
+  middleContainer: {
+    color: "black",
+    position: "relative",
+    paddingTop: "20px",
+    paddingLeft: "6%",
+    paddingRight: "6%",
+    paddingBottom: "20px",
+    position: "relative",
+    width: "100%",
+    color: "black",
+    margin: "auto",
+    height: "auto",
+    background: "#d5e7f2",
+    "@media (max-width : 700px)": {
+      paddingLeft: "2%",
+      paddingRight: "2%",
+    },
   },
 
-  bookImage: {
-    width: "450px",
-    height: "500px",
-    margin: "10px",
-    float: "left",
-    "@media (max-width : 700px)": {
+  imgAndInfo: {
+    display: "block",
+  },
+
+  bookDetails: {
+    display: "inline-block",
+    width: "800px",
+    "@media (max-width : 900px)": {
       width: "100%",
     },
   },
 
-  bookInfo: {
-    margin: "10px",
-    display: "inline",
+  bookImage: {
+    width: "400px",
+    height: "300px",
+    // width: "450px",
+    // height: "500px",
+    margin: "20px",
+    float: "left",
+    display: "inline-block",
+    "@media (max-width : 900px)": {
+      width: "100%",
+      height: "400px",
+      margin: "10px",
+      paddingRight: "20px",
+    },
   },
 
   list: {
     lineHeight: "45px",
     font: "18px Sans-serif ",
-    width: "450px",
+    width: "350px",
+    margin: "0px",
+    display: "inline-block",
+    paddingLeft: "20px",
+    paddingRight: "20px",
+    marginTop: "6px",
     "@media (max-width : 700px)": {
-      width: "300px",
+      width: "100%",
+      paddingLeft: "10px",
+      paddingRight: "10px",
+    },
+  },
+
+  bookDescription: {
+    display: "block",
+    margin: "20px",
+    paddingRight: "",
+    "@media (max-width : 700px)": {
+      width: "100%",
+      margin: "10px",
+      paddingRight: "10px",
     },
   },
 
@@ -132,8 +169,25 @@ const styles = makeStyles((theme) => ({
   name: {
     color: "#DF4C73",
     "&:hover": {
-      color: "#E2F0F9",
+      color: "black",
     },
+  },
+
+  sideContainer: {
+    color: "black",
+    display: "inline-block",
+    width: "400px",
+    height: "auto",
+    "@media (max-width : 700px)": {
+      width: "100%",
+      paddingLeft: "2%",
+      paddingRight: "2%",
+    },
+  },
+
+  contactUser: {
+    display: "block",
+    margin: "20px",
   },
 
   UserInfo: {
@@ -144,17 +198,34 @@ const styles = makeStyles((theme) => ({
     width: "70px",
     borderRadius: "50%",
     float: "left",
-    margin: "0 10px",
+    marginRight: "10px",
   },
 
   chatBox: {
     marginTop: "40px",
-    width: "50%",
+    width: "100%",
   },
 
   SendButton: {
-    margin: "2px",
-    width: "50%",
+    width: "100%",
+    marginTop: "10px",
+    backgroundColor: "#DF4C73",
+  },
+
+  guidelines: {
+    display: "block",
+    margin: "20px",
+  },
+
+  guidelineList: {
+    lineHeight: "30px",
+    font: "14px Sans-serif ",
+    paddingLeft: "0px",
+    "@media (max-width : 700px)": {
+      width: "100%",
+
+      paddingRight: "10px",
+    },
   },
 }));
 
