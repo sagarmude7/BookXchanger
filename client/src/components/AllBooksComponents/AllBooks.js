@@ -47,10 +47,6 @@ const AllBooks = () => {
     }
   }, [dispatch, data]);
 
-  const removeFilters = () => {
-    dispatch({ type: ADDFILTER, payload: books });
-  };
-
   useEffect(() => {
     const sortArray = (type) => {
       //console.log(type);
@@ -87,10 +83,15 @@ const AllBooks = () => {
   return (
     <>
       <Navbar />
+      <div className={classes.maincontainer}>
       <SearchBox />
-      <button className={classes.sortButton} onClick={removeFilters}>
-        <span style={{ fontSize: "1.1rem" }}>Remove Filters</span>
-      </button>
+      <br/>
+      <br/>
+      <br/>
+      <hr color="red" height="2px" width="85%"></hr>
+      <span style={{ margin: "0px", padding: "5px" }}>
+        <h2>Books</h2>
+      </span>
       <div style={{ marginTop: "20px" }}>
         <button
           className={classes.sortButton}
@@ -161,9 +162,6 @@ const AllBooks = () => {
         ) : (
           <></>
         )}
-        <span style={{ margin: "0px", padding: "5px" }}>
-          <h2>Books</h2>
-        </span>
         <div style={{ marginTop: "2px" }}>
           <Container>
             {filterData.length === 0 ? (
@@ -184,9 +182,6 @@ const AllBooks = () => {
             )}
           </Container>
         </div>
-        <div className={classes.maincontainer}>
-          <br />
-          <hr color="red" height="2px" width="85%"></hr>
           {/* <h1>All Books : </h1> */}
 
           {/* <span style={{margin : "0px",padding:"5px",}}><h2>Books</h2></span>
