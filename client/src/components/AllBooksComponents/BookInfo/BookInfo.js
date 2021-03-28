@@ -118,9 +118,11 @@ const BookInfo = ({ match }) => {
       <div className={classes.root}>
         <div className={classes.topContainer}>
           <ArrowBackIcon
+            style={{ cursor: "pointer" }}
             className={classes.topLeft}
             onClick={() => history.goBack()}
           ></ArrowBackIcon>
+
           <Typography className={classes.bottomLeft}>
             <div className={classes.bookMain}>
               <Typography className={classes.branch}>{book?.branch}</Typography>
@@ -278,6 +280,12 @@ const BookInfo = ({ match }) => {
               </div>
               <div className={classes.chatBox}>
                 <Typography variant="h6">Send Message</Typography>
+                <hr
+                  style={{
+                    border: "1px solid #DF4C73",
+                    width: "100%",
+                  }}
+                />
                 <TextField
                   id="outlined-multiline-static"
                   multiline
@@ -344,7 +352,7 @@ const BookInfo = ({ match }) => {
             >
               Similar Books
             </Typography>
-            <hr style={{ border: "1px solid black", width: "150px" }} />
+            <hr style={{ border: "1px solid #DF4C73", width: "250px" }} />
             <hr style={{ borderWidth: "0px" }} />
             {filterbooks.length === 0 ? (
               <Typography>No simialar book found</Typography>

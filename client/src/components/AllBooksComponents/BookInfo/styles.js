@@ -100,7 +100,7 @@ const styles = makeStyles((theme) => ({
     color: "black",
     margin: "auto",
     height: "auto",
-    background: "#d5e7f2",
+    background: "#e6e6e6",
     "@media (max-width : 700px)": {
       paddingLeft: "2%",
       paddingRight: "2%",
@@ -114,8 +114,11 @@ const styles = makeStyles((theme) => ({
   bookDetails: {
     display: "inline-block",
     width: "800px",
+    marginRight: "10px",
+    backgroundColor: "#f2f2f2",
     "@media (max-width : 900px)": {
       width: "100%",
+      marginRight: "0px",
     },
   },
 
@@ -177,6 +180,7 @@ const styles = makeStyles((theme) => ({
     color: "black",
     display: "inline-block",
     width: "400px",
+    backgroundColor: "#f2f2f2",
     height: "auto",
     "@media (max-width : 700px)": {
       width: "100%",
