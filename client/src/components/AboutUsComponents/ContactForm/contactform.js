@@ -114,3 +114,8 @@ const Contact = () => {
 };
 
 export default Contact;
+
+/*
+MONGO_URI=mongodb+srv://Bookxchanger:Book@12341234@bookxchanger.hvboa.mongodb.net/Booxchanger?retryWrites=true&w=majority
+TOKEN_SECRET=3nklbfpavxzqqu37474
+*/
