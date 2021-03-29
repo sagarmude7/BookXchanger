@@ -30,7 +30,6 @@ const Description = () => {
   return (
     <>
       <Carousel
-        className={classes.carousel}
         indicators={false}
         animation="fade"
         autoPlay={true}

@@ -1,8 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
 const styles = makeStyles(() => ({
-  carousel: {},
-
   paper: {
     border: "5px solid #000WWW",
     backgroundSize: "cover",
@@ -12,7 +10,6 @@ const styles = makeStyles(() => ({
     position: "relative",
     marginLeft: "0px",
     marginRight: "0px",
-
     overflow: "none",
     width: "100%",
     zIndex: "-1",
