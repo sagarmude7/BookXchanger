@@ -1,33 +1,49 @@
-import React from 'react'
-import Carousel from "react-material-ui-carousel"
-import {Paper} from "@material-ui/core"
+import React from "react";
+import Carousel from "react-material-ui-carousel";
+import { Paper } from "@material-ui/core";
 import useStyles from "./styles.js";
-import descData from "./descData.js"
+import descData from "./descData.js";
 const Description = () => {
-    const {paper,content,parent} = useStyles();
-    
+  const classes = useStyles();
 
-    const Item = (props) => {
-
-        return (
-            <div className={parent}>
-            <div className={paper} style={{backgroundImage : 'linear-gradient(rgba(0,2,1,0.5),rgba(2,0,0.5)),url(' + props.item.img + ')'}}>
-                <div className={content}>
-                <h1>{props.item.heading}</h1> 
-                <h3>{props.item.subHeading}</h3>
-                <p>{props.item.description}</p>
-                </div>
-            </div>
-            </div>
-        );
-    }
+  const Item = (props) => {
     return (
-        <>
-        <Carousel>
-            {descData.map((item,index) => <Item key={index} item={item} />)}
-        </Carousel>
-        </>
-    )
-}
+      <div className={classes.parent}>
+        <div
+          className={classes.paper}
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(0,1,1,0.3),rgba(1,0,0.5)),url(" +
+              props.item.img +
+              ")",
+          }}
+        >
+          <div className={classes.content}>
+            <h1>{props.item.heading}</h1>
+            <h3>{props.item.subHeading}</h3>
+            <p>{props.item.description}</p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  return (
+    <>
+      <Carousel
+        className={classes.carousel}
+        indicators={false}
+        animation="fade"
+        autoPlay={true}
+        interval={5000}
+        stopAutoPlayOnHover={false}
+        navButtonsAlwaysInvisible={true}
+      >
+        {descData.map((item, index) => (
+          <Item key={index} item={item} />
+        ))}
+      </Carousel>
+    </>
+  );
+};
 
 export default Description;

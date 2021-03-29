@@ -14,26 +14,25 @@ const app = express();
 //cross origin request
 // app.use(cors())
 
-
 //connect to databases
 connectDB();
 
 app.use((req, res, next) => {
   // console.log("Running.")
-  console.log(req.method)
+  console.log(req.method);
   res.append("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
   res.append(
-    "Access-Control-Allow-Methods",
-    "GET,PUT,POST,DELETE,PATCH"
+    "Access-Control-Allow-Headers",
+    "authorization,Content-Type,origin, x-requested-with"
   );
-  res.append("Access-Control-Allow-Headers", "authorization,Content-Type,origin, x-requested-with");
   res.append("Access-Control-Allow-Credentials", "true");
-  res.append("Origin","http://localhost:3000")
+  res.append("Origin", "http://localhost:3000");
   // res.append("optionsSuccessStatus","200")
-  res.append("Access-Control-Max-Age","86400")
+  res.append("Access-Control-Max-Age", "86400");
   // if(req.method=="OPTIONS")
   //   res.sendStatus(200)
-  console.log(res.statusCode)
+  console.log(res.statusCode);
   next();
 });
 
