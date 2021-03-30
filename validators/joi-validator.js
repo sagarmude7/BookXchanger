@@ -28,7 +28,31 @@ const changePasswordValidator = joi.object({
     confirmPassword:joi.string().min(6).required()
 })
 
+const postBookValidator = joi.object({
+    bookName: joi.string().required(),
+    subject: joi.string().required(),
+    branch: joi.string().required(),
+    price: joi.number().required(),
+    condition: joi.string().required(),
+    mrp:joi.number().required(),
+    selectedFile: joi.string().required(),
+    author: joi.string().required(),
+    bookName: joi.string().required(),
+    tags: joi.array().required(),
+    noOfPages:joi.number().required(),
+    edition: joi.string().required(),
+    description: joi.string().required().min(20)
+})
+
+const feedBackValidator = joi.object({
+    name:joi.string().required(),
+    message:joi.string().required().min(20),
+    email:joi.string().required().email()
+})
+
 module.exports.loginValidator = loginValidator
 module.exports.regValidator = regValidator
 module.exports.editValidator = editValidator
 module.exports.changePasswordValidator = changePasswordValidator
+module.exports.postBookValidator = postBookValidator
+module.exports.feedBackValidator = feedBackValidator

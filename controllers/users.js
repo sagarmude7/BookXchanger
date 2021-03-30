@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
-const { regValidator, loginValidator, editValidator, changePasswordValidator } = require('../validators/joi-validator')
+const { regValidator, loginValidator, editValidator, changePasswordValidator,feedBackValidator } = require('../validators/joi-validator')
 
 
 exports.signUp = async(req,res)=>{
@@ -198,7 +198,11 @@ exports.changePassword = async(req,res)=>{
 // }
 
 exports.sendMail = async(req,res)=>{
+    const {error} = feedBackValidator.validate(req.body)
+    console.log(error)
     try{
+        if(error)
+            return res.status(400).json({msg:error.details[0].message,severity:"error"})
         const receiver = 'bookxchanger7@gmail.com';
         const message = req.body.message;
         const subject = `Feedback from ${req.body.name}-${req.body.email}`
@@ -228,7 +232,7 @@ exports.sendMail = async(req,res)=>{
                 console.log('Email was sent successfully!'+info.response)
             }
         })
-        return res.status(200).json({msg:"Email sent successfully!"})
+        return res.status(200).json({msg:"Feedback sent successfully!",severity:"success"})
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });
     }

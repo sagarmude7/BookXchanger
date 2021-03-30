@@ -5,7 +5,8 @@ import {
   GET_BOOK,
   UPDATE_SOLD,
   DELETE_BOOK,
-  UPDATE_BOOKS
+  UPDATE_BOOKS,
+  VALID
 } from "../constants/actions";
 const api = require("../api/index");
 
@@ -21,15 +22,18 @@ export const getBooks = () => async (dispatch) => {
   }
 };
 
-export const createBookAd = (formData) => async (dispatch) => {
+export const createBookAd = (formData,history) => async (dispatch) => {
   try {
     console.log("Hello");
     const { data } = await api.createBookAd(formData);
     console.log("Book created");
     console.log(data);
     dispatch({ type: CREATE, payload: data });
+    history.push('/')
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data)
+    const data = err.response.data
+    dispatch({type:VALID,payload:data})
   }
 };
 
