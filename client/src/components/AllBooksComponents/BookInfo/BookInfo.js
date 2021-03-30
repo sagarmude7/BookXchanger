@@ -52,10 +52,6 @@ import Book from "../../AllBooksComponents/Book/Book";
 import { getBooks } from "../../../actions/books";
 
 const BookInfo = ({ match }) => {
-  /***************************
-  REDUX  GLOBAL STATE PROPERTIES
- **************************/
-
   const classes = useStyles();
   const theme = useTheme();
   const history = useHistory();
@@ -122,20 +118,24 @@ const BookInfo = ({ match }) => {
       <div className={classes.root}>
         <div className={classes.topContainer}>
           <ArrowBackIcon
+            style={{ cursor: "pointer" }}
             className={classes.topLeft}
             onClick={() => history.goBack()}
           ></ArrowBackIcon>
+
           <Typography className={classes.bottomLeft}>
-            <Typography className={classes.branch}>{book?.branch}</Typography>
-            {book?.bookName}
-            <div className={classes.edition}>
-              {" ("}
-              {book?.edition}
-              {"th edition)"}
-            </div>
-            <div className={classes.date}>
-              {"Posted on: "}
-              {moment(book?.createdAt).format("DD MMM, YYYY")}
+            <div className={classes.bookMain}>
+              <Typography className={classes.branch}>{book?.branch}</Typography>
+              {book?.bookName}
+              <div className={classes.edition}>
+                {" ("}
+                {book?.edition}
+                {"th edition)"}
+              </div>
+              <div className={classes.date}>
+                {"Posted on: "}
+                {moment(book?.createdAt).format("DD MMM, YYYY")}
+              </div>
             </div>
             <div className={classes.price}>
               {book.price}
@@ -148,69 +148,66 @@ const BookInfo = ({ match }) => {
 
         <div className={classes.middleContainer}>
           <div className={classes.bookDetails}>
-            <div style={{ flex: "auto", flexDirection: "row" }}>
-              <img
-                className={classes.bookImage}
-                src={book.selectedFile}
-                alt=""
-              />
-            </div>
-            <div
-              className={classes.bookInfo}
-              style={{ flex: "auto", flexDirection: "row" }}
-            >
-              <ul style={{ listStyleType: "none" }} className={classes.list}>
-                <li>
-                  Name: <span className={classes.name}>{book.bookName}</span>
-                </li>
+            <div className={classes.imgAndInfo}>
+              <div>
+                <img
+                  className={classes.bookImage}
+                  src={book.selectedFile}
+                  alt="Book Image"
+                />
+              </div>
+              <div>
+                <ul style={{ listStyleType: "none" }} className={classes.list}>
+                  <li>
+                    Name: <span className={classes.name}>{book.bookName}</span>
+                  </li>
 
-                <li>
-                  Subject: <span className={classes.name}>{book.subject}</span>
-                </li>
+                  <li>
+                    Subject:{" "}
+                    <span className={classes.name}>{book.subject}</span>
+                  </li>
 
-                <li>
-                  Branch: <span className={classes.name}>{book.branch}</span>
-                </li>
-                <li>
-                  Edition:{" "}
-                  <span className={classes.name}>
-                    {book.edition}
-                    {"th"}
-                  </span>
-                </li>
-                <li>
-                  Price{"(₹)"}:{" "}
-                  <span className={classes.name}>
-                    {book.price}
-                    {" ("}
-                    {book.priceType}
-                    {")"}
-                  </span>
-                </li>
-                <li>
-                  Condition:{" "}
-                  <span className={classes.name}>{book.condition}</span>
-                </li>
-                <li>
-                  MRP{"(₹)"}: <span className={classes.name}>{book.mrp}</span>
-                </li>
-                <li>
-                  Author/Publication:{" "}
-                  <span className={classes.name}>{book.author}</span>
-                </li>
-                <li>
-                  Number of pages:{" "}
-                  <span className={classes.name}>
-                    {book.noOfPages}
-                    {"+"}
-                  </span>
-                </li>
-              </ul>
+                  <li>
+                    Branch: <span className={classes.name}>{book.branch}</span>
+                  </li>
+                  <li>
+                    Edition:{" "}
+                    <span className={classes.name}>
+                      {book.edition}
+                      {"th"}
+                    </span>
+                  </li>
+                  <li>
+                    Price{"(₹)"}:{" "}
+                    <span className={classes.name}>
+                      {book.price}
+                      {" ("}
+                      {book.priceType}
+                      {")"}
+                    </span>
+                  </li>
+                  <li>
+                    Condition:{" "}
+                    <span className={classes.name}>{book.condition}</span>
+                  </li>
+                  <li>
+                    MRP{"(₹)"}: <span className={classes.name}>{book.mrp}</span>
+                  </li>
+                  <li>
+                    Author/Publication:{" "}
+                    <span className={classes.name}>{book.author}</span>
+                  </li>
+                  <li>
+                    Number of pages:{" "}
+                    <span className={classes.name}>
+                      {book.noOfPages}
+                      {"+"}
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div
-              className={classes.bookDescription}
-              style={{ flex: "auto", flexDirection: "row" }}
-            >
+            <div className={classes.bookDescription}>
               <Typography variant="h5">Description</Typography>
               <Typography variant="body1">{book.description}</Typography>
               <div>
@@ -259,66 +256,93 @@ const BookInfo = ({ match }) => {
                   <EmailIcon size={36} className={classes.socialMediaButton} />
                 </EmailShareButton>
               </div>
-              <div>
-                <Typography
-                  align="center"
-                  style={{
-                    fontSize: "20px",
-                    position: "Centre",
-                    padding: "5px 0 5px 0",
-
-                    color: "white",
-                  }}
+            </div>
+          </div>
+          <div className={classes.sideContainer}>
+            <div className={classes.contactUser}>
+              <div className={classes.UserInfo}>
+                <img
+                  className={classes.userProfilePic}
+                  src="http://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png"
+                  alt="User Profile"
+                />
+                {/* <Avatar>{book.ownerName[0]}</Avatar> */}
+                <Typography variant="h5">{book.ownerName}</Typography>
+                <Link
+                  color="inherit"
+                  to="/"
+                  component={RouterLink}
+                  key="Home"
+                  className={classes.name}
                 >
-                  {"Mention "}
-                  <Link
-                    color="inherit"
-                    to="/"
-                    component={RouterLink}
-                    key="Home"
-                    className={classes.name}
-                  >
-                    Bookxchanger
-                  </Link>{" "}
-                  {" when contacting seller to get a good deal."}
-                </Typography>
+                  <Typography variant="body2">View Profile</Typography>
+                </Link>
+              </div>
+              <div className={classes.chatBox}>
+                <Typography variant="h6">Send Message</Typography>
+                <hr
+                  style={{
+                    border: "1px solid #DF4C73",
+                    width: "100%",
+                  }}
+                />
+                <TextField
+                  id="outlined-multiline-static"
+                  multiline
+                  rows={7}
+                  variant="outlined"
+                  style={{ width: "100%" }}
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.SendButton}
+                  endIcon={<SendIcon />}
+                >
+                  Send
+                </Button>
+              </div>
+            </div>
+            <div className={classes.guidelines}>
+              <Typography variant="body1">Read before you deal</Typography>
+              <div>
+                <ul
+                  style={{ listStyleType: "none" }}
+                  className={classes.guidelineList}
+                >
+                  <li>1. Please follow Government guidelines for COVID19.</li>
+                  <li>2. Use a safe location to meet seller</li>
+                  <li>3. Never provide your personal or banking information</li>
+                  <li>4. Beware of unrealistic offers</li>
+                </ul>
               </div>
             </div>
           </div>
-          <div
-            className={classes.contactUser}
-            style={{ flex: "auto", flexDirection: "row" }}
-          >
-            <div className={classes.UserInfo}>
-              <img
-                className={classes.userProfilePic}
-                src="http://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png"
-                alt="User Profile"
-              />
-              {/* <Avatar>{book.ownerName[0]}</Avatar> */}
-              <Typography variant="h5">{book.ownerName}</Typography>
-              <Typography variant="body2" className={classes.name}>
-                View Profile
-              </Typography>
-            </div>
-            <div className={classes.chatBox}>
-              <Typography variant="h6">Send Message</Typography>
-              <TextField
-                id="outlined-multiline-static"
-                multiline
-                rows={7}
-                variant="outlined"
-              />
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.SendButton}
-                endIcon={<SendIcon />}
+          <div>
+            <Typography
+              align="center"
+              style={{
+                fontSize: "20px",
+                position: "Centre",
+                padding: "5px 0 5px 0",
+
+                color: "black",
+              }}
+            >
+              {"Mention "}
+              <Link
+                color="inherit"
+                to="/"
+                component={RouterLink}
+                key="Home"
+                className={classes.name}
               >
-                Send
-              </Button>
-            </div>
+                Bookxchanger
+              </Link>{" "}
+              {" when contacting seller to get a good deal."}
+            </Typography>
           </div>
+
           <div className={classes.similarBooks}>
             <hr style={{ borderWidth: "0px" }} />
 
@@ -328,17 +352,21 @@ const BookInfo = ({ match }) => {
             >
               Similar Books
             </Typography>
-            <hr style={{ border: "1px solid black", width: "150px" }} />
+            <hr style={{ border: "1px solid #DF4C73", width: "250px" }} />
             <hr style={{ borderWidth: "0px" }} />
-            <Carousel responsive={responsive}>
-              {filterbooks.map((book) => (
-                <Grid>
-                  <Container>
-                    <Book key={book._id} book={book} />
-                  </Container>
-                </Grid>
-              ))}
-            </Carousel>
+            {filterbooks.length === 0 ? (
+              <Typography>No simialar book found</Typography>
+            ) : (
+              <Carousel responsive={responsive}>
+                {filterbooks.map((book) => (
+                  <Grid>
+                    <Container>
+                      <Book key={book._id} book={book} />
+                    </Container>
+                  </Grid>
+                ))}
+              </Carousel>
+            )}
           </div>
         </div>
       </div>

@@ -1,7 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {ADDFILTER, UPDATE_BOOKS} from '../../constants/actions'
-import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormControlLabel,Radio,Select,MenuItem,InputLabel,FormControl} from '@material-ui/core';
+import { ADDFILTER, UPDATE_BOOKS } from "../../constants/actions";
+import {
+  Button,
+  Grid,
+  CircularProgress,
+  Grow,
+  Container,
+  Paper,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Box,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@material-ui/core";
 import Book from "./Book/Book";
 import useStyles from "./style";
 import Navbar from "../Navbar/Navbar";
@@ -16,27 +31,21 @@ const AllBooks = () => {
   const allBooks = useSelector((state) => state.books);
   const books = allBooks.filter((book) => book.isSold === false);
   const [sortbool, setSortbool] = useState(false);
-  const [type, settype] = useState("")
-
+  const [type, settype] = useState("");
 
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState();
-  const filterData = useSelector(state=>state.filterData)
+  const filterData = useSelector((state) => state.filterData);
 
-    useEffect(() => {
-      dispatch({type:ADDFILTER,payload:books})
-    },[dispatch])
+  useEffect(() => {
+    dispatch({ type: ADDFILTER, payload: books });
+  }, [dispatch]);
 
-
-    useEffect(() => {
-      if(sortbool == true){
-        dispatch({type:ADDFILTER,payload:data})
-      }
-    },[dispatch,data])
-
-const removeFilters = () => {
-  dispatch({type:ADDFILTER,payload:books});
-}
+  useEffect(() => {
+    if (sortbool == true) {
+      dispatch({ type: ADDFILTER, payload: data });
+    }
+  }, [dispatch, data]);
 
   useEffect(() => {
     const sortArray = (type) => {
@@ -74,71 +83,108 @@ const removeFilters = () => {
   return (
     <>
       <Navbar />
+      <div className={classes.maincontainer}>
       <SearchBox />
-      <button className={classes.sortButton} onClick={removeFilters}><span style={{fontSize:"1.1rem"}}>Remove Filters</span></button>
+      <br/>
+      <br/>
+      <br/>
+      <hr color="red" height="2px" width="85%"></hr>
+      <span style={{ margin: "0px", padding: "5px" }}>
+        <h2>Books</h2>
+      </span>
       <div style={{ marginTop: "20px" }}>
-      <button className={classes.sortButton} onClick={()=>setSortbool(!sortbool)}><span style={{fontSize:"1.1rem"}}>Sort</span></button>
+        <button
+          className={classes.sortButton}
+          onClick={() => setSortbool(!sortbool)}
+        >
+          <span style={{ fontSize: "1.1rem" }}>Sort</span>
+        </button>
 
         {sortbool === true ? (
           <>
-          <Box textAlign='center'>
-          <FormControl variant="outlined" className={classes.formControl}>
+            <Box textAlign="center">
+              <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel id="Sort ByTypeLabel">Sort By</InputLabel>
-                    <Select
-                    labelId="SortByLabel"
-                    id="SortBy"
-                    label="SortBy"
-                    value={type}
-                    >
-                        <MenuItem value="Price Lowest">
-                            <Paper className={classes.paper}>
-                                <FormControlLabel value="pricelowest" control={<Radio onClick={(e) => setSortType(e.target.value)} />}   label="Price (Lowest)" />
-                            </Paper>
-                        </MenuItem>
-                        <MenuItem value="Price Highest">
-                            <Paper className={classes.paper}>
-                                <FormControlLabel value="pricehighest" control={<Radio onClick={(e) => setSortType(e.target.value)} />}   label="Price (Highest)" />
-                            </Paper>
-                        </MenuItem>
-                        <MenuItem value="Date Newest">
-                            <Paper className={classes.paper}>
-                                <FormControlLabel value="datenewest" control={<Radio onClick={(e) => setSortType(e.target.value)} />}  label="Date Added (Newest)" />
-                            </Paper>
-                        </MenuItem>
-                        <MenuItem value="Date Oldest">
-                            <Paper className={classes.paper}>
-                                <FormControlLabel value="dateoldest" control={<Radio onClick={(e) => setSortType(e.target.value)} />}   label="Date Added (Oldest)" />
-                            </Paper>
-                        </MenuItem>
-                    </Select>
-          </FormControl>
-          </Box>
+                <Select
+                  labelId="SortByLabel"
+                  id="SortBy"
+                  label="SortBy"
+                  value={type}
+                >
+                  <MenuItem value="Price Lowest">
+                    <Paper className={classes.paper}>
+                      <FormControlLabel
+                        value="pricelowest"
+                        control={
+                          <Radio onClick={(e) => setSortType(e.target.value)} />
+                        }
+                        label="Price (Lowest)"
+                      />
+                    </Paper>
+                  </MenuItem>
+                  <MenuItem value="Price Highest">
+                    <Paper className={classes.paper}>
+                      <FormControlLabel
+                        value="pricehighest"
+                        control={
+                          <Radio onClick={(e) => setSortType(e.target.value)} />
+                        }
+                        label="Price (Highest)"
+                      />
+                    </Paper>
+                  </MenuItem>
+                  <MenuItem value="Date Newest">
+                    <Paper className={classes.paper}>
+                      <FormControlLabel
+                        value="datenewest"
+                        control={
+                          <Radio onClick={(e) => setSortType(e.target.value)} />
+                        }
+                        label="Date Added (Newest)"
+                      />
+                    </Paper>
+                  </MenuItem>
+                  <MenuItem value="Date Oldest">
+                    <Paper className={classes.paper}>
+                      <FormControlLabel
+                        value="dateoldest"
+                        control={
+                          <Radio onClick={(e) => setSortType(e.target.value)} />
+                        }
+                        label="Date Added (Oldest)"
+                      />
+                    </Paper>
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           </>
         ) : (
           <></>
         )}
-      <span style={{margin : "0px",padding:"5px",}}><h2>Books</h2></span>
-            <div style={{"marginTop":"2px"}}>
-                <Container>
-                {filterData.length===0?<CircularProgress/>:(
-                    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-                    {filterData.map((book)=>(
-                            <Grid item xs={12} sm={3}>
-                                <Book key={book._id} book={book}/>
-                            </Grid>
-                    ))}
-                    </Grid>
-                    )
-                }
-                </Container>
-            </div>
-      <div className={classes.maincontainer}>
-      <br />
-      <hr color="red" height="2px" width="85%"></hr>
-      {/* <h1>All Books : </h1> */}
+        <div style={{ marginTop: "2px" }}>
+          <Container>
+            {filterData.length === 0 ? (
+              <CircularProgress />
+            ) : (
+              <Grid
+                className={classes.container}
+                container
+                alignItems="stretch"
+                spacing={3}
+              >
+                {filterData.map((book) => (
+                  <Grid item xs={12} sm={3}>
+                    <Book key={book._id} book={book} />
+                  </Grid>
+                ))}
+              </Grid>
+            )}
+          </Container>
+        </div>
+          {/* <h1>All Books : </h1> */}
 
- 
-      {/* <span style={{margin : "0px",padding:"5px",}}><h2>Books</h2></span>
+          {/* <span style={{margin : "0px",padding:"5px",}}><h2>Books</h2></span>
         <div style={{"marginTop":"2px"}}>
                 <Container>
                   {filterData.length===0?<CircularProgress/>:(
@@ -153,8 +199,8 @@ const removeFilters = () => {
                   }
                 </Container>
         </div> */}
-      
-{/* 
+
+          {/* 
         <Container>
           {books.length === 0 ? (
             <CircularProgress />
@@ -179,8 +225,8 @@ const removeFilters = () => {
             </Grid>
           )}
         </Container> */}
+        </div>
       </div>
-      </div> 
       <Footer />
     </>
   );

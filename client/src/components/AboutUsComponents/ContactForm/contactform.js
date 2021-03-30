@@ -3,8 +3,10 @@ import { TextField, Container, Paper, Button } from "@material-ui/core";
 import { Alert } from '@material-ui/lab';
 import { Input } from "@material-ui/core";
 import useStyles from "./style";
+import {useHistory } from 'react-router-dom'
 import { useDispatch,useSelector } from "react-redux";
 import { postFeedBackForm } from "../../../actions/user";
+import { FEEDBACK } from "../../../constants/actions";
 
 const Contact = () => {
   const classes = useStyles();
@@ -12,6 +14,7 @@ const Contact = () => {
   const nameError = "";
   const emailError = "";
   const messageError = "";
+  const history = useHistory();
   const [feedData, setFeedData] = useState({
     name: "",
     message: "",
@@ -22,6 +25,7 @@ const Contact = () => {
   const validate = () => {
     let nameError = "";
     let emailError = "";
+    
     // let passwordError = "";
 
     if (!this.state.name) {
@@ -43,12 +47,19 @@ const Contact = () => {
   const handleChange = (e) => {
     setFeedData({ ...feedData, [e.target.name]: e.target.value });
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(user);
+    if(!user){
+      history.push('/auth')
+    }
     setLoader(true);
     dispatch(postFeedBackForm({ ...feedData, email: user.profile.email }));
     setFeedData({...feedData,name:'',message:''})
+    setTimeout(()=>{
+      dispatch({type:FEEDBACK,payload:{}})
+    },3000)
   };
 
   return (
@@ -57,7 +68,7 @@ const Contact = () => {
         {
           feedback?(
             <Alert severity="success">
-                  <strong>{feedback?.msg}</strong>
+                  <strong>{feedback.msg}</strong>
             </Alert>
           ):null
         }
@@ -103,3 +114,8 @@ const Contact = () => {
 };
 
 export default Contact;
+
+/*
+MONGO_URI=mongodb+srv://Bookxchanger:Book@12341234@bookxchanger.hvboa.mongodb.net/Booxchanger?retryWrites=true&w=majority
+TOKEN_SECRET=3nklbfpavxzqqu37474
+*/

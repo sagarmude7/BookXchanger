@@ -40,7 +40,8 @@ const Book = ({ book }) => {
     book?.wishListedBy?.find((id) => id === user?.profile?.id)
   );
   useEffect(() => {
-    if (book) setFav(book.wishListedBy.find((id) => id === user.profile.id));
+    if (book)
+      setFav(book?.wishListedBy?.find((id) => id === user?.profile?.id));
   }, []);
   const addtofavourite = () => {
     console.log("Adding To Favorites..");
@@ -50,7 +51,7 @@ const Book = ({ book }) => {
   };
 
   const getBook = () => {
-    history.push(`/all/book/${book._id}`);
+    history.push(`/all/book/${book?._id}`);
   };
 
   return (

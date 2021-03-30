@@ -39,14 +39,7 @@ const Footer = () => {
           </div>
 
           <div className={classes.flexbox} style={{ flexGrow: "1" }}>
-            <Typography
-              style={{
-                fontSize: "25px",
-                fontWeight: "bold",
-                padding: "0 0 30px 0",
-              }}
-              align="center"
-            >
+            <Typography className={classes.touch} align="center">
               Get in Touch
               <br />
             </Typography>

@@ -1,5 +1,5 @@
 import { colors, makeStyles } from "@material-ui/core";
-import { text } from "body-parser";
+
 const styles = makeStyles((theme) => ({
   footer: {
     position: "center",
@@ -52,6 +52,15 @@ const styles = makeStyles((theme) => ({
     },
   },
 
+  touch: {
+    fontSize: "25px",
+    fontWeight: "bold",
+    padding: "0 0 30px 0",
+    "@media (max-width : 700px)": {
+      padding: "10px 0 5px 0",
+    },
+  },
+
   Icon: {
     margin: "10px 10px 10px 10px",
     fontSize: "40px",
@@ -68,6 +77,9 @@ const styles = makeStyles((theme) => ({
       color: "#ffffff",
       transform: "scale(1.3)",
       textShadow: "0 0 5px #ffffff",
+    },
+    "@media (max-width : 700px)": {
+      margin: "0px 10px 10px 10px",
     },
   },
 }));

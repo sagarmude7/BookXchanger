@@ -17,4 +17,4 @@ const connectDB = async()=>{
 
 // mongodb+srv://Bookxchanger:Book@12341234@bookxchanger.hvboa.mongodb.net/Booxchanger?retryWrites=true&w=majority
 
-module.exports = connectDB
+module.exports = connectDB;
