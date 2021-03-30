@@ -14,6 +14,7 @@ const Home = () => {
   const [open,setOpen] = useState(false)
   const dispatch = useDispatch()
   const authData = useSelector(state=>state.authData)
+  const user = JSON.parse(localStorage.getItem('profile'))
 
   useEffect(()=>{
     console.log(authData)
@@ -33,7 +34,7 @@ const Home = () => {
       }
 
       setOpen(false);
-      dispatch({type:AUTH,payload:{}})
+      dispatch({type:AUTH,payload:user})
   };
 
   return (
