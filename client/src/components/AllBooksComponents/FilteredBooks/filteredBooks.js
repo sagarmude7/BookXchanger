@@ -19,23 +19,13 @@ const FilteredBooks = () => {
     // console.log(filterData);
    
     if(filterData.length === 0){
-<<<<<<< HEAD
         return(<AllBooks />)
-=======
-
-        return(<h1>No Books Found</h1>)
->>>>>>> 71209b406e7e30b2f8fa5579c25ffa65bcf9eefd
     }
     else {
         return (
-<<<<<<< HEAD
           <>
             <SearchBox />
             <span style={{margin : "0px",padding:"5px",}}><h2>Filtered Books</h2></span>
-=======
-            <>
-            <span style={{margin : "0px",padding:"5px",}}><h1>Filtered Books</h1></span>
->>>>>>> 71209b406e7e30b2f8fa5579c25ffa65bcf9eefd
             <div style={{"marginTop":"2px"}}>
                 <Container>
                 {filterData.length===0?<CircularProgress/>:(

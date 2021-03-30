@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-<<<<<<< HEAD
 import {ADDFILTER, UPDATE_BOOKS} from '../../constants/actions'
 import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormControlLabel,Radio,Select,MenuItem,InputLabel,FormControl} from '@material-ui/core';
-=======
-import { Button,Grid,CircularProgress,Grow,Container,Paper,RadioGroup,FormControlLabel,Radio,Select,MenuItem,InputLabel,FormControl,Box} from '@material-ui/core';
->>>>>>> 71209b406e7e30b2f8fa5579c25ffa65bcf9eefd
 import Book from "./Book/Book";
 import useStyles from "./style";
 import Navbar from "../Navbar/Navbar";
@@ -79,17 +75,7 @@ const removeFilters = () => {
     <>
       <Navbar />
       <SearchBox />
-<<<<<<< HEAD
       <button className={classes.sortButton} onClick={removeFilters}><span style={{fontSize:"1.1rem"}}>Remove Filters</span></button>
-=======
-      <FilteredBooks />
-      <br/>
-      <br/>
-      <br/>
-      <hr color="red" height="2px" width="85%"></hr>
-      {/* <h1>All Books : </h1> */}
-
->>>>>>> 71209b406e7e30b2f8fa5579c25ffa65bcf9eefd
       <div style={{ marginTop: "20px" }}>
       <button className={classes.sortButton} onClick={()=>setSortbool(!sortbool)}><span style={{fontSize:"1.1rem"}}>Sort</span></button>
 
