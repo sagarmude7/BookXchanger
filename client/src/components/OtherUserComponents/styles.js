@@ -172,10 +172,15 @@ export default makeStyles((theme) => ({
       },
       contactform:{
         backgroundColor:'white',
-        width:'70%',
+        width:'80%',
         borderRadius:'15px',
+      },
+      text : {
+        padding : "2px",
+      },
+      button : {
+        margin : "20px",
       }
-
     }));
     
     

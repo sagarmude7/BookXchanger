@@ -71,31 +71,13 @@ const Dashboard = ({userId}) => {
   return (
     <>
       <Container className={classes.body}>
-        <ButtonGroup size="large" color="secondary">
-          <Button
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={() => setMyadbool(!Myadbool)}
-          >
-            My Ads
-          </Button>
-          <Button>Messages</Button>
-        </ButtonGroup>
-        {Myadbool === true ? (
-          <>
-            <Paper className={classes.root}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-              >
-                <Tab label="Active Ads" {...a11yProps(0)} />
-                <Tab label="Sold Ads" {...a11yProps(1)} />
-              </Tabs>
-            </Paper>
+      <br />
+  
+        <Typography  variant="h5"  style={{textAlign: "center"}}>Ads Posted By {user.name}</Typography>
+        <hr style={{ borderWidth: "0px" ,display :"none" }} />
+        <hr style={{ borderWidth: "0px" ,border: "1.4px solid black", width:"30%" ,background :"black"}} />
+       <br />
 
-            <TabPanel value={value} index={0}>
                 <Grid
                   className={classes.container}
                   container
@@ -108,25 +90,6 @@ const Dashboard = ({userId}) => {
                   <>No Active Ads</>
                 )}
                 </Grid>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <Grid
-                  className={classes.container}
-                  container
-                  alignItems="stretch"
-                  spacing={3}
-                >
-                {books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length !== 0 ? (
-                  <>{books.filter(book=>(book.owner===userId)&&(book.isSold===true)).map(card)}</>
-                ) : (
-                  <>No Sold Ads</>
-                )}
-                </Grid>
-            </TabPanel>
-          </>
-        ) : (
-          <></>
-        )}
       </Container>
     </>
   );

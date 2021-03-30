@@ -139,6 +139,7 @@ const SearchBox = () => {
 
     const removeFilters = () => {
       dispatch({type:ADDFILTER,payload:books});
+
     }
 
     const updateBooks =  async ()=>{
@@ -225,8 +226,8 @@ const SearchBox = () => {
                     name="branch"
                     >
                         <MenuItem value="Computer Engineering">
-                                            <em>Computer Engineering</em>
-                                        </MenuItem>
+                           <em>Computer Engineering</em>
+                        </MenuItem>
                         <MenuItem value="Information Technology">Information Technology</MenuItem>
                         <MenuItem value="Electronics Engineering">Electronics Engineering</MenuItem>
                         <MenuItem value="Electronics and Telecommunication Engineering">Electronics and Telecommunication Engineering</MenuItem>
@@ -311,16 +312,15 @@ const SearchBox = () => {
           }
           <Box textAlign='center'>
               <button className={classes.button} type="button" onClick={updateBooks}><span style={{fontSize:"1.3rem"}}>Search</span></button>
+              <span className="hide">Double Click to search</span>
           </Box>
           <p className={classes.adv} onClick={showAdv}>
-          <button className={classes.advance} onClick={removeFilters}><span style={{fontSize:"0.8rem"}}>Remove Filters</span></button>
           {isadv ? 
           <button className={classes.advance} type="button"><span style={{fontSize:"0.8rem"}}>Hide Advanced</span></button>
            : 
            <button className={classes.advance} type="button"><span style={{fontSize:"0.8rem"}}>Advanced Search</span></button>
            }</p>
-
-          <span className="hide">Double Click to search</span>
+           <button className={classes.advance} onClick={removeFilters}><span style={{fontSize:"0.8rem"}}>Remove Filters</span></button>
         </div> 
     </>
     )

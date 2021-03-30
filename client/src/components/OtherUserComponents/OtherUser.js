@@ -211,11 +211,12 @@ const OtherUser = ({match}) => {
           </div>
           </div>
         </Container>
-        <Dashboard userId={userId}/>
+
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
-            <Container className={classes.body}>
+          <Grid item xs={12} sm={9}>
+          <Dashboard userId={userId}/>
+            {/* <Container className={classes.body}>
               <Typography  className={classes.bodyHead}>
               <h2>{user.name} Profile</h2> 
               </Typography>
@@ -261,11 +262,11 @@ const OtherUser = ({match}) => {
               <Divider></Divider>
 
               <Typography className={classes.bodyText}></Typography>
-            </Container>
+            </Container> */}
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={3}>
           {/* <Contact /> */}
-          <h1 style={{color :"white",textAlign:'center'}}>Contact User</h1>
+          <h1 style={{color :"black",textAlign:'center'}}>Contact {user.name}</h1>
           <Container className={classes.contactform}>
             <TextField
               variant="outlined"
@@ -277,6 +278,7 @@ const OtherUser = ({match}) => {
               type="Name"
               id="Name"
               autoComplete="Name"
+             className= {classes.text}
             />
             <TextField
               variant="outlined"
@@ -288,6 +290,7 @@ const OtherUser = ({match}) => {
               name="email"
               autoComplete="email"
               autoFocus
+              className= {classes.text}
             />
             <TextField
               name="description"
@@ -297,14 +300,16 @@ const OtherUser = ({match}) => {
               fullWidth
               multiline
               rows={3}
+              className= {classes.text}
             />
             <Box textAlign="center" marginBottom="0px">
             <Button
               type="submit"
-              width='30%'
+              width='20%'
               variant="contained"
               color="primary"
               justifyContent='center'
+              className = {classes.button}
             >
               Submit
             </Button>
