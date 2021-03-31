@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
 import {Container,Paper,Grid,Typography,Button,TextField,Avatar} from '@material-ui/core'
-import { Alert, AlertTitle } from '@material-ui/lab';
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar'
+import Slide from '@material-ui/core/Slide'
 import {LockOutlined} from '@material-ui/icons';
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
@@ -35,16 +37,32 @@ const Auth = () => {
         }else{
             dispatch(signIn(formData,history))
         }
-        setErr(true)
+        if(authData.msg)
+            setErr(true)
     }
     
     const handleChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
     }
 
+    const Alert = (props)=>{
+        return <MuiAlert elevation={6} variant="filled" {...props}/>
+    }
+
+
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setErr(false);
+    };
+
     const switchMode = ()=>{
         setIsSignup(previsSignUp=>!previsSignUp)
         setShowPassword(false)
+        setFormData({...formData,email:'',password:''})
     }
 
     const handleShowPassword = ()=>{
@@ -58,16 +76,6 @@ const Auth = () => {
         }catch(err){
             console.log(err)
         }
-        // const profile = {
-        //     profile:res?.profileObj,
-        //     token:res?.tokenId
-        // }
-        // try {
-        //     dispatch({type:AUTH,payload:profile})
-        //     history.push('/')
-        // } catch (err) {
-        //     console.log("Something went wrong")
-        // }
     }
 
     const googleError=()=>{
@@ -91,9 +99,12 @@ const Auth = () => {
                 <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
                 {
                     err?(
-                        <Alert severity="error">
-                            <strong>{authData?.msg}</strong>
-                        </Alert>
+                        <Snackbar style={{"top":"10%",'left':"55%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={err} autoHideDuration={5000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="error">
+                                <strong>{authData?.msg}</strong>
+                            </Alert>
+                        </Snackbar>
+                       
                     ):null
                 }
                 <form className={classes.form} onSubmit={handleSubmit}>
@@ -107,8 +118,8 @@ const Auth = () => {
 
                     </>
                     )}
-                    <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                    <Input name="password" label="Password" type={showPassword ? 'text' : 'password'} handleChange={handleChange}  handleShowPassword={handleShowPassword} />
+                    <Input name="email" label="Email Address" value={formData.email} handleChange={handleChange} type="email" />
+                    <Input name="password" label="Password" value={formData.password} type={showPassword ? 'text' : 'password'} handleChange={handleChange}  handleShowPassword={handleShowPassword} />
                     { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
                 </Grid>
                 <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>

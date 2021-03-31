@@ -68,7 +68,7 @@ const BookSchema = mongoose.Schema({
   },
   edition: {
     //edition of the book
-    type: Number,
+    type: String,
     required: true,
   },
   description: String, //description of the book

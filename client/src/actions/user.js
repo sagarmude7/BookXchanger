@@ -61,8 +61,9 @@ export const postFeedBackForm = (feedData) => async (dispatch)=>{
         console.log(feedData)
         const {data} = await api.sendMail(feedData);
         dispatch({type:FEEDBACK,payload:data});
-    }catch(error){
-        console.log(error);
-        
+    }catch(err){
+        const data = err.response.data
+        console.log(data)
+        dispatch({type:FEEDBACK,payload:data});
     }
 }

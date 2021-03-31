@@ -41,14 +41,14 @@ const BookSlider = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 4,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 460 },
       items: 2,
     },
     mobile: {
-      breakpoint: { max: 264, min: 0 },
+      breakpoint: { max: 460, min: 0 },
       items: 1,
     },
   };
@@ -63,7 +63,12 @@ const BookSlider = () => {
       </Typography>
       <hr style={{ border: "1px solid black", width: "300px" }} />
       <hr style={{ borderWidth: "0px" }} />
-      <Carousel responsive={responsive}>
+      <Carousel
+        responsive={responsive}
+        arrows={false}
+        infinite={true}
+        autoPlay={true}
+      >
         {books.map((book) => (
           <Grid>
             <Container>
@@ -74,13 +79,22 @@ const BookSlider = () => {
       </Carousel>
       <hr style={{ borderWidth: "0px" }} />
       <hr style={{ borderWidth: "0px" }} />
-      <Typography variant="h6" style={{ textAlign: "center" }}>
+      <Typography
+        variant="h6"
+        style={{ textAlign: "center", marginTop: "25px" }}
+      >
         Most View Books
       </Typography>
       <hr style={{ border: "1px solid black", width: "300px" }} />
       <hr style={{ borderWidth: "0px" }} />
 
-      <Carousel responsive={responsive}>
+      <Carousel
+        responsive={responsive}
+        arrows={false}
+        infinite={true}
+        autoPlay={true}
+        autoPlaySpeed={6000}
+      >
         {books.map((book) => (
           <Grid>
             <Container>

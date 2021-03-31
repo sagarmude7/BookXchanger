@@ -12,6 +12,8 @@ import {
   FormControl,
   InputLabel,
 } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
 import { useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
@@ -21,6 +23,7 @@ import useStyles from "./style";
 import Navbar from "../Navbar/Navbar.js";
 import Footer from "../Footer/footer.js";
 import { createBookAd } from "../../actions/books";
+import { VALID } from "../../constants/actions";
 
 const initialState = {
   bookName: "",
@@ -43,9 +46,15 @@ const PostAdForm = () => {
   const dispatch = useDispatch();
   const [bookData, setBookData] = useState(initialState);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [err, setErr] = useState(false);
+  const book = useSelector((state) => state.book);
 
   const handleChange = (e) => {
     setBookData({ ...bookData, [e.target.name]: e.target.value });
+  };
+
+  const Alert = (props) => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
   };
 
   useEffect(() => {
@@ -54,19 +63,32 @@ const PostAdForm = () => {
     if (!token) history.push("/auth");
   }, [user?.token, history]);
 
+  useEffect(()=>{
+    if(book.msg)
+      setErr(true)
+  },[book])
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setErr(false);
+    dispatch({type:VALID,payload:{}})
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(bookData);
     dispatch(
-      createBookAd({
-        ...bookData,
-        price: Number(bookData.price),
-        mrp: Number(bookData.mrp),
-        noOfPages: Number(bookData.noOfPages),
-        ownerName: user.profile.name,
-      })
+      createBookAd(
+        {
+          ...bookData,
+          ownerName: user.profile.name,
+        },
+        history
+      )
     );
-    history.push("/");
+    
   };
 
   return (
@@ -81,6 +103,19 @@ const PostAdForm = () => {
               className={`${classes.root} ${classes.form}`}
               onSubmit={handleSubmit}
             >
+              {err ? (
+                <Snackbar
+                  style={{ top: "10%", left: "55%" }}
+                  anchorOrigin={{ horizontal: "center", vertical: "top" }}
+                  open={err}
+                  autoHideDuration={5000}
+                  onClose={handleClose}
+                >
+                  <Alert onClose={handleClose} severity="error">
+                    <strong>{book?.msg}</strong>
+                  </Alert>
+                </Snackbar>
+              ) : null}
               <Typography color="secondary" variant="h6">
                 Post a Book for Selling
               </Typography>
@@ -142,6 +177,9 @@ const PostAdForm = () => {
                         </MenuItem>
                         <MenuItem value="Textile Engineering">
                           Textile Engineering
+                        </MenuItem>
+                        <MenuItem value="Textile Engineering">
+                          First Year
                         </MenuItem>
                       </Select>
                     </FormControl>

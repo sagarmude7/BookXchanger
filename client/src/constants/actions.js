@@ -18,3 +18,5 @@ export const FEEDBACK ='FEEDBACK'
 export const GET_BOOK = 'GET_BOOK'
 export const UPDATE_SOLD = "UPDATE_SOLD";
 export const DELETE_BOOK = "DELETE_BOOK";
+
+export const VALID = 'VALID';
