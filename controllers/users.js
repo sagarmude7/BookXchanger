@@ -158,16 +158,16 @@ exports.changePassword = async(req,res)=>{
     try{
 
         if(error)
-            return res.status(400).json({message:error.details[0].message})
+            return res.status(400).json({msg:error.details[0].message})
 
         const user = await User.findById(req.userId);
         const isPasswordcorrect = await bcrypt.compare(currentPassword,user.password)
 
         if(!isPasswordcorrect)
-            return res.status(400).json({message:"Password Incorrect"})
+            return res.status(400).json({msg:"Password Incorrect"})
 
         if(newPassword!=confirmPassword)
-            return res.status(400).json({message:"Password don't match"})
+            return res.status(400).json({msg:"Password don't match"})
 
         const hashedPassword = await bcrypt.hash(newPassword,10);
         const updatedPassword = {password:hashedPassword};

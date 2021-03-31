@@ -74,12 +74,12 @@ const Profile = () => {
 
   useEffect(()=>{
     setUserData(userData);
-    if(user.message){
-      setKey(false);
-    }
-    else{
-      handleClose();
-    }
+    // if(user.message){
+    //   setKey(false);
+    // }
+    // else{
+    //   handleClose();
+    // }
   },[user])
 
   useEffect(() => {
@@ -103,7 +103,6 @@ const Profile = () => {
 
   
   useEffect(()=>{
-    if(!user.message){
       if(!key){
         setUserData(userData);
       }
@@ -112,12 +111,10 @@ const Profile = () => {
         setSeverity("success")
         setErr(true)
       }
-    }else{
       if(error.msg==="Password Updated Successfully"){
         handleClose()
         setSeverity("success")
       }
-    }
   },[user,error])
 
   useEffect(()=>{
