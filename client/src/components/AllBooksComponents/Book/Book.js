@@ -6,16 +6,10 @@ import {
   CardMedia,
   Button,
   Typography,
-  Dialog,
-  List,
-  ListItemText,
-  ListItem,
-  IconButton,
-  Toolbar,
-  AppBar,
-  Divider,
   Slide,
 } from "@material-ui/core/";
+import PersonPinIcon from "@material-ui/icons/PersonPin";
+import ScheduleIcon from "@material-ui/icons/Schedule";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -57,117 +51,73 @@ const Book = ({ book }) => {
   return (
     <>
       <Card className={classes.card}>
-        <CardMedia
-          className={classes.media}
-          src="book"
-          image={book?.selectedFile}
-          title={book?.bookName}
-        />
-        <div className={classes.overlay}>
-          <Typography variant="h6">{book?.bookName}</Typography>
-          <Typography variant="body2">
-            {moment(book?.createdAt).fromNow()}
-          </Typography>
-        </div>
-        <div className={classes.overlay2}>
-          <Button color="primary" size="small">
-            <MoreHorizIcon fontSize="default" />
-          </Button>
-        </div>
-        <Typography
-          className={classes.title}
-          gutterBottom
-          variant="h5"
-          component="h2"
-        >
-          ${book?.price}
-        </Typography>
-        <Link className={classes.title} to={`/user/${book?.owner}`}>
-          <span>Posted By : {book?.ownerName}</span>
-        </Link>
-        {/* <div className={classes.details}>
-          <Typography variant="body2" color="secondary" component="h2">
-            {book?.description}
-          </Typography>
-        </div> */}
-        <CardContent>
-          <Typography variant="body2" color="secondary" component="p">
-            {book?.tags?.map((tag) => `#${tag} `)}
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.cardActions}>
-          <Button size="medium" color="secondary" onClick={addtofavourite}>
-            {fav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-          </Button>
-        </CardActions>
-        <CardActions className={classes.cardActions}>
-          <Button variant="outlined" color="primary" onClick={getBook}>
-            bookInfo
-          </Button>
-        </CardActions>
-      </Card>
+        <div className={classes.top}>
+          <CardMedia
+            className={classes.media}
+            src="book"
+            image={book?.selectedFile}
+          />
 
-      {/* <div>
-        <Dialog
-          fullScreen
-          open={open}
-          onClose={handleClose}
-          TransitionComponent={Transition}
-        >
-          <AppBar className={classes.appBar}>
-            <Toolbar>
-              <IconButton
-                edge="start"
-                color="inherit"
-                onClick={handleClose}
-                aria-label="close"
-              >
-                <CloseIcon />
-              </IconButton>
-              <Typography variant="h6" className={classes.title}>
-                {book?.bookName}
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <List>
-            <ListItem button>
-              <ListItemText primary="Branch" secondary={book?.branch} />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Subject" secondary={book?.subject} />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Price" secondary={book?.price} />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Condition" secondary={book?.condition} />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Date" secondary={book?.createdAt} />
-            </ListItem>
-            <ListItem button>
-              <ListItemText
-                primary="Last Updated"
-                secondary={book?.updatedAt}
-              />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Book Image" />
-              <img
-                src={book?.selectedFile}
-                style={{
-                  position: "relative",
-                  right: "10px",
-                  top: "2px",
-                  width: "400px",
-                  height: "300px",
-                }}
-              />
-            </ListItem>
-            <Divider />
-          </List>
-        </Dialog>
-      </div> */}
+          <Typography className={classes.price}>
+            {"₹"}
+            {book.price}
+            {" ("}
+            {book.priceType}
+            {")"}
+          </Typography>
+
+          <CardActions className={classes.favourite}>
+            <Button size="medium" color="secondary" onClick={addtofavourite}>
+              {fav ? (
+                <FavoriteIcon disableFocusRipple={true} disableRipple={false} />
+              ) : (
+                <FavoriteBorderIcon />
+              )}
+            </Button>
+          </CardActions>
+        </div>
+
+        <div>
+          <Typography variant="body2" className={classes.Branch}>
+            {book.branch}
+          </Typography>
+        </div>
+
+        <Typography variant="h6" className={classes.BookName}>
+          {book?.bookName}
+        </Typography>
+
+        <Typography variant="body2" className={classes.Description}>
+          {book?.description}
+        </Typography>
+
+        <CardActions disableSpacing>
+          <PersonPinIcon
+            style={{
+              marginLeft: "5px",
+              marginRight: "5px",
+              color: "#df4c73",
+            }}
+          />
+          <Link to={`/user/${book?.owner}`} style={{ textDecoration: "none" }}>
+            <Typography className={classes.owner}>{book?.ownerName}</Typography>
+          </Link>
+        </CardActions>
+
+        <CardActions disableSpacing>
+          <ScheduleIcon
+            fontSize="small"
+            style={{ marginLeft: "5px", marginRight: "5px" }}
+          />
+          <Typography variant="body2">
+            {moment(book?.createdAt).format("DD MMM, YYYY")}
+          </Typography>
+        </CardActions>
+
+        <Button variant="outlined" onClick={getBook} className={classes.button}>
+          bookInfo
+        </Button>
+      </Card>
     </>
   );
 };
