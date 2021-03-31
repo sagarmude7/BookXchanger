@@ -23,6 +23,7 @@ import useStyles from "./style";
 import Navbar from "../Navbar/Navbar.js";
 import Footer from "../Footer/footer.js";
 import { createBookAd } from "../../actions/books";
+import { VALID } from "../../constants/actions";
 
 const initialState = {
   bookName: "",
@@ -63,12 +64,17 @@ const PostAdForm = () => {
     if (!token) history.push("/auth");
   }, [user?.token, history]);
 
+  useEffect(()=>{
+    if(book.msg)
+      setErr(true)
+  },[book])
+
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setErr(false);
+    dispatch({type:VALID,payload:{}})
   };
 
   const handleSubmit = (e) => {
@@ -78,15 +84,12 @@ const PostAdForm = () => {
       createBookAd(
         {
           ...bookData,
-          price: Number(bookData.price),
-          mrp: Number(bookData.mrp),
-          noOfPages: Number(bookData.noOfPages),
           ownerName: user.profile.name,
         },
         history
       )
     );
-    if (book.msg) setErr(true);
+    
   };
 
   return (

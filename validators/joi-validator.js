@@ -34,6 +34,7 @@ const postBookValidator = joi.object({
     branch: joi.string().required(),
     price: joi.number().required(),
     condition: joi.string().required(),
+    priceType: joi.string().required(),
     mrp:joi.number().required(),
     selectedFile: joi.string().required(),
     author: joi.string().required(),
@@ -41,7 +42,8 @@ const postBookValidator = joi.object({
     tags: joi.array().required(),
     noOfPages:joi.number().required(),
     edition: joi.string().required(),
-    description: joi.string().required().min(20)
+    description: joi.string().required().min(20),
+    ownerName: joi.string().required()
 })
 
 const feedBackValidator = joi.object({

@@ -26,15 +26,26 @@ exports.getBooks = async (req, res) => {
 exports.createBookAd = async (req, res) => {
   const book = req.body;
   const {error} = postBookValidator.validate(req.body)
-  console.log("getting current user")
+  
+  console.log(error)
+  // console.log("getting current user")
   if (!req.userId) return res.status(403).json({ msg: "Unauthorized" });
   console.log("got current user")
   try {
-    if(error)
+    if(error){
+        console.log("got an error"+error)
         return res.status(400).json({msg:error.details[0].message})
+    }
+    const noOfPages = Number(book.noOfPages)
+    const price = Number(book.price)
+    const mrp = Number(book.mrp)
+    console.log("Creatig new book")
     //new Book Object
     const newBook = new Book({
       ...book,
+      noOfPages:noOfPages,
+      price:price,
+      mrp:mrp,
       owner: req.userId,
       wishListedBy: [],
       createdAt: new Date().toISOString(),
