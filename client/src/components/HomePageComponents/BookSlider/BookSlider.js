@@ -53,7 +53,6 @@ const BookSlider = () => {
     books.push(allUnSoldbooks)
   }
   
-  console.log(books)
 
   const responsive = {
     superLargeDesktop: {

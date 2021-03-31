@@ -144,7 +144,7 @@ exports.editProfile = async(req,res)=>{
         const updatedUser = await User.findByIdAndUpdate(req.userId,updateData,{new:true})
         
         //console.log({updatedUser,editMessage:"Profile Updated successfully!",severity:"success"})
-        return res.status(200).json({updatedUser,editMessage:"Profile Updated successfully!",severity:"success"});
+        return res.status(200).json(updatedUser);
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });
     }

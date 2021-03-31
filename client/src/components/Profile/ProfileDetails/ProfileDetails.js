@@ -23,16 +23,20 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import { editProfile, getProfile, changePassword } from "./../../../actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
+import { ERROR, VALID } from "../../../constants/actions";
+import { keys } from "@material-ui/core/styles/createBreakpoints";
 
 const Profile = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user1 = JSON.parse(localStorage.getItem('profile'));
   const user = useSelector((state) => state.user);
+  const error = useSelector(state=>state.book)
   const [err,setErr] = useState(false) 
   const [passErr,setPassErr] = useState(false)
   const [key, setKey] = useState(true);
   const [open, setOpen] = useState(false);
+  const [severity,setSeverity] = useState("error")
 
 
   useEffect(() => {
@@ -71,19 +75,15 @@ const Profile = () => {
   useEffect(()=>{
     setUserData(userData);
     if(user.message){
-      setPassErr(true);
       setKey(false);
-      
     }
     else{
-      
-      setPassErr(false);
       handleClose();
     }
   },[user])
 
   useEffect(() => {
-    if (user && user.name && user.email && user.college && user.location)
+    if (user)
       setUserData({
         ...userData,
         name: user.name,
@@ -104,19 +104,29 @@ const Profile = () => {
   
   useEffect(()=>{
     if(!user.message){
-      if(user.msg){
-        setErr(true);
+      if(!key){
         setUserData(userData);
       }
-      else{
-        setErr(false);
-        setKey(true);
+      if(error.msg==="Profile Updated Successfully"){
+        setKey(true)
+        setSeverity("success")
+        setErr(true)
+      }
+    }else{
+      if(error.msg==="Password Updated Successfully"){
+        handleClose()
+        setSeverity("success")
       }
     }
-  },[user])
+  },[user,error])
+
+  useEffect(()=>{
+    if(error.msg || error.message){
+      setErr(true)
+    }
+  },[error])
     
 
-  
 
   const handleChangeUserInfo = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -179,21 +189,32 @@ const Profile = () => {
     }
 
     setErr(false);
-};
+    dispatch({type:VALID,payload:{}})
+    setSeverity("error")
+  };
 
-const handleCloseAlert2 = (event, reason) => {
-  if (reason === 'clickaway') {
-    return;
-  }
+// const handleCloseAlert2 = (event, reason) => {
+//   if (reason === 'clickaway') {
+//     return;
+//   }
 
-  setPassErr(false);
-};
+//   setPassErr(false);
+//   dispatch({type:VALID,payload:{}})
+// };
 
 //console.log("1111111111111",user,user.editMessage)
   if (key) {
     return (
       <div className={classes.container}>
-
+        {
+            err?(
+                <Snackbar style={{"top":"10%",'left':"50%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={err} autoHideDuration={5000} onClose={handleCloseAlert1}>
+                    <Alert onClose={handleCloseAlert1} severity={severity}>
+                        <strong>{error?.msg}</strong>
+                    </Alert>
+                </Snackbar>     
+            ):null
+        }
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
             Manage Your Profile
@@ -256,25 +277,24 @@ const handleCloseAlert2 = (event, reason) => {
   } else {
     return (
       <div className={classes.container}>
-          {
-            user?.message?(
+          {/* {
+            err?(
                 <Snackbar style={{"top":"10%",'left':"50%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={passErr} autoHideDuration={5000} onClose={handleCloseAlert2}>
                     <Alert onClose={handleCloseAlert2} severity="error">
-                        <strong>{user?.message}</strong>
+                        <strong>{error?.message}</strong>
                     </Alert>
                 </Snackbar>
                 
             ):null
-        }
+        } */}
 
         {
-            user?.msg?(
+            err?(
                 <Snackbar style={{"top":"10%",'left':"50%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={err} autoHideDuration={5000} onClose={handleCloseAlert1}>
-                    <Alert onClose={handleCloseAlert1} severity="error">
-                        <strong>{user?.msg}</strong>
+                    <Alert onClose={handleCloseAlert1} severity={severity}>
+                        <strong>{error?.msg}</strong>
                     </Alert>
-                </Snackbar>
-                
+                </Snackbar>     
             ):null
         }
        
