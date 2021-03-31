@@ -34,7 +34,18 @@ const Contact = () => {
     }
 
     setErr(false);
+    
+    dispatch({type:FEEDBACK,payload:{}})
   };
+
+  useEffect(()=>{
+    if(feedback.msg)
+      setErr(true)
+    if(feedback.severity==="success"){
+      setFeedData({...feedData,name:'',message:''})
+      console.log("Done")
+    }
+  },[feedback])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,11 +56,7 @@ const Contact = () => {
     setLoader(true);
     dispatch(postFeedBackForm({ ...feedData, email: user.profile.email }));
     
-    if(feedback.msg)
-      setErr(true)
-    if(feedback.severity==='success')
-      setFeedData({...feedData,name:'',message:''})
-
+    
   };
 
   return (
