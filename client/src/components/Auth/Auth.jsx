@@ -37,7 +37,7 @@ const Auth = () => {
         }else{
             dispatch(signIn(formData,history))
         }
-        if(authData.msg)
+        if(authData?.msg)
             setErr(true)
     }
     

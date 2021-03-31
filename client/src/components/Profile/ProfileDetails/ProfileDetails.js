@@ -5,6 +5,7 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
+import Snackbar from '@material-ui/core/Snackbar'
 import useStyles from "../styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -38,7 +39,6 @@ const Profile = () => {
     dispatch(getProfile(user1.profile.id));
   }, [dispatch]);
 
-  //console.log(person);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -69,19 +69,15 @@ const Profile = () => {
   };
 
   useEffect(()=>{
-    //console.log("i submit     ",user.message);
     setUserData(userData);
     if(user.message){
       setPassErr(true);
       setKey(false);
-      setPassErr(false);
-      //setUserData(userData);
-      //console.log(user,"in 33333333333333")
+      
     }
     else{
-      //console.log(user,"in 44444444444444444444444")
+      
       setPassErr(false);
-      //setUserData(userData);
       handleClose();
     }
   },[user])
@@ -97,8 +93,6 @@ const Profile = () => {
       });
   }, [user, setUserData]);
 
-  
- 
 
   const handleSubmitUserInfo = (e) => {
     e.preventDefault();
@@ -107,26 +101,20 @@ const Profile = () => {
       
   };
 
-  //console.log("1212121222222222",user.msg);
-    
-  //console.log("in blank ",user.msg);
+  
   useEffect(()=>{
     if(!user.message){
       if(user.msg){
         setErr(true);
         setUserData(userData);
-        //console.log(user,"in 33333333333333")
       }
       else{
-        console.log(user,"in 44444444444444444444444")
         setErr(false);
         setKey(true);
       }
     }
   },[user])
     
-
-  console.log("main page ....*****",user.message);
 
   
 
@@ -185,6 +173,23 @@ const Profile = () => {
     event.preventDefault();
   };
 
+  const handleCloseAlert1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setErr(false);
+};
+
+const handleCloseAlert2 = (event, reason) => {
+  if (reason === 'clickaway') {
+    return;
+  }
+
+  setPassErr(false);
+};
+
+//console.log("1111111111111",user,user.editMessage)
   if (key) {
     return (
       <div className={classes.container}>
@@ -251,6 +256,27 @@ const Profile = () => {
   } else {
     return (
       <div className={classes.container}>
+          {
+            user?.message?(
+                <Snackbar style={{"top":"10%",'left':"50%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={passErr} autoHideDuration={5000} onClose={handleCloseAlert2}>
+                    <Alert onClose={handleCloseAlert2} severity="error">
+                        <strong>{user?.message}</strong>
+                    </Alert>
+                </Snackbar>
+                
+            ):null
+        }
+
+        {
+            user?.msg?(
+                <Snackbar style={{"top":"10%",'left':"50%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={err} autoHideDuration={5000} onClose={handleCloseAlert1}>
+                    <Alert onClose={handleCloseAlert1} severity="error">
+                        <strong>{user?.msg}</strong>
+                    </Alert>
+                </Snackbar>
+                
+            ):null
+        }
        
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
@@ -276,13 +302,13 @@ const Profile = () => {
               <DialogTitle id="form-dialog-title">
                 Change Account Password
               </DialogTitle>
-              {
+              {/*
                 user.message?(
                     <Alert severity="error" className={classes.passAlert}>
                         <strong>{user?.message}</strong>
                     </Alert>
                 ):null
-                }
+                */}
               <DialogContent>
               
                 <FormControl
@@ -394,13 +420,13 @@ const Profile = () => {
             
           </div>
           
-          {
+          {/*
             user.msg?(
                 <Alert severity="error" className={classes.editAlert}>
                     <strong>{user?.msg}</strong>
                 </Alert>
             ):null
-          }
+          */}
 
           <form
             className={classes.editBody}
