@@ -32,9 +32,9 @@ export default makeStyles((theme) => ({
 
 
       head: {
-        backgroundColor:'#F0F8FF',
-          display:'flex',
-          flexDirection:'row',
+        backgroundColor:'#E2F0F9',
+        display:'flex',
+        flexDirection:'row',
           
       },
 
@@ -62,7 +62,7 @@ export default makeStyles((theme) => ({
       },
 
       body:{
-        backgroundColor:'#F0F8FF',
+        backgroundColor:'#E2F0F9',
         display:'flex',
         flexDirection:'column',
         marginTop:20,
@@ -97,16 +97,10 @@ export default makeStyles((theme) => ({
       },
 
       Edit:{
-        position:'fixed',
-        bottom:50,
-        right:60,
+        width:180,
+        marginLeft:1000,
       },
 
-      Chat:{
-        position:'fixed',
-        bottom:120,
-        right:60,
-      },
 
       button: {
         marginLeft:300,
@@ -133,7 +127,7 @@ export default makeStyles((theme) => ({
       },
 
       textField: {
-        width: '45ch',
+        width: '30ch',
       },
 
       margin: {
@@ -146,6 +140,68 @@ export default makeStyles((theme) => ({
         marginTop:30,
         marginLeft:850,
       },
+
+      rootTab: {
+        backgroundColor:'#F0F8FF' ,
+        
+        
+      },
+
+      topBox:{
+        
+        width:"84%",
+        marginLeft:"8%"
+
+      },
+
+      listing1 :{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        backgroundColor:"#F60A66",
+        backgroundColor:"#1DD78A",
+        backgroundColor:"#2CBF87",
+        backgroundColor:"#F39E0B",
+        backgroundColor:"#286FB4",
+        width:140,
+        height:110,
+        marginTop:60,
+        margin:40,
+        marginLeft:150,
+      },
+
+      listing2 :{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        backgroundColor:"#1DD78A",
+        backgroundColor:"#1abc9c",
+        width:140,
+        height:110,
+        marginTop:60,
+        margin:20,
+      },
+
+      listNumber:{
+        
+        color:"white",
+        fontSize:50,
+        fontWeight:20,
+      },
+      listLetter:{
+        color:"white",
+        fontSize:17,
+        fontWeight:5,
+      },
+
+      editAlert:{
+        margin:40,
+      },
+
+      passAlert:{
+        margin:15,
+      },
+
 
     }));
     
