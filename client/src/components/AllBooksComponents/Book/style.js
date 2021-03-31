@@ -4,10 +4,14 @@ export default makeStyles({
   card: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     borderRadius: "15px",
     height: "100%",
     position: "relative",
+    "@media (max-width : 700px)": {
+      width: "100%",
+      margin: "auto",
+    },
   },
 
   top: {
@@ -47,6 +51,7 @@ export default makeStyles({
   },
 
   price: {
+    color: "white",
     position: "absolute",
     top: "120px",
     left: "15px",
@@ -89,7 +94,7 @@ export default makeStyles({
   },
 
   owner: {
-    color: "white",
+    color: "black",
     transition: "0.5s",
     "&:hover": {
       color: "#df4c73",

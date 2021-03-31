@@ -1,6 +1,6 @@
-import React, { useEffect,useState } from "react";
-import MuiAlert from '@material-ui/lab/Alert';
-import Snackbar from '@material-ui/core/Snackbar'
+import React, { useEffect, useState } from "react";
+import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
 import Description from "./Description/Description.js";
 import Chatbot from "./Chatbot/chatbot.js";
 import HowToSell from "./HowToSell/HowToSell.js";
@@ -33,9 +33,9 @@ const Home = () => {
 
 
   const handleClose = (event, reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
+    if (reason === "clickaway") {
+      return;
+    }
 
       setOpen(false);
       setBookPost(false);
@@ -65,7 +65,7 @@ const Home = () => {
       }
       <Description />
       <BookSlider />
-      <HowToSell />
+      {/* <HowToSell /> */}
       <Feedback />
       <Chatbot />
       <Footer />

@@ -1,31 +1,36 @@
 var items = [
   {
-    name: "Welcome To BookxChanger",
+    name: "Harshil Doshi",
     feedback:
       "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
   },
   {
-    name: "Welcome To BookxChanger",
+    name: "Sagar Mude",
     feedback:
       "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place. Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place. Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place. Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
   },
   {
-    name: "Welcome To BookxChanger",
+    name: "Vedant Mondkar",
     feedback:
       "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
   },
   {
-    name: "Welcome To BookxChanger",
+    name: "Vishal Dange",
     feedback:
       "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
   },
   {
-    name: "Welcome To BookxChanger",
+    name: "Mohak Chandani",
     feedback:
       "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
   },
   {
-    name: "Welcome To BookxChanger",
+    name: "Shashank Pagrut",
+    feedback:
+      "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
+  },
+  {
+    name: "Vedant Mankar",
     feedback:
       "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
   },
