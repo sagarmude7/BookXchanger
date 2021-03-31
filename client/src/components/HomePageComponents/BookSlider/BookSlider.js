@@ -18,20 +18,42 @@ import {
 import useStyles from "./style";
 import { getBooks } from "../../../actions/books";
 
+const getRandomInt = (min, max)=> {
+  
+}
+
 const BookSlider = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
-  const books = allBooks.filter((book) => book.isSold === false);
+  const allUnSoldbooks = allBooks.filter((book) => book.isSold === false);
   const [sortbool, setSortbool] = useState(false);
-
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState();
+
+  var books = []
+  
   useEffect(() => {
     console.log("Getting Books");
     //accepts an action call as an argument -> goes to actions folder
     dispatch(getBooks());
   }, [dispatch]);
+  if(allUnSoldbooks.length>5){
+    var indices = [];
+    while(indices.length < 5){
+        var r = Math.floor(Math.random() * allUnSoldbooks.length);
+        if(indices.indexOf(r) === -1) indices.push(r);
+    }
+    var k=0;
+    for(const i of indices){
+      books[k]=allUnSoldbooks[i];
+      k++;
+    }
+  }else{
+    books.push(allUnSoldbooks)
+  }
+  
+  console.log(books)
 
   const responsive = {
     superLargeDesktop: {
@@ -41,7 +63,7 @@ const BookSlider = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 5,
     },
     tablet: {
       breakpoint: { max: 1024, min: 460 },
