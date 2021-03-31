@@ -79,7 +79,10 @@ const BookSlider = () => {
       </Carousel>
       <hr style={{ borderWidth: "0px" }} />
       <hr style={{ borderWidth: "0px" }} />
-      <Typography variant="h6" style={{ textAlign: "center" }}>
+      <Typography
+        variant="h6"
+        style={{ textAlign: "center", marginTop: "25px" }}
+      >
         Most View Books
       </Typography>
       <hr style={{ border: "1px solid black", width: "300px" }} />

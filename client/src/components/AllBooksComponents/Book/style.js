@@ -94,7 +94,7 @@ export default makeStyles({
   },
 
   owner: {
-    color: "white",
+    color: "black",
     transition: "0.5s",
     "&:hover": {
       color: "#df4c73",

@@ -12,8 +12,8 @@ import {
   FormControl,
   InputLabel,
 } from "@material-ui/core";
-import MuiAlert from '@material-ui/lab/Alert';
-import Snackbar from '@material-ui/core/Snackbar'
+import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
 import { useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
@@ -52,10 +52,9 @@ const PostAdForm = () => {
     setBookData({ ...bookData, [e.target.name]: e.target.value });
   };
 
-  const Alert = (props)=>{
-    return <MuiAlert elevation={6} variant="filled" {...props}/>
-  }
-
+  const Alert = (props) => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  };
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("profile")));
@@ -64,7 +63,7 @@ const PostAdForm = () => {
   }, [user?.token, history]);
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -101,21 +100,19 @@ const PostAdForm = () => {
               className={`${classes.root} ${classes.form}`}
               onSubmit={handleSubmit}
             >
-              {
-                err ? (
-                  <Snackbar
-                    style={{ top: "10%", left: "55%" }}
-                    anchorOrigin={{ horizontal: "center", vertical: "top" }}
-                    open={err}
-                    autoHideDuration={5000}
-                    onClose={handleClose}
-                  >
-                    <Alert onClose={handleClose} severity="error">
-                      <strong>{book?.msg}</strong>
-                    </Alert>
-                  </Snackbar>
-                ) : null
-              }
+              {err ? (
+                <Snackbar
+                  style={{ top: "10%", left: "55%" }}
+                  anchorOrigin={{ horizontal: "center", vertical: "top" }}
+                  open={err}
+                  autoHideDuration={5000}
+                  onClose={handleClose}
+                >
+                  <Alert onClose={handleClose} severity="error">
+                    <strong>{book?.msg}</strong>
+                  </Alert>
+                </Snackbar>
+              ) : null}
               <Typography color="secondary" variant="h6">
                 Post a Book for Selling
               </Typography>
@@ -177,6 +174,9 @@ const PostAdForm = () => {
                         </MenuItem>
                         <MenuItem value="Textile Engineering">
                           Textile Engineering
+                        </MenuItem>
+                        <MenuItem value="Textile Engineering">
+                          First Year
                         </MenuItem>
                       </Select>
                     </FormControl>
