@@ -33,7 +33,7 @@ function TabPanel(props) {
 const Dashboard = () => {
   const userId = JSON.parse(localStorage.getItem("profile")).profile.id;
   const user = useSelector((state) => state.user);
-  const books = useSelector((state)=>state.books)
+  const books = useSelector((state)=>state.books);
   
   function card(book) {
     return (
@@ -70,20 +70,9 @@ const Dashboard = () => {
     setAnchorEl(null);
   };
   return (
-    <>
+  
       <Container className={classes.body}>
-        <ButtonGroup size="large" color="secondary">
-          <Button
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={() => setMyadbool(!Myadbool)}
-          >
-            My Ads
-          </Button>
-          <Button>Messages</Button>
-        </ButtonGroup>
-        {Myadbool === true ? (
-          <>
+        
             <Paper className={classes.root}>
               <Tabs
                 value={value}
@@ -124,12 +113,9 @@ const Dashboard = () => {
                 )}
                 </Grid>
             </TabPanel>
-          </>
-        ) : (
-          <></>
-        )}
-      </Container>
-    </>
+           
+    </Container>
+    
   );
 };
 
