@@ -3,6 +3,8 @@ import {
   Container,
   Typography,
 } from "@material-ui/core";
+import Snackbar from '@material-ui/core/Snackbar';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import useStyles from "./styles.js";
 import img from "./profilepic.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,34 +60,22 @@ const Profile = () => {
 
   const classes = useStyles();
   const theme = useTheme();
-  //const dispatch = useDispatch();
-  //const user1 = JSON.parse(localStorage.getItem('profile'));
+  
   const user = useSelector((state) => state.user);
-  //const [err,setErr] = useState(false) 
-  //const [passErr,setPassErr] = useState(false)
-  //const [key, setKey] = useState(true);
-  //const [open, setOpen] = useState(false);
+  const [open,setOpen] = useState(false);
 
-  /*const [sold,setSold] = useState(0);
-  console.log("99999999999999",user.postedBooks)
-
-  console.log(Dashboard.numberSoldBooks);
-
-  user.postedBooks.forEach(countSoldBooks(bookId));
-
-  const countSoldBooks = ()=>{
-    const book = Book.findById(bookId);
-    if(book.isSold){
-      setSold(sold+1);
-    }
-  }*/
   const userId = JSON.parse(localStorage.getItem("profile")).profile.id;
   const books = useSelector((state)=>state.books)
   var numberSoldBooks = 0;
+  var totalListing = 0;
   const soldBooks = books.filter(book=>(book.owner===userId)&&(book.isSold===true));
   
   if(soldBooks){
     numberSoldBooks = soldBooks?.length;
+  }
+
+  if(user.postedBooks){
+    totalListing = user.postedBooks.length;
   }
   
 
@@ -98,13 +88,28 @@ const Profile = () => {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
-
-
+  const handleClose = (event,reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+  console.log(user,"47777777777777",user?.editMessage)
   
     return (
       <div className={classes.container}>
         <Navbar />
 
+        
+        {
+        user?.editMessage?(
+          <Snackbar style={{"top":"10%",'left':"50%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={open} autoHideDuration={5000} onClose={handleClose}>
+              <Alert onClose={handleClose} severity="success">
+                  <strong>user?.editMessage</strong>
+              </Alert>
+          </Snackbar>
+        ):null
+      }
         <div className={classes.topBox}>
           <Container className={classes.head}>
             <img
@@ -123,7 +128,7 @@ const Profile = () => {
             </Typography>
 
             <div className={classes.listing1}>
-              <Typography className={classes.listNumber}>{user.postedBooks?.length}</Typography>
+              <Typography className={classes.listNumber}>{totalListing}</Typography>
               <Typography className={classes.listLetter}>Total Listings</Typography>
             </div>
 
@@ -178,82 +183,3 @@ const Profile = () => {
 
 export default Profile;
 
-/*
- <Dashboard />
-
-        <Container className={classes.body}>
-          <Typography className={classes.bodyHead}>
-            Manage Your Profile
-          </Typography>
-
-          <Button
-              className={classes.Edit}
-              variant="outlined"
-              color="primary"
-              onClick={() => setKey(false)}
-
-            >Edit Profile</Button>
-
-          <Container className={classes.bodyFields}>
-            <Typography className={classes.bodyText} variant="h6">
-              Your Name :
-            </Typography>
-            <Typography className={classes.bodyTextValue} variant="h6">
-              {user.name}
-            </Typography>
-          </Container>
-          <Divider></Divider>
-
-          <Container className={classes.bodyFields}>
-            <Typography className={classes.bodyText} variant="h6">
-              Email Address :
-            </Typography>
-            <Typography className={classes.bodyTextValue} variant="h6">
-              {user.email}
-            </Typography>
-          </Container>
-          <Divider></Divider>
-
-          <Container className={classes.bodyFields}>
-            <Typography className={classes.bodyText} variant="h6">
-              College Name :
-            </Typography>
-            <Typography className={classes.bodyTextValue} variant="h6">
-              {user.college}
-            </Typography>
-          </Container>
-          <Divider></Divider>
-
-          <Container className={classes.bodyFields}>
-            <Typography className={classes.bodyText} variant="h6">
-              Location :
-            </Typography>
-            <Typography className={classes.bodyTextValue} variant="h6">
-              {user.location}
-            </Typography>
-          </Container>
-          <Divider></Divider>
-
-          <Typography className={classes.bodyText}></Typography>
-        </Container>
-
-
-        <Footer />*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
-
-
-
-        */

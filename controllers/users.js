@@ -135,8 +135,7 @@ exports.getProfile = async(req,res)=>{
 exports.editProfile = async(req,res)=>{
     const {name, email, college, location} = req.body;
     const {error} = editValidator.validate(req.body);
-    //console.log("in controllers error",error);
-    //console.log("in controllers error");
+    
     try{
         if(error)
             return res.status(400).json({msg:error.details[0].message})
@@ -144,9 +143,8 @@ exports.editProfile = async(req,res)=>{
 
         const updatedUser = await User.findByIdAndUpdate(req.userId,updateData,{new:true})
         
-        //console.log("this",updatedUser);
-
-        return res.status(200).json(updatedUser);
+        //console.log({updatedUser,editMessage:"Profile Updated successfully!",severity:"success"})
+        return res.status(200).json({updatedUser,editMessage:"Profile Updated successfully!",severity:"success"});
     }catch(err){
         return res.status(500).json({ msg: "Something went wrong" });
     }
@@ -154,10 +152,9 @@ exports.editProfile = async(req,res)=>{
 
 exports.changePassword = async(req,res)=>{
     const {currentPassword, newPassword, confirmPassword} = req.body;
-    console.log("55555555555555",req.body)
+    
     const {error} = changePasswordValidator.validate(req.body);
-    console.log("in controllers ",newPassword);
-    console.log("in controllers error",error);
+
     try{
 
         if(error)
@@ -174,11 +171,11 @@ exports.changePassword = async(req,res)=>{
 
         const hashedPassword = await bcrypt.hash(newPassword,10);
         const updatedPassword = {password:hashedPassword};
-        console.log(updatedPassword);
+        
 
         const updatedUser = await User.findByIdAndUpdate(req.userId,updatedPassword,{new:true})
         
-        console.log("here is new user",updatedUser);
+        
 
         return res.status(200).json(updatedUser);
     }catch(err){

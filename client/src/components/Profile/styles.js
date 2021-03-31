@@ -194,13 +194,6 @@ export default makeStyles((theme) => ({
         fontWeight:5,
       },
 
-      editAlert:{
-        margin:40,
-      },
-
-      passAlert:{
-        margin:15,
-      },
 
 
     }));
