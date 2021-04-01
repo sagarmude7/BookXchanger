@@ -15,6 +15,8 @@ import {
   Box
 } from "@material-ui/core";
 import ChatBox from "./ChatBox/ChatBox"
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import SendIcon from "@material-ui/icons/Send";
 import Contact from "./ContactForm/Contact"
 import useStyles from "./styles.js";
 import img from "./profilepic.png";
@@ -39,6 +41,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
 import Footer from "../Footer/footer.js";
 import Dashboard from "./Dashboard components/Dashboard";
+import {useHistory } from "react-router-dom";
 const OtherUser = ({match}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -47,6 +50,7 @@ const OtherUser = ({match}) => {
   const [err,setErr] = useState(false) 
   const books = useSelector(state=>state.books)
   const userId = match.params.userId;
+  const history = useHistory();
   useEffect(() => {
     dispatch(getProfile(userId));
   }, [dispatch]);
@@ -168,21 +172,19 @@ const OtherUser = ({match}) => {
       <div className={classes.container}>
         <Navbar />
         <Container className={classes.head}>
+        <ArrowBackIcon
+            style={{ cursor: "pointer" }}
+            className={classes.topLeft}
+            onClick={() => history.goBack()}
+          ></ArrowBackIcon>
           <img
             className={classes.pic}
-            src={user.profilePic}
+            src={user?.profilePic}
             alt="M"
             width="175"
             height="190"
           />
           <div className={classes.userDetails}>
-          <Typography
-            variant="h5"
-            color="textPrimary"
-            className={classes.headUser}
-          >
-            {user.name}
-          </Typography>
           <Typography
             variant="h5"
             color="textPrimary"
@@ -197,24 +199,24 @@ const OtherUser = ({match}) => {
           >
             {user.location}
           </Typography>
+        
           </div>
-          <div className={classes.ads}>
-          <div className={classes.adsSold}>
-          <h2>
-            Ads Sold : {books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length}
-          </h2>
-          </div>
-          <div className={classes.adsSold}>
-          <h2>
-            Total Listing : {books.filter(book=>(book.owner===userId)).length}
-          </h2>
-          </div>
+          <div className ={classes.rightBox}>
+            <div className={classes.listing1}>
+              <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)).length}</Typography>
+              <Typography className={classes.listLetter}> Total Listing </Typography>
+            </div>
+
+            <div className={classes.listing2}>
+              <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length}</Typography>
+              <Typography className={classes.listLetter}>   Ads Sold </Typography>
+            </div>
           </div>
         </Container>
 
 
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={9}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={8}>
           <Dashboard userId={userId}/>
             {/* <Container className={classes.body}>
               <Typography  className={classes.bodyHead}>
@@ -264,56 +266,47 @@ const OtherUser = ({match}) => {
               <Typography className={classes.bodyText}></Typography>
             </Container> */}
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
           {/* <Contact /> */}
+          <Container className={classes.chatBox}>
           <h1 style={{color :"black",textAlign:'center'}}>Contact {user.name}</h1>
-          <Container className={classes.contactform}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="Name"
-              label="Name"
-              type="Name"
-              id="Name"
-              autoComplete="Name"
-             className= {classes.text}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              className= {classes.text}
-            />
-            <TextField
-              name="description"
-              variant="outlined"
-              margin="normal"
-              label="Message"
-              fullWidth
-              multiline
-              rows={3}
-              className= {classes.text}
-            />
-            <Box textAlign="center" marginBottom="0px">
-            <Button
-              type="submit"
-              width='20%'
-              variant="contained"
-              color="primary"
-              justifyContent='center'
-              className = {classes.button}
-            >
-              Submit
-            </Button>
-            </Box> 
+                <Typography variant="h6" style={{textAlign :"center"}}>Send Message</Typography>
+                <hr
+                  style={{
+                    border: "1px solid #DF4C73",
+                    width: "80%",
+
+                  }}
+                />
+                <TextField
+                  id="outlined-multiline-static"
+                  multiline
+                  rows={7}
+                  variant="outlined"
+                  style={{ width: "80%",margin : "20px"}}
+                />
+                <Button
+                  variant="outline"
+                  color="primary"
+                  className={classes.SendButton}
+                  endIcon={<SendIcon />}
+                >
+                  Send
+                </Button>
+                <div className={classes.guidelines}>
+              <Typography variant="body1">Read before you deal</Typography>
+              <div>
+                <ul
+                  style={{ listStyleType: "none" }}
+                  className={classes.guidelineList}
+                >
+                  <li>1. Please follow Government guidelines for COVID19.</li>
+                  <li>2. Use a safe location to meet seller</li>
+                  <li>3. Never provide your personal or banking information</li>
+                  <li>4. Beware of unrealistic offers</li>
+                </ul>
+              </div>
+            </div>
           </Container>
           </Grid>
         </Grid>

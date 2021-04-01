@@ -8,7 +8,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Book from "./Book/Book";
+import Book from "../../AllBooksComponents/Book/Book";
 import { useSelector } from "react-redux";
 
 function TabPanel(props) {
@@ -82,7 +82,8 @@ const Dashboard = ({userId}) => {
                   className={classes.container}
                   container
                   alignItems="stretch"
-                  spacing={3}
+                  spacing={2}
+                  
                 >
                 {books.filter(book=>(book.owner===userId)&&(book.isSold===false)).length !== 0 ? (
                   <>{books.filter(book=>(book.owner===userId)&&(book.isSold===false))?.map(card)}</>
