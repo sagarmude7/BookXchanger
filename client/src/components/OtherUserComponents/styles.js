@@ -12,9 +12,9 @@ export default makeStyles((theme) => ({
    
     container:{
       backgroundColor: "#286FB4",
-      backgroundImage: `url(${'https://www.transparenttextures.com/patterns/concrete-wall-2.png'})`
-
-        
+      backgroundImage: `url(${'https://www.transparenttextures.com/patterns/concrete-wall-2.png'})`,
+      border : "1px solid red",
+      padding :"0px"
     },
       
       pink: {
@@ -34,48 +34,43 @@ export default makeStyles((theme) => ({
 
 
       head: {
-        backgroundColor:'#FFFFFF',
         display:'flex',
+        background :"white",
+        margin : "0px 20px 20px 20px",
         flexDirection:'row',
-        backgroundImage: `url(${'https://www.transparenttextures.com/patterns/stacked-circles.png'})`,
-      },
-      headRight:{
-        display:'flex',
-        flexDirection:'column',
-        width:400,
+        borderRadius : "15px",
+        [theme.breakpoints.down('xs')]: {
+          display : "flex",
+          flexDirection : "column",
+          width :"450px",
+          height : "600px",
+        },
       },
 
       headUser: {
         padding : "10px"
       },
       heading: {
-          
           marginBottom : 50,
           marginLeft:200,
-          
+          [theme.breakpoints.down('xs')]: {
+           marginBottom : 0,
+           marginLeft:2,
+          },
       },
       userDetails : {
-        marginTop :"50px"
+        marginTop :"50px",
       },
       pic:{
           margin:25,
           borderRadius :"50%",
           color : "pointer",
+          [theme.breakpoints.down('xs')]: {
+            position : "relative" ,
+            left : "20%"
+           },
       },
-      ads : {
-        position : "relative",
-        right :"10px",
-        top : "10px",
-      },
-      adsSold : {
-        border : "2px solid black",
-        padding : "10px",
-        borderRadius : "20px",
-        fontWeight :"600",
-        fontSize :"1.8rem",
 
-
-      },
       body:{
         display:'flex',
         flexDirection:'column',
@@ -171,6 +166,8 @@ export default makeStyles((theme) => ({
         backgroundColor:'white',
         width:'80%',
         borderRadius:'15px',
+        fontSize : "1.2rem !important",
+        fontWeight :"400 !important"
       },
       text : {
         padding : "2px",
@@ -179,11 +176,12 @@ export default makeStyles((theme) => ({
         margin : "20px",
       },
       chatBox  :{
-        margin: "10px 10px 0px 10px",
-        width: "100%",
+        margin: "20px 10px 10px 50px",
+        width: "80%",
         backgroundColor  :"white",
-        borderRadius : "20px",
-        padding: "0px"
+        padding: "0px",
+        border: "1px solid blue",
+        borderRadius : "15px"
       },
       sendButton : {
         width: "20%",
@@ -215,7 +213,7 @@ export default makeStyles((theme) => ({
         backgroundColor:"#2CBF87",
         backgroundColor:"#F39E0B",
         backgroundColor:"#286FB4",
-        width:140,
+        width:180,
         height:110,
         marginTop:60,
         margin:40,
@@ -228,10 +226,22 @@ export default makeStyles((theme) => ({
         alignItems:'center',
         backgroundColor:"#1DD78A",
         backgroundColor:"#1abc9c",
-        width:140,
+        width:180,
         height:110,
         marginTop:60,
         margin:20,
+        [theme.breakpoints.down('xs')]: {
+          width:180,
+          height:110,
+          marginTop:60,
+          margin:20,
+         },
+         [theme.breakpoints.down('sm')]: {
+          width:180,
+          height:110,
+          marginTop:60,
+          margin:20,
+         },
       },
        
       listNumber:{
@@ -243,15 +253,20 @@ export default makeStyles((theme) => ({
         color:"white",
         fontSize:17,
         fontWeight:5,
+        
       },
       rightBox :{
         display : "flex",
         flexDirection : "row",
         position : "relative",
         left : "260px",
-        "@media (max-width : 900px)": {
-        },
-      }
+        [theme.breakpoints.down('xs')]: {
+          position: "relative",
+          left :"-20px",
+          top : "-185px"
+         },
+      },
+
 }));
     
     

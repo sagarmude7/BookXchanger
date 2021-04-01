@@ -173,7 +173,6 @@ const OtherUser = ({match}) => {
         <Navbar />
         <Container className={classes.head}>
         <ArrowBackIcon
-            style={{ cursor: "pointer" }}
             className={classes.topLeft}
             onClick={() => history.goBack()}
           ></ArrowBackIcon>
