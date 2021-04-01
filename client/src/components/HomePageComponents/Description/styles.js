@@ -27,6 +27,16 @@ const styles = makeStyles(() => ({
     transform: "translate(-50%,-50%)",
     color: "white",
   },
+
+  contentBold: {
+    color: "#df4c73",
+    "@media (max-width : 700px)": {
+      textAlign: "center",
+      top: "30%",
+      left: "50%",
+      fontSize: "50px",
+    },
+  },
   parent: {
     width: "100%",
     marginTop: "20px",

@@ -1,6 +1,6 @@
 var items = [
   {
-    heading: "Welcome To BookxChanger",
+    heading: "Welcome to",
     subHeading: "Your personalized old books exchanging Store",
     description:
       "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
@@ -8,7 +8,7 @@ var items = [
       "https://images.pexels.com/photos/694740/pexels-photo-694740.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
-    heading: "Welcome To BookxChanger",
+    heading: "Welcome to",
     subHeading: "Your personalized old books exchanging Store",
     description:
       "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
@@ -16,7 +16,7 @@ var items = [
       "https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1600",
   },
   {
-    heading: "Welcome To BookxChanger",
+    heading: "Welcome to",
     subHeading: "Your personalized old books exchanging Store",
     description:
       "Hey,Want to Sell/Buy old books , don't know where to go. You have Come at the right place3",

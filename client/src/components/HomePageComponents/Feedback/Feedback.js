@@ -41,7 +41,7 @@ const Feedback = () => {
       <hr style={{ borderWidth: "0px" }} />
 
       <Typography variant="h6" style={{ textAlign: "center", color: "black" }}>
-        What Customers Say...
+        Testimonials
       </Typography>
       <hr style={{ border: "1px solid black", width: "300px" }} />
       <hr style={{ borderWidth: "0px" }} />

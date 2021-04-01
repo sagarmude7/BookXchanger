@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper } from "@material-ui/core";
+import { Paper, Typography, Box } from "@material-ui/core";
 import useStyles from "./styles.js";
 import descData from "./descData.js";
 const Description = () => {
@@ -19,9 +19,18 @@ const Description = () => {
           }}
         >
           <div className={classes.content}>
-            <h1>{props.item.heading}</h1>
-            <h3>{props.item.subHeading}</h3>
-            <p>{props.item.description}</p>
+            <Typography variant="h3">
+              {props.item.heading}
+              <Box
+                fontWeight="fontWeightBold"
+                letterSpacing={10}
+                className={classes.contentBold}
+              >
+                BookXchanger
+              </Box>
+            </Typography>
+            <Typography variant="h5">{props.item.subHeading}</Typography>
+            <Typography variant="h6">{props.item.description}</Typography>
           </div>
         </div>
       </div>
