@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Book = require("../models/Book");
 const User = require("../models/User");
 const Blob = require('node-blob')
-const imageCompression = require('browser-image-compression')
+const Compress = require('compress.js')
 
 const {postBookValidator} =require('../validators/joi-validator')
 exports.getBooks = async (req, res) => {
@@ -30,12 +30,6 @@ exports.createBookAd = async (req, res) => {
   const book = req.body;
   const {error} = postBookValidator.validate(req.body)
   
-  //compression
-  const options = {
-    maxSizeMB: 1,
-    maxWidthOrHeight: 1920,
-    useWebWorker: true
-  }
   
   console.log(error)
   // console.log("getting current user")
@@ -48,47 +42,37 @@ exports.createBookAd = async (req, res) => {
     }
     const {selectedFile} = req.body
     console.log("got selectedfile")
-    const imageFile = new Blob([selectedFile],{type: 'image/png;base64'})
-    console.log(imageFile.type)
-    console.log('originalFile instanceof Blob', imageFile instanceof Blob);
-    console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
-    const compressedFile = await imageCompression(imageFile,options);
-    // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob);
-    // // console.log(compressedFile)
-    // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
+    console.log(selectedFile)
 
+    const noOfPages = Number(book.noOfPages)
+    const price = Number(book.price)
+    const mrp = Number(book.mrp)
+    console.log("Creatig new book")
+    //new Book Object
+    const newBook = new Book({
+      ...book,
+      noOfPages:noOfPages,
+      price:price,
+      mrp:mrp,
+      owner: req.userId,
+      wishListedBy: [],
+      createdAt: new Date().toISOString(),
+    });
+    await newBook.save();
 
-    // console.log('compressedFile instanceof Blob',compressedFile instanceof Blob)
-
-    // const noOfPages = Number(book.noOfPages)
-    // const price = Number(book.price)
-    // const mrp = Number(book.mrp)
-    // console.log("Creatig new book")
-    // //new Book Object
-    // const newBook = new Book({
-    //   ...book,
-    //   noOfPages:noOfPages,
-    //   price:price,
-    //   mrp:mrp,
-    //   owner: req.userId,
-    //   wishListedBy: [],
-    //   createdAt: new Date().toISOString(),
-    // });
-    // await newBook.save();
-
-    // console.log("update the currentUser by pushing new book id created into the user.postedBooks")
-    // const currentUser = await User.findById(req.userId);
-    // const books = currentUser.postedBooks;
-    // books.push(newBook._id);
-    // const updatedUser = await User.findByIdAndUpdate(
-    //   req.userId,
-    //   { postedBooks: books },
-    //   { new: true }
-    // );
-    // updatedUser.save();
+    console.log("update the currentUser by pushing new book id created into the user.postedBooks")
+    const currentUser = await User.findById(req.userId);
+    const books = currentUser.postedBooks;
+    books.push(newBook._id);
+    const updatedUser = await User.findByIdAndUpdate(
+      req.userId,
+      { postedBooks: books },
+      { new: true }
+    );
+    updatedUser.save();
 
     console.log("Book added to database");
-    return res.status(400).json({msg:"Added"});
+    return res.status(201).json({msg:"Added"});
   } catch (err) {
     console.log(err)
     return res.status(409).json({ msg: "Something went wrong on Server.."  });
@@ -176,3 +160,23 @@ exports.editBook = async(req,res) =>{
     return res.status(500).json({ msg: "Something went wrong on Server.." });
   }
 }
+
+
+
+
+
+// const options = {
+//   maxSizeMB: 1,
+//   maxWidthOrHeight: 1920,
+//   useWebWorker: true
+// }
+// const imageFile = await imageCompression.getFilefromDataUrl(selectedFile,'book')
+    // console.log(imageFile)
+    // const imageFile = new Blob([selectedFile],{type: 'image/png;base64'})
+    // console.log(imageFile.type)
+    // console.log('originalFile instanceof Blob', imageFile instanceof Blob);
+    // console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+    // const compressedFile = await imageCompression(imageFile,options);
+    // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob);
+    // console.log(compressedFile)
+    // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);

@@ -17,6 +17,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import { useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import Compress from 'compress.js'
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./style";
@@ -48,6 +49,16 @@ const PostAdForm = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [err, setErr] = useState(false);
   const book = useSelector((state) => state.book);
+
+
+  const compress = new Compress();
+
+  const addImage = async(e)=>{
+    const files = [...e.target.files]
+    const imageData = await compress.compress(files,{size:0.2,quality:0.5})
+    const imageFile = imageData[0].prefix+imageData[0].data
+    setBookData({...bookData,selectedFile:imageFile})
+  }
 
   const handleChange = (e) => {
     setBookData({ ...bookData, [e.target.name]: e.target.value });
@@ -277,14 +288,15 @@ const PostAdForm = () => {
                         multiple
                         type="file"
                       />
-                      <FileBase
+                      {/* <FileBase
                         type="file"
                         multiple={false}
                         onDone={({ base64 }) =>
                           setBookData({ ...bookData, selectedFile: base64 })
                         }
-                      />
-                      <label htmlFor="contained-button-file">
+                      /> */}
+
+                      <label htmlFor="icon-button-file">
                         <Button
                           variant="contained"
                           color="primary"
@@ -298,6 +310,8 @@ const PostAdForm = () => {
                         className={classes.input}
                         id="icon-button-file"
                         type="file"
+                        onChange={addImage}
+                        multiple
                       />
                       <label htmlFor="icon-button-file">
                         <IconButton

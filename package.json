@@ -24,10 +24,11 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "atob": "^2.1.2",
     "bcryptjs": "^2.4.3",
     "blob": "^0.1.0",
     "body-parser": "^1.19.0",
-    "browser-image-compression": "^1.0.14",
+    "compress.js": "^1.1.2",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

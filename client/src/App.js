@@ -51,6 +51,7 @@ const App = () => {
           <Route exact path="/editBook/:bookId" component={EditBook} />
           <Route exact path="/user/:userId" component={OtherUser} />
         </Switch>
+        <Footer/>
       </Container>
     </Router>
   );
