@@ -4,9 +4,8 @@ import React from "react";
 export default makeStyles((theme) => ({
   body:{
      background:"#FFFFFF",
-     marginLeft : "35px",
-     marginTop : "20px",
-     margin : "10px",
-     borderRadius : "20px"
+     borderRadius : "20px",
+     margin: "20px 20px 0px 20px",
+
   }
 }));

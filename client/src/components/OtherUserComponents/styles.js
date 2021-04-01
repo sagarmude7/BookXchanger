@@ -180,6 +180,34 @@ export default makeStyles((theme) => ({
       },
       button : {
         margin : "20px",
+      },
+      chatBox  :{
+        margin: "10px 10px 0px 10px",
+        width: "100%",
+        backgroundColor  :"white",
+        borderRadius : "20px",
+        padding: "0px"
+      },
+      sendButton : {
+        width: "100%",
+        marginTop: "10px",
+        backgroundColor: "#DF4C73",
+      } ,
+       guidelines: {
+        display: "block",
+        margin: "20px",
+        backgroundColor  :"white"
+      },
+    
+      guidelineList: {
+        lineHeight: "30px",
+        font: "14px Sans-serif ",
+        paddingLeft: "0px",
+        "@media (max-width : 700px)": {
+          width: "100%",
+          paddingRight: "10px",
+        },
+       
       }
     }));
     
