@@ -24,6 +24,7 @@ const BookSlider = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
+  const [allUnSoldbooks, setAllUnSoldBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [color, setColor] = useState("#ffff00");
   const [books, setBooks] = useState([]);
