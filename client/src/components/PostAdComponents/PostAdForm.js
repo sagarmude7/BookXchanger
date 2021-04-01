@@ -63,17 +63,16 @@ const PostAdForm = () => {
     if (!token) history.push("/auth");
   }, [user?.token, history]);
 
-  useEffect(()=>{
-    if(book.msg)
-      setErr(true)
-  },[book])
+  useEffect(() => {
+    if (book.msg) setErr(true);
+  }, [book]);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
     setErr(false);
-    dispatch({type:VALID,payload:{}})
+    dispatch({ type: VALID, payload: {} });
   };
 
   const handleSubmit = (e) => {
@@ -88,7 +87,6 @@ const PostAdForm = () => {
         history
       )
     );
-    
   };
 
   return (
@@ -154,6 +152,7 @@ const PostAdForm = () => {
                         onChange={handleChange}
                         value={bookData.branch}
                       >
+                        <MenuItem value="First Year">First Year</MenuItem>
                         <MenuItem value="Computer Engineering">
                           Computer Engineering
                         </MenuItem>
@@ -178,9 +177,7 @@ const PostAdForm = () => {
                         <MenuItem value="Textile Engineering">
                           Textile Engineering
                         </MenuItem>
-                        <MenuItem value="Textile Engineering">
-                          First Year
-                        </MenuItem>
+                        <MenuItem value="Other">Other</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid>

@@ -94,7 +94,6 @@ const Profile = () => {
     }
     setOpen(false);
   };
-  console.log(user,"47777777777777",user?.editMessage)
   
     return (
       <div className={classes.container}>

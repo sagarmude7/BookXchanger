@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {css} from '@emotion/react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import PulseLoader  from 'react-spinners/PulseLoader' 
 import Book from "../../AllBooksComponents/Book/Book";
 import {
   Button,
@@ -30,6 +32,8 @@ const BookSlider = () => {
   const [sortbool, setSortbool] = useState(false);
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState();
+  const [loading,setLoading] = useState(true)
+  const [color,setColor] = useState('#ffff00')
 
   var books = []
   
@@ -52,8 +56,17 @@ const BookSlider = () => {
   }else{
     books.push(allUnSoldbooks)
   }
+
+  useEffect(()=>{
+    if(allBooks.length!==0){
+      setLoading(false)
+    }
+  },[allBooks])
   
-  console.log(books)
+  const override = css`
+  display: block;
+  margin-left:45%;
+  border-color: red;`;
 
   const responsive = {
     superLargeDesktop: {
@@ -85,20 +98,27 @@ const BookSlider = () => {
       </Typography>
       <hr style={{ border: "1px solid black", width: "300px" }} />
       <hr style={{ borderWidth: "0px" }} />
-      <Carousel
-        responsive={responsive}
-        arrows={false}
-        infinite={true}
-        autoPlay={true}
-      >
-        {books.map((book) => (
-          <Grid>
-            <Container>
-              <Book key={book._id} book={book} />
-            </Container>
-          </Grid>
-        ))}
-      </Carousel>
+      {
+        loading?(
+          <PulseLoader loading={loading} color={color} css={override} size={30} />
+        ):(
+          <Carousel
+            responsive={responsive}
+            arrows={false}
+            infinite={true}
+            autoPlay={true}
+          >
+            {books.map((book) => (
+              <Grid>
+                <Container>
+                  <Book key={book._id} book={book} />
+                </Container>
+              </Grid>
+            ))}
+          </Carousel>
+        )
+      }
+      
       <hr style={{ borderWidth: "0px" }} />
       <hr style={{ borderWidth: "0px" }} />
       <Typography
@@ -109,22 +129,27 @@ const BookSlider = () => {
       </Typography>
       <hr style={{ border: "1px solid black", width: "300px" }} />
       <hr style={{ borderWidth: "0px" }} />
-
-      <Carousel
-        responsive={responsive}
-        arrows={false}
-        infinite={true}
-        autoPlay={true}
-        autoPlaySpeed={6000}
-      >
-        {books.map((book) => (
-          <Grid>
-            <Container>
-              <Book key={book._id} book={book} />
-            </Container>
-          </Grid>
-        ))}
-      </Carousel>
+      {
+        loading?(
+          <PulseLoader loading={loading} color={color} css={override} size={30} />
+        ):(
+          <Carousel
+            responsive={responsive}
+            arrows={false}
+            infinite={true}
+            autoPlay={true}
+            autoPlaySpeed={6000}
+          >
+            {books.map((book) => (
+              <Grid>
+                <Container>
+                  <Book key={book._id} book={book} />
+                </Container>
+              </Grid>
+            ))}
+          </Carousel>
+        )
+      }
     </>
   );
 };

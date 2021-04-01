@@ -31,21 +31,21 @@ const Book = ({ book }) => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("profile"));
   const [fav, setFav] = useState(
-    book?.wishListedBy?.find((id) => id === user?.profile?.id)
+    false
   );
   useEffect(() => {
     if (book)
-      setFav(book?.wishListedBy?.find((id) => id === user?.profile?.id));
+      setFav(book?.wishListedBy?.find((id) => id === user.profile.id));
   }, []);
   const addtofavourite = () => {
     console.log("Adding To Favorites..");
     fav ? setFav(false) : setFav(true);
-    dispatch(addToWishList(book?._id));
+    dispatch(addToWishList(book._id));
     // dispatch(getBooks())
   };
 
   const getBook = () => {
-    history.push(`/all/book/${book?._id}`);
+    history.push(`/all/book/${book._id}`);
   };
 
   return (
@@ -55,7 +55,7 @@ const Book = ({ book }) => {
           <CardMedia
             className={classes.media}
             src="book"
-            image={book?.selectedFile}
+            image={book.selectedFile}
           />
 
           <Typography className={classes.price}>
@@ -84,11 +84,11 @@ const Book = ({ book }) => {
         </div>
 
         <Typography variant="h6" className={classes.BookName}>
-          {book?.bookName}
+          {book.bookName}
         </Typography>
 
         <Typography variant="body2" className={classes.Description}>
-          {book?.description}
+          {book.description}
         </Typography>
 
         <CardActions disableSpacing>
@@ -99,8 +99,8 @@ const Book = ({ book }) => {
               color: "#df4c73",
             }}
           />
-          <Link to={`/user/${book?.owner}`} style={{ textDecoration: "none" }}>
-            <Typography className={classes.owner}>{book?.ownerName}</Typography>
+          <Link to={`/user/${book.owner}`} style={{ textDecoration: "none" }}>
+            <Typography className={classes.owner}>{book.ownerName}</Typography>
           </Link>
         </CardActions>
 
@@ -110,7 +110,7 @@ const Book = ({ book }) => {
             style={{ marginLeft: "5px", marginRight: "5px" }}
           />
           <Typography variant="body2">
-            {moment(book?.createdAt).format("DD MMM, YYYY")}
+            {moment(book.createdAt).format("DD MMM, YYYY")}
           </Typography>
         </CardActions>
 

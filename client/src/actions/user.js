@@ -1,4 +1,4 @@
-import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR, CHANGE_PASSWORD, FEEDBACK} from '../constants/actions'
+import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR, CHANGE_PASSWORD, FEEDBACK, VALID} from '../constants/actions'
 import api from '../api/index';
 
 export const getProfile = (id) => async (dispatch) => {
@@ -23,10 +23,29 @@ export const editProfile = (userData) => async (dispatch) => {
         const {data} = await api.editProfile(userData);
         console.log(data);
         dispatch({type:EDIT_PROFILE,payload:data});
+        dispatch({type:VALID,payload:{msg:"Profile Updated Successfully"}})
     } catch (error) {
         console.log(error);
         const data = error.response.data;
         dispatch({type:ERROR,payload:data});
+        dispatch({type:VALID,payload:data})
+    }
+    
+};
+
+export const changePassword = (passData) => async (dispatch) => {
+
+    try {
+        console.log("in actions",passData);
+        const {data} = await api.changePassword(passData);
+        console.log(data,"after actions");
+        dispatch({type:CHANGE_PASSWORD,payload:data});
+        dispatch({type:VALID,payload:{msg:"Password Updated Successfully"}})
+    } catch (error) {
+        console.log(error);
+        const data = error.response.data;
+        dispatch({type:ERROR,payload:data});
+        dispatch({type:VALID,payload:data})
     }
     
 };
@@ -41,20 +60,7 @@ export const getWishList = (id) => async (dispatch)=>{
     }
 }
 
-export const changePassword = (passData) => async (dispatch) => {
 
-    try {
-        console.log("in actions",passData);
-        const {data} = await api.changePassword(passData);
-        console.log(data,"after actions");
-        dispatch({type:CHANGE_PASSWORD,payload:data});
-    } catch (error) {
-        console.log(error);
-        const data = error.response.data;
-        dispatch({type:ERROR,payload:data});
-    }
-    
-};
 
 export const postFeedBackForm = (feedData) => async (dispatch)=>{
     try{
