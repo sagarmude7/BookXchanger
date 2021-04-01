@@ -257,7 +257,7 @@ const SearchBox = () => {
             isadv ? 
         <Grid container spacing={4} className={classes.gridContainer} > 
             <Grid item xs={12} sm={4} className={classes.paper}>
-                <FormControl variant="outlined" border="blue" className={classes.formControl} fullWidth>
+                <FormControl variant="outlined" border="blue" className={classes.formControl} style={{width: "200px"}}>
                 <InputLabel id="conditionTypeLabel">Condition Of Book</InputLabel>
                     <Select
                     labelId="conditionLabel"

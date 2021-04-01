@@ -36,8 +36,8 @@ const Dashboard = ({userId}) => {
   
   function card(book) {
     return (
-      <Grid item xs={12} sm={3}>
-        <Book key={book._id} book={book} />
+      <Grid item xs={12} sm={4}>
+        <Book key={book._id} book={book} style={{width:"400px"}}/>
       </Grid>
     );
   }
