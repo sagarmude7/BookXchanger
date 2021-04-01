@@ -80,7 +80,7 @@ const BookInfo = ({ match }) => {
     (books) =>
       books.isSold === false &&
       books.branch === book.branch &&
-      books.createdAt != book.createdAt
+      books.owner != book.owner
   );
   const [sortbool, setSortbool] = useState(false);
 
@@ -100,7 +100,7 @@ const BookInfo = ({ match }) => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -357,7 +357,13 @@ const BookInfo = ({ match }) => {
             {filterbooks.length === 0 ? (
               <Typography>No simialar book found</Typography>
             ) : (
-              <Carousel responsive={responsive}>
+              <Carousel
+                responsive={responsive}
+                arrows={false}
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={6000}
+              >
                 {filterbooks.map((book) => (
                   <Grid>
                     <Container>
