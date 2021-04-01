@@ -20,43 +20,45 @@ import {
 import useStyles from "./style";
 import { getBooks } from "../../../actions/books";
 
-const getRandomInt = (min, max)=> {
-  
-}
 
 const BookSlider = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
-  const allUnSoldbooks = allBooks.filter((book) => book.isSold === false);
-  const [sortbool, setSortbool] = useState(false);
-  const [data, setData] = useState([]);
-  const [sortType, setSortType] = useState();
+  const [allUnSoldbooks,setAllUnSoldBooks] = useState([]);
   const [loading,setLoading] = useState(true)
   const [color,setColor] = useState('#ffff00')
-
-  var books = []
+  const [books,setBooks] = useState([])
   
   useEffect(() => {
     console.log("Getting Books");
     //accepts an action call as an argument -> goes to actions folder
     dispatch(getBooks());
   }, [dispatch]);
-  if(allUnSoldbooks.length>5){
-    var indices = [];
-    while(indices.length < 5){
-        var r = Math.floor(Math.random() * allUnSoldbooks.length);
-        if(indices.indexOf(r) === -1) indices.push(r);
-    }
-    var k=0;
-    for(const i of indices){
-      books[k]=allUnSoldbooks[i];
-      k++;
-    }
-  }else{
-    books.push(allUnSoldbooks)
-  }
 
+  useEffect(()=>{
+    if(allBooks.length!==0){
+      setAllUnSoldBooks(allBooks.filter((book) => book.isSold === false))
+    }
+  },[allBooks])
+
+  useEffect(()=>{
+    if(allUnSoldbooks.length>5){
+      var indices = [];
+      while(indices.length < 5){
+          var r = Math.floor(Math.random() * allUnSoldbooks.length);
+          if(indices.indexOf(r) === -1) indices.push(r);
+      }
+      var k=0;
+      for(const i of indices){
+        setBooks([...books,allUnSoldbooks[i]])
+        k++;
+      }
+    }else{
+      setBooks(allUnSoldbooks)
+    }  
+  },[allUnSoldbooks])
+  
   useEffect(()=>{
     if(allBooks.length!==0){
       setLoading(false)

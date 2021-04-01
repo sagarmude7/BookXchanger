@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Book = require("../models/Book");
 const User = require("../models/User");
+const imageCompression = require('browser-image-compression')
+
 const {postBookValidator} =require('../validators/joi-validator')
 exports.getBooks = async (req, res) => {
   try {
@@ -27,6 +29,13 @@ exports.createBookAd = async (req, res) => {
   const book = req.body;
   const {error} = postBookValidator.validate(req.body)
   
+  //compression
+  const options = {
+    maxSizMB:0.2,
+    maxWidthOrHeight: 1024,
+    useWebWorker: true
+  }
+
   console.log(error)
   // console.log("getting current user")
   if (!req.userId) return res.status(403).json({ msg: "Unauthorized" });
@@ -36,6 +45,15 @@ exports.createBookAd = async (req, res) => {
         console.log("got an error"+error)
         return res.status(400).json({msg:error.details[0].message})
     }
+    const {selectedFile} = req.body
+    console.log("got selectedfile")
+    // const compressedFile = await imageCompression.getDataUrlFromFile(selectedFile)
+    // console.log(compressedFile)
+    // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
+
+
+    // console.log('compressedFile instanceof Blob',compressedFile instanceof Blob)
+
     const noOfPages = Number(book.noOfPages)
     const price = Number(book.price)
     const mrp = Number(book.mrp)
@@ -66,7 +84,8 @@ exports.createBookAd = async (req, res) => {
     console.log("Book added to database");
     return res.status(201).json(newBook);
   } catch (err) {
-    return res.status(409).json({ msg: err });
+    console.log(err)
+    return res.status(409).json({ msg: "Something went wrong on Server.."  });
   }
 };
 

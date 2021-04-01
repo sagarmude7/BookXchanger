@@ -110,7 +110,7 @@ const PostAdForm = () => {
                   onClose={handleClose}
                 >
                   <Alert onClose={handleClose} severity="error">
-                    <strong>{book?.msg}</strong>
+                    <strong>{book.msg}</strong>
                   </Alert>
                 </Snackbar>
               ) : null}
