@@ -4,7 +4,7 @@ export default makeStyles({
   card: {
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "space-between",
+    justifyContent: "space-between",
     borderRadius: "15px",
     height: "100%",
     position: "relative",
@@ -20,7 +20,6 @@ export default makeStyles({
 
   media: {
     height: 0,
-
     paddingTop: "56.25%",
     backgroundColor: "rgba(0, 0, 0, 0.4)",
     backgroundBlendMode: "darken",
@@ -58,7 +57,7 @@ export default makeStyles({
     position: "relative",
     top: "-60px",
     left: "15px",
-    fontSize: "20px",
+
     fontWeight: "1000",
     "@media (max-width : 900px)": {
       top: "15px",

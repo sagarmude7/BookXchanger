@@ -30,12 +30,10 @@ const Book = ({ book }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("profile"));
-  const [fav, setFav] = useState(
-    false
-  );
+  const [fav, setFav] = useState(false);
   useEffect(() => {
     if (book)
-      setFav(book?.wishListedBy?.find((id) => id === user.profile.id));
+      setFav(book?.wishListedBy?.find((id) => id === user?.profile?.id));
   }, []);
   const addtofavourite = () => {
     console.log("Adding To Favorites..");
