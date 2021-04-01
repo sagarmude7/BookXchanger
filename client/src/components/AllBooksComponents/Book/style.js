@@ -8,8 +8,8 @@ export default makeStyles({
     borderRadius: "15px",
     height: "100%",
     position: "relative",
-    "@media (max-width : 700px)": {
-      width: "100%",
+    "@media (max-width : 900px)": {
+      width: "100% !important",
       margin: "auto",
     },
   },
@@ -25,6 +25,9 @@ export default makeStyles({
     backgroundColor: "rgba(0, 0, 0, 0.4)",
     backgroundBlendMode: "darken",
     marginBottom: "20px",
+    "@media (max-width : 900px)": {
+    paddingTop : "5px"
+    },
   },
 
   favourite: {
@@ -45,22 +48,26 @@ export default makeStyles({
     "@media (max-width : 700px)": {
       bottom: "2.5px",
       right: "10px",
-      paddingBottom: "4px",
+      paddingBottom: "10px",
       transform: "scale(1.3)",
     },
   },
 
   price: {
     color: "white",
-    position: "absolute",
-    top: "120px",
+    position: "relative",
+    top: "-60px",
     left: "15px",
     fontSize: "20px",
     fontWeight: "1000",
-    "@media (max-width : 700px)": {
-      top: "135px",
-      fontSize: "22px",
-      left: "15px",
+    "@media (max-width : 900px)": {
+      top: "15px",
+      fontSize: "12px",
+      left: "10px",
+    },
+    "@media (max-width : 900px)": {
+      width: "100% !important",
+      margin: "auto",
     },
   },
 

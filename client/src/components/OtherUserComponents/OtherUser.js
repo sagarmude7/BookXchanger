@@ -172,21 +172,19 @@ const OtherUser = ({match}) => {
       <div className={classes.container}>
         <Navbar />
         <Container className={classes.head}>
+        <ArrowBackIcon
+            style={{ cursor: "pointer" }}
+            className={classes.topLeft}
+            onClick={() => history.goBack()}
+          ></ArrowBackIcon>
           <img
             className={classes.pic}
-            src={user.profilePic}
+            src={user?.profilePic}
             alt="M"
             width="175"
             height="190"
           />
           <div className={classes.userDetails}>
-          <Typography
-            variant="h5"
-            color="textPrimary"
-            className={classes.headUser}
-          >
-            {user.name}
-          </Typography>
           <Typography
             variant="h5"
             color="textPrimary"
@@ -201,18 +199,18 @@ const OtherUser = ({match}) => {
           >
             {user.location}
           </Typography>
+        
           </div>
-          <div className={classes.ads}>
-          <div className={classes.adsSold}>
-          <h2>
-            Ads Sold : {books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length}
-          </h2>
-          </div>
-          <div className={classes.adsSold}>
-          <h2>
-            Total Listing : {books.filter(book=>(book.owner===userId)).length}
-          </h2>
-          </div>
+          <div className ={classes.rightBox}>
+            <div className={classes.listing1}>
+              <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)).length}</Typography>
+              <Typography className={classes.listLetter}> Total Listing </Typography>
+            </div>
+
+            <div className={classes.listing2}>
+              <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length}</Typography>
+              <Typography className={classes.listLetter}>   Ads Sold </Typography>
+            </div>
           </div>
         </Container>
 
@@ -276,7 +274,7 @@ const OtherUser = ({match}) => {
                 <hr
                   style={{
                     border: "1px solid #DF4C73",
-                    width: "20%",
+                    width: "80%",
 
                   }}
                 />
@@ -285,16 +283,14 @@ const OtherUser = ({match}) => {
                   multiline
                   rows={7}
                   variant="outlined"
-                  style={{ width: "100%"}}
+                  style={{ width: "80%",margin : "20px"}}
                 />
                 <Button
-                  variant="contained"
+                  variant="outline"
                   color="primary"
                   className={classes.SendButton}
-                  endI.con={<SendIcon />}
+                  endIcon={<SendIcon />}
                 >
-13
- 
                   Send
                 </Button>
                 <div className={classes.guidelines}>

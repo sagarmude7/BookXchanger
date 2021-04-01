@@ -82,7 +82,8 @@ const Dashboard = ({userId}) => {
                   className={classes.container}
                   container
                   alignItems="stretch"
-                  spacing={3}
+                  spacing={2}
+                  
                 >
                 {books.filter(book=>(book.owner===userId)&&(book.isSold===false)).length !== 0 ? (
                   <>{books.filter(book=>(book.owner===userId)&&(book.isSold===false))?.map(card)}</>

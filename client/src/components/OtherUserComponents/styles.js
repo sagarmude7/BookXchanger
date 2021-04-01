@@ -63,21 +63,18 @@ export default makeStyles((theme) => ({
           color : "pointer",
       },
       ads : {
-        display : "flex",
-        alignItems :"center",
-        justifyContent :"space-between",
-        position : "absolute",
-        right :"30px",
+        position : "relative",
+        right :"10px",
+        top : "10px",
       },
       adsSold : {
-        margin : "50px 20px 50px ",
+        border : "2px solid black",
         padding : "10px",
         borderRadius : "20px",
-        fontWeight :"800",
+        fontWeight :"600",
         fontSize :"1.8rem",
-        fontFamily : "New Tegomin, serif",
-        backgroundColor: "#286FB4",
-        backgroundImage: `url(${'https://www.transparenttextures.com/patterns/brushed-alum.png'})`
+
+
       },
       body:{
         display:'flex',
@@ -189,9 +186,10 @@ export default makeStyles((theme) => ({
         padding: "0px"
       },
       sendButton : {
-        width: "100%",
+        width: "20%",
         marginTop: "10px",
         backgroundColor: "#DF4C73",
+        alignItems  : "center"
       } ,
        guidelines: {
         display: "block",
@@ -207,9 +205,54 @@ export default makeStyles((theme) => ({
           width: "100%",
           paddingRight: "10px",
         },
+      },
+      listing1 :{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        backgroundColor:"#F60A66",
+        backgroundColor:"#1DD78A",
+        backgroundColor:"#2CBF87",
+        backgroundColor:"#F39E0B",
+        backgroundColor:"#286FB4",
+        width:140,
+        height:110,
+        marginTop:60,
+        margin:40,
+        marginLeft:150,
+      },
+
+      listing2 :{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        backgroundColor:"#1DD78A",
+        backgroundColor:"#1abc9c",
+        width:140,
+        height:110,
+        marginTop:60,
+        margin:20,
+      },
        
+      listNumber:{
+        color:"white",
+        fontSize:50,
+        fontWeight:20,
+      },
+      listLetter:{
+        color:"white",
+        fontSize:17,
+        fontWeight:5,
+      },
+      rightBox :{
+        display : "flex",
+        flexDirection : "row",
+        position : "relative",
+        left : "260px",
+        "@media (max-width : 900px)": {
+        },
       }
-    }));
+}));
     
     
     
