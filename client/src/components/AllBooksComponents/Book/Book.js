@@ -57,7 +57,7 @@ const Book = ({ book }) => {
             src="book"
             image={book.selectedFile}
           />
-
+    
           <Typography className={classes.price}>
             {"₹"}
             {book.price}
