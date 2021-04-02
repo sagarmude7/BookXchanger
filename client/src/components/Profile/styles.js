@@ -1,12 +1,15 @@
+
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react'
 import { green, pink } from '@material-ui/core/colors';
 import { CenterFocusStrong } from '@material-ui/icons';
-
+import { createMuiTheme } from '@material-ui/core/styles';
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
 </style>;
+
+
 
 export default makeStyles((theme) => ({
    
@@ -38,35 +41,31 @@ export default makeStyles((theme) => ({
           
       },
 
-      headRight:{
-        display:'flex',
-        flexDirection:'column',
-        width:400,
-      },
+      
 
       headUser: {
-          marginTop:60,
-          marginLeft:90,
-          fontWeight:300,
-          fontSize:30,
-      },
-      heading: {
-          
-          marginBottom : 50,
-          marginLeft:200,
-          
-      },
+        marginTop:60,
+        marginLeft:"8%",
+        fontWeight:300,
+        fontSize:30,
+        border:"2px solid red"
+    },
+
+     
 
       pic:{
-          margin:35,
+        width:"175px",
+        height:"190px",
+        margin:"3%"
       },
 
       body:{
         backgroundColor:'#E2F0F9',
         display:'flex',
         flexDirection:'column',
-        marginTop:20,
+        width:"88%",
       },
+
       bodyFields:{
         display:'flex',
         flexDirection:'row',
@@ -82,7 +81,7 @@ export default makeStyles((theme) => ({
 
       bodyTextValue:{
         position:'absolute',
-        left:500,
+        left:"38%",
         margin:15,
         fontSize:15,
         fontWeight:50,
@@ -97,8 +96,8 @@ export default makeStyles((theme) => ({
       },
 
       Edit:{
-        width:180,
-        marginLeft:1000,
+        width:"18%",
+        marginLeft:"80%",
       },
 
 
@@ -117,12 +116,13 @@ export default makeStyles((theme) => ({
 
       textBox:{
         margin:20,
-        width:1000
+        //margin:'2%',
+        width:'80%'
       },
 
       changePassword :{
         width:180,
-        marginLeft:1000,
+        marginLeft:"77%",
         
       },
 
@@ -138,7 +138,7 @@ export default makeStyles((theme) => ({
         width:150,
         marginBottom:30,
         marginTop:30,
-        marginLeft:850,
+        marginLeft:"72%",
       },
 
       rootTab: {
@@ -154,33 +154,31 @@ export default makeStyles((theme) => ({
 
       },
 
+
       listing1 :{
         display:'flex',
         flexDirection:'column',
         alignItems:'center',
-        backgroundColor:"#F60A66",
-        backgroundColor:"#1DD78A",
-        backgroundColor:"#2CBF87",
-        backgroundColor:"#F39E0B",
         backgroundColor:"#286FB4",
-        width:140,
-        height:110,
+        width:"14%",
+        height:120,
         marginTop:60,
-        margin:40,
-        marginLeft:150,
+        margin:"2%",
+        marginLeft:"11%",
       },
 
       listing2 :{
         display:'flex',
         flexDirection:'column',
         alignItems:'center',
-        backgroundColor:"#1DD78A",
         backgroundColor:"#1abc9c",
-        width:140,
-        height:110,
+        width:"14%",
+        height:120,
         marginTop:60,
-        margin:20,
+        marginLeft:"2%",
+        
       },
+
 
       listNumber:{
         
@@ -194,9 +192,222 @@ export default makeStyles((theme) => ({
         fontWeight:5,
       },
 
+      [theme.breakpoints.between(1000,1200)]:{
+        headUser:{
+
+          fontSize:25,
+          fontWeight:300,
+        },
+
+        pic:{
+          width:"140px",
+          height:"160px",
+        },
+
+        listing1:{
+            height:90,
+        },
+
+        listing2:{
+          height:90,
+        },
+
+        listNumber:{
+        
+          fontSize:40,
+          fontWeight:20,
+        },
+
+        listLetter:{
+          fontSize:14,
+          fontWeight:5,
+        },
+      
+      },
+     
+      [theme.breakpoints.down(1000)]:{
+
+        pic:{
+          marginTop:40,
+        },
+
+        head: {
+          flexDirection:'column',
+          alignItems:"center",
+            
+        },
+
+        listing1:{
+          //display:'flex',
+        //flexDirection:'column',
+        alignItems:'center',
+        //backgroundColor:"#286FB4",
+        
+        height:120,
+        marginTop:20,
+        margin:"0",
+        //marginLeft:"0",
+        width:"100%"
+        
+
+      },
+
+      listing2:{
+          //display:'flex',
+        //flexDirection:'column',
+        alignItems:'center',
+        //backgroundColor:"#286FB4",
+        
+        height:120,
+        marginTop:20,
+        marginBottom:20,
+        margin:"0",
+        //marginLeft:"0",
+        width:"100%"
+      },
+
+      headUser: {
+        marginTop:20,
+        margin:0,
+        marginBottom:20,
+        fontWeight:350,
+        fontSize:40,
+        
+    },
+
+    Edit:{
+      width:"25%",
+      marginLeft:"70%",
+      
+    },
+
+    changePassword :{
+      width:170,
+      marginLeft:"65%",
+      fontSize:13,
+      
+    },
+
+  },
+
+    [theme.breakpoints.down(700)]:{
+      Edit:{
+        width:"30%",
+        marginLeft:"70%",
+        fontSize:10,
+
+    },
+
+    bodyFields:{
+      display:'flex',
+      flexDirection:'column',
+    },
+
+    bodyText:{
+      margin:10,
+      marginBottom:0,
+      marginLeft:16,
+      fontSize:15,
+      fontweight:200,
+    },
+
+
+    bodyTextValue:{
+      position:'relative',
+      left:"0%",
+      margin:10,
+      marginLeft:16,
+      fontSize:15,
+      fontWeight:50,
+    },
+
+    changePassword :{
+      width:153,
+      marginLeft:"60%",
+      fontSize:12,
+      
+    },
+
+    saveChanges:{
+      width:130,
+      marginLeft:"65%",
+      fontSize:12,
+    },
+
+    textField: {
+      width: '25ch',
+      fontSize:12,
+    },
+
+    
+
+    },
+
+    [theme.breakpoints.down(500)]:{
+      Edit:{
+        width:"36%",
+        marginLeft:"65%",
+        fontSize:10,
+
+    },
+
+    
+    changePassword :{
+      width:137,
+      marginLeft:"47%",
+      fontSize:10.5,
+      
+    },
+
+    saveChanges:{
+      width:120,
+      marginLeft:"50%",
+      fontSize:10.5,
+    },
+
+    textField: {
+      fontSize:9,
+    },
+
+    passTitle:{
+      fontSize:12,
+    }
+
+  },
+
+  [theme.breakpoints.down(400)]:{
+    Edit:{
+      width:"40%",
+      marginLeft:"60%",
+      fontSize:9,
+
+  },
+
+      
+  changePassword :{
+    width:100,
+    marginLeft:"45%",
+    fontSize:10,
+    
+  },
+
+  textField: {
+    fontSize:7,
+  },
+
+  passTitle:{
+    fontSize:10,
+  }
+
+
+},
 
 
     }));
+    
+    
+    
+
     
     
     

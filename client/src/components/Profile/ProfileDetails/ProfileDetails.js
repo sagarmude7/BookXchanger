@@ -225,6 +225,7 @@ const Profile = () => {
 
             >Edit Profile</Button>
 
+          
           <Container className={classes.bodyFields}>
             <Typography className={classes.bodyText} variant="h6">
               Your Name :
@@ -312,7 +313,7 @@ const Profile = () => {
             </Button>
             <Dialog
               open={open}
-              
+              className={classes.dialog}
               aria-labelledby="form-dialog-title"
             >
             <form noValidate autoComplete="off" onSubmit={handleSubmitPassword}>
@@ -332,7 +333,7 @@ const Profile = () => {
                   className={clsx(classes.margin, classes.textField)}
                   variant="outlined"
                 >
-                  <InputLabel htmlFor="current-password">
+                  <InputLabel htmlFor="current-password" className={classes.passTitle}>
                     Current Password
                   </InputLabel>
                   <OutlinedInput
@@ -364,7 +365,7 @@ const Profile = () => {
                   className={clsx(classes.margin, classes.textField)}
                   variant="outlined"
                 >
-                  <InputLabel htmlFor="new-password">New Password</InputLabel>
+                  <InputLabel htmlFor="new-password" className={classes.passTitle}>New Password</InputLabel>
                   <OutlinedInput
                     id="new-password"
                     type={values2.showPassword ? "text" : "password"}
@@ -394,7 +395,7 @@ const Profile = () => {
                   className={clsx(classes.margin, classes.textField)}
                   variant="outlined"
                 >
-                  <InputLabel htmlFor="confirm-new-password">
+                  <InputLabel htmlFor="confirm-new-password" className={classes.passTitle}>
                     Confirm New Password
                   </InputLabel>
                   <OutlinedInput

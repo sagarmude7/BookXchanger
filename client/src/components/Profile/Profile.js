@@ -115,8 +115,7 @@ const Profile = () => {
               className={classes.pic}
               src={img}
               alt="M"
-              width="175"
-              height="190"
+              
             ></img>
             <Typography
               variant="body1"

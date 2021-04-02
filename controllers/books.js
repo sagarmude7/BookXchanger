@@ -7,7 +7,7 @@ const {postBookValidator} =require('../validators/joi-validator')
 exports.getBooks = async (req, res) => {
   try {
     const books = await Book.find();
-    console.log("Fetched All Books from backend");
+    //console.log("Fetched All Books from backend");
     return res.status(200).json(books);
   } catch (err) {
     return res.status(404).json({ msg: "No Book Found" });
@@ -29,6 +29,9 @@ exports.createBookAd = async (req, res) => {
   const book = req.body;
   const {error} = postBookValidator.validate(req.body)
   
+  if(error){
+    console.log(error.details[0].message);
+  }
   //compression
   const options = {
     maxSizMB:0.2,
@@ -36,13 +39,13 @@ exports.createBookAd = async (req, res) => {
     useWebWorker: true
   }
 
-  console.log(error)
+  //console.log(error)
   // console.log("getting current user")
   if (!req.userId) return res.status(403).json({ msg: "Unauthorized" });
   console.log("got current user")
   try {
     if(error){
-        console.log("got an error"+error)
+        //console.log("got an error"+error)
         return res.status(400).json({msg:error.details[0].message})
     }
     const {selectedFile} = req.body
