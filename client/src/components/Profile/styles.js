@@ -48,7 +48,7 @@ export default makeStyles((theme) => ({
         marginLeft:"8%",
         fontWeight:300,
         fontSize:30,
-        border:"2px solid red"
+        //border:"2px solid red"
     },
 
      
