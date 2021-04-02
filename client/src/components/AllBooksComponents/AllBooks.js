@@ -19,17 +19,13 @@ import {
 } from "@material-ui/core";
 import Book from "./Book/Book";
 import useStyles from "./style";
-import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/footer.js";
 import SearchBox from "../HomePageComponents/SearchBar/SearchBox.js";
-import { getBooks } from "../../actions/books";
-import FilteredBooks from "./FilteredBooks/filteredBooks.js";
 
 const AllBooks = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
-  const books = allBooks.filter((book) => book.isSold === false);
+  const [books,setBooks] = useState([]);
   const [sortbool, setSortbool] = useState(false);
   const [type, settype] = useState("");
 
@@ -39,10 +35,15 @@ const AllBooks = () => {
 
   useEffect(() => {
     dispatch({ type: ADDFILTER, payload: books });
-  }, [dispatch]);
+  }, [dispatch,books]);
+
+  useEffect(()=>{
+    if(allBooks.length!==0)
+      setBooks(allBooks.filter((book) => book.isSold === false)) 
+  },[])
 
   useEffect(() => {
-    if (sortbool == true) {
+    if (sortbool === true) {
       dispatch({ type: ADDFILTER, payload: data });
     }
   }, [dispatch, data]);
