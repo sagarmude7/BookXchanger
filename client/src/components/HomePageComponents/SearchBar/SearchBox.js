@@ -139,30 +139,32 @@ const SearchBox = () => {
 
     const removeFilters = () => {
       dispatch({type:ADDFILTER,payload:books});
-
+      setInputName('')
+      setInputBranch('')
+      setInputSubject('')
     }
 
-    const updateBooks =  async ()=>{
+    const updateBooks =  ()=>{
         if(inputName!==""){
-          await setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
+          setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
           console.log("Filtered By Name",filteredbooksByName);
         }
         else{
-          await setFilteredbooksByName([]);
+          setFilteredbooksByName([]);
         }
         if(inputSubject!==""){
-          await setFilteredbooksBySubject(books.filter((book) => book.subject.toLowerCase().includes(inputSubject.toLowerCase())));
+          setFilteredbooksBySubject(books.filter((book) => book.subject.toLowerCase().includes(inputSubject.toLowerCase())));
           console.log("Filtered By Subject",filteredbooksBySubject);
         }
         else{
-          await setFilteredbooksBySubject([]);
+          setFilteredbooksBySubject([]);
         }
         if(inputBranch!==""){
-          await setFilteredbooksByBranch(books.filter((book) => book.branch.toLowerCase().includes(inputBranch.toLowerCase())));
+          setFilteredbooksByBranch(books.filter((book) => book.branch.toLowerCase().includes(inputBranch.toLowerCase())));
           console.log("Filtered By Branch",filteredbooksByBranch);
         }
         else{
-          await setFilteredbooksByBranch([]);
+          setFilteredbooksByBranch([]);
         }
         if(inputPrice!==""){
           setFilteredbooksByPrice(books.filter((book) => book.priceType.toLowerCase().includes(inputPrice.toLowerCase())));
@@ -188,7 +190,7 @@ const SearchBox = () => {
          }
         const filteredbooks = [...filteredbooksByName,...filteredbooksByBranch,...filteredbooksBySubject,...filteredbooksByPrice,...filteredbooksByCondition,...filteredbooksByTags]
         var uniqueFilteredArray = filteredbooks.filter(function(item, pos) {
-            return filteredbooks.indexOf(item) == pos;
+            return filteredbooks.indexOf(item) === pos;
         })
         console.log(uniqueFilteredArray);
         dispatch({type:ADDFILTER,payload:uniqueFilteredArray})      
@@ -257,7 +259,7 @@ const SearchBox = () => {
             isadv ? 
         <Grid container spacing={4} className={classes.gridContainer} > 
             <Grid item xs={12} sm={4} className={classes.paper}>
-                <FormControl variant="outlined" border="blue" className={classes.formControl} fullWidth>
+                <FormControl variant="outlined" border="blue" className={classes.formControl} style={{width: "200px"}}>
                 <InputLabel id="conditionTypeLabel">Condition Of Book</InputLabel>
                     <Select
                     labelId="conditionLabel"

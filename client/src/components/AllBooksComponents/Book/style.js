@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles({
+export default makeStyles(({
   card: {
     display: "flex",
     flexDirection: "column",
@@ -26,8 +26,13 @@ export default makeStyles({
     backgroundBlendMode: "darken",
     marginBottom: "20px",
     "@media (max-width : 900px)": {
-    paddingTop : "5px"
+    paddingTop : "5px",
+    height : "200px"
     },
+    "@media (max-width : 400px)": {
+      paddingTop : "5px",
+      height : "200px"
+      },
   },
 
   favourite: {
@@ -111,4 +116,4 @@ export default makeStyles({
   button: {
     backgroundColor: "#df4c73",
   },
-});
+}));

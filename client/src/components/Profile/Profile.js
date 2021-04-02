@@ -170,7 +170,7 @@ const Profile = () => {
 
         
         
-        <Footer/>
+        {/*<Footer/>*/}
        
       </div>
     );

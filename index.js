@@ -1,8 +1,12 @@
+'use strict';
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const compression = require('compression')
+const Blob = require('node-blob')
+const FileReader = require('filereader')
+const atob = require('atob')
 
 //port
 const PORT = process.env.PORT || 5000;
@@ -18,6 +22,9 @@ app.use(compression())
 //cross origin request
 // app.use(cors())
 
+if (typeof window === 'undefined') {
+  global.window = {}
+}
 //connect to databases
 connectDB();
 
@@ -60,3 +67,9 @@ app.listen(PORT, () =>
     `Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`
   )
 );
+
+
+
+globalThis.Blob = Blob;
+// globalThis.FileReader = FileReader
+globalThis.atob = atob

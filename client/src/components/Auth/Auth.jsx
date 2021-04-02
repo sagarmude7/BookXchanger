@@ -137,7 +137,7 @@ const Auth = () => {
                     cookiePolicy="single_host_origin"
                 />
 
-                <FacebookLogin
+                {/* <FacebookLogin
                     appId="428527365067089"
                     render={(renderProps)=>(
                         <Button color="info" fullWidth className={classes.customLogin} onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<FacebookIcon />} variant="contained">
@@ -149,7 +149,7 @@ const Auth = () => {
                     onClick={componentClicked}
                     callback={responseFacebook}
                     icon="fa-facebook" 
-                />
+                /> */}
 
                 <Grid container justify="flex-end">
                     <Grid item>

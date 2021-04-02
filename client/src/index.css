@@ -5,7 +5,6 @@ body{
     /* background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%); */
     background-attachment: fixed;
     background-size: contain;
-    font-family: 'New Tegomin', serif !important;
 }
 #root {
     padding: 0px !important;

@@ -127,7 +127,7 @@ export default makeStyles((theme) => ({
       },
 
       textField: {
-        width: '30ch',
+        width: '50ch',
       },
 
       margin: {
@@ -335,7 +335,7 @@ export default makeStyles((theme) => ({
     },
 
     textField: {
-      width: '25ch',
+      width: '45ch',
       fontSize:12,
     },
 
@@ -366,7 +366,7 @@ export default makeStyles((theme) => ({
     },
 
     textField: {
-      fontSize:9,
+      fontSize:11,
     },
 
     passTitle:{
