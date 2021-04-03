@@ -131,12 +131,17 @@ const Wishlist = () => {
       <div className={classes.mainContainer}>
         <br />
         <div>
-          <button
+          {wishList.length !==0 ? (
+            <button
             className={classes.sortButton}
             onClick={() => setSortbool(!sortbool)}
-          >
-            <span style={{ fontSize: "1.1rem" }}>Sort</span>
+            >
+              <span style={{ fontSize: "1.1rem" }}>Sort</span>
           </button>
+          ):(
+            <></>
+          )}
+          
 
           {sortbool === true ? (
             <>
