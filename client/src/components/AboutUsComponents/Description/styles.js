@@ -16,7 +16,7 @@ const styles = makeStyles(() => ({
     transform: "translateY(10%,0%)",
   },
   content: {
-    top: "40%",
+    top: "50%",
     left: "30%",
     zIndex: "10",
     position: "absolute",
@@ -24,9 +24,8 @@ const styles = makeStyles(() => ({
     color: "white",
     "@media (max-width : 700px)": {
       textAlign: "center",
-      top: "30%",
+      top: "50%",
       left: "50%",
-
       fontSize: "50px",
     },
   },

@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles(({
+export default makeStyles({
   card: {
     display: "flex",
     flexDirection: "column",
@@ -16,43 +16,48 @@ export default makeStyles(({
 
   top: {
     position: "relative",
+    height: "200px",
+    "@media (max-width : 900px)": {
+      height: "350px",
+    },
+    "@media (max-width : 400px)": {
+      height: "220px",
+    },
   },
 
   media: {
-    height: 0,
-
     paddingTop: "56.25%",
     backgroundColor: "rgba(0, 0, 0, 0.4)",
     backgroundBlendMode: "darken",
-    marginBottom: "20px",
     "@media (max-width : 900px)": {
-    paddingTop : "5px",
-    height : "200px"
+      height: "200px",
     },
     "@media (max-width : 400px)": {
-      paddingTop : "5px",
-      height : "200px"
-      },
+      height: "200px",
+    },
   },
 
   favourite: {
-    position: "absolute",
-    top: "110px",
-    right: "2px",
+    position: "relative",
+    top: "-90px",
+    left: "240px",
     transform: "scale(1.3)",
     transition: ".5s",
-    "&:hover::before": {
-      transform: "scale(1.3)",
-    },
 
     "&:hover": {
       color: "#ffffff",
       transform: "scale(1.5)",
       textShadow: "0 0 5px #ffffff",
     },
+    "@media (max-width : 900px)": {
+      bottom: "2.5px",
+      left: "730px",
+      paddingBottom: "10px",
+      transform: "scale(1.3)",
+    },
     "@media (max-width : 700px)": {
       bottom: "2.5px",
-      right: "10px",
+      left: "270px",
       paddingBottom: "10px",
       transform: "scale(1.3)",
     },
@@ -61,7 +66,7 @@ export default makeStyles(({
   price: {
     color: "white",
     position: "relative",
-    top: "-60px",
+    top: "-50px",
     left: "15px",
     fontSize: "20px",
     fontWeight: "1000",
@@ -116,4 +121,4 @@ export default makeStyles(({
   button: {
     backgroundColor: "#df4c73",
   },
-}));
+});
