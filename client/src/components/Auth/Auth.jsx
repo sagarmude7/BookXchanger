@@ -5,6 +5,10 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar'
 import Slide from '@material-ui/core/Slide'
 import {LockOutlined} from '@material-ui/icons';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import PersonIcon from '@material-ui/icons/Person';
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -18,6 +22,7 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import {signUp,signIn,googleFacebookSignIn} from '../../actions/auth'
 import Navbar from '../Navbar/Navbar'
 import {AUTH} from '../../constants/actions'
+
 
 const initialState = {firstName:'',lastName:'',college:'',location:'',email:'',password:'',confirmPassword:''}
 const Auth = () => {
@@ -98,7 +103,7 @@ const Auth = () => {
                 <Typography component="h1" variant="h4" style={{"textAlign":"center"}}>{ isSignup ? 'Register With Us' : 'Sign In to your Account' }</Typography>
                     <hr width='70%' style={{ border: "1px solid white"}}></hr>
                     <Typography>
-                    <Avatar className={classes.avt}><LabelImportantSharpIcon fontSize='medium'/></Avatar>
+                    <Avatar className={classes.avt}><ChatOutlinedIcon fontSize='medium'/></Avatar>
                         <Typography component="h1" variant="h5" className={classes.list}>
                             Chats and Messaging
                         </Typography>
@@ -109,7 +114,7 @@ const Auth = () => {
                      </Typography>
                      <hr width='40%'></hr>
                      <Typography>
-                        <Avatar className={classes.avt}><LabelImportantSharpIcon fontSize='medium'/></Avatar>
+                        <Avatar className={classes.avt}><PhoneCallbackIcon fontSize='medium'/></Avatar>
                         <Typography component="h1" variant="h5" className={classes.list}>
                             Avoid Calls
                         </Typography>
@@ -120,7 +125,7 @@ const Auth = () => {
                     </Typography>
                     <hr width='40%'></hr>
                     <Typography>
-                        <Avatar className={classes.avt}><LabelImportantSharpIcon fontSize='medium'/></Avatar>
+                        <Avatar className={classes.avt}><DashboardIcon fontSize='medium'/></Avatar>
                         <Typography component="h1" variant="h5" className={classes.list}>
                             User Dashboard
                         </Typography>
@@ -131,7 +136,7 @@ const Auth = () => {
                     </Typography>
                     <hr width='40%'></hr>
                     <Typography>
-                        <Avatar className={classes.avt}><LabelImportantSharpIcon fontSize='medium'/></Avatar>
+                        <Avatar className={classes.avt}><PersonIcon fontSize='medium'/></Avatar>
                         <Typography component="h1" variant="h5" className={classes.list}>
                             User Friendly Support
                         </Typography>
