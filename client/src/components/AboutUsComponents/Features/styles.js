@@ -4,6 +4,7 @@ const styles = makeStyles((theme) => ({
   Main: {},
 
   name: {
+    marginTop: "10px",
     alignContent: "center",
   },
 
@@ -47,12 +48,37 @@ const styles = makeStyles((theme) => ({
 
   root: {
     width: "100%",
-    maxWidth: "36ch",
-    backgroundColor: theme.palette.background.paper,
   },
   inline: {
     display: "inline",
   },
+
+  avatar: {
+    margin: "10px",
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+  },
+  avatarSpecial: {
+    margin: "10px",
+    width: theme.spacing(8),
+    height: theme.spacing(8),
+  },
+
+  listItem: {
+    paddingTop: "0px",
+    paddingBottom: "0px",
+    "@media (max-width : 700px)": {
+      paddingLeft: "0px",
+    },
+  },
+
+  //Images
+
+  image: {
+    width: "100%",
+    height: "300px",
+  },
+  //Images
 }));
 
 export default styles;

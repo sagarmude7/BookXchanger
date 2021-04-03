@@ -1,36 +1,7 @@
 import React from "react";
-import Footer from "../Footer/footer.js";
 import Description from "./Description/Description.js";
 import Feature from "./Features/Feature.js";
-import Navbar from "../Navbar/Navbar.js";
-import {
-  Container,
-  Appbar,
-  Typography,
-  Grow,
-  Grid,
-  Paper,
-  Avatar,
-  Box,
-  CardHeader,
-  createMuiTheme,
-} from "@material-ui/core";
-import {
-  CardContent,
-  CardActions,
-  Card,
-  makeStyles,
-  CardActionArea,
-} from "@material-ui/core";
-import SmsIcon from "@material-ui/icons/Sms";
-import CallEndIcon from "@material-ui/icons/CallEnd";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import MobileFriendlyIcon from "@material-ui/icons/MobileFriendly";
-import Divider from "@material-ui/core/Divider";
-import List from "@material-ui/core/List";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import DevelopedBy from "./DevelopedBy/DevelopedBy.js";
 import useStyles from "./styles.js";
 import ContactForm from "./ContactForm/contactform.js";
 

@@ -42,7 +42,7 @@ const Description = () => {
         indicators={false}
         animation="fade"
         autoPlay={true}
-        interval={50000}
+        interval={10000}
         stopAutoPlayOnHover={false}
         navButtonsAlwaysInvisible={true}
       >

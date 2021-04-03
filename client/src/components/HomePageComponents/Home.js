@@ -3,7 +3,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Description from "./Description/Description.js";
 import Chatbot from "./Chatbot/chatbot.js";
-import HowToSell from "./HowToSell/HowToSell.js";
+import HowToUse from "./HowToUse/HowToUse.js";
 import Footer from "../Footer/footer.js";
 import BookSlider from "./BookSlider/BookSlider.js";
 
@@ -69,7 +69,7 @@ const Home = () => {
       ) : null}
       <Description />
       <BookSlider />
-      {/* <HowToSell /> */}
+      <HowToUse />
       <Feedback />
       <Chatbot />
     </>
