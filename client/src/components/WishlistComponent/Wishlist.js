@@ -241,7 +241,6 @@ const Wishlist = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

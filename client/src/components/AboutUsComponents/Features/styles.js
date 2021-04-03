@@ -1,16 +1,18 @@
 import { makeStyles } from "@material-ui/core";
 
-const styles = makeStyles(() => ({
+const styles = makeStyles((theme) => ({
   Main: {},
 
+  name: {
+    alignContent: "center",
+  },
+
   content: {
-    display: "inline-block",
     textAlign: "center",
-    color: "white",
+    color: "black",
     "@media (max-width : 700px)": {
       textAlign: "center",
-
-      fontSize: "50px",
+      fontSize: "35px",
     },
   },
   contentBold: {
@@ -21,7 +23,7 @@ const styles = makeStyles(() => ({
       textAlign: "center",
       top: "30%",
       left: "50%",
-      fontSize: "50px",
+      fontSize: "35px",
     },
   },
 
@@ -41,6 +43,15 @@ const styles = makeStyles(() => ({
     "@media (max-width : 700px)": {
       width: "100%",
     },
+  },
+
+  root: {
+    width: "100%",
+    maxWidth: "36ch",
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline: {
+    display: "inline",
   },
 }));
 

@@ -376,8 +376,6 @@ const BookInfo = ({ match }) => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };

@@ -134,8 +134,6 @@ const About = () => {
           <ContactForm />
         </Paper>
       </Container> */}
-
-      <Footer />
     </>
   );
 };
