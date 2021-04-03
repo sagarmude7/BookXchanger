@@ -37,7 +37,7 @@
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.15",
-    "node-blob": "^0.0.2",
+    "node-blob": "0.0.2",
     "nodemailer": "^6.5.0"
   }
 }

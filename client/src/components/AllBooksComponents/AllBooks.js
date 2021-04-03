@@ -84,6 +84,7 @@ const AllBooks = () => {
   return (
     <>
       <div className={classes.maincontainer}>
+        <br/>
         <SearchBox />
         <br />
         <br />
