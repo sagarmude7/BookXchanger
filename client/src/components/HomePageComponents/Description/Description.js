@@ -18,6 +18,7 @@ const Description = () => {
               ")",
           }}
         >
+          
           <div className={classes.content}>
             <Typography variant="h1" className={classes.text}>
               {props.item.heading}

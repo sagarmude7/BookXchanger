@@ -7,7 +7,7 @@ import {useHistory } from 'react-router-dom'
 import { useDispatch,useSelector } from "react-redux";
 import { postFeedBackForm } from "../../../actions/user";
 import { FEEDBACK } from "../../../constants/actions";
-
+import Jello from 'react-reveal/Jello';
 const Contact = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -60,6 +60,7 @@ const Contact = () => {
   };
 
   return (
+    <Jello right>
     <Container>
       <Paper className={classes.paper}>
         
@@ -116,6 +117,7 @@ const Contact = () => {
         </form>
       </Paper>
     </Container>
+    </Jello>
   );
 };
 

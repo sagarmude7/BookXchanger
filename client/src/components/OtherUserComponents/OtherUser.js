@@ -41,6 +41,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
 import Dashboard from "./Dashboard components/Dashboard";
 import {useHistory } from "react-router-dom";
+import Bounce from 'react-reveal/Bounce';
+import Roll from 'react-reveal/Roll';
+import Rotate from 'react-reveal/Rotate';
 const OtherUser = ({match}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -170,7 +173,8 @@ const OtherUser = ({match}) => {
     return (
       <div className={classes.container}>
         <Navbar />
-        <div className={classes.topBox}>
+        <Bounce left>
+      <div className={classes.topBox}>
         <Container className={classes.head}>
             <ArrowBackIcon
               className={classes.topLeft}
@@ -212,105 +216,61 @@ const OtherUser = ({match}) => {
                 <Typography className={classes.listLetter}>   Ads Sold </Typography>
               </div>
   
-        </Container>
-        </div>
-
-
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={8}>
-          <Dashboard userId={userId}/>
-            {/* <Container className={classes.body}>
-              <Typography  className={classes.bodyHead}>
-              <h2>{user.name} Profile</h2> 
-              </Typography>
-
-              <Container className={classes.bodyFields}>
-                <Typography className={classes.bodyText} variant="h6">
-                  Your Name :
-                </Typography>
-                <Typography className={classes.bodyTextValue} variant="h6">
-                  {user.name}
-                </Typography>
-              </Container>
-              <Divider></Divider>
-
-              <Container className={classes.bodyFields}>
-                <Typography className={classes.bodyText} variant="h6">
-                  Email Address :
-                </Typography>
-                <Typography className={classes.bodyTextValue} variant="h6">
-                  {user.email}
-                </Typography>
-              </Container>
-              <Divider></Divider>
-
-              <Container className={classes.bodyFields}>
-                <Typography className={classes.bodyText} variant="h6">
-                  College Name :
-                </Typography>
-                <Typography className={classes.bodyTextValue} variant="h6">
-                  {user.college}
-                </Typography>
-              </Container>
-              <Divider></Divider>
-
-              <Container className={classes.bodyFields}>
-                <Typography className={classes.bodyText} variant="h6">
-                  Location :
-                </Typography>
-                <Typography className={classes.bodyTextValue} variant="h6">
-                  {user.location}
-                </Typography>
-              </Container>
-              <Divider></Divider>
-
-              <Typography className={classes.bodyText}></Typography>
-            </Container> */}
-          </Grid>
-          <Grid item xs={12} sm={4}>
-          {/* <Contact /> */}
-          <Container className={classes.chatBox}>
-          <h1 style={{color :"black",textAlign:'center'}}>Contact {user.name}</h1>
-                <Typography variant="h6" style={{textAlign :"center"}}>Send Message</Typography>
-                <hr
-                  style={{
-                    border: "1px solid #DF4C73",
-                    width: "80%",
-
-                  }}
-                />
-                <TextField
-                  id="outlined-multiline-static"
-                  multiline
-                  rows={7}
-                  variant="outlined"
-                  style={{ width: "80%",margin : "20px"}}
-                />
-                <Button
-                  variant="outline"
-                  color="primary"
-                  className={classes.SendButton}
-                  endIcon={<SendIcon />}
-                >
-                  Send
-                </Button>
-                <div className={classes.guidelines}>
-              <Typography variant="body1">Read before you deal</Typography>
-              <div>
-                <ul
-                  style={{ listStyleType: "none" }}
-                  className={classes.guidelineList}
-                >
-                  <li>1. Please follow Government guidelines for COVID19.</li>
-                  <li>2. Use a safe location to meet seller</li>
-                  <li>3. Never provide your personal or banking information</li>
-                  <li>4. Beware of unrealistic offers</li>
-                </ul>
-              </div>
-            </div>
           </Container>
+        </div>
+        </Bounce>
+
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={8}>    
+            <Roll left>
+               <Dashboard userId={userId}/>
+            </Roll>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+            {/* <Contact /> */}
+            <Container className={classes.chatBox}>
+            <h1 style={{color :"black",textAlign:'center'}}>Contact {user.name}</h1>
+                  <Typography variant="h6" style={{textAlign :"center"}}>Send Message</Typography>
+                  <hr
+                    style={{
+                      border: "1px solid #DF4C73",
+                      width: "80%",
+
+                    }}
+                  />
+                  <TextField
+                    id="outlined-multiline-static"
+                    multiline
+                    rows={7}
+                    variant="outlined"
+                    style={{ width: "80%",margin : "20px"}}
+                  />
+                  <Button
+                    variant="outline"
+                    color="primary"
+                    className={classes.SendButton}
+                    endIcon={<SendIcon />}
+                  >
+                    Send
+                  </Button>
+                  <div className={classes.guidelines}>
+                <Typography variant="body1">Read before you deal</Typography>
+                <div>
+                  <ul
+                    style={{ listStyleType: "none" }}
+                    className={classes.guidelineList}
+                  >
+                    <li>1. Please follow Government guidelines for COVID19.</li>
+                    <li>2. Use a safe location to meet seller</li>
+                    <li>3. Never provide your personal or banking information</li>
+                    <li>4. Beware of unrealistic offers</li>
+                  </ul>
+                </div>
+              </div>
+            </Container>
+            </Grid>
+
           </Grid>
-        </Grid>
       </div>
     );
 };

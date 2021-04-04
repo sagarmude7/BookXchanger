@@ -338,7 +338,7 @@ export default makeStyles((theme) => ({
         backgroundColor:'#E2F0F9',
         display:'flex',
         flexDirection:'row',
-          
+        transform: "translateY(10%,0%)",
       },
 
       

@@ -50,7 +50,9 @@ import "react-multi-carousel/lib/styles.css";
 import Book from "../../AllBooksComponents/Book/Book";
 
 import { getBooks } from "../../../actions/books";
-
+import Flip from 'react-reveal/Flip';
+import Roll from 'react-reveal/Roll';
+import HeadShake from 'react-reveal/HeadShake';
 const BookInfo = ({ match }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -116,6 +118,7 @@ const BookInfo = ({ match }) => {
   return (
     <>
       <div className={classes.root}>
+        <Flip bottom>
         <div className={classes.topContainer}>
           <ArrowBackIcon
             style={{ cursor: "pointer" }}
@@ -145,16 +148,19 @@ const BookInfo = ({ match }) => {
             </div>
           </Typography>
         </div>
+        </Flip>
 
         <div className={classes.middleContainer}>
           <div className={classes.bookDetails}>
             <div className={classes.imgAndInfo}>
               <div>
+                <Roll>
                 <img
                   className={classes.bookImage}
                   src={book.selectedFile}
                   alt="Book Image"
                 />
+                </Roll>
               </div>
               <div>
                 <ul style={{ listStyleType: "none" }} className={classes.list}>
@@ -207,6 +213,7 @@ const BookInfo = ({ match }) => {
                 </ul>
               </div>
             </div>
+            <HeadShake>
             <div className={classes.bookDescription}>
               <Typography variant="h5">Description</Typography>
               <Typography variant="body1">{book.description}</Typography>
@@ -257,6 +264,7 @@ const BookInfo = ({ match }) => {
                 </EmailShareButton>
               </div>
             </div>
+            </HeadShake>
           </div>
           <div className={classes.sideContainer}>
             <div className={classes.contactUser}>
