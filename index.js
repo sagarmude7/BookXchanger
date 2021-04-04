@@ -4,10 +4,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const compression = require('compression')
-const Blob = require('node-blob')
-const FileReader = require('filereader')
-const atob = require('atob')
-
+const io = require('socket.io')(http);
 //port
 const PORT = process.env.PORT || 5000;
 
@@ -68,8 +65,3 @@ app.listen(PORT, () =>
   )
 );
 
-
-
-globalThis.Blob = Blob;
-// globalThis.FileReader = FileReader
-globalThis.atob = atob
