@@ -12,7 +12,7 @@ const About = () => {
     <>
       <Description />
       <Feature />
-
+      <DevelopedBy />
       {/*     
       <Container maxWidth="lg" spacing="ms">
         <Typography variant="h3" align="Center" style={{ color: "#ab47bc" }}>

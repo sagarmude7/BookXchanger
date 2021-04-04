@@ -4,7 +4,7 @@ const styles = makeStyles(() => ({
   paper: {
     border: "5px solid #000WWW",
     backgroundSize: "cover",
-    height: "600px",
+    height: "655px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     position: "relative",
@@ -14,6 +14,9 @@ const styles = makeStyles(() => ({
     width: "100%",
     zIndex: "-1",
     transform: "translateY(10%,0%)",
+    "@media (max-width : 700px)": {
+      height: "600px",
+    },
   },
   content: {
     top: "50%",
