@@ -24,7 +24,7 @@ import Carousel from "react-material-ui-carousel";
 import useStyles from "./style.js";
 import { getWishList } from "../../actions/user";
 import { FETCH_FAV } from "../../constants/actions";
-
+import Zoom from 'react-reveal/Zoom';
 const Wishlist = () => {
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -232,7 +232,9 @@ const Wishlist = () => {
                       ))
                     : wishList.map((book) => (
                         <Grid item xs={12} sm={3}>
+                          <Zoom bottom>
                           <Book key={book._id} book={book} />
+                          </Zoom>
                         </Grid>
                       ))}
                 </Grid>

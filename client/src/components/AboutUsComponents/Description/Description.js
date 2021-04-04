@@ -3,12 +3,14 @@ import Carousel from "react-material-ui-carousel";
 import { Paper, Typography, Box } from "@material-ui/core";
 import useStyles from "./styles.js";
 import descData from "./descData.js";
+import Bounce from 'react-reveal/Bounce';
 //import Typewriter from "typewriter-effect";
 const Description = () => {
   const classes = useStyles();
 
   const Item = (props) => {
     return (
+     
       <div className={classes.parent}>
         <div
           className={classes.paper}
@@ -38,7 +40,8 @@ const Description = () => {
   };
   return (
     <>
-      <Carousel
+    <Bounce right>
+    <Carousel
         indicators={false}
         animation="fade"
         autoPlay={true}
@@ -46,10 +49,13 @@ const Description = () => {
         stopAutoPlayOnHover={false}
         navButtonsAlwaysInvisible={true}
       >
-        {descData.map((item, index) => (
-          <Item key={index} item={item} />
-        ))}
+   
+          {descData.map((item, index) => (
+            <Item key={index} item={item} />
+          ))}
+   
       </Carousel>
+      </Bounce>
     </>
   );
 };

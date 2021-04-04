@@ -22,8 +22,8 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import {signUp,signIn,googleFacebookSignIn} from '../../actions/auth'
 import Navbar from '../Navbar/Navbar'
 import {AUTH} from '../../constants/actions'
-
-
+import Swing from 'react-reveal/Swing';
+import Fade from 'react-reveal/Fade';
 const initialState = {firstName:'',lastName:'',college:'',location:'',email:'',password:'',confirmPassword:''}
 const Auth = () => {
     const classes = useStyles()
@@ -98,8 +98,10 @@ const Auth = () => {
     }
     return (
         <div className={classes.mainContainer}>
+
         <Grid container>
             <Grid xs={12} sm={6} className={classes.grid}>
+             <Fade down>
                 <Typography component="h1" variant="h4" style={{"textAlign":"center"}}>{ isSignup ? 'Register With Us' : 'Sign In to your Account' }</Typography>
                     <hr width='70%' style={{ border: "1px solid white"}}></hr>
                     <Typography>
@@ -146,9 +148,11 @@ const Auth = () => {
                         </p>
                     </Typography>
                 <Divider orientation="vertical" flexItem />
+             </Fade>
             </Grid>
             
             <Grid xs={12} sm={6}>
+                <Swing left>
                 <Paper className={classes.paper}>
                     <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
@@ -224,6 +228,7 @@ const Auth = () => {
                     </Grid>
                     </form>
                 </Paper>
+                </Swing>
             </Grid>
         </Grid>
         </div>

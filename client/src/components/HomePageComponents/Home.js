@@ -10,6 +10,9 @@ import BookSlider from "./BookSlider/BookSlider.js";
 import Feedback from "./Feedback/Feedback.js";
 import { useSelector, useDispatch } from "react-redux";
 import { AUTH, VALID } from "../../constants/actions.js";
+import Roll from 'react-reveal/Roll';
+import LightSpeed from 'react-reveal/LightSpeed';
+import Flip from 'react-reveal/Flip';
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [bookPost, setBookPost] = useState(false);
@@ -67,9 +70,15 @@ const Home = () => {
           </Alert>
         </Snackbar>
       ) : null}
-      <Description />
-      <BookSlider />
-      <HowToUse />
+      <Roll left>
+        <Description />
+      </Roll>
+      <LightSpeed left>
+        <BookSlider />
+      </LightSpeed>
+      <Flip left>
+        <HowToUse />
+      </Flip>
       <Feedback />
       <Chatbot />
     </>

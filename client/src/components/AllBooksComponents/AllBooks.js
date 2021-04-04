@@ -20,7 +20,7 @@ import {
 import Book from "./Book/Book";
 import useStyles from "./style";
 import SearchBox from "../HomePageComponents/SearchBar/SearchBox.js";
-
+import Zoom from 'react-reveal/Zoom';
 const AllBooks = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -40,7 +40,7 @@ const AllBooks = () => {
   useEffect(()=>{
     if(allBooks.length!==0)
       setBooks(allBooks.filter((book) => book.isSold === false)) 
-  },[])
+  },[dispatch,allBooks])
 
   useEffect(() => {
     if (sortbool === true) {
@@ -85,7 +85,9 @@ const AllBooks = () => {
     <>
       <div className={classes.maincontainer}>
         <br/>
+      <Zoom>
         <SearchBox />
+      </Zoom>
         <br />
         <br />
         <br />

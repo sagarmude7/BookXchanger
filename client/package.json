@@ -25,6 +25,7 @@
     "react-material-ui-carousel": "^2.1.2",
     "react-multi-carousel": "^2.6.2",
     "react-redux": "^7.2.2",
+    "react-reveal": "^1.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.2",

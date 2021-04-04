@@ -107,7 +107,7 @@ const Profile = () => {
       ) : null}
       <div className={classes.topBox}>
         <Container className={classes.head}>
-          <img className={classes.pic} src={img} alt="M"></img>
+          <img className={classes.pic} src={user?.profilePic} alt="M"></img>
           <Typography
             variant="body1"
             color="textPrimary"
