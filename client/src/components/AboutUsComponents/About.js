@@ -12,7 +12,7 @@ const About = () => {
     <>
       <Description />
       <Feature />
-      <DevelopedBy />
+      <ContactForm />
       {/*     
       <Container maxWidth="lg" spacing="ms">
         <Typography variant="h3" align="Center" style={{ color: "#ab47bc" }}>
@@ -102,7 +102,7 @@ const About = () => {
       </Typography>
       <Container align="center">
         <Paper align="center">
-          <ContactForm />
+          
         </Paper>
       </Container> */}
     </>

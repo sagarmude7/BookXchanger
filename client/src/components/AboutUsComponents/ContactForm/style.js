@@ -1,17 +1,61 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
-    root: {
-        '& .MuiTextField-root': {
-          margin: theme.spacing(1),
-        },
+  bottom: {
+    display: "flex",
+    "@media (max-width : 700px)": {
+      display: "inline",
     },
-    paper: {
-        padding: theme.spacing(2),
+  },
+
+  left: {
+    width: "50%",
+    "@media (max-width : 700px)": {
+      width: "100%",
     },
-    form: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-    }
+  },
+
+  right: {
+    width: "50%",
+    margin: "0 10px",
+    "@media (max-width : 700px)": {
+      width: "100%",
+    },
+  },
+
+  inline: {
+    display: "inline",
+  },
+
+  listItem: {
+    paddingTop: "0px",
+    paddingBottom: "0px",
+    "@media (max-width : 700px)": {
+      paddingLeft: "0px",
+    },
+  },
+
+  root: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+    },
+  },
+  paper: {
+    padding: theme.spacing(2),
+  },
+  form: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
+
+  button: {
+    backgroundColor: "#df4c73",
+    width: "300px",
+    marginBottom: "10px",
+    "&:hover": {
+      backgroundColor: "#df4c73",
+      width: "100%",
+    },
+  },
 }));
