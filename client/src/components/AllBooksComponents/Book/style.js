@@ -46,7 +46,7 @@ export default makeStyles({
 
     "&:hover": {
       color: "#ffffff",
-      transform: "scale(1.5)",
+      //transform: "scale(1.31)",
       textShadow: "0 0 5px #ffffff",
     },
     "@media (max-width : 900px)": {
