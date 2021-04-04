@@ -12,6 +12,7 @@ const About = () => {
     <>
       <Description />
       <Feature />
+      <DevelopedBy/>
       <ContactForm />
       {/*     
       <Container maxWidth="lg" spacing="ms">

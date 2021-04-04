@@ -1,4 +1,4 @@
-var profile = [
+export const profiles = [
   {
     name: "Harshil Doshi (Mentor)",
     subHeading: "Third Year CS, VJTI",
@@ -56,4 +56,4 @@ var profile = [
     linkedin: "http://linkedin.com/",
   },
 ];
-export default profile;
+
