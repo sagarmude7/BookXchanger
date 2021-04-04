@@ -1,89 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Card, Typography, Grid, Container } from "@material-ui/core";
-import ReactCardFlip from "react-card-flip";
+import {Typography, Grid, Container } from "@material-ui/core";
+import Profile from './Profile'
+import {profiles} from './descProfile'
 
-import useStyles from "./styles.js";
-import descProfile from "./descProfile.js";
+const DevelopedBy = () => {
 
-const BookSlider = () => {
-  const classes = useStyles();
-  const Profile = (props) => {
-    const [isFlipped, setIsFlipped] = useState(false);
-
-    function ProfileCardFront() {
-      return (
-        <Card raised className={`${classes.card} ${classes.frontCard}`}>
-          <img
-            // style={{
-            //   clipPath: mask || "circle(50% at 50% 50%)",
-            // }}
-            src={props.profile.img}
-            alt="Profile"
-            className={classes.img}
-          />
-          <Typography component="span" align="center" variant="h5">
-            {props.profile.name}
-          </Typography>
-          <Typography
-            component="span"
-            align="center"
-            variant="subtitle1"
-            style={{ padding: "0 0.25rem" }}
-          >
-            {props.profile.subHeading}
-          </Typography>
-        </Card>
-      );
-    }
-
-    function ProfileCardBack() {
-      return (
-        <Card
-          raised
-          className={`${classes.card} ${classes.backCard}`}
-          style={{
-            backgroundImage: `url(${props.profile.img})`,
-          }}
-        >
-          <div className={classes.backCardContent}>
-            <Typography component="span" align="center" variant="h4">
-              {props.profile.name}
-            </Typography>
-            <Typography component="span" align="center" variant="h5">
-              {props.profile.subHeading}
-            </Typography>
-          </div>
-        </Card>
-      );
-    }
-
-    return (
-      <ReactCardFlip
-        isFlipped={isFlipped}
-        flipDirection="horizontal"
-        flipSpeedBackToFront="0.2"
-        flipSpeedFrontToBack="0.3"
-      >
-        <div
-          className=""
-          key="front"
-          onClick={() => setIsFlipped((prev) => !prev)}
-        >
-          <ProfileCardFront />
-        </div>
-        <div
-          className=""
-          key="back"
-          onClick={() => setIsFlipped((prev) => !prev)}
-        >
-          <ProfileCardBack />
-        </div>
-      </ReactCardFlip>
-    );
-  };
-
+  console.log(profiles)
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -117,16 +41,22 @@ const BookSlider = () => {
         infinite={true}
         autoPlay={true}
       >
-        {descProfile.map((profile, index) => (
-          <Grid>
-            <Container>
-              <Profile key={index} profile={profile} />
-            </Container>
-          </Grid>
-        ))}
+        <div>Item1</div>
+        <div>Item2</div>
+        <div>Item3</div>
+        {/* {profiles.map((profile, index) => (
+          <div>
+            <Grid>
+              <Container>
+                <Profile key={index} name={profile.name} subHeading={profile.subHeading} img={profile.img} github={profile.github} linkedin={profile.linkedin} />
+                Vedant Mondkar
+              </Container>
+            </Grid>
+          </div>  
+        ))} */}
       </Carousel>
     </>
   );
 };
 
-export default BookSlider;
+export default DevelopedBy;

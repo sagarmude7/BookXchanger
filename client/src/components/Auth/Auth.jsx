@@ -88,14 +88,14 @@ const Auth = () => {
         alert('Google Sign In was unsuccessful. Try again later');
     }
 
-    const componentClicked = ()=>{
-        console.log("clicked")
-    }
+    // const componentClicked = ()=>{
+    //     console.log("clicked")
+    // }
 
-    const responseFacebook = (res)=>{
-        console.log(res)
-        dispatch(googleFacebookSignIn({email:res.email,name:res.name,profilePic:`http://graph.facebook.com/${res.userID}/picture?type=square&access_token=${res.accessToken}`},history))
-    }
+    // const responseFacebook = (res)=>{
+    //     console.log(res)
+    //     dispatch(googleFacebookSignIn({email:res.email,name:res.name,profilePic:`http://graph.facebook.com/${res.userID}/picture?type=square&access_token=${res.accessToken}`},history))
+    // }
     return (
         <div className={classes.mainContainer}>
 
