@@ -26,7 +26,7 @@ const DevelopedBy = () => {
       profile: 1,
     },
   };
-
+  
   return (
     <>
       <Typography variant="h6" style={{ textAlign: "center", color: "black" }}>
@@ -34,6 +34,7 @@ const DevelopedBy = () => {
       </Typography>
       <hr style={{ border: "1px solid black", width: "300px" }} />
       <hr style={{ borderWidth: "0px" }} />
+      <h1>HELLLLLLL</h1>
 
       <Carousel
         responsive={responsive}
@@ -41,10 +42,7 @@ const DevelopedBy = () => {
         infinite={true}
         autoPlay={true}
       >
-        <div>Item1</div>
-        <div>Item2</div>
-        <div>Item3</div>
-        {/* {profiles.map((profile, index) => (
+        {profiles.map((profile, index) => (
           <div>
             <Grid>
               <Container>
@@ -53,7 +51,7 @@ const DevelopedBy = () => {
               </Container>
             </Grid>
           </div>  
-        ))} */}
+        ))} 
       </Carousel>
     </>
   );
