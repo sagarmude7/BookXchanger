@@ -16,6 +16,7 @@
     "moment": "^2.29.1",
     "nodemailer": "^6.5.0",
     "react": "^17.0.1",
+    "react-card-flip": "^1.1.0",
     "react-carousel-slider": "^2.0.13",
     "react-chat-widget": "^3.0.5",
     "react-dom": "^17.0.1",
