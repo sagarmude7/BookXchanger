@@ -39,7 +39,6 @@ import ChatIcon from "@material-ui/icons/Chat";
 import { editProfile, getProfile } from "../../actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
-import Footer from "../Footer/footer.js";
 import Dashboard from "./Dashboard components/Dashboard";
 import {useHistory } from "react-router-dom";
 const OtherUser = ({match}) => {
@@ -171,47 +170,50 @@ const OtherUser = ({match}) => {
     return (
       <div className={classes.container}>
         <Navbar />
+        <div className={classes.topBox}>
         <Container className={classes.head}>
-        <ArrowBackIcon
-            className={classes.topLeft}
-            onClick={() => history.goBack()}
-          ></ArrowBackIcon>
-          <img
-            className={classes.pic}
-            src={user?.profilePic}
-            alt="M"
-            width="175"
-            height="190"
-          />
-          <div className={classes.userDetails}>
-          <Typography
-            variant="h5"
-            color="textPrimary"
-            className={classes.headUser}
-          >
-            {user.college}
-          </Typography>
-          <Typography
-            variant="h5"
-            color="textPrimary"
-            className={classes.headUser}
-          >
-            {user.location}
-          </Typography>
+            <ArrowBackIcon
+              className={classes.topLeft}
+              onClick={() => history.goBack()}
+              fontSize="large"
+            ></ArrowBackIcon>
+            <img
+              className={classes.pic}
+              src={user?.profilePic}
+              alt="M"
+              width="175"
+              height="190"
+            />
+            <div className={classes.userDetails}>
+              <Typography
+                variant="h5"
+                color="textPrimary"
+                className={classes.headUser}
+              >
+                {user.college}
+              </Typography>
+              <Typography
+                variant="h5"
+                color="textPrimary"
+                className={classes.headUser}
+              >
+                {user.location}
+              </Typography>
+          
+            </div>
         
-          </div>
-          <div className ={classes.rightBox}>
-            <div className={classes.listing1}>
-              <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)).length}</Typography>
-              <Typography className={classes.listLetter}> Total Listing </Typography>
-            </div>
+              <div className={classes.listing1}>
+                <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)).length}</Typography>
+                <Typography className={classes.listLetter}> Total Listing </Typography>
+              </div>
 
-            <div className={classes.listing2}>
-              <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length}</Typography>
-              <Typography className={classes.listLetter}>   Ads Sold </Typography>
-            </div>
-          </div>
+              <div className={classes.listing2}>
+                <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length}</Typography>
+                <Typography className={classes.listLetter}>   Ads Sold </Typography>
+              </div>
+  
         </Container>
+        </div>
 
 
         <Grid container spacing={2}>
@@ -309,7 +311,6 @@ const OtherUser = ({match}) => {
           </Container>
           </Grid>
         </Grid>
-        <Footer />
       </div>
     );
 };

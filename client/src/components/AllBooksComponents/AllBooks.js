@@ -40,7 +40,7 @@ const AllBooks = () => {
   useEffect(()=>{
     if(allBooks.length!==0)
       setBooks(allBooks.filter((book) => book.isSold === false)) 
-  },[])
+  },[dispatch,allBooks])
 
   useEffect(() => {
     if (sortbool === true) {
