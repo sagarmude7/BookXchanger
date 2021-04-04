@@ -1,9 +1,27 @@
 var seller = [
   {
-    heading: "Welcome to",
-    subHeading: "Your personalized old books exchanging Store",
-    img:
-      "https://images.pexels.com/photos/694740/pexels-photo-694740.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    heading: "Register",
+    subHeading:
+      "Register via BookXchanger web. You can create account socially also.",
+    img: "https://svgshare.com/i/VmL.svg",
+  },
+
+  {
+    heading: "Post",
+    subHeading: "Fill required details and submit book ad you want to sell.",
+    img: "https://svgshare.com/i/VmM.svg",
+  },
+
+  {
+    heading: "Chat",
+    subHeading: "Get a message and offer from different buyers.",
+    img: "https://svgshare.com/i/Vn1.svg",
+  },
+
+  {
+    heading: "Meet",
+    subHeading: "Meet the buyer and get money in exchange of book.",
+    img: "https://svgshare.com/i/Vnh.svg",
   },
 ];
 export default seller;

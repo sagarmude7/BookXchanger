@@ -19,7 +19,7 @@ const Description = () => {
           }}
         >
           <div className={classes.content}>
-            <Typography variant="h3">
+            <Typography variant="h1" className={classes.text}>
               {props.item.heading}
               <Box
                 fontWeight="fontWeightBold"
@@ -29,8 +29,12 @@ const Description = () => {
                 BookXchanger
               </Box>
             </Typography>
-            <Typography variant="h5">{props.item.subHeading}</Typography>
-            <Typography variant="h6">{props.item.description}</Typography>
+            <Typography variant="h5" className={classes.smallText}>
+              {props.item.subHeading}
+            </Typography>
+            <Typography variant="h6" className={classes.smallText}>
+              {props.item.description}
+            </Typography>
           </div>
         </div>
       </div>
@@ -42,7 +46,7 @@ const Description = () => {
         indicators={false}
         animation="fade"
         autoPlay={true}
-        interval={5000}
+        interval={10000}
         stopAutoPlayOnHover={false}
         navButtonsAlwaysInvisible={true}
       >

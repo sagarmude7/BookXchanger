@@ -4,7 +4,7 @@ const styles = makeStyles(() => ({
   paper: {
     border: "5px solid #000WWW",
     backgroundSize: "cover",
-    height: "620px",
+    height: "655px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     position: "relative",
@@ -14,6 +14,9 @@ const styles = makeStyles(() => ({
     width: "100%",
     zIndex: "-1",
     transform: "translateY(10%,0%)",
+    "@media (max-width : 700px)": {
+      height: "600px",
+    },
   },
   content: {
     textAlign: "center",
@@ -26,6 +29,21 @@ const styles = makeStyles(() => ({
     left: "50%",
     transform: "translate(-50%,-50%)",
     color: "white",
+    "@media (max-width : 700px)": {
+      fontSize: "30px",
+    },
+  },
+
+  text: {
+    "@media (max-width : 700px)": {
+      fontSize: "30px",
+    },
+  },
+
+  smallText: {
+    "@media (max-width : 700px)": {
+      fontSize: "20px",
+    },
   },
 
   contentBold: {
@@ -34,7 +52,7 @@ const styles = makeStyles(() => ({
       textAlign: "center",
       top: "30%",
       left: "50%",
-      fontSize: "50px",
+      fontSize: "30px",
     },
   },
   parent: {

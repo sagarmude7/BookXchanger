@@ -18,15 +18,10 @@ const Feedback = () => {
     return (
       <div className={classes.parent}>
         <div className={classes.content}>
-          <Typography variant="h6" align="center" color="textSecondary">
+          <Typography variant="h6" align="center">
             {props.item.name}
           </Typography>
-          <Typography
-            variant="body1"
-            align="center"
-            component="p"
-            color="textSecondary"
-          >
+          <Typography variant="body1" align="center" component="p">
             {props.item.feedback}
             <br />
           </Typography>

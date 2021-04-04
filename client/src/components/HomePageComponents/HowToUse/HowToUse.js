@@ -3,6 +3,7 @@ import descBuyer from "./descBuyer.js";
 import descSeller from "./descSeller.js";
 import useStyles from "./styles.js";
 import Carousel from "react-material-ui-carousel";
+import logo from "./buyerImages/register.svg";
 import {
   Button,
   CardContent,
@@ -18,21 +19,19 @@ const HowToSell = () => {
   const Buyer = (props) => {
     return (
       <div className={classes.parent}>
-        <div
-          className={classes.paper}
-          // style={{
-          //  backgroundImage: "url(" + props.buyer.img + ")",
-          //  }}
-        >
-          <img
-            src={props.buyer.img}
-            style={{ height: "300px", width: "300px", color: "#df4c73" }}
-          />
+        <div>
+          <Typography align="center">
+            <img src={props.buyer.img} className={classes.image} />
+          </Typography>
 
-          {/* <div className={classes.content}>
-            <Typography variant="h3">{props.buyer.heading}</Typography>
-            <Typography variant="h5">{props.buyer.subHeading}</Typography>
-          </div> */}
+          <div>
+            <Typography variant="h6" align="center">
+              {props.buyer.heading}
+            </Typography>
+            <Typography variant="body1" align="center">
+              {props.buyer.subHeading}
+            </Typography>
+          </div>
         </div>
       </div>
     );
@@ -41,16 +40,19 @@ const HowToSell = () => {
   const Seller = (props) => {
     return (
       <div className={classes.parent}>
-        <div
-          className={classes.paper}
-          style={{
-            backgroundImage: "url(" + props.seller.img + ")",
-          }}
-        >
-          {/* <div>
-            <Typography variant="h3">{props.seller.heading}</Typography>
-            <Typography variant="h5">{props.seller.subHeading}</Typography>
-          </div> */}
+        <div>
+          <Typography align="center">
+            <img src={props.seller.img} className={classes.image} />
+          </Typography>
+
+          <div>
+            <Typography variant="h6" align="center">
+              {props.seller.heading}
+            </Typography>
+            <Typography variant="body1" align="center">
+              {props.seller.subHeading}
+            </Typography>
+          </div>
         </div>
       </div>
     );
@@ -70,16 +72,15 @@ const HowToSell = () => {
       <div className={classes.main}>
         <div className={classes.buy}>
           <div>
-            <Typography variant="h6" align="center">
+            <Typography variant="h6" align="center" className={classes.heading}>
               For Buyers
             </Typography>
           </div>
           <div>
             <Carousel
-              indicators={false}
               animation="fade"
               autoPlay={true}
-              interval={5000}
+              interval={6000}
               stopAutoPlayOnHover={false}
               navButtonsAlwaysInvisible={true}
             >
@@ -91,16 +92,15 @@ const HowToSell = () => {
         </div>
         <div className={classes.sell}>
           <div>
-            <Typography variant="h6" align="center">
+            <Typography variant="h6" align="center" className={classes.heading}>
               For Sellers
             </Typography>
           </div>
           <div>
             <Carousel
-              indicators={false}
               animation="fade"
               autoPlay={true}
-              interval={5000}
+              interval={6000}
               stopAutoPlayOnHover={false}
               navButtonsAlwaysInvisible={true}
             >

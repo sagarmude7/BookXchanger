@@ -40,7 +40,7 @@ export default makeStyles({
   favourite: {
     position: "relative",
     top: "-90px",
-    left: "240px",
+    left: "300px",
     transform: "scale(1.3)",
     transition: ".5s",
 
