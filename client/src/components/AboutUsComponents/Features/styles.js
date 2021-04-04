@@ -67,6 +67,7 @@ const styles = makeStyles((theme) => ({
   listItem: {
     paddingTop: "0px",
     paddingBottom: "0px",
+    paddingLeft: "0px",
     "@media (max-width : 700px)": {
       paddingLeft: "0px",
     },
