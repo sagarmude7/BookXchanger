@@ -1,57 +1,107 @@
-// Using ES6
+import React,{useEffect,useState} from 'react'
+import io from 'socket.io-client'
+import SendIcon from "@material-ui/icons/Send";
+import useStyles from "./styles.js";
+import {Button,Typography,TextField,Container} from '@material-ui/core'
+import {useSelector} from 'react-redux'
+const ENDPOINT = 'http://localhost:5000'
+const initialState = {
+  content:'',from:'',to:''
+}
+const ChatBox = (props) => {
+  const receiver = useSelector(state=>state.user)
+  
+  const classes = useStyles()
+  
+  console.log(props.sender.id)
+  const [chat,setChat] = useState([])
+  const [msgData,setMsgData] = useState(initialState)
 
-import React from "react";
-import { TalkBox } from "react-talk";
+  useEffect(()=>{
+    if(receiver){
+      setMsgData({...msgData,to:receiver.name})
+      console.log(receiver._id)
+    }
+  },[receiver])
 
-class ChatBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: [
-        {
-          author: "Ponger",
-          authorId: "pong",
-          message: "How you doin'!",
-          timestamp: Date.now().toString(),
-        },
-      ],
-    };
+  const socket = io(ENDPOINT)
+  useEffect(()=>{
+    socket.on('init',(msg)=>{
+      console.log(msg)
+    })
+  
+    socket.emit('join',{id:props.sender.id})
+    setMsgData({...msgData,from:props.sender.name})
+
+  },[])
+
+  socket.on('send_msg',(msg)=>{
+    console.log(msg)
+    setChat([...chat,msg.msg])
+  })
+
+  const handleChange = (e)=>{
+    setMsgData({...msgData,[e.target.name]:e.target.value})
   }
 
-  onMessageReceive = (msg) => {
-    this.setState((prevState) => ({
-      messages: [...prevState.messages, msg],
-    }));
-  };
-
-  sendMessage = (msg, selfMsg) => {
-    // selfMsg is the message object constructed from the message typed by the current user
-    // NOTE: selfMsg doesn't include timestamp and needs to be added by the user of the module
-    // in client or server side as required
-    selfMsg["timestamp"] = Date.now().toString();
-    this.setState((prevState) => ({
-      messages: [...prevState.messages, selfMsg],
-    }));
-    // Insert code to send the message below
-  };
-
-  render() {
-    return (
-      <div
-        style={{
-          padding: "24px",
-        }}
-      >
-        <TalkBox
-          topic="react-websocket-template"
-          currentUserId="ping"
-          currentUser="Pinger"
-          messages={this.state.messages}
-          onSendMessage={this.sendMessage}
-        />
-      </div>
-    );
+  const handleSubmit = (e)=>{
+    socket.emit('message',msgData)
+    setChat([...chat,msgData])
   }
+
+  return (
+    <Container className={classes.chatBox}>
+            <h1 style={{ color: "black", textAlign: "center" }}>
+              Contact {receiver?.name}
+            </h1>
+            <Typography variant="h6" style={{ textAlign: "center" }}>
+              Send Message
+            </Typography>
+            <hr
+              style={{
+                border: "1px solid #DF4C73",
+                width: "80%",
+              }}
+            />
+            <div style={{height:"300px",border:"2px solid #ff0"}}>
+              {chat.map((msg)=>(
+                <div style={{marginTop:"2px",padding:"3px",border:"1px solid #afa",background:"grey",maxWidth:"200px",textAlign:"center"}}>{msg.content}</div>
+              ))}
+            </div>
+            <TextField
+              id="outlined-multiline-static"
+              multiline
+              rows={2}
+              name="content"
+              onChange={handleChange}
+              variant="outlined"
+              style={{ width: "80%", margin: "20px" }}
+            />
+            <Button
+              variant="outline"
+              color="primary"
+              className={classes.SendButton}
+              endIcon={<SendIcon />}
+              onClick={handleSubmit}
+            >
+              Send
+            </Button>
+            <div className={classes.guidelines}>
+              <Typography variant="body1">Read before you deal</Typography>
+              <div>
+                <ul
+                  style={{ listStyleType: "none" }}
+                  className={classes.guidelineList}
+                >
+                  <li>1. Please follow Government guidelines for COVID19.</li>
+                  <li>2. Use a safe location to meet seller</li>
+                  <li>3. Never provide your personal or banking information</li>
+                  <li>4. Beware of unrealistic offers</li>
+                </ul>
+              </div>
+            </div>
+          </Container>
+  )
 }
 
-export default ChatBox;
+export default ChatBox

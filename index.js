@@ -1,12 +1,10 @@
-'use strict';
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const compression = require('compression')
-const Blob = require('node-blob')
-const FileReader = require('filereader')
-const atob = require('atob')
+const http = require('http')
+
 
 //port
 const PORT = process.env.PORT || 5000;
@@ -15,6 +13,15 @@ const PORT = process.env.PORT || 5000;
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
+
+options={
+  cors:true,
+  origins:["http://localhost:3000"],
+}
+//create an http server from express app
+// const server = http.createServer(app)
+// const io = require('socket.io')(server, options);
+
 
 
 //compress
@@ -62,14 +69,32 @@ app.use(express.urlencoded({ limit: "80mb", extended: true }));
 app.use("/books/", require("./routes/books"));
 app.use("/users/", require("./routes/users"));
 
-app.listen(PORT, () =>
+var server = app.listen(PORT, () =>
   console.log(
     `Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`
   )
 );
 
+options={
+  cors:true,
+  origins:["http://localhost:3000"],
+} 
+var io = require('socket.io')(server,options)
+
+io.on('connection', async(socket) => {
+  socket.emit('init',"HEllo from socket server")
+
+  socket.on('join',(data)=>{
+    console.log(data.id+" joined")
+    // socket.join(data.id)
+  })
+
+  socket.on('message',(msg)=>{
+    //save to database
+    socket.broadcast.emit( 'send_msg', {msg:msg} );
+  })
+})
 
 
-globalThis.Blob = Blob;
-// globalThis.FileReader = FileReader
-globalThis.atob = atob
+
+
