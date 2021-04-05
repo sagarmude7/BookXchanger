@@ -79,21 +79,24 @@ options={
   cors:true,
   origins:["http://localhost:3000"],
 } 
-var io = require('socket.io')(server,options)
+const io = require('socket.io')(server,options)
 
 io.on('connection', async(socket) => {
   socket.emit('init',"HEllo from socket server")
 
   socket.on('join',(data)=>{
     console.log(data.id+" joined")
-    // socket.join(data.id)
+    socket.join(data.id)
+
   })
 
-  socket.on('message',(msg)=>{
+  socket.on('message',async(msg)=>{
     //save to database
-    socket.broadcast.emit( 'send_msg', {msg:msg} );
+    console.log(msg.to)
+    await socket.broadcast.to(msg.to).emit( 'send_msg', {msg:msg} );
   })
 })
+
 
 
 

@@ -3,26 +3,30 @@ import io from 'socket.io-client'
 import SendIcon from "@material-ui/icons/Send";
 import useStyles from "./styles.js";
 import {Button,Typography,TextField,Container} from '@material-ui/core'
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+import { ADD_CHAT } from '../../../constants/actions.js';
 const ENDPOINT = 'http://localhost:5000'
 const initialState = {
   content:'',from:'',to:''
 }
 const ChatBox = (props) => {
   const receiver = useSelector(state=>state.user)
-  
+  const chats = useSelector(state=>state.chats)
   const classes = useStyles()
-  
-  console.log(props.sender.id)
-  const [chat,setChat] = useState([])
+  const dispatch = useDispatch()
   const [msgData,setMsgData] = useState(initialState)
-
+  const user = JSON.parse(localStorage.getItem('profile')).profile
   useEffect(()=>{
     if(receiver){
-      setMsgData({...msgData,to:receiver.name})
+      setMsgData({...msgData,to:receiver._id})
       console.log(receiver._id)
     }
   },[receiver])
+
+  // useEffect(()=>{
+  //   setChat(chat)
+  //   console.log(chat)
+  // },[chat])
 
   const socket = io(ENDPOINT)
   useEffect(()=>{
@@ -31,22 +35,23 @@ const ChatBox = (props) => {
     })
   
     socket.emit('join',{id:props.sender.id})
-    setMsgData({...msgData,from:props.sender.name})
-
+    setMsgData({...msgData,from:props.sender.id})
   },[])
 
   socket.on('send_msg',(msg)=>{
     console.log(msg)
-    setChat([...chat,msg.msg])
+    console.log(chats)
+    dispatch({type:ADD_CHAT,payload:msg.msg})
   })
 
   const handleChange = (e)=>{
     setMsgData({...msgData,[e.target.name]:e.target.value})
   }
 
-  const handleSubmit = (e)=>{
-    socket.emit('message',msgData)
-    setChat([...chat,msgData])
+  const handleSubmit = async(e)=>{
+    await socket.emit('message',msgData)
+    dispatch({type:ADD_CHAT,payload:msgData})
+    setMsgData({...msgData,content:''})
   }
 
   return (
@@ -64,15 +69,25 @@ const ChatBox = (props) => {
               }}
             />
             <div style={{height:"300px",border:"2px solid #ff0"}}>
-              {chat.map((msg)=>(
-                <div style={{marginTop:"2px",padding:"3px",border:"1px solid #afa",background:"grey",maxWidth:"200px",textAlign:"center"}}>{msg.content}</div>
-              ))}
+              {chats.length!==0?(chats.map(msg=>(
+                msg.from===user.id?(
+                  <>
+                  <div style={{marginTop:"2px",padding:"3px",border:"1px solid #afa",background:"grey",maxWidth:"200px",textAlign:"center"}}>{msg.content}</div>
+                  <br/>
+                  </>
+                ):(<>
+                  <div style={{marginTop:"2px",padding:"3px",border:"1px solid #afa",background:"grey",maxWidth:"200px",textAlign:"center"}}>{msg.content}</div>
+                  <br/>
+                  </>
+                )
+              ))):null}
             </div>
             <TextField
               id="outlined-multiline-static"
               multiline
               rows={2}
               name="content"
+              value={msgData.content}
               onChange={handleChange}
               variant="outlined"
               style={{ width: "80%", margin: "20px" }}
