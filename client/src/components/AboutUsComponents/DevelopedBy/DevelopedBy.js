@@ -1,13 +1,12 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import {Typography, Grid, Container } from "@material-ui/core";
-import Profile from './Profile'
-import {profiles} from './descProfile'
+import { Typography, Grid, Container } from "@material-ui/core";
+import Profile from "./Profile";
+import { profiles } from "./descProfile";
 
 const DevelopedBy = () => {
-
-  console.log(profiles)
+  console.log(profiles);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -26,7 +25,7 @@ const DevelopedBy = () => {
       profile: 1,
     },
   };
-  
+
   return (
     <>
       <Typography variant="h6" style={{ textAlign: "center", color: "black" }}>
@@ -42,16 +41,24 @@ const DevelopedBy = () => {
         infinite={true}
         autoPlay={true}
       >
+        console.log("hello")
         {profiles.map((profile, index) => (
           <div>
             <Grid>
               <Container>
-                <Profile key={index} name={profile.name} subHeading={profile.subHeading} img={profile.img} github={profile.github} linkedin={profile.linkedin} />
+                <Profile
+                  key={index}
+                  name={profile.name}
+                  subHeading={profile.subHeading}
+                  img={profile.img}
+                  github={profile.github}
+                  linkedin={profile.linkedin}
+                />
                 Vedant Mondkar
               </Container>
             </Grid>
-          </div>  
-        ))} 
+          </div>
+        ))}
       </Carousel>
     </>
   );

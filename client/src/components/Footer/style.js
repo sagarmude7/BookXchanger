@@ -4,7 +4,7 @@ const styles = makeStyles((theme) => ({
   footer: {
     position: "center",
     margin: "10px 0 0 0",
-    padding : "20px",
+
     background: "#286FB4",
   },
 
