@@ -212,7 +212,12 @@ const OtherUser = ({ match }) => {
           </Roll>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <ChatBox sender={sender}/>
+          {
+            user?(
+              <ChatBox sender={sender}/>
+            ):(<h2>ChatBox ...Loading</h2>)
+          }
+          
           {/* <Contact /> */}
           
         </Grid>

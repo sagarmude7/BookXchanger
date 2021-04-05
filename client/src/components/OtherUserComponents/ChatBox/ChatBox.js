@@ -4,7 +4,7 @@ import SendIcon from "@material-ui/icons/Send";
 import useStyles from "./styles.js";
 import {Button,Typography,TextField,Container} from '@material-ui/core'
 import {useSelector,useDispatch} from 'react-redux'
-import { ADD_CHAT } from '../../../constants/actions.js';
+import { ADD_CHAT,INITIAL_CHAT } from '../../../constants/actions.js';
 const ENDPOINT = 'http://localhost:5000'
 const initialState = {
   content:'',from:'',to:''
@@ -30,22 +30,34 @@ const ChatBox = (props) => {
 
   const socket = io(ENDPOINT)
   useEffect(()=>{
-    socket.on('init',(msg)=>{
-      console.log(msg)
+    if(receiver){
+      socket.emit('join',{id:props.sender.id,receiver:receiver._id})
+      console.log({id:props.sender.id,receiver:receiver._id})
+    }
+    socket.on('initial_msgs',(chat)=>{
+      console.log(chat)
+      // if(chats.length===0)
+        dispatch({type:INITIAL_CHAT,payload:chat})
     })
-  
-    socket.emit('join',{id:props.sender.id})
     setMsgData({...msgData,from:props.sender.id})
+  },[receiver])
+  var i=0;
+  useEffect(()=>{
+    socket.on('send_msg',(msg)=>{
+      console.log(msg)
+      console.log(chats)
+      console.log(++i)
+      // if(msg.from==)
+      dispatch({type:ADD_CHAT,payload:msg})
+    })
   },[])
-
-  socket.on('send_msg',(msg)=>{
-    console.log(msg)
-    console.log(chats)
-    dispatch({type:ADD_CHAT,payload:msg.msg})
-  })
+  
 
   const handleChange = (e)=>{
     setMsgData({...msgData,[e.target.name]:e.target.value})
+    if(msgData.to===""){
+      setMsgData({...msgData,to:receiver._id})
+    }
   }
 
   const handleSubmit = async(e)=>{
@@ -70,7 +82,7 @@ const ChatBox = (props) => {
             />
             <div style={{height:"300px",border:"2px solid #ff0"}}>
               {chats.length!==0?(chats.map(msg=>(
-                msg.from===user.id?(
+                (msg.from===user.id)?(
                   <>
                   <div style={{marginTop:"2px",padding:"3px",border:"1px solid #afa",background:"grey",maxWidth:"200px",textAlign:"center"}}>{msg.content}</div>
                   <br/>

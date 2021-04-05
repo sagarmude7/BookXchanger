@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const compression = require('compression')
 const http = require('http')
+const Message = require('./models/Message')
 
 
 //port
@@ -37,7 +38,7 @@ connectDB();
 
 app.use((req, res, next) => {
   // console.log("Running.")
-  console.log(req.method);
+  // console.log(req.method);
   res.append("Access-Control-Allow-Origin", "http://localhost:3000");
   res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
   res.append(
@@ -50,7 +51,7 @@ app.use((req, res, next) => {
   res.append("Access-Control-Max-Age", "86400");
   // if(req.method=="OPTIONS")
   //   res.sendStatus(200)
-  console.log(res.statusCode);
+  // console.log(res.statusCode);
   next();
 });
 
@@ -82,18 +83,40 @@ options={
 const io = require('socket.io')(server,options)
 
 io.on('connection', async(socket) => {
-  socket.emit('init',"HEllo from socket server")
+  socket.on('disconnect',()=>{
+    console.log("disconnected")
+  })
+  
 
-  socket.on('join',(data)=>{
+
+  socket.on('join',async(data)=>{
+    console.log("both"+data.id+" "+data.receiver)
+    var messages = await Message.find({$or:[{from:data.id,to:data.receiver},{from:data.receiver,to:data.id}] })
+    console.log(messages)
+    const msgs = []
+    messages.forEach(msg=>{
+      msgs.push({content:msg.content,to:msg.to,from:msg.from})
+    })
     console.log(data.id+" joined")
     socket.join(data.id)
-
+    socket.emit('initial_msgs',msgs)
   })
+
 
   socket.on('message',async(msg)=>{
     //save to database
-    console.log(msg.to)
-    await socket.broadcast.to(msg.to).emit( 'send_msg', {msg:msg} );
+    try{
+      console.log("from "+msg.to+" to "+msg.from)
+      const message = new Message({
+        from:msg.from,to:msg.to,content:msg.content
+      })
+      await message.save()
+      // console.log(msg.to)
+      console.log("sending msg")
+      await socket.broadcast.to(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to} );
+    }catch(err){
+      console.log("Some error occured")
+    }  
   })
 })
 
