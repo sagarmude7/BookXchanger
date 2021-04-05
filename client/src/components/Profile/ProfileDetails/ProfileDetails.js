@@ -25,6 +25,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
 import { ERROR, VALID } from "../../../constants/actions";
 import { keys } from "@material-ui/core/styles/createBreakpoints";
+import Compress from 'compress.js'
+import img from '../profilepic.png'
 
 const Profile = () => {
   const classes = useStyles();
@@ -48,6 +50,7 @@ const Profile = () => {
     email: "",
     college: "",
     location: "",
+    profilePic: "",
   });
 
   const handleClickOpen = () => {
@@ -61,7 +64,6 @@ const Profile = () => {
 
   const handleSubmitPassword = (e) => {
     e.preventDefault();
-    console.log("in submit", values1.password ,values2.password ,values3.password);
 
     const passData={
       currentPassword : values1.password,
@@ -90,6 +92,7 @@ const Profile = () => {
         email: user.email,
         college: user.college,
         location: user.location,
+        profilePic: user.profilePic,
       });
   }, [user, setUserData]);
 
@@ -123,6 +126,18 @@ const Profile = () => {
     }
   },[error])
     
+  const addImage = async(e)=>{
+    const files = [...e.target.files]
+    //const imageData = await Compress.compress(files,{size:0.2,quality:0.5})
+    //const imageFile = imageData[0].prefix+imageData[0].data
+    const previewImage= URL.createObjectURL(e.target.files[0]);
+    
+    setUserData({...userData,profilePic:previewImage})
+  }
+
+  const removeImage = async(e)=>{
+    setUserData({...userData,profilePic:img});
+  }
 
 
   const handleChangeUserInfo = (e) => {
@@ -190,16 +205,7 @@ const Profile = () => {
     setSeverity("error")
   };
 
-// const handleCloseAlert2 = (event, reason) => {
-//   if (reason === 'clickaway') {
-//     return;
-//   }
 
-//   setPassErr(false);
-//   dispatch({type:VALID,payload:{}})
-// };
-
-//console.log("1111111111111",user,user.editMessage)
   if (key) {
     return (
       <div className={classes.container}>
@@ -493,6 +499,36 @@ const Profile = () => {
               size="nornal"
               onChange={handleChangeUserInfo}
             />
+
+            <img className={classes.pic} src={userData.profilePic} alt="M"></img>
+            <label htmlFor="icon-button-file">
+              <Button
+                variant="contained"
+                color="primary"
+                component="span"
+              >
+                Upload Profile Photo
+              </Button>
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="icon-button-file"
+              type="file"
+              hidden
+              onChange={addImage}
+            />
+            </label>
+              <Button
+                variant="contained"
+                color="primary"
+                component="span"
+                onClick={removeImage}
+              >
+                Remove Photo
+              </Button>
+            
+            
+
             <Button
               className={classes.saveChanges}
               variant="contained"

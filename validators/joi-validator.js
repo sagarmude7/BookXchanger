@@ -20,6 +20,7 @@ const editValidator = joi.object({
   email: joi.string().required().email(),
   college: joi.string().required(),
   location: joi.string().required(),
+  
 });
 
 const changePasswordValidator = joi.object({

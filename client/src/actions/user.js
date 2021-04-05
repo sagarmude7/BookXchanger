@@ -19,7 +19,7 @@ export const getProfile = (id) => async (dispatch) => {
 export const editProfile = (userData) => async (dispatch) => {
 
     try {
-        console.log("in actions");
+        console.log("in actions",userData);
         const {data} = await api.editProfile(userData);
         console.log(data);
         dispatch({type:EDIT_PROFILE,payload:data});

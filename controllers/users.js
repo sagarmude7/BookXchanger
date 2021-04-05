@@ -133,13 +133,13 @@ exports.getProfile = async(req,res)=>{
 }
 
 exports.editProfile = async(req,res)=>{
-    const {name, email, college, location} = req.body;
+    const {name, email, college, location, profilePic} = req.body;
     const {error} = editValidator.validate(req.body);
-    
+    console.log("in cont",profilePic);
     try{
         if(error)
             return res.status(400).json({msg:error.details[0].message})
-        const updateData = {name, email, college, location};
+        const updateData = {name, email, college, location, profilePic};
 
         const updatedUser = await User.findByIdAndUpdate(req.userId,updateData,{new:true})
         
