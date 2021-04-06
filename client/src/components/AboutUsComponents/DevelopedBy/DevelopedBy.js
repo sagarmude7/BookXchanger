@@ -4,25 +4,28 @@ import "react-multi-carousel/lib/styles.css";
 import { Typography, Grid, Container } from "@material-ui/core";
 import Profile from "./Profile";
 import { profiles } from "./descProfile";
-
 const DevelopedBy = () => {
   console.log(profiles);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      profile: 5,
+      items : 5
+      // profile: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      profile: 4,
+      items : 3
+      // profile: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 460 },
-      profile: 2,
+      items : 2
+      // profile: 2,
     },
     mobile: {
       breakpoint: { max: 460, min: 0 },
-      profile: 1,
+      items : 1
+      // profile: 1,
     },
   };
 
@@ -33,15 +36,14 @@ const DevelopedBy = () => {
       </Typography>
       <hr style={{ border: "1px solid black", width: "300px" }} />
       <hr style={{ borderWidth: "0px" }} />
-      <h1>HELLLLLLL</h1>
+      <h1>HELLLLLLLo</h1>
 
       <Carousel
         responsive={responsive}
         arrows={false}
         infinite={true}
         autoPlay={true}
-      >
-        console.log("hello")
+      >        
         {profiles.map((profile, index) => (
           <div>
             <Grid>
