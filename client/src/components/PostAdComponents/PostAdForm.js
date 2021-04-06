@@ -17,7 +17,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import { useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import Compress from 'compress.js'
+import Compress from "compress.js";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./style";
@@ -50,15 +50,17 @@ const PostAdForm = () => {
   const [err, setErr] = useState(false);
   const book = useSelector((state) => state.book);
 
-
   const compress = new Compress();
 
-  const addImage = async(e)=>{
-    const files = [...e.target.files]
-    const imageData = await compress.compress(files,{size:0.2,quality:0.5})
-    const imageFile = imageData[0].prefix+imageData[0].data
-    setBookData({...bookData,selectedFile:imageFile})
-  }
+  const addImage = async (e) => {
+    const files = [...e.target.files];
+    const imageData = await compress.compress(files, {
+      size: 0.2,
+      quality: 0.5,
+    });
+    const imageFile = imageData[0].prefix + imageData[0].data;
+    setBookData({ ...bookData, selectedFile: imageFile });
+  };
 
   const handleChange = (e) => {
     setBookData({ ...bookData, [e.target.name]: e.target.value });
@@ -102,7 +104,6 @@ const PostAdForm = () => {
 
   return (
     <>
-      <Navbar />
       <Grow in>
         <Container>
           <Paper className={classes.paper}>
@@ -401,7 +402,6 @@ const PostAdForm = () => {
           </Paper>
         </Container>
       </Grow>
-      <Footer />
     </>
   );
 };

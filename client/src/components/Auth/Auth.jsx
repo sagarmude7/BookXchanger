@@ -263,7 +263,7 @@ const Auth = () => {
             </Grid>
             
             <Grid xs={12} sm={6}>
-                <Swing left>
+          
                 <Paper className={classes.paper}>
                     <Avatar className={classes.avt}>
                     <LockOutlinedIcon fontSize='large'/>
@@ -339,7 +339,7 @@ const Auth = () => {
                     </Grid>
                     </form>
                 </Paper>
-                </Swing>
+             
             </Grid>
         </Grid>
         </div>

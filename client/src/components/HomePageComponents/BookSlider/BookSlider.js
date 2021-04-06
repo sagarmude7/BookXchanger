@@ -42,9 +42,9 @@ const BookSlider = () => {
   }, [allBooks]);
 
   useEffect(() => {
-    if (allUnSoldbooks.length > 5) {
+    if (allUnSoldbooks.length > 6) {
       var indices = [];
-      while (indices.length < 5) {
+      while (indices.length < 6) {
         var r = Math.floor(Math.random() * allUnSoldbooks.length);
         if (indices.indexOf(r) === -1) indices.push(r);
       }
