@@ -83,11 +83,34 @@ options={
 const io = require('socket.io')(server,options)
 
 io.on('connection', async(socket) => {
+  console.log("connected "+socket.id)
+  console.log(socket.rooms)
+
   socket.on('disconnect',()=>{
     console.log("disconnected")
   })
   
+  socket.on('landing_page',(data)=>{
+    console.log(data)
+    
+  })
 
+  socket.on('login',(data)=>{
+    
+    if(!socket.rooms.has(data.id)){
+      socket.join(data.id)
+      console.log(data.id+" joined room")
+    }else{
+      console.log("already in room")
+    }
+    console.log(socket.rooms)
+  })
+
+  socket.on('logout',(data)=>{
+    console.log(socket.rooms)
+    socket.leave(data.id)
+    console.log(data.id+" has left")
+  })
 
   socket.on('join',async(data)=>{
     console.log("both"+data.id+" "+data.receiver)
@@ -97,8 +120,8 @@ io.on('connection', async(socket) => {
     messages.forEach(msg=>{
       msgs.push({content:msg.content,to:msg.to,from:msg.from})
     })
-    console.log(data.id+" joined")
-    socket.join(data.id)
+    
+    
     socket.emit('initial_msgs',msgs)
   })
 

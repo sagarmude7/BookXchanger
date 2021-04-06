@@ -1,11 +1,11 @@
 import React,{useEffect,useState} from 'react'
-import io from 'socket.io-client'
 import SendIcon from "@material-ui/icons/Send";
 import useStyles from "./styles.js";
 import {Button,Typography,TextField,Container} from '@material-ui/core'
 import {useSelector,useDispatch} from 'react-redux'
 import { ADD_CHAT,INITIAL_CHAT } from '../../../constants/actions.js';
-const ENDPOINT = 'http://localhost:5000'
+import {socket} from '../../../service/socket'
+
 const initialState = {
   content:'',from:'',to:''
 }
@@ -16,6 +16,7 @@ const ChatBox = (props) => {
   const dispatch = useDispatch()
   const [msgData,setMsgData] = useState(initialState)
   const user = JSON.parse(localStorage.getItem('profile')).profile
+
   useEffect(()=>{
     if(receiver){
       setMsgData({...msgData,to:receiver._id})
@@ -28,7 +29,7 @@ const ChatBox = (props) => {
   //   console.log(chat)
   // },[chat])
 
-  const socket = io(ENDPOINT)
+  
   useEffect(()=>{
     if(receiver){
       socket.emit('join',{id:props.sender.id,receiver:receiver._id})

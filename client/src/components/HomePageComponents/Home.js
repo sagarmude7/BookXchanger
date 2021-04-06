@@ -13,6 +13,7 @@ import { AUTH, VALID } from "../../constants/actions.js";
 import Roll from 'react-reveal/Roll';
 import LightSpeed from 'react-reveal/LightSpeed';
 import Flip from 'react-reveal/Flip';
+import {socket} from '../../service/socket'
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [bookPost, setBookPost] = useState(false);
@@ -20,13 +21,20 @@ const Home = () => {
   const authData = useSelector((state) => state.authData);
   const user = JSON.parse(localStorage.getItem("profile"));
   const book = useSelector((state) => state.book);
-
+  
+  // useEffect(()=>{
+  //   if(localStorage.getItem('profile')){
+  //     const id = JSON.parse(localStorage.getItem('profile')).profile.id
+  //     socket.emit('login',{id:id})
+  //   }
+  // },[])
   useEffect(() => {
     console.log(authData);
     if (authData) setOpen(true);
     if (book.msg) setBookPost(true);
   }, []);
 
+  
   const Alert = (props) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   };
