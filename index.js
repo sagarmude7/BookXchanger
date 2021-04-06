@@ -136,6 +136,7 @@ io.on('connection', async(socket) => {
         from:msg.from,to:msg.to,content:msg.content
       })
       await message.save()
+      console.log(socket.adapter.rooms)
       // console.log(msg.to)
       console.log("sending msg")
       await socket.broadcast.to(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName} );
