@@ -87,19 +87,19 @@ const BookSlider = () => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      profile: 5,
+      items: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      profile: 4,
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 460 },
-      profile: 2,
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 460, min: 0 },
-      profile: 1,
+      items: 1,
     },
   };
 

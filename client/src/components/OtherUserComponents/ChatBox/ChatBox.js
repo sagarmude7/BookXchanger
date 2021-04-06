@@ -68,7 +68,7 @@ const ChatBox = (props) => {
 
   return (
     <Container className={classes.chatBox}>
-            <h1 style={{ color: "black", textAlign: "center" }}>
+            <h1 className={classes.title} >
               Contact {receiver?.name}
             </h1>
             <Typography variant="h6" style={{ textAlign: "center" }}>
@@ -76,19 +76,19 @@ const ChatBox = (props) => {
             </Typography>
             <hr
               style={{
-                border: "1px solid #DF4C73",
+                border: "1px solid green",
                 width: "80%",
               }}
             />
-            <div style={{height:"300px",border:"2px solid #ff0"}}>
+            <div className={classes.msgBox}>
               {chats.length!==0?(chats.map(msg=>(
                 (msg.from===user.id)?(
                   <>
-                  <div style={{marginTop:"2px",padding:"3px",border:"1px solid #afa",background:"grey",maxWidth:"200px",textAlign:"center"}}>{msg.content}</div>
+                  <div className={classes.msg}>{msg.content}</div>
                   <br/>
                   </>
                 ):(<>
-                  <div style={{marginTop:"2px",padding:"3px",border:"1px solid #afa",background:"grey",maxWidth:"200px",textAlign:"center"}}>{msg.content}</div>
+                  <div className={classes.msg}>{msg.content}</div>
                   <br/>
                   </>
                 )

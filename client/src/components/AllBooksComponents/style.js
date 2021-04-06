@@ -8,7 +8,11 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   maincontainer: {
     backgroundColor: "#286FB4",
-    backgroundImage: `url(${'https://www.transparenttextures.com/patterns/concrete-wall-2.png'})`,
+    backgroundColor: "#007dab",
+    backgroundImage: `url(${'https://www.transparenttextures.com/theme/images/transparent.png'})`,
+
+
+
   },
   smMargin: {
     margin: theme.spacing(1),

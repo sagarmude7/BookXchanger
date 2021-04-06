@@ -106,6 +106,7 @@ io.on('connection', async(socket) => {
   socket.on('message',async(msg)=>{
     //save to database
     try{
+    console.log(msg)
       console.log("from "+msg.to+" to "+msg.from)
       const message = new Message({
         from:msg.from,to:msg.to,content:msg.content

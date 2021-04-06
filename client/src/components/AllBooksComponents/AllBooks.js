@@ -91,8 +91,8 @@ const AllBooks = () => {
         <br />
         <br />
         <br />
-        <hr color="red" height="2px" width="85%"></hr>
-        <span style={{ margin: "0px", padding: "5px" }}></span>
+       
+        <span style={{ margin: "0px", padding: "5px"}}></span>
         <div style={{ marginTop: "20px" }}>
           <button
             className={classes.sortButton}
