@@ -1,52 +1,132 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles({
-  media: {
-    height: 0,
-    paddingTop: '56.25%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    backgroundBlendMode: 'darken',
-  },
-  border: {
-    border: 'solid',
-  },
-  fullHeightCard: {
-    height: '100%',
-  },
+  //
   card: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: '15px',
-    height: '100%',
-    position: 'relative',
+    display: "flex",
+    flexDirection: "column",
+    // justifyContent: "space-between",
+    borderRadius: "15px",
+    height: "100%",
+    position: "relative",
+    "@media (max-width : 900px)": {
+      width: "100% !important",
+      margin: "auto",
+    },
   },
-  overlay: {
-    position: 'absolute',
-    top: '20px',
-    left: '20px',
-    color: 'white',
+
+  top: {
+    position: "relative",
+    height: "180px",
+    "@media (max-width : 900px)": {
+      height: "350px",
+    },
+    "@media (max-width : 400px)": {
+      height: "220px",
+    },
   },
+
+  media: {
+    paddingTop: "56.25%",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    backgroundBlendMode: "darken",
+    "@media (max-width : 900px)": {
+      height: "200px",
+    },
+    "@media (max-width : 400px)": {
+      height: "200px",
+    },
+  },
+
   overlay2: {
-    position: 'absolute',
-    top: '20px',
-    right: '20px',
-    color: 'white',
+    position: "absolute",
+    top: "20px",
+    right: "0px",
+    color: "white",
   },
-  grid: {
-    display: 'flex',
+
+  favourite: {
+    position: "relative",
+    top: "-90px",
+    left: "240px",
+    transform: "scale(1.3)",
+    transition: ".5s",
+
+    "&:hover": {
+      color: "#ffffff",
+      //transform: "scale(1.31)",
+      textShadow: "0 0 5px #ffffff",
+    },
+    "@media (max-width : 900px)": {
+      bottom: "2.5px",
+      left: "730px",
+      paddingBottom: "10px",
+      transform: "scale(1.3)",
+    },
+    "@media (max-width : 700px)": {
+      bottom: "2.5px",
+      left: "240px",
+      paddingBottom: "10px",
+      transform: "scale(1.3)",
+    },
   },
-  details: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '20px',
+
+  price: {
+    color: "white",
+    position: "relative",
+    top: "-50px",
+    left: "15px",
+    fontSize: "20px",
+    fontWeight: "1000",
+    "@media (max-width : 900px)": {
+      top: "15px",
+      fontSize: "12px",
+      left: "10px",
+    },
+    "@media (max-width : 900px)": {
+      width: "100% !important",
+      margin: "auto",
+    },
   },
-  title: {
-    padding: '0 16px',
+
+  Branch: {
+    backgroundColor: "#df4c73",
+    width: "140px",
+    marginLeft: "15px",
+    fontSize: "11px",
+    fontWeight: "500",
+    padding: "1px auto",
+    color: "#fff",
+    textAlign: "center",
+    whiteSpace: "nowrap",
+    verticalAlign: "middle",
+    "@media (max-width : 700px)": {
+      fontSize: "12px",
+    },
   },
-  cardActions: {
-    padding: '0 16px 8px 16px',
-    display: 'flex',
-    justifyContent: 'space-between',
+
+  BookName: {
+    margin: "5px 15px 7px 15px",
+  },
+
+  Description: {
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    marginLeft: "15px",
+    marginRight: "15px",
+    marginBottom: "10px",
+  },
+
+  owner: {
+    color: "black",
+    transition: "0.5s",
+    "&:hover": {
+      color: "#df4c73",
+      textShadow: "0 0 5px #df4c73",
+    },
+  },
+  button: {
+    backgroundColor: "#df4c73",
   },
 });
