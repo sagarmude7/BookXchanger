@@ -4,7 +4,7 @@ const authReducer = (authData={},action)=>{
         case AUTH:
             console.log(action.payload)
             if(!action.payload.msg)
-                localStorage.setItem('profile',JSON.stringify(action?.payload))
+            localStorage.setItem('profile',JSON.stringify(action?.payload))
             return action.payload
         case LOGOUT:
             localStorage.clear()

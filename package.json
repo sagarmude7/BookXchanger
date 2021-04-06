@@ -40,7 +40,6 @@
     "node-blob": "0.0.2",
     "nodemailer": "^6.5.0",
     "react-card-flip": "^1.1.0",
-    "socket-io": "^1.0.0",
-    "soket.io": "0.0.1-security"
+    "socket.io": "^4.0.1"
   }
 }

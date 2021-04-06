@@ -57,7 +57,7 @@ exports.signIn = async(req,res)=>{
         
         if(!oldUser)
             return res.status(400).json({msg:"User doesn't exist"})
-        
+                    
         const isPasswordIncorrect = await bcrypt.compare(password,oldUser.password)
 
         if(!isPasswordIncorrect)

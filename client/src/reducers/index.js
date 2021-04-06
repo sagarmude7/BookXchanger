@@ -5,6 +5,7 @@ import authData from './auth'
 import user from './user'
 import filterData from './filter'
 import wishList from './wishList'
+import chats from './chats'
 
 
-export default combineReducers({books,authData,filterData,wishList,user,book})
+export default combineReducers({books,authData,filterData,wishList,user,book,chats})

@@ -33,7 +33,7 @@ const UserSchema = mongoose.Schema({
     updatedAt :{
         type: Date,
         default:Date.now()
-    }
+    },
 })
 
 const User = mongoose.model('User',UserSchema)

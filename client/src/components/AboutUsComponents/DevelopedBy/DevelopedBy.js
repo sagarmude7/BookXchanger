@@ -119,7 +119,7 @@ const BookSlider = () => {
       >
         {descProfile.map((profile, index) => (
           <Grid>
-            <Container>
+            <Container style={{alignItems:"center"}}>
               <Profile key={index} profile={profile} />
             </Container>
           </Grid>

@@ -12,45 +12,29 @@ import {
   Paper,
   Grid,
   TextareaAutosize,
-  Box
+  Box,
 } from "@material-ui/core";
-import ChatBox from "./ChatBox/ChatBox"
+import ChatBox from "./ChatBox/ChatBox";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import SendIcon from "@material-ui/icons/Send";
-import Contact from "./ContactForm/Contact"
+
+import Contact from "./ContactForm/Contact";
 import useStyles from "./styles.js";
-import img from "./profilepic.png";
-import EditIcon from "@material-ui/icons/Edit";
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControl from "@material-ui/core/FormControl";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import clsx from "clsx";
-import { Alert, AlertTitle } from '@material-ui/lab';
-import IconButton from "@material-ui/core/IconButton";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import ChatIcon from "@material-ui/icons/Chat";
 import { editProfile, getProfile } from "../../actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
 import Dashboard from "./Dashboard components/Dashboard";
-import {useHistory } from "react-router-dom";
-import Bounce from 'react-reveal/Bounce';
-import Roll from 'react-reveal/Roll';
-import Rotate from 'react-reveal/Rotate';
-const OtherUser = ({match}) => {
+import { useHistory } from "react-router-dom";
+import Bounce from "react-reveal/Bounce";
+import Roll from "react-reveal/Roll";
+import Rotate from "react-reveal/Rotate";
+const OtherUser = ({ match }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user1 = JSON.parse(localStorage.getItem('profile'));
+  const user1 = JSON.parse(localStorage.getItem("profile"));
   const user = useSelector((state) => state.user);
-  const [err,setErr] = useState(false) 
-  const books = useSelector(state=>state.books)
+  const [err, setErr] = useState(false);
+  const books = useSelector((state) => state.books);
+  const sender = JSON.parse(localStorage.getItem('profile')).profile
   const userId = match.params.userId;
   const history = useHistory();
   useEffect(() => {
@@ -81,30 +65,23 @@ const OtherUser = ({match}) => {
 
   const [open, setOpen] = useState(false);
 
- 
-
   const handleSubmitUserInfo = (e) => {
     e.preventDefault();
 
     dispatch(editProfile(userData));
-      
   };
 
-
-  useEffect(()=>{
-    if(user.msg){
+  useEffect(() => {
+    if (user.msg) {
       setErr(true);
       setUserData(userData);
       //console.log(user,"in 33333333333333")
-    }
-    else{
+    } else {
       //console.log(user,"in 44444444444444444444444")
       setErr(false);
       setKey(true);
     }
-  },[user])
-    
-
+  }, [user]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -169,13 +146,12 @@ const OtherUser = ({match}) => {
     event.preventDefault();
   };
 
-
-    return (
-      <div className={classes.container}>
-        <Navbar />
-        <Bounce left>
-      <div className={classes.topBox}>
-        <Container className={classes.head}>
+  return (
+    <div className={classes.container}>
+      {/* <Navbar /> */}
+      <Bounce left>
+        <div className={classes.topBox}>
+          <Container className={classes.head}>
             <ArrowBackIcon
               className={classes.topLeft}
               onClick={() => history.goBack()}
@@ -203,76 +179,51 @@ const OtherUser = ({match}) => {
               >
                 {user.location}
               </Typography>
-          
             </div>
-        
-              <div className={classes.listing1}>
-                <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)).length}</Typography>
-                <Typography className={classes.listLetter}> Total Listing </Typography>
-              </div>
 
-              <div className={classes.listing2}>
-                <Typography className={classes.listNumber}>{books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length}</Typography>
-                <Typography className={classes.listLetter}>   Ads Sold </Typography>
-              </div>
-  
+            <div className={classes.listing1}>
+              <Typography className={classes.listNumber}>
+                {books.filter((book) => book.owner === userId).length}
+              </Typography>
+              <Typography className={classes.listLetter}>
+                {" "}
+                Total Listing{" "}
+              </Typography>
+            </div>
+
+            <div className={classes.listing2}>
+              <Typography className={classes.listNumber}>
+                {
+                  books.filter(
+                    (book) => book.owner === userId && book.isSold === true
+                  ).length
+                }
+              </Typography>
+              <Typography className={classes.listLetter}> Ads Sold </Typography>
+            </div>
           </Container>
         </div>
-        </Bounce>
+      </Bounce>
 
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={8}>    
-            <Roll left>
-               <Dashboard userId={userId}/>
-            </Roll>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-            {/* <Contact /> */}
-            <Container className={classes.chatBox}>
-            <h1 style={{color :"black",textAlign:'center'}}>Contact {user.name}</h1>
-                  <Typography variant="h6" style={{textAlign :"center"}}>Send Message</Typography>
-                  <hr
-                    style={{
-                      border: "1px solid #DF4C73",
-                      width: "80%",
-
-                    }}
-                  />
-                  <TextField
-                    id="outlined-multiline-static"
-                    multiline
-                    rows={7}
-                    variant="outlined"
-                    style={{ width: "80%",margin : "20px"}}
-                  />
-                  <Button
-                    variant="outline"
-                    color="primary"
-                    className={classes.SendButton}
-                    endIcon={<SendIcon />}
-                  >
-                    Send
-                  </Button>
-                  <div className={classes.guidelines}>
-                <Typography variant="body1">Read before you deal</Typography>
-                <div>
-                  <ul
-                    style={{ listStyleType: "none" }}
-                    className={classes.guidelineList}
-                  >
-                    <li>1. Please follow Government guidelines for COVID19.</li>
-                    <li>2. Use a safe location to meet seller</li>
-                    <li>3. Never provide your personal or banking information</li>
-                    <li>4. Beware of unrealistic offers</li>
-                  </ul>
-                </div>
-              </div>
-            </Container>
-            </Grid>
-
-          </Grid>
-      </div>
-    );
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={8}>
+          <Roll left>
+            <Dashboard userId={userId} />
+          </Roll>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          {
+            user?(
+              <ChatBox sender={sender}/>
+            ):(<h2>ChatBox ...Loading</h2>)
+          }
+          
+          {/* <Contact /> */}
+          
+        </Grid>
+      </Grid>
+    </div>
+  );
 };
 
 export default OtherUser;

@@ -20,3 +20,5 @@ export const UPDATE_SOLD = "UPDATE_SOLD";
 export const DELETE_BOOK = "DELETE_BOOK";
 
 export const VALID = 'VALID';
+export const ADD_CHAT = 'ADD_CHAT'
+export const INITIAL_CHAT = 'INITIAL_CHAT'
