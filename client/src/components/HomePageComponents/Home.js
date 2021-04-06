@@ -79,23 +79,25 @@ const Home = () => {
           </Alert>
         </Snackbar>
       ) : null}
-      {
+      {/* {
         shownoti?(
           <Snackbar
             style={{ top: "10%", left: "55%"}}
-        
             anchorOrigin={{ horizontal: "right", vertical: "top" }}
             open={shownoti}
             autoHideDuration={5000}
             onClose={handleCloseNoti}
           >
-            <Alert onClose={handleCloseNoti} icon={false} severity="info">
+            <Alert onClick={} onClose={handleCloseNoti} icon={false} severity="info">
               <AlertTitle>New Message</AlertTitle>
-              {notification.content}-<strong>from {notification.fromName}</strong>
+              <div style={{width:"300px"}}>
+                <p>{notification.content}</p>
+                <div style={{float:"right"}}>-<strong>{notification.fromName}</strong></div>
+              </div>
             </Alert>
           </Snackbar>
         ):null
-      }
+      } */}
       {bookPost ? (
         <Snackbar
           style={{ top: "10%", left: "55%" }}

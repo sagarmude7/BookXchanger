@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import ScrollUpButton from "react-scroll-up-button";
 import { Container } from "@material-ui/core";
@@ -14,16 +14,29 @@ import Footer from "./components/Footer/footer";
 import BookInfo from "./components/AllBooksComponents/BookInfo/BookInfo";
 import EditBook from "./components/EditBookComponents/Form";
 import About from "./components/AboutUsComponents/About.js";
-import { useDispatch } from "react-redux";
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
+import {AlertTitle} from '@material-ui/lab'
+import { green } from '@material-ui/core/colors';
+import { useDispatch,useSelector } from "react-redux";
 import { getBooks } from "./actions/books";
 import OtherUser from "./components/OtherUserComponents/OtherUser";
 import {socket} from './service/socket'
-import { GET_NOTIFICATION } from "./constants/actions.js";
+import { GET_NOTIFICATION,CLEAR_NOTIFICATION } from "./constants/actions.js";
 
 
 
 const App = () => {
   const dispatch = useDispatch()
+  const notification = useSelector((state)=>state.notification)
+  const [shownoti,setShowNoti] = useState(false)
+
+  useEffect(()=>{
+    if(notification.content)
+      setShowNoti(true)
+  },[notification])
+
   useEffect(()=>{
     if(localStorage.getItem('profile')){
       socket.connect()
@@ -44,6 +57,19 @@ const App = () => {
     //accepts an action call as an argument -> goes to actions folder
     dispatch(getBooks());
   }, [dispatch]);
+
+  const Alert = (props) => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  };
+
+  const handleCloseNoti = (event,reason)=>{
+    if(reason==='clickaway'){
+      return;
+    }
+    setShowNoti(false)
+    dispatch({type:CLEAR_NOTIFICATION})
+  }
+
   function displayLoading() {
     return <Loading />;
   }
@@ -54,6 +80,26 @@ const App = () => {
     <Router>
       <Container maxWidth="lg">
         <Navbar />
+        {
+          shownoti?(
+            <Snackbar
+              style={{ top: "10%", left: "55%"}}
+              anchorOrigin={{ horizontal: "right", vertical: "top" }}
+              open={shownoti}
+              autoHideDuration={5000}
+              onClose={handleCloseNoti}
+            >
+              <Alert onClose={handleCloseNoti} icon={false} severity="info">
+                <AlertTitle>New Message &nbsp; &nbsp;<NotificationsActiveIcon  style={{color: green[500],float:"right",marginTop:"0.1rem"}}/></AlertTitle>
+                
+                <div style={{width:"300px"}}>
+                  <p>{notification.content}</p>
+                  <div style={{float:"right"}}>from <strong>{notification.fromName}</strong></div>
+                </div>
+              </Alert>
+            </Snackbar>
+          ):null
+        }
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/all" component={DisplayBooks} />
