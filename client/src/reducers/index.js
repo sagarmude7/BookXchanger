@@ -6,6 +6,7 @@ import user from './user'
 import filterData from './filter'
 import wishList from './wishList'
 import chats from './chats'
+import notification from './notifications'
 
 
-export default combineReducers({books,authData,filterData,wishList,user,book,chats})
+export default combineReducers({books,authData,filterData,wishList,user,book,chats,notification})

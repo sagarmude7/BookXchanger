@@ -17,12 +17,27 @@ import About from "./components/AboutUsComponents/About.js";
 import { useDispatch } from "react-redux";
 import { getBooks } from "./actions/books";
 import OtherUser from "./components/OtherUserComponents/OtherUser";
-const App = () => {
-  const dispatch = useDispatch();
+import {socket} from './service/socket'
+import { GET_NOTIFICATION } from "./constants/actions.js";
 
-  useEffect(() => {
-    document.title = "Bookxchanger";
-  }, []);
+
+
+const App = () => {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    if(localStorage.getItem('profile')){
+      socket.connect()
+      const id = JSON.parse(localStorage.getItem('profile')).profile.id
+      socket.emit('login',{id:id})
+    }
+  },[])
+
+  useEffect(()=>{
+    socket.on('send_msg',(msg)=>{
+      console.log(msg)
+      dispatch({type:GET_NOTIFICATION,payload:msg})
+    })
+  },[])
 
   useEffect(() => {
     console.log("Getting Books");
@@ -44,7 +59,7 @@ const App = () => {
           <Route exact path="/all" component={DisplayBooks} />
           <Route exact path="/aboutus" component={About} />
           <Route exact path="/add" component={PostAdForm} />
-          <Route exact path="/auth" component={Auth} />
+          <Route exact path="/auth" socket={socket} component={Auth} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/wishlist" component={Wishlist} />
           <Route exact path="/all/book/:bookId" component={BookInfo} />
