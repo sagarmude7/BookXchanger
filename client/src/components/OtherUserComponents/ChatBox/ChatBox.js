@@ -7,7 +7,7 @@ import { ADD_CHAT,INITIAL_CHAT } from '../../../constants/actions.js';
 import {socket} from '../../../service/socket'
 
 const initialState = {
-  content:'',from:'',to:''
+  content:'',from:'',to:'',fromName:''
 }
 const ChatBox = (props) => {
   const receiver = useSelector(state=>state.user)
@@ -40,7 +40,7 @@ const ChatBox = (props) => {
       // if(chats.length===0)
         dispatch({type:INITIAL_CHAT,payload:chat})
     })
-    setMsgData({...msgData,from:props.sender.id})
+    setMsgData({...msgData,from:props.sender.id,fromName:props.sender.name})
   },[receiver])
   var i=0;
   useEffect(()=>{

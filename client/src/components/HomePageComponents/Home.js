@@ -6,7 +6,7 @@ import Chatbot from "./Chatbot/chatbot.js";
 import HowToUse from "./HowToUse/HowToUse.js";
 import Footer from "../Footer/footer.js";
 import BookSlider from "./BookSlider/BookSlider.js";
-
+import {AlertTitle} from '@material-ui/lab'
 import Feedback from "./Feedback/Feedback.js";
 import { useSelector, useDispatch } from "react-redux";
 import { AUTH, CLEAR_NOTIFICATION, VALID } from "../../constants/actions.js";
@@ -82,14 +82,16 @@ const Home = () => {
       {
         shownoti?(
           <Snackbar
-            style={{ top: "10%", left: "55%" }}
-            anchorOrigin={{ horizontal: "center", vertical: "top" }}
+            style={{ top: "10%", left: "55%"}}
+        
+            anchorOrigin={{ horizontal: "right", vertical: "top" }}
             open={shownoti}
             autoHideDuration={5000}
             onClose={handleCloseNoti}
           >
-            <Alert onClose={handleCloseNoti} severity="success">
-              <strong>{notification.content}</strong>
+            <Alert onClose={handleCloseNoti} icon={false} severity="info">
+              <AlertTitle>New Message</AlertTitle>
+              {notification.content}-<strong>from {notification.fromName}</strong>
             </Alert>
           </Snackbar>
         ):null

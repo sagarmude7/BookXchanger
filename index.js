@@ -137,7 +137,7 @@ io.on('connection', async(socket) => {
       await message.save()
       // console.log(msg.to)
       console.log("sending msg")
-      await socket.broadcast.to(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to} );
+      await socket.broadcast.to(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName} );
     }catch(err){
       console.log("Some error occured")
     }  
