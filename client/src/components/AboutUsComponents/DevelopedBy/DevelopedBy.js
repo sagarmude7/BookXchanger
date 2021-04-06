@@ -3,7 +3,6 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Card, Typography, Grid, Container } from "@material-ui/core";
 import ReactCardFlip from "react-card-flip";
-
 import useStyles from "./styles.js";
 import descProfile from "./descProfile.js";
 
@@ -117,6 +116,7 @@ const BookSlider = () => {
         infinite={true}
         autoPlay={true}
       >
+        <div>Item1</div>
         {descProfile.map((profile, index) => (
           <Grid>
             <Container>

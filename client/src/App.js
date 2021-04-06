@@ -18,10 +18,12 @@ import { useDispatch } from "react-redux";
 import { getBooks } from "./actions/books";
 import OtherUser from "./components/OtherUserComponents/OtherUser";
 import {socket} from './service/socket'
+import { GET_NOTIFICATION } from "./constants/actions.js";
 
 
 
 const App = () => {
+  const dispatch = useDispatch()
   useEffect(()=>{
     if(localStorage.getItem('profile')){
       socket.connect()
@@ -33,11 +35,9 @@ const App = () => {
   useEffect(()=>{
     socket.on('send_msg',(msg)=>{
       console.log(msg)
+      dispatch({type:GET_NOTIFICATION,payload:msg})
     })
   },[])
-
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log("Getting Books");

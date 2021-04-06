@@ -22,3 +22,6 @@ export const DELETE_BOOK = "DELETE_BOOK";
 export const VALID = 'VALID';
 export const ADD_CHAT = 'ADD_CHAT'
 export const INITIAL_CHAT = 'INITIAL_CHAT'
+
+export const GET_NOTIFICATION = 'GET_NOTIFICATION'
+export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION'

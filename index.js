@@ -104,6 +104,7 @@ io.on('connection', async(socket) => {
       console.log("already in room")
     }
     console.log(socket.rooms)
+    // console.log(socket.adapter.rooms)
   })
 
   socket.on('logout',(data)=>{
