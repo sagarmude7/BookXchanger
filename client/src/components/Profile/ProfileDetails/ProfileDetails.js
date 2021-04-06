@@ -500,34 +500,51 @@ const Profile = () => {
               onChange={handleChangeUserInfo}
             />
 
-            <img className={classes.pic} src={userData.profilePic} alt="M"></img>
-            <label htmlFor="icon-button-file">
-              <Button
-                variant="contained"
-                color="primary"
-                component="span"
-              >
-                Upload Profile Photo
-              </Button>
-            <input
-              accept="image/*"
-              className={classes.input}
-              id="icon-button-file"
-              type="file"
-              hidden
-              onChange={addImage}
-            />
-            </label>
-              <Button
-                variant="contained"
-                color="primary"
-                component="span"
-                onClick={removeImage}
-              >
-                Remove Photo
-              </Button>
-            
-            
+          <Container className={classes.picture}>
+
+            <div>
+              <img className={classes.editProfilePic} src={userData.profilePic} alt="M"></img>
+            </div>
+
+            <div className={classes.innerPic}>
+              <div>
+              <label htmlFor="icon-button-file">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  component="span"
+                  className={classes.uploadPhoto}
+                >
+                  Upload Profile Photo
+                </Button>
+              <input
+                accept="image/*"
+                className={classes.input}
+                id="icon-button-file"
+                type="file"
+                hidden
+                onChange={addImage}
+              />
+              </label>
+              </div>
+              <div>
+              {
+                userData.profilePic!=img?(
+                  <Button className={classes.removePhoto}
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                    onClick={removeImage}
+                  >
+                    Remove Photo
+                  </Button>
+                ):null
+              
+              }
+              </div>
+            </div>
+
+        </Container>       
 
             <Button
               className={classes.saveChanges}

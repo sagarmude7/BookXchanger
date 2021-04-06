@@ -48,6 +48,7 @@ export default makeStyles((theme) => ({
         marginLeft:"8%",
         fontWeight:300,
         fontSize:30,
+        
         //border:"2px solid red"
     },
 
@@ -56,7 +57,9 @@ export default makeStyles((theme) => ({
       pic:{
         width:"175px",
         height:"190px",
-        margin:"3%"
+        margin:"3%",
+        border:"1px solid black",
+        
       },
 
       body:{
@@ -191,6 +194,42 @@ export default makeStyles((theme) => ({
         fontSize:17,
         fontWeight:5,
       },
+
+      [theme.breakpoints.up(700)]:{
+        removePhoto:{
+          
+          marginLeft:30,
+          marginTop:20
+        },
+
+        uploadPhoto:{
+          
+          marginLeft:30,
+          marginTop:30
+        },
+
+        editProfilePic:{
+          
+          width:"200px",
+          height:"225px",
+          border:"1px solid black",
+          margin:15,
+          marginLeft:100,
+        },
+
+        picture:{
+          display:'flex',
+          flexDirection:'row',
+          width:"100%",
+        },
+
+        innerPic:{
+          display:"flex",
+          flexDirection:"column",
+          width:"100%",
+
+        },
+    },
 
       [theme.breakpoints.between(1000,1200)]:{
         headUser:{
@@ -339,8 +378,41 @@ export default makeStyles((theme) => ({
       fontSize:12,
     },
 
-    
+    uploadPhoto:{
+     
+        marginTop:10,
+        
 
+
+      },
+
+      removePhoto:{
+      
+        marginTop:15,
+        
+      },
+
+      editProfilePic:{
+        marginTop:10,
+        width:"200px",
+        height:"225px",
+        border:"1px solid black",
+      
+      },
+
+      picture:{
+        display:"flex",
+        flexDirection:"column",      
+        alignItems:"center",
+        
+      },
+
+      innerPic:{
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+
+      },
     },
 
     [theme.breakpoints.down(500)]:{
@@ -367,11 +439,21 @@ export default makeStyles((theme) => ({
 
     textField: {
       fontSize:11,
+      
     },
-
+    
     passTitle:{
       fontSize:12,
-    }
+    },
+
+    removePhoto:{
+      fontSize:10.5,
+    },
+
+    uploadPhoto:{
+      fontSize:10.5,
+      
+    },
 
   },
 
