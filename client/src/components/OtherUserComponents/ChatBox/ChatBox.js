@@ -82,18 +82,24 @@ const ChatBox = (props) => {
               }}
             />
             <div className={classes.msgBox}>
+            
               {chats.length!==0?(chats.map(msg=>(
                 (msg.from===user.id)?(
                   <>
-                  <div className={classes.msg}>{msg.content}</div>
+
+                  <p className={classes.msg1}>{msg.content}</p>
+                
                   <br/>
                   </>
                 ):(<>
-                  <div className={classes.msg}>{msg.content}</div>
+                  <p className={classes.msg2}>{msg.content}</p>
+
                   <br/>
+                  
                   </>
                 )
               ))):null}
+           
             </div>
             <TextField
               id="outlined-multiline-static"
