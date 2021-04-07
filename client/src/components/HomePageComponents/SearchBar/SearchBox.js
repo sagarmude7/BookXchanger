@@ -103,7 +103,7 @@ const SearchBox = () => {
   const [filteredbooksByCondition, setFilteredbooksByCondition] = useState([]);
   const [filteredbooksByTags, setFilteredbooksByTags] = useState([]);
   const filterData = useSelector((state) => state.filterData);
-  console.log(filterData);
+  // console.log(filterData);
   useEffect(() => {
     console.log("Getting Books")
     //accepts an action call as an argument -> goes to actions folder
@@ -147,55 +147,99 @@ const SearchBox = () => {
   }
 
   const updateBooks = () => {
-    if (inputName !== "") {
-      setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
-      console.log("Filtered By Name", filteredbooksByName);
+    if((inputName === " ")&&(inputSubject === " ")&&(inputBranch === " ")&&(inputPrice === " ")&&(inputCondition === " ")&&(inputTags === " ")){
+      dispatch({type:ADDFILTER,payload:books})
+      console.log("filtered books are",books)
+    }else{
+      var filteredBookArr = []
+      for(const book of books){
+        if(inputName!==""){
+          if(book.bookName.toLowerCase().includes(inputName.toLowerCase())){
+            filteredBookArr.push(book)
+          }
+        }
+        if(inputSubject!==""){
+          if(book.subject.toLowerCase().includes(inputSubject.toLowerCase())){
+            if(filteredBookArr.length!==0){
+              if(filteredBookArr[filteredBookArr.length-1]._id!==book._id)
+                filteredBookArr.push(book)
+            }else{
+              filteredBookArr.push(book)
+            }
+            
+          }
+        }
+        if(inputTags!==""){
+          if(book.tags[0].toLowerCase().includes(inputTags.toLowerCase())){
+            if(filteredBookArr.length!==0){
+              if(filteredBookArr[filteredBookArr.length-1]._id!==book._id)
+                filteredBookArr.push(book)
+            }else{
+                filteredBookArr.push(book)
+            }
+          }
+        }
+        if((book.branch===inputBranch)||(book.condition===inputCondition.toLowerCase())||(book.priceType===inputPrice)){
+          if(filteredBookArr.length!==0){
+            if(filteredBookArr[filteredBookArr.length-1]._id!==book._id)
+              filteredBookArr.push(book)
+          }else{
+            filteredBookArr.push(book)
+          }
+        }
+      }
+      console.log("filtered books are",filteredBookArr)
+      dispatch({type:ADDFILTER,payload:filteredBookArr})
     }
-    else {
-      setFilteredbooksByName([]);
-    }
-    if (inputSubject !== "") {
-      setFilteredbooksBySubject(books.filter((book) => book.subject.toLowerCase().includes(inputSubject.toLowerCase())));
-      console.log("Filtered By Subject", filteredbooksBySubject);
-    }
-    else {
-      setFilteredbooksBySubject([]);
-    }
-    if (inputBranch !== "") {
-      setFilteredbooksByBranch(books.filter((book) => book.branch.toLowerCase().includes(inputBranch.toLowerCase())));
-      console.log("Filtered By Branch", filteredbooksByBranch);
-    }
-    else {
-      setFilteredbooksByBranch([]);
-    }
-    if (inputPrice !== "") {
-      setFilteredbooksByPrice(books.filter((book) => book.priceType.toLowerCase().includes(inputPrice.toLowerCase())));
-      console.log("Filtered By Price", filteredbooksByPrice);
-    }
-    else {
-      setFilteredbooksByPrice([]);
-    }
+    // if (inputName !== "") {
+    //   setFilteredbooksByName(books.filter((book) => book.bookName.toLowerCase().includes(inputName.toLowerCase())));
+    //   console.log("Filtered By Name", filteredbooksByName);
+    // }
+    // else {
+    //   setFilteredbooksByName([]);
+    // }
+    // if (inputSubject !== "") {
+    //   setFilteredbooksBySubject(books.filter((book) => book.subject.toLowerCase().includes(inputSubject.toLowerCase())));
+    //   console.log("Filtered By Subject", filteredbooksBySubject);
+    // }
+    // else {
+    //   setFilteredbooksBySubject([]);
+    // }
+    // if (inputBranch !== "") {
+    //   setFilteredbooksByBranch(books.filter((book) => book.branch.toLowerCase().includes(inputBranch.toLowerCase())));
+    //   console.log("Filtered By Branch", filteredbooksByBranch);
+    // }
+    // else {
+    //   setFilteredbooksByBranch([]);
+    // }
+    // if (inputPrice !== "") {
+    //   setFilteredbooksByPrice(books.filter((book) => book.priceType.toLowerCase().includes(inputPrice.toLowerCase())));
+    //   console.log("Filtered By Price", filteredbooksByPrice);
+    // }
+    // else {
+    //   setFilteredbooksByPrice([]);
+    // }
 
-    if (inputCondition !== "") {
-      setFilteredbooksByCondition(books.filter((book) => book.condition.toLowerCase().includes(inputCondition.toLowerCase())));
-      console.log("Filtered By Condition", filteredbooksByCondition);
-    }
-    else {
-      setFilteredbooksByCondition([]);
-    }
-    if (inputTags !== "") {
-      setFilteredbooksByTags(books.filter((book) => book.tags[0].toLowerCase().includes(inputTags.toLowerCase())));
-      console.log("Filtered By Tags", filteredbooksByTags);
-    }
-    else{
-      setFilteredbooksByTags([]);
-    }
-    const filteredbooks = [...filteredbooksByName, ...filteredbooksByBranch, ...filteredbooksBySubject, ...filteredbooksByPrice, ...filteredbooksByCondition, ...filteredbooksByTags]
-    var uniqueFilteredArray = filteredbooks.filter(function (item, pos) {
-      return filteredbooks.indexOf(item) === pos;
-    })
-    console.log(uniqueFilteredArray);
-    dispatch({ type: ADDFILTER, payload: uniqueFilteredArray })
+    // if (inputCondition !== "") {
+    //   setFilteredbooksByCondition(books.filter((book) => book.condition.toLowerCase().includes(inputCondition.toLowerCase())));
+    //   console.log("Filtered By Condition", filteredbooksByCondition);
+    // }
+    // else {
+    //   setFilteredbooksByCondition([]);
+    // }
+    // if (inputTags !== "") {
+    //   setFilteredbooksByTags(books.filter((book) => book.tags[0].toLowerCase().includes(inputTags.toLowerCase())));
+    //   console.log("Filtered By Tags", filteredbooksByTags);
+    // }
+    // else{
+    //   setFilteredbooksByTags([]);
+    // }
+    // const filteredbooks = [...filteredbooksByName, ...filteredbooksByBranch, ...filteredbooksBySubject, ...filteredbooksByPrice, ...filteredbooksByCondition, ...filteredbooksByTags]
+    // var uniqueFilteredArray = filteredbooks.filter(function (item, pos) {
+    //   return filteredbooks.indexOf(item) === pos;
+    // })
+    // console.log(uniqueFilteredArray);
+    // dispatch({ type: ADDFILTER, payload: uniqueFilteredArray })
   }
   const [expanded, setExpanded] = React.useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
