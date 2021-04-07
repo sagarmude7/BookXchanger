@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ADDFILTER, UPDATE_BOOKS } from "../../../constants/actions";
 import "./styles.css";
 import useStyles from "./styles.js";
-import SearchIcon from "@material-ui/icons/Search";
+
 import { useSelector, useDispatch } from "react-redux";
 import { getBooks } from "../../../actions/books";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +15,7 @@ import {
   Typography,
   TextField,
   Button,
+  ButtonGroup,
   Select,
   MenuItem,
   FormControl,
@@ -22,6 +23,8 @@ import {
   Box,
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
+
+import SearchIcon from "@material-ui/icons/Search";
 import Fab from "@material-ui/core/Fab";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -252,12 +255,7 @@ const SearchBox = () => {
           {isadv ? (
             <Grid container spacing={4} className={classes.gridContainer}>
               <Grid item xs={12} sm={4} className={classes.paper}>
-                <FormControl
-                  variant="outlined"
-                  border="blue"
-                  className={classes.formControl}
-                  style={{ width: "200px" }}
-                >
+                <FormControl variant="outlined" fullWidth>
                   <InputLabel id="conditionTypeLabel">
                     Condition Of Book
                   </InputLabel>
@@ -271,16 +269,11 @@ const SearchBox = () => {
                   >
                     <MenuItem value="Used">Used</MenuItem>
                     <MenuItem value="New">New</MenuItem>
-                    <MenuItem value="">None</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={4} className={classes.paper}>
-                <FormControl
-                  variant="outlined"
-                  className={classes.formControl}
-                  fullWidth
-                >
+                <FormControl variant="outlined" fullWidth>
                   <InputLabel id="type-label">Price Type</InputLabel>
                   <Select
                     labelId="type-label"
@@ -291,9 +284,7 @@ const SearchBox = () => {
                     onChange={(e) => setPrice(e.target.value)}
                     placeholder="Select Price Type"
                   >
-                    <MenuItem value="Fixed">
-                      <em>Fixed</em>
-                    </MenuItem>
+                    <MenuItem value="Fixed">Fixed</MenuItem>
                     <MenuItem value="Negotiable">Negotiable</MenuItem>
                     <MenuItem value="Price on Call">Price on Call</MenuItem>
                     <MenuItem value="">None</MenuItem>
@@ -301,13 +292,13 @@ const SearchBox = () => {
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={4} className={classes.paper}>
-                <input
-                  id="standard-basic"
-                  label="Tags"
-                  className={classes.input}
+                <TextField
+                  id="outlined-basic"
+                  label="Related Tags"
+                  variant="outlined"
                   key="random3"
                   value={inputTags}
-                  placeholder={"Type Tags"}
+                  fullWidth
                   onChange={(e) => {
                     setTags(e.target.value);
                   }}
@@ -318,29 +309,29 @@ const SearchBox = () => {
             <></>
           )}
           <Box textAlign="center">
-            <button
-              className={classes.button}
-              type="button"
+            <Button
+              variant="contained"
+              color="secondary"
               onClick={updateBooks}
+              className={classes.button}
+              startIcon={<SearchIcon />}
             >
-              <span style={{ fontSize: "1.3rem" }}>Search</span>
-            </button>
-            <span className="hide">Double Click to search</span>
+              Search
+              <span className="hide">Double Click to search</span>
+            </Button>
           </Box>
-          <p className={classes.adv} onClick={showAdv}>
-            {isadv ? (
-              <button className={classes.advance} type="button">
-                <span style={{ fontSize: "0.8rem" }}>Hide Advanced</span>
-              </button>
-            ) : (
-              <button className={classes.advance} type="button">
-                <span style={{ fontSize: "0.8rem" }}>Advanced Search</span>
-              </button>
-            )}
-          </p>
-          <button className={classes.advance} onClick={removeFilters}>
-            <span style={{ fontSize: "0.8rem" }}>Remove Filters</span>
-          </button>
+
+          <ButtonGroup
+            variant="text"
+            size="large"
+            color="secondary"
+            aria-label="outlined secondary button group"
+          >
+            <Button onClick={showAdv}>
+              {isadv ? "Hide Advanced Search" : "Advanced Search"}
+            </Button>
+            <Button onClick={removeFilters}>Reset Search</Button>
+          </ButtonGroup>
         </div>
       </div>
     </>

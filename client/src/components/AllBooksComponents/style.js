@@ -19,16 +19,35 @@ export default makeStyles((theme) => ({
     textAlign: "center",
     color: "#df4c73",
   },
-  sortButton: {
-    marginRight: "50px",
-    marginTop: "0px",
-    backgroundColor: "#DF4C73",
-    float: "right",
+
+  sortby: {
+    padding: "0px 24px",
+    margin: "0px 51px",
+    "@media (max-width : 700px)": {
+      padding: "0px 10px",
+      margin: "0px 10px",
+    },
   },
+
+  box: {
+    width: "250px",
+    "@media (max-width : 700px)": {
+      width: "100%",
+    },
+  },
+
   formControl: {
-    backgroundColor: "white",
-    border: "1 px solid grey",
+    marginTop: "10px",
+    border: "1 px solid #df4c73",
     borderRadius: "8px",
-    width: "300px",
+    width: "250px",
+    padding: "0px 0px",
+    "@media (max-width : 700px)": {
+      width: "100%",
+    },
+  },
+
+  buttonS: {
+    padding: "0px 0px",
   },
 }));

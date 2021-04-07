@@ -36,7 +36,7 @@ const styles = makeStyles((theme) => ({
   },
 
   searchboxes: {
-    padding: "5px 25px",
+    padding: "10px 25px",
   },
 
   root: {
@@ -50,11 +50,12 @@ const styles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   button: {
-    // position :"relative",
-    // top : "0px",
-    // left : "45%",
     justifyContent: "center",
     backgroundColor: "#DF4C73",
+    marginBottom: "25px",
+    "@media (max-width : 700px)": {
+      marginBottom: "10px",
+    },
   },
   advance: {
     backgroundColor: "#DF4C73",

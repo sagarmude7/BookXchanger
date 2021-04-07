@@ -39,20 +39,26 @@ const BookSlider = () => {
     if (allBooks.length !== 0) {
       setAllUnSoldBooks(allBooks.filter((book) => book.isSold === false));
     }
-  }, [allBooks]);
+  }, [allBooks.length]);
 
   useEffect(() => {
-    if (allUnSoldbooks.length > 6) {
+    if (allUnSoldbooks.length > 5) {
       var indices = [];
-      while (indices.length < 6) {
+      while (indices.length < 5) {
         var r = Math.floor(Math.random() * allUnSoldbooks.length);
         if (indices.indexOf(r) === -1) indices.push(r);
       }
-      var k = 0;
+      console.log(indices);
+      const arr = [];
       for (const i of indices) {
-        setBooks([...books, allUnSoldbooks[i]]);
-        k++;
+        arr.push(allUnSoldbooks[i]);
       }
+      setBooks(arr);
+      // for (var i=0;i<5;i++) {
+      //   var r = Math.floor(Math.random() * allUnSoldbooks.length)
+      //   console.log("Book in Slider" + r);
+      //   setBooks([...books,allUnSoldbooks[r]]);
+      // }
     } else {
       setBooks(allUnSoldbooks);
     }
