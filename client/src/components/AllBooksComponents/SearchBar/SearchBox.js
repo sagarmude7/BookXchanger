@@ -175,29 +175,24 @@ const SearchBox = () => {
         <Typography className={classes.head}>Search the Book</Typography>
       </div>
       <div className={classes.middleContainer}>
-        <div className={classes.searchboxes}></div>
-        <div noValidate autoComplete="off">
+        <div className={classes.searchboxes} noValidate autoComplete="off">
           <div>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={4} className={classes.paper}>
-                <input
-                  id="standard-basic"
-                  label="Name"
-                  className={classes.input}
+                <TextField
+                  id="outlined-basic"
+                  label="Name of Book"
+                  variant="outlined"
                   key="random1"
                   value={inputName}
-                  placeholder={"Name of Book"}
+                  fullWidth
                   onChange={(e) => {
                     setName(e.target.value);
                   }}
                 />
               </Grid>
               <Grid item xs={12} sm={4} className={classes.paper}>
-                <FormControl
-                  variant="outlined"
-                  className={classes.formControl}
-                  fullWidth
-                >
+                <FormControl variant="outlined" fullWidth>
                   <InputLabel id="branchTypeLabel">Branch</InputLabel>
                   <Select
                     labelId="branchLabel"
@@ -206,9 +201,11 @@ const SearchBox = () => {
                     onChange={(e) => setBranch(e.target.value)}
                     value={inputBranch}
                     name="branch"
+                    style={{ paddingTop: "1.5px", paddingBottom: "1.5px" }}
                   >
+                    <MenuItem value="First Year">First Year</MenuItem>
                     <MenuItem value="Computer Engineering">
-                      <em>Computer Engineering</em>
+                      Computer Engineering
                     </MenuItem>
                     <MenuItem value="Information Technology">
                       Information Technology
@@ -231,17 +228,18 @@ const SearchBox = () => {
                     <MenuItem value="Textile Engineering">
                       Textile Engineering
                     </MenuItem>
+                    <MenuItem value="Other">Other</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={4} className={classes.paper}>
-                <input
-                  id="standard-basic"
+                <TextField
+                  id="outlined-basic"
                   label="Subject"
-                  className={classes.input}
+                  variant="outlined"
                   key="random3"
+                  fullWidth
                   value={inputSubject}
-                  placeholder={"Search Subject"}
                   onChange={(e) => {
                     setSubject(e.target.value);
                   }}

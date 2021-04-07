@@ -9,22 +9,22 @@ const DevelopedBy = () => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items : 5
+      items: 5,
       // profile: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items : 3
+      items: 4,
       // profile: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 460 },
-      items : 2
+      items: 2,
       // profile: 2,
     },
     mobile: {
       breakpoint: { max: 460, min: 0 },
-      items : 1
+      items: 1,
       // profile: 1,
     },
   };
@@ -36,14 +36,13 @@ const DevelopedBy = () => {
       </Typography>
       <hr style={{ border: "1px solid black", width: "300px" }} />
       <hr style={{ borderWidth: "0px" }} />
-      <h1>HELLLLLLLo</h1>
 
       <Carousel
         responsive={responsive}
         arrows={false}
         infinite={true}
         autoPlay={true}
-      >        
+      >
         {profiles.map((profile, index) => (
           <div>
             <Grid>
@@ -56,7 +55,6 @@ const DevelopedBy = () => {
                   github={profile.github}
                   linkedin={profile.linkedin}
                 />
-                Vedant Mondkar
               </Container>
             </Grid>
           </div>

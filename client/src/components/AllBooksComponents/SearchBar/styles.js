@@ -35,7 +35,9 @@ const styles = makeStyles((theme) => ({
     },
   },
 
-  searchboxes: {},
+  searchboxes: {
+    padding: "5px 25px",
+  },
 
   root: {
     flexGrow: "1",
@@ -46,8 +48,6 @@ const styles = makeStyles((theme) => ({
   },
   input: {
     padding: theme.spacing(2),
-    textAlign: "center",
-    border: "1px solid red",
   },
   button: {
     // position :"relative",
