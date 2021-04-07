@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {Container,Paper,Grid,Typography,Button,TextField,Avatar, Box,Divider} from '@material-ui/core'
+import {Container,Paper,Grid,Typography,Button,TextField,Avatar, Box,Divider,ListItem,ListItemAvatar,ListItemText,List} from '@material-ui/core'
 import LabelImportantSharpIcon from '@material-ui/icons/LabelImportantSharp';
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar'
@@ -103,59 +103,170 @@ const Auth = () => {
             <Grid xs={12} sm={6} className={classes.grid}>
              <Fade down>
                 <Typography component="h1" variant="h4" style={{"textAlign":"center"}}>{ isSignup ? 'Register With Us' : 'Sign In to your Account' }</Typography>
-                    <hr width='70%' style={{ border: "1px solid white"}}></hr>
-                    <Typography>
-                    <Avatar className={classes.avt}><ChatOutlinedIcon fontSize='medium'/></Avatar>
-                        <Typography component="h1" variant="h5" className={classes.list}>
-                            Chats and Messaging
-                        </Typography>
-                        <p className={classes.list}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mattis tincidunt consequat. Curabitur a interdum augue.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
-                     </Typography>
-                     <hr width='40%'></hr>
-                     <Typography>
-                        <Avatar className={classes.avt}><PhoneCallbackIcon fontSize='medium'/></Avatar>
-                        <Typography component="h1" variant="h5" className={classes.list}>
-                            Avoid Calls
-                        </Typography>
-                        <p className={classes.list}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mattis tincidunt consequat. Curabitur a interdum augue.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        </p>
-                    </Typography>
-                    <hr width='40%'></hr>
-                    <Typography>
-                        <Avatar className={classes.avt}><DashboardIcon fontSize='medium'/></Avatar>
-                        <Typography component="h1" variant="h5" className={classes.list}>
-                            User Dashboard
-                        </Typography>
-                        <p className={classes.list}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mattis tincidunt consequat. Curabitur a interdum augue.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        </p>
-                    </Typography>
-                    <hr width='40%'></hr>
-                    <Typography>
-                        <Avatar className={classes.avt}><PersonIcon fontSize='medium'/></Avatar>
-                        <Typography component="h1" variant="h5" className={classes.list}>
-                            User Friendly Support
-                        </Typography>
-                        <p className={classes.list}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mattis tincidunt consequat. Curabitur a interdum augue.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        </p>
-                    </Typography>
-                <Divider orientation="vertical" flexItem />
+                <hr width='70%' style={{ border: "1px solid white"}}></hr>
+
+                <List>
+                    <ListItem className={classes.list}>
+                        <ListItemAvatar>
+                        <Avatar
+                            variant="square"
+                            className={classes.avatar}
+                            alt="User DashBoard"
+                            src="https://media.giphy.com/media/cJAVot5go0jTGlCWfr/giphy.gif"
+                        />
+                        </ListItemAvatar>
+
+                        <ListItemText
+                        primary={
+                            <React.Fragment>
+                            <Typography
+                                component="span"
+                                variant="h5"
+                                className={classes.inline}
+                                color="textPrimary"
+                            >
+                                User Dashboard
+                            </Typography>
+                            </React.Fragment>
+                        }
+                        secondary={
+                            <React.Fragment>
+                            <Typography
+                                component="span"
+                                variant="body1"
+                                className={classes.inline}
+                                color="textPrimary"
+                            >
+                                Track the status of your ads history with friendly
+                                Userboard.
+                            </Typography>
+                            </React.Fragment>
+                        }
+                        />
+                    </ListItem>
+                <hr width='50%'></hr>
+                    <ListItem className={classes.list}>
+                        <ListItemAvatar>
+                        <Avatar
+                            variant="square"
+                            className={classes.avatar}
+                            alt="Chat & Messaging"
+                            src="https://media.giphy.com/media/YmnlVEP5ALdUMcTvVv/giphy.gif"
+                        />
+                        </ListItemAvatar>
+                        <ListItemText
+                        primary={
+                            <React.Fragment>
+                            <Typography
+                                component="span"
+                                variant="h5"
+                                className={classes.inline}
+                                color="textPrimary"
+                            >
+                                Chat & Messaging
+                            </Typography>
+                            </React.Fragment>
+                        }
+                        secondary={
+                            <React.Fragment>
+                            <Typography
+                                component="span"
+                                variant="body1"
+                                className={classes.inline}
+                                color="textPrimary"
+                            >
+                                Access your chats and account info from any device.
+                            </Typography>
+                            </React.Fragment>
+                        }
+                        />
+                    </ListItem>
+                <hr width='50%'></hr>
+                    <ListItem className={classes.list}>
+                        <ListItemAvatar>
+                        <Avatar
+                            variant="square"
+                            className={classes.avatar}
+                            alt="Avoid Calls"
+                            src="https://media.giphy.com/media/L3u0T2DZ3D55srukju/giphy.gif"
+                        />
+                        </ListItemAvatar>
+                        <ListItemText
+                        primary={
+                            <React.Fragment>
+                            <Typography
+                                component="span"
+                                variant="h5"
+                                className={classes.inline}
+                                color="textPrimary"
+                            >
+                                Avoid Calls
+                            </Typography>
+                            </React.Fragment>
+                        }
+                        secondary={
+                            <React.Fragment>
+                            <Typography
+                                component="span"
+                                variant="body1"
+                                className={classes.inline}
+                                color="textPrimary"
+                            >
+                                No compulsion of providing mobile numbers. Use in-built
+                                chat system.
+                            </Typography>
+                            </React.Fragment>
+                        }
+                        />
+                    </ListItem>
+                <hr width='50%'></hr>
+                    <ListItem className={classes.list}>
+                        <ListItemAvatar>
+                        <Avatar
+                            variant="square"
+                            className={classes.avatar}
+                            alt="User DashBoard"
+                            src="https://media.giphy.com/media/YSlD6I04v4s9pgwPcT/giphy.gif"
+                        />
+                        </ListItemAvatar>
+                        <ListItemText
+                        primary={
+                            <React.Fragment>
+                            <Typography
+                                component="span"
+                                variant="h5"
+                                className={classes.inline}
+                                color="textPrimary"
+                            >
+                                User Friendly
+                            </Typography>
+                            </React.Fragment>
+                        }
+                        secondary={
+                            <React.Fragment>
+                            <Typography
+                                component="span"
+                                variant="body1"
+                                className={classes.inline}
+                                color="textPrimary"
+                            >
+                                Let's improve BF together. Report us if you stuck
+                                anywhere.
+                            </Typography>
+                            </React.Fragment>
+                        }
+                        />
+                    </ListItem>
+                <hr width='50%'></hr>
+                </List>
              </Fade>
             </Grid>
             
             <Grid xs={12} sm={6}>
-                <Swing left>
+          
                 <Paper className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <Avatar className={classes.avt}>
+                    <LockOutlinedIcon fontSize='large'/>
                     </Avatar>
                     <Typography component="h1" variant="h4">{ isSignup ? 'Register' : 'Login' }</Typography>
                     {
@@ -228,7 +339,7 @@ const Auth = () => {
                     </Grid>
                     </form>
                 </Paper>
-                </Swing>
+             
             </Grid>
         </Grid>
         </div>

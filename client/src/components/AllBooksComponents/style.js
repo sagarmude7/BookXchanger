@@ -1,39 +1,53 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
 </style>;
 
-
 export default makeStyles((theme) => ({
-  maincontainer: {
-    backgroundColor: "#286FB4",
-    backgroundImage: `url(${'https://www.transparenttextures.com/patterns/concrete-wall-2.png'})`,
-  },
   smMargin: {
     margin: theme.spacing(1),
   },
-  container:{
-    paddingTop:'20px'
+  container: {
+    paddingTop: "20px",
   },
   actionDiv: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   paper: {
     padding: theme.spacing(0.5),
-    textAlign: 'center',
+    textAlign: "center",
     color: "#df4c73",
   },
-  sortButton:{
-    marginRight: '50px',
-    marginTop:'0px',
-    backgroundColor:"#DF4C73",
-    float:'right'
+
+  sortby: {
+    padding: "0px 24px",
+    margin: "0px 51px",
+    "@media (max-width : 700px)": {
+      padding: "0px 10px",
+      margin: "0px 10px",
+    },
   },
-  formControl:{
-    backgroundColor:'white',
-    border :"1 px solid grey",
-    borderRadius  :"8px",
-    width:'300px'
-  }
+
+  box: {
+    width: "250px",
+    "@media (max-width : 700px)": {
+      width: "100%",
+    },
+  },
+
+  formControl: {
+    marginTop: "10px",
+    border: "1 px solid #df4c73",
+    borderRadius: "8px",
+    width: "250px",
+    padding: "0px 0px",
+    "@media (max-width : 700px)": {
+      width: "100%",
+    },
+  },
+
+  buttonS: {
+    padding: "0px 0px",
+  },
 }));

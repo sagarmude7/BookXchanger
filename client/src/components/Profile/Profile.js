@@ -44,6 +44,7 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
+
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -90,6 +91,8 @@ const Profile = () => {
     setOpen(false);
   };
 
+  console.log(user.profilePic);
+
   return (
     <div className={classes.container}>
       {user?.editMessage ? (
@@ -107,7 +110,16 @@ const Profile = () => {
       ) : null}
       <div className={classes.topBox}>
         <Container className={classes.head}>
-          <img className={classes.pic} src={user?.profilePic} alt="M"></img>
+          {
+          user.profilePic?(
+            <img className={classes.pic} src={user.profilePic} alt="M"></img>
+
+          ):
+          (
+          
+            <img className={classes.pic} src={img} alt="M"></img>
+          )
+          }
           <Typography
             variant="body1"
             color="textPrimary"

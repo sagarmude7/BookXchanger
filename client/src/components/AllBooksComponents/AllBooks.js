@@ -15,32 +15,33 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  TextField,
   FormControl,
 } from "@material-ui/core";
 import Book from "./Book/Book";
 import useStyles from "./style";
-import SearchBox from "../HomePageComponents/SearchBar/SearchBox.js";
-import Zoom from 'react-reveal/Zoom';
+import SearchBox from "./SearchBar/SearchBox.js";
+import Zoom from "react-reveal/Zoom";
+
 const AllBooks = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
-  const [books,setBooks] = useState([]);
-  const [sortbool, setSortbool] = useState(false);
+  const [books, setBooks] = useState([]);
+  const [sortbool, setSortbool] = useState(true);
   const [type, settype] = useState("");
-
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState();
   const filterData = useSelector((state) => state.filterData);
 
   useEffect(() => {
     dispatch({ type: ADDFILTER, payload: books });
-  }, [dispatch,books]);
+  }, [dispatch, books]);
 
-  useEffect(()=>{
-    if(allBooks.length!==0)
-      setBooks(allBooks.filter((book) => book.isSold === false)) 
-  },[dispatch,allBooks])
+  useEffect(() => {
+    if (allBooks.length !== 0)
+      setBooks(allBooks.filter((book) => book.isSold === false));
+  }, [dispatch, allBooks]);
 
   useEffect(() => {
     if (sortbool === true) {
@@ -81,96 +82,88 @@ const AllBooks = () => {
     sortArray(sortType);
   }, [sortType]);
 
+  const [SORTBY, setSORTBY] = useState();
+
+  const handleChange = (event) => {
+    setSORTBY(event.target.value);
+  };
+
   return (
     <>
       <div className={classes.maincontainer}>
-        <br/>
-      <Zoom>
-        <SearchBox />
-      </Zoom>
-        <br />
-        <br />
-        <br />
-        <hr color="red" height="2px" width="85%"></hr>
-        <span style={{ margin: "0px", padding: "5px" }}></span>
-        <div style={{ marginTop: "20px" }}>
-          <button
-            className={classes.sortButton}
-            onClick={() => setSortbool(!sortbool)}
-          >
-            <span style={{ fontSize: "1.1rem" }}>Sort</span>
-          </button>
+        <Zoom>
+          <SearchBox />
+        </Zoom>
 
-          {sortbool === true ? (
-            <>
-              <Box textAlign="center">
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="Sort ByTypeLabel">Sort By</InputLabel>
-                  <Select
-                    labelId="SortByLabel"
-                    id="SortBy"
-                    label="SortBy"
-                    value={type}
-                  >
-                    <MenuItem value="Price Lowest">
-                      <Paper className={classes.paper}>
-                        <FormControlLabel
-                          value="pricelowest"
-                          control={
-                            <Radio
-                              onClick={(e) => setSortType(e.target.value)}
-                            />
-                          }
-                          label="Price (Lowest)"
-                        />
-                      </Paper>
-                    </MenuItem>
-                    <MenuItem value="Price Highest">
-                      <Paper className={classes.paper}>
-                        <FormControlLabel
-                          value="pricehighest"
-                          control={
-                            <Radio
-                              onClick={(e) => setSortType(e.target.value)}
-                            />
-                          }
-                          label="Price (Highest)"
-                        />
-                      </Paper>
-                    </MenuItem>
-                    <MenuItem value="Date Newest">
-                      <Paper className={classes.paper}>
-                        <FormControlLabel
-                          value="datenewest"
-                          control={
-                            <Radio
-                              onClick={(e) => setSortType(e.target.value)}
-                            />
-                          }
-                          label="Date Added (Newest)"
-                        />
-                      </Paper>
-                    </MenuItem>
-                    <MenuItem value="Date Oldest">
-                      <Paper className={classes.paper}>
-                        <FormControlLabel
-                          value="dateoldest"
-                          control={
-                            <Radio
-                              onClick={(e) => setSortType(e.target.value)}
-                            />
-                          }
-                          label="Date Added (Oldest)"
-                        />
-                      </Paper>
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </>
-          ) : (
-            <></>
-          )}
+        <div className={classes.maincontainer}>
+          <div className={classes.sortby}>
+            <hr color="red" height="2px" width="100%"></hr>
+            <Box textAlign="right">
+              <TextField
+                className={classes.box}
+                id="outlined-select-currency"
+                select
+                label="Sort By"
+                value={SORTBY}
+                onChange={handleChange}
+                variant="outlined"
+              >
+                <MenuItem value="Date Newest" className={classes.formControl}>
+                  <FormControlLabel
+                    value="datenewest"
+                    control={
+                      <Button
+                        className={classes.buttonS}
+                        onClick={(e) => setSortType(e.target.value)}
+                      />
+                    }
+                    label="Newest to Oldest"
+                  />
+                </MenuItem>
+                <MenuItem value="Date Oldest" className={classes.formControl}>
+                  <FormControlLabel
+                    value="dateoldest"
+                    control={
+                      <Button
+                        className={classes.buttonS}
+                        onClick={(e) => setSortType(e.target.value)}
+                      />
+                    }
+                    label="Oldest to Newest"
+                  />
+                </MenuItem>
+                <MenuItem value="Price Lowest" className={classes.formControl}>
+                  <FormControlLabel
+                    value="pricelowest"
+                    control={
+                      <Button
+                        className={classes.buttonS}
+                        onClick={(e) => setSortType(e.target.value)}
+                      />
+                    }
+                    label="Price: Low to High"
+                  />
+                </MenuItem>
+                <MenuItem value="Price Highest" className={classes.formControl}>
+                  <FormControlLabel
+                    value="pricehighest"
+                    control={
+                      <Button
+                        className={classes.buttonS}
+                        onClick={(e) => setSortType(e.target.value)}
+                      />
+                    }
+                    label="Price: High to Low"
+                  />
+                </MenuItem>
+              </TextField>
+              {/* <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="Sort ByTypeLabel" value={type} label="Sort By">
+                  Sort By
+                </InputLabel>
+              </FormControl> */}
+            </Box>
+          </div>
           <div style={{ marginTop: "2px" }}>
             <Container>
               {filterData.length === 0 ? (
@@ -191,6 +184,7 @@ const AllBooks = () => {
               )}
             </Container>
           </div>
+
           {/* <h1>All Books : </h1> */}
 
           {/* <span style={{margin : "0px",padding:"5px",}}><h2>Books</h2></span>

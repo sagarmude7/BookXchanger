@@ -22,14 +22,10 @@ const FilteredBooks = () => {
   } else {
     return (
       <>
-        <SearchBox />
-        <span style={{ margin: "0px", padding: "5px" }}>
-          <h2>Filtered Books</h2>
-        </span>
-        <div style={{ marginTop: "2px" }}>
+        <div>
           <Container>
             {filterData.length === 0 ? (
-              <CircularProgress />
+              "No Books Found"
             ) : (
               <Grid
                 className={classes.container}

@@ -122,7 +122,7 @@ const Contact = () => {
                   label="Message"
                   fullWidth
                   multiline
-                  rows={6}
+                  rows={9}
                   value={feedData.message}
                   onChange={handleChange}
                 />

@@ -7,8 +7,16 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
     textDecoration: "none",
     height: "27rem",
+    marginBottom: "10px",
     width: "20rem",
     cursor: "pointer",
+    transition: ".5s",
+
+    "&:hover": {
+      color: "#df4c73",
+
+      textShadow: "0 0 3px #df4c73",
+    },
   },
   frontCard: {
     backgroundColor: theme.palette.background.paper,
@@ -20,7 +28,7 @@ export default makeStyles((theme) => ({
     backgroundPosition: "center",
   },
   backCardContent: {
-    backgroundColor: "rgba(81, 176, 7, 0.75)",
+    backgroundColor: "rgba(223,76,115, 0.4)",
     height: "100%",
     color: "#fff",
     display: "flex",
@@ -28,9 +36,38 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "flex-end",
   },
+
+  socialLink: {
+    display: "inline",
+  },
+
+  Icon: {
+    margin: "10px 10px 10px 10px",
+    fontSize: "40px",
+    transform: "scale(.9)",
+    zIndex: "-1",
+
+    transition: ".5s",
+
+    "&:hover::before": {
+      transform: "scale(1.1)",
+    },
+
+    "&:hover": {
+      color: "#ffffff",
+      transform: "scale(1.3)",
+      textShadow: "0 0 5px #ffffff",
+    },
+    "@media (max-width : 700px)": {
+      margin: "0px 10px 10px 10px",
+    },
+  },
+
   img: {
     width: "100%",
     height: "80%",
+    padding: "5px",
+    borderRadius: "50%",
     objectFit: "cover",
     margin: "0 1rem 1rem 1rem",
     alignSelf: "center",
