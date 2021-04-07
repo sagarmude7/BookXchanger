@@ -54,11 +54,6 @@ const BookSlider = () => {
         arr.push(allUnSoldbooks[i]);
       }
       setBooks(arr);
-      // for (var i=0;i<5;i++) {
-      //   var r = Math.floor(Math.random() * allUnSoldbooks.length)
-      //   console.log("Book in Slider" + r);
-      //   setBooks([...books,allUnSoldbooks[r]]);
-      // }
     } else {
       setBooks(allUnSoldbooks);
     }

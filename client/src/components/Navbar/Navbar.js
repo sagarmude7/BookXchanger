@@ -20,7 +20,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import useStyles from "./styles.js";
 import { useDispatch } from "react-redux";
 import { Link as RouterLink, useHistory,useLocation } from "react-router-dom";
-import SearchBar from "../HomePageComponents/SearchBar/SearchBox.js";
 import { LOGOUT } from "../../constants/actions";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import Menu from "@material-ui/core/Menu";
@@ -95,21 +94,6 @@ const Navbar = () => {
   }, [location,user?.token]);
 
   const getDrawerChoices = () => {
-    // return navData.map(({label,href}) => {
-    //     return (
-    //         <Link
-    //             {...{
-    //                 to : href,
-    //                 component :RouterLink,
-    //                 color : "inherit",
-    //                 style :{textDecoration : "none"},
-    //                 key : label,
-    //             }}
-    //         >
-    //         <MenuItem>{label}</MenuItem>
-    //         </Link>
-    //     );
-    // })
 
     return (
       <>
@@ -131,15 +115,6 @@ const Navbar = () => {
         >
           <MenuItem>Books</MenuItem>
         </Link>
-        {/* <Link
-          to="/wishlist"
-          component={RouterLink}
-          color="inherit"
-          className={menuButton}
-          key="Wishlist"
-        >
-          <MenuItem>Wishlist</MenuItem>
-        </Link> */}
         <Link
           to="/about"
           component={RouterLink}
@@ -149,15 +124,6 @@ const Navbar = () => {
         >
           <MenuItem>About Us</MenuItem>
         </Link>
-        {/* <Link
-          to="/contact"
-          component={RouterLink}
-          color="inherit"
-          className={menuButton}
-          key="Contact Us"
-        >
-          <MenuItem>Contact Us</MenuItem>
-        </Link> */}
         <Link
           to="/add"
           component={RouterLink}
@@ -274,22 +240,7 @@ const Navbar = () => {
         </Button>
       </>
     );
-    // return navData.map(({label,href}) => {
-    //     return (
-    //         <Button
-    //             {...{
-    //                 component :RouterLink,
-    //                 to : href,
-    //                 key : label,
-    //                 className : menuButton,
-    //                 onClick:{logOut}
-    //             }}
-
-    //         >
-    //         {label}
-    //         </Button>
-    //     );
-    // })
+    
   };
 
   ///DisplayDesktop() Functionality

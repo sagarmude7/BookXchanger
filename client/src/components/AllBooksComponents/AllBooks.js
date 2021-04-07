@@ -22,6 +22,9 @@ import Book from "./Book/Book";
 import useStyles from "./style";
 import SearchBox from "./SearchBar/SearchBox.js";
 import Zoom from "react-reveal/Zoom";
+import BounceLoader from 'react-spinners/BounceLoader'
+import { css } from "@emotion/react";
+import { getBooks } from "../../actions/books";
 
 const AllBooks = () => {
   const dispatch = useDispatch();
@@ -29,18 +32,32 @@ const AllBooks = () => {
   const allBooks = useSelector((state) => state.books);
   const [books, setBooks] = useState([]);
   const [sortbool, setSortbool] = useState(true);
-  const [type, settype] = useState("");
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [color, setColor] = useState("#ffff00");
   const [sortType, setSortType] = useState();
+  const [SORTBY, setSORTBY] = useState();
   const filterData = useSelector((state) => state.filterData);
+
+  useEffect(()=>{
+    dispatch(getBooks());
+  },[dispatch])
 
   useEffect(() => {
     dispatch({ type: ADDFILTER, payload: books });
   }, [dispatch, books]);
 
   useEffect(() => {
-    if (allBooks.length !== 0)
+    if (books.length !== 0) {
+      setLoading(false);
+    }
+  }, [allBooks]);
+
+  useEffect(() => {
+    if (allBooks.length !== 0){
       setBooks(allBooks.filter((book) => book.isSold === false));
+    }
+      
   }, [dispatch, allBooks]);
 
   useEffect(() => {
@@ -82,10 +99,21 @@ const AllBooks = () => {
     sortArray(sortType);
   }, [sortType]);
 
-  const [SORTBY, setSORTBY] = useState();
+
+  const override = css`
+    display: block;
+    margin-left: 45%;
+    border-color: red;
+  `;
+
+
+  const removeSort = ()=>{
+    setSortType("")
+    dispatch({ type: ADDFILTER, payload: books });
+  }
 
   const handleChange = (event) => {
-    setSORTBY(event.target.value);
+    setSortType(event.target.value);
   };
 
   return (
@@ -99,135 +127,65 @@ const AllBooks = () => {
           <div className={classes.sortby}>
             <hr color="red" height="2px" width="100%"></hr>
             <Box textAlign="right">
-              <TextField
+              <Select
                 className={classes.box}
                 id="outlined-select-currency"
                 select
                 label="Sort By"
-                value={SORTBY}
+                value={sortType}
                 onChange={handleChange}
                 variant="outlined"
               >
-                <MenuItem value="Date Newest" className={classes.formControl}>
-                  <FormControlLabel
-                    value="datenewest"
-                    control={
-                      <Button
-                        className={classes.buttonS}
-                        onClick={(e) => setSortType(e.target.value)}
-                      />
-                    }
-                    label="Newest to Oldest"
-                  />
+                <MenuItem value="datenewest">
+                  Newest to Oldest
                 </MenuItem>
-                <MenuItem value="Date Oldest" className={classes.formControl}>
-                  <FormControlLabel
-                    value="dateoldest"
-                    control={
-                      <Button
-                        className={classes.buttonS}
-                        onClick={(e) => setSortType(e.target.value)}
-                      />
-                    }
-                    label="Oldest to Newest"
-                  />
+                <MenuItem value="dateoldest">
+                  Oldest to Newest
                 </MenuItem>
-                <MenuItem value="Price Lowest" className={classes.formControl}>
-                  <FormControlLabel
-                    value="pricelowest"
-                    control={
-                      <Button
-                        className={classes.buttonS}
-                        onClick={(e) => setSortType(e.target.value)}
-                      />
-                    }
-                    label="Price: Low to High"
-                  />
+                <MenuItem value="pricelowest">
+                  Price: Low to High
                 </MenuItem>
-                <MenuItem value="Price Highest" className={classes.formControl}>
-                  <FormControlLabel
-                    value="pricehighest"
-                    control={
-                      <Button
-                        className={classes.buttonS}
-                        onClick={(e) => setSortType(e.target.value)}
-                      />
-                    }
-                    label="Price: High to Low"
-                  />
+                <MenuItem value="pricehighest">
+                  Price: High to Low
                 </MenuItem>
-              </TextField>
-              {/* <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="Sort ByTypeLabel" value={type} label="Sort By">
-                  Sort By
-                </InputLabel>
-              </FormControl> */}
+              </Select>
+              <Button
+              variant="text"
+              color="secondary"
+              onClick={removeSort}
+              className={classes.button}
+              >
+                Reset Sort
+              </Button>
             </Box>
           </div>
           <div style={{ marginTop: "2px" }}>
             <Container>
-              {filterData.length === 0 ? (
-                <CircularProgress />
-              ) : (
-                <Grid
-                  className={classes.container}
-                  container
-                  alignItems="stretch"
-                  spacing={3}
-                >
-                  {filterData.map((book) => (
-                    <Grid item xs={12} sm={3}>
-                      <Book key={book._id} book={book} />
+              {
+                loading?(
+                  <BounceLoader loading={loading} color={color} css={override} size={70} />
+                ):(
+                  filterData.length === 0 ? (
+                    <h3>No books found with applied filters</h3>
+                  ) : (
+                    <Grid
+                      className={classes.container}
+                      container
+                      alignItems="stretch"
+                      spacing={3}
+                    >
+                      {filterData.map((book) => (
+                        <Grid item xs={12} sm={3}>
+                          <Book key={book._id} book={book} />
+                        </Grid>
+                      ))}
                     </Grid>
-                  ))}
-                </Grid>
-              )}
+                  )
+                )
+              }
+              
             </Container>
           </div>
-
-          {/* <h1>All Books : </h1> */}
-
-          {/* <span style={{margin : "0px",padding:"5px",}}><h2>Books</h2></span>
-        <div style={{"marginTop":"2px"}}>
-                <Container>
-                  {filterData.length===0?<CircularProgress/>:(
-                      <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-                      {filterData.map((book)=>(
-                              <Grid item xs={12} sm={3}>
-                                  <Book key={book._id} book={book}/>
-                              </Grid>
-                      ))}
-                      </Grid>
-                      )
-                  }
-                </Container>
-        </div> */}
-
-          {/* 
-        <Container>
-          {books.length === 0 ? (
-            <CircularProgress />
-          ) : (
-            <Grid
-              className={classes.container}
-              container
-              alignItems="stretch"
-              spacing={3}
-            >
-              {sortbool === true
-                ? data.map((book) => (
-                    <Grid item xs={12} sm={3}>
-                      <Book key={book._id} book={book} />
-                    </Grid>
-                  ))
-                : books.map((book) => (
-                    <Grid item xs={12} sm={3}>
-                      <Book key={book._id} book={book} />
-                    </Grid>
-                  ))}
-            </Grid>
-          )}
-        </Container> */}
         </div>
       </div>
     </>

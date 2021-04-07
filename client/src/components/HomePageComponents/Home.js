@@ -4,7 +4,6 @@ import Snackbar from "@material-ui/core/Snackbar";
 import Description from "./Description/Description.js";
 import Chatbot from "./Chatbot/chatbot.js";
 import HowToUse from "./HowToUse/HowToUse.js";
-import Footer from "../Footer/footer.js";
 import BookSlider from "./BookSlider/BookSlider.js";
 import Feedback from "./Feedback/Feedback.js";
 import { useSelector, useDispatch } from "react-redux";
