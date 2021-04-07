@@ -19,13 +19,13 @@ import {
 } from "@material-ui/core";
 import Book from "./Book/Book";
 import useStyles from "./style";
-import SearchBox from "../HomePageComponents/SearchBar/SearchBox.js";
-import Zoom from 'react-reveal/Zoom';
+import SearchBox from "./SearchBar/SearchBox.js";
+import Zoom from "react-reveal/Zoom";
 const AllBooks = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
-  const [books,setBooks] = useState([]);
+  const [books, setBooks] = useState([]);
   const [sortbool, setSortbool] = useState(false);
   const [type, settype] = useState("");
 
@@ -35,12 +35,12 @@ const AllBooks = () => {
 
   useEffect(() => {
     dispatch({ type: ADDFILTER, payload: books });
-  }, [dispatch,books]);
+  }, [dispatch, books]);
 
-  useEffect(()=>{
-    if(allBooks.length!==0)
-      setBooks(allBooks.filter((book) => book.isSold === false)) 
-  },[dispatch,allBooks])
+  useEffect(() => {
+    if (allBooks.length !== 0)
+      setBooks(allBooks.filter((book) => book.isSold === false));
+  }, [dispatch, allBooks]);
 
   useEffect(() => {
     if (sortbool === true) {
@@ -84,10 +84,10 @@ const AllBooks = () => {
   return (
     <>
       <div className={classes.maincontainer}>
-        <br/>
-      <Zoom>
-        <SearchBox />
-      </Zoom>
+        <br />
+        <Zoom>
+          <SearchBox />
+        </Zoom>
         <br />
         <br />
         <br />

@@ -50,9 +50,9 @@ import "react-multi-carousel/lib/styles.css";
 import Book from "../../AllBooksComponents/Book/Book";
 
 import { getBooks } from "../../../actions/books";
-import Flip from 'react-reveal/Flip';
-import Roll from 'react-reveal/Roll';
-import HeadShake from 'react-reveal/HeadShake';
+import Flip from "react-reveal/Flip";
+import Roll from "react-reveal/Roll";
+import HeadShake from "react-reveal/HeadShake";
 const BookInfo = ({ match }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -118,7 +118,6 @@ const BookInfo = ({ match }) => {
   return (
     <>
       <div className={classes.root}>
-        <Flip bottom>
         <div className={classes.topContainer}>
           <ArrowBackIcon
             style={{ cursor: "pointer" }}
@@ -148,18 +147,17 @@ const BookInfo = ({ match }) => {
             </div>
           </Typography>
         </div>
-        </Flip>
 
         <div className={classes.middleContainer}>
           <div className={classes.bookDetails}>
             <div className={classes.imgAndInfo}>
               <div>
                 <Roll>
-                <img
-                  className={classes.bookImage}
-                  src={book.selectedFile}
-                  alt="Book Image"
-                />
+                  <img
+                    className={classes.bookImage}
+                    src={book.selectedFile}
+                    alt="Book Image"
+                  />
                 </Roll>
               </div>
               <div>
@@ -214,56 +212,59 @@ const BookInfo = ({ match }) => {
               </div>
             </div>
             <HeadShake>
-            <div className={classes.bookDescription}>
-              <Typography variant="h5">Description</Typography>
-              <Typography variant="body1">{book.description}</Typography>
-              <div>
-                <FacebookShareButton
-                  url={window.location.href}
-                  quote={
-                    "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
-                  }
-                  hashtag="#bookxchanger"
-                >
-                  <FacebookIcon
-                    size={36}
-                    className={classes.socialMediaButton}
-                  />
-                </FacebookShareButton>
-                <TwitterShareButton
-                  title={
-                    "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
-                  }
-                  via={window.location.href}
-                  hashtags="#bookxchanger"
-                >
-                  <TwitterIcon
-                    size={36}
-                    className={classes.socialMediaButton}
-                  />
-                </TwitterShareButton>
-                <WhatsappShareButton
-                  title={
-                    "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
-                  }
-                  seperator={window.location.href}
-                >
-                  <WhatsappIcon
-                    size={36}
-                    className={classes.socialMediaButton}
-                  />
-                </WhatsappShareButton>
-                <EmailShareButton
-                  subject={"Buy second hand books on Bookxchanger"}
-                  body={window.location.href}
-                  seperator={
-                    "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
-                  }
-                >
-                  <EmailIcon size={36} className={classes.socialMediaButton} />
-                </EmailShareButton>
+              <div className={classes.bookDescription}>
+                <Typography variant="h5">Description</Typography>
+                <Typography variant="body1">{book.description}</Typography>
+                <div>
+                  <FacebookShareButton
+                    url={window.location.href}
+                    quote={
+                      "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
+                    }
+                    hashtag="#bookxchanger"
+                  >
+                    <FacebookIcon
+                      size={36}
+                      className={classes.socialMediaButton}
+                    />
+                  </FacebookShareButton>
+                  <TwitterShareButton
+                    title={
+                      "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
+                    }
+                    via={window.location.href}
+                    hashtags="#bookxchanger"
+                  >
+                    <TwitterIcon
+                      size={36}
+                      className={classes.socialMediaButton}
+                    />
+                  </TwitterShareButton>
+                  <WhatsappShareButton
+                    title={
+                      "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
+                    }
+                    seperator={window.location.href}
+                  >
+                    <WhatsappIcon
+                      size={36}
+                      className={classes.socialMediaButton}
+                    />
+                  </WhatsappShareButton>
+                  <EmailShareButton
+                    subject={"Buy second hand books on Bookxchanger"}
+                    body={window.location.href}
+                    seperator={
+                      "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
+                    }
+                  >
+                    <EmailIcon
+                      size={36}
+                      className={classes.socialMediaButton}
+                    />
+                  </EmailShareButton>
+                </div>
               </div>
-            </div>
             </HeadShake>
           </div>
           <div className={classes.sideContainer}>

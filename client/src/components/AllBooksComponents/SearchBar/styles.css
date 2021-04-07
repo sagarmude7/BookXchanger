@@ -1,0 +1,44 @@
+button {
+  padding: 10px 30px 10px 30px;
+  background: rgb(172, 46, 255);
+  color: rgb(255, 255, 255);
+  outline: none;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 25px;
+}
+input {
+  padding: 20px !important;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+.heading {
+  position: relative;
+  margin-top: 0 !important;
+  font-weight: 900;
+  padding: 15px;
+  font-weight: 500;
+  font-size: bold;
+  color: #e2f0f9;
+  font-size: 60px;
+  text-align: center;
+}
+
+form {
+  @media (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.hide {
+  display: none;
+}
+button:hover + .hide {
+  display: block;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font: 600;
+}
