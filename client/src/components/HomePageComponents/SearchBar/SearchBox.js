@@ -102,6 +102,8 @@ const SearchBox = () => {
   const [filteredbooksByPrice, setFilteredbooksByPrice] = useState([]);
   const [filteredbooksByCondition, setFilteredbooksByCondition] = useState([]);
   const [filteredbooksByTags, setFilteredbooksByTags] = useState([]);
+  const filterData = useSelector((state) => state.filterData);
+  console.log(filterData);
   useEffect(() => {
     console.log("Getting Books")
     //accepts an action call as an argument -> goes to actions folder
@@ -185,7 +187,7 @@ const SearchBox = () => {
       setFilteredbooksByTags(books.filter((book) => book.tags[0].toLowerCase().includes(inputTags.toLowerCase())));
       console.log("Filtered By Tags", filteredbooksByTags);
     }
-    else {
+    else{
       setFilteredbooksByTags([]);
     }
     const filteredbooks = [...filteredbooksByName, ...filteredbooksByBranch, ...filteredbooksBySubject, ...filteredbooksByPrice, ...filteredbooksByCondition, ...filteredbooksByTags]
