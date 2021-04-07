@@ -145,7 +145,7 @@ const SearchBox = () => {
     }
 
     const updateBooks = () => {
-      if((inputName === " ")&&(inputSubject === " ")&&(inputBranch === " ")&&(inputPrice === " ")&&(inputCondition === " ")&&(inputTags === " ")){
+      if((inputName === "")&&(inputSubject === "")&&(inputBranch === "")&&(inputPrice === "")&&(inputCondition === "")&&(inputTags === "")){
         dispatch({type:ADDFILTER,payload:books})
         console.log("filtered books are",books)
       }else{
