@@ -114,12 +114,13 @@ io.on('connection', async(socket) => {
   })
 
   socket.on('join',async(data)=>{
+    socket.join(data.receiver);
     console.log("both"+data.id+" "+data.receiver)
     var messages = await Message.find({$or:[{from:data.id,to:data.receiver},{from:data.receiver,to:data.id}] })
     console.log(messages)
     const msgs = []
     messages.forEach(msg=>{
-      msgs.push({content:msg.content,to:msg.to,from:msg.from})
+      msgs.push({content:msg.content,to:msg.to,from:msg.from,sentAt:msg.sentAt})
     })
     
     
@@ -131,15 +132,19 @@ io.on('connection', async(socket) => {
     //save to database
     try{
     console.log(msg)
-      console.log("from "+msg.to+" to "+msg.from)
+      console.log("from "+msg.from+" to "+msg.to)
       const message = new Message({
-        from:msg.from,to:msg.to,content:msg.content
+        from:msg.from,to:msg.to,content:msg.content,sentAt : Date.now()
       })
       await message.save()
+     
+      console.log(message.sentAt.toLocaleTimeString([], { hour: '2-digit', minute: "2-digit" }))
       console.log(socket.adapter.rooms)
       // console.log(msg.to)
       console.log("sending msg")
-      await socket.broadcast.to(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName} );
+   
+      await io.sockets.in(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt} );
+
     }catch(err){
       console.log("Some error occured")
     }  

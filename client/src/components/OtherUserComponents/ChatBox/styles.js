@@ -44,7 +44,7 @@ export default makeStyles((theme) => ({
 
      background: "#c6426e",
       color : "white",
-      maxWidth:"200px",
+      maxWidth:"250px",
       textAlign:"center",
       marginLeft :"200px",
       borderRadius :  "10px",
@@ -58,7 +58,7 @@ export default makeStyles((theme) => ({
       border:"1px solid blue",
       background: "#2948ff",
       color : "white",
-      maxWidth:"200px",
+      maxWidth:"250px",
       textAlign:"center",
       borderRadius :  "10px",
       overflowX : "auto",

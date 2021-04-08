@@ -5,9 +5,9 @@ import {Button,Typography,TextField,Container} from '@material-ui/core'
 import {useSelector,useDispatch} from 'react-redux'
 import { ADD_CHAT,INITIAL_CHAT } from '../../../constants/actions.js';
 import {socket} from '../../../service/socket'
-
+import moment from "moment";
 const initialState = {
-  content:'',from:'',to:'',fromName:''
+  content:'',from:'',to:'',fromName:'',sentAt : {}
 }
 const ChatBox = (props) => {
   const receiver = useSelector(state=>state.user)
@@ -19,7 +19,7 @@ const ChatBox = (props) => {
 
   useEffect(()=>{
     if(receiver){
-      setMsgData({...msgData,to:receiver._id})
+      setMsgData({...msgData,to:receiver._id,from:user.id,fromName:user.name})
       console.log(receiver._id)
     }
   },[receiver])
@@ -32,22 +32,21 @@ const ChatBox = (props) => {
   
   useEffect(()=>{
     if(receiver){
-      socket.emit('join',{id:props.sender.id,receiver:receiver._id})
-      console.log({id:props.sender.id,receiver:receiver._id})
+      socket.emit('join',{id:user.id,receiver:receiver._id})
+      // console.log({id:props.sender.id,receiver:receiver._id})
     }
     socket.on('initial_msgs',(chat)=>{
-      console.log(chat)
+      // console.log(chat)
       // if(chats.length===0)
         dispatch({type:INITIAL_CHAT,payload:chat})
     })
-    setMsgData({...msgData,from:props.sender.id,fromName:props.sender.name})
   },[receiver])
   var i=0;
   useEffect(()=>{
     socket.on('send_msg',(msg)=>{
       console.log(msg)
-      console.log(chats)
-      console.log(++i)
+      // console.log(chats)
+      // console.log(++i)
       // if(msg.from==)
       dispatch({type:ADD_CHAT,payload:msg})
     })
@@ -62,11 +61,16 @@ const ChatBox = (props) => {
   }
 
   const handleSubmit = async(e)=>{
+    
+    // setMsgData({...msgData,fromName:user.name,sentAt:Date.now()})
+    // console.log(msgData)
+
     await socket.emit('message',msgData)
-    dispatch({type:ADD_CHAT,payload:msgData})
+    // console.log(msgData.sentAt);
+
+    // dispatch({type:ADD_CHAT,payload:msgData})
     setMsgData({...msgData,content:''})
   }
-
   return (
     <Container className={classes.chatBox}>
             <h1 className={classes.title} >
@@ -86,14 +90,15 @@ const ChatBox = (props) => {
               {chats.length!==0?(chats.map(msg=>(
                 (msg.from===user.id)?(
                   <>
-
-                  <p className={classes.msg1}>{msg.content}</p>
-                
+              
+                  <p className={classes.msg1}>{msg.content}{moment(msg.sentAt).format('LT')}</p>
+                  {/* {console.log(msg)} */}
+                  
                   <br/>
                   </>
                 ):(<>
-                  <p className={classes.msg2}>{msg.content}</p>
-
+                  <p className={classes.msg2}>{msg.content}{moment(msg.sentAt).format('LT')}</p>
+                  {/* {console.log(msg)} */}
                   <br/>
                   
                   </>

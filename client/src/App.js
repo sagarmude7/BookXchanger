@@ -31,10 +31,14 @@ const App = () => {
   const dispatch = useDispatch()
   const notification = useSelector((state)=>state.notification)
   const [shownoti,setShowNoti] = useState(false)
-
+  const user = JSON.parse(localStorage.getItem('profile')).profile
   useEffect(()=>{
-    if(notification.content)
-      setShowNoti(true)
+    if(notification.content){
+      if(notification.from !== user.id){
+        setShowNoti(true)
+      }
+    }
+
   },[notification])
 
   useEffect(()=>{
