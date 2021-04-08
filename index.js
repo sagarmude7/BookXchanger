@@ -119,7 +119,7 @@ io.on('connection', async(socket) => {
     console.log(messages)
     const msgs = []
     messages.forEach(msg=>{
-      msgs.push({content:msg.content,to:msg.to,from:msg.from})
+      msgs.push({content:msg.content,to:msg.to,from:msg.from,fromName:msg.sentAt,sentAt:msg.sentAt})
     })
     
     
@@ -130,16 +130,17 @@ io.on('connection', async(socket) => {
   socket.on('message',async(msg)=>{
     //save to database
     try{
-    console.log(msg)
-      console.log("from "+msg.to+" to "+msg.from)
+      console.log(msg)
+      console.log("from "+msg.from+" to "+msg.to)
       const message = new Message({
-        from:msg.from,to:msg.to,content:msg.content
+        from:msg.from,to:msg.to,content:msg.content,fromName:msg.fromName,sentAt:Date.now()
       })
       await message.save()
       console.log(socket.adapter.rooms)
-      // console.log(msg.to)
+      console.log(msg.from)
       console.log("sending msg")
-      await socket.broadcast.to(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName} );
+      await io.sockets.in(msg.from).emit('send_msg',{content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt})
+      await io.sockets.in(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt} );
     }catch(err){
       console.log("Some error occured")
     }  

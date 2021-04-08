@@ -33,10 +33,13 @@ const App = () => {
   
   const notification = useSelector((state)=>state.notification)
   const [shownoti,setShowNoti] = useState(false)
+  const user = JSON.parse(localStorage.getItem('profile'))
 
   useEffect(()=>{
-    if(notification.content)
+    if(notification.content){
+      if(notification.from!==user.profile.id)
       setShowNoti(true)
+    }
   },[notification])
 
   useEffect(()=>{
@@ -45,7 +48,7 @@ const App = () => {
       const id = JSON.parse(localStorage.getItem('profile')).profile.id
       socket.emit('login',{id:id})
     }
-  },[])
+  },[user])
 
   useEffect(()=>{
     socket.on('send_msg',(msg)=>{

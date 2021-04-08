@@ -4,15 +4,13 @@ const authReducer = (authData={},action)=>{
     switch(action.type){
         case AUTH:
             console.log(action.payload)
-            if(!action.payload.msg){
-                localStorage.setItem('profile',JSON.stringify(action?.payload))
-                const id = JSON.parse(localStorage.getItem('profile')).profile.id
-                socket.connect()
-                socket.emit('login',{id:id})
-            }
+            localStorage.setItem('profile',JSON.stringify(action?.payload))
+            var id = JSON.parse(localStorage.getItem('profile')).profile.id
+            socket.connect()
+            socket.emit('login',{id:id})
             return action.payload
         case LOGOUT:
-            const id = JSON.parse(localStorage.getItem('profile')).profile.id
+            id = JSON.parse(localStorage.getItem('profile')).profile.id
             socket.emit('logout',{id:id})
             localStorage.clear()
             socket.close()

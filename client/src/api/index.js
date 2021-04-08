@@ -36,6 +36,7 @@ const signIn = (formData) => API.post(`${urlUsers}/signIn`, formData);
 const googleFacebookSignIn = (formData) => API.post(`${urlUsers}/googleFacebookSignIn`, formData);
 
 const getProfile = (id) => API.get(`${urlUsers}/profile/${id}`);
+const getRecentUsers = ()=> API.get(`${urlUsers}/profile/messages`)
 const editProfile = (updatedUser) => API.patch(`${urlUsers}/profile`, updatedUser);
 const changePassword = (updatedPassword) => API.patch(`${urlUsers}/profile/password`, updatedPassword);
 
@@ -56,5 +57,6 @@ module.exports = {
   deleteaBook,
   editaBook,
   changePassword,
-  sendMail
+  sendMail,
+  getRecentUsers
 };

@@ -1,4 +1,4 @@
-import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR, CHANGE_PASSWORD, FEEDBACK, VALID} from '../constants/actions'
+import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR, CHANGE_PASSWORD, FEEDBACK, VALID, GET_RECENTS} from '../constants/actions'
 import api from '../api/index';
 
 export const getProfile = (id) => async (dispatch) => {
@@ -15,7 +15,14 @@ export const getProfile = (id) => async (dispatch) => {
     
 };
 
-
+export const getRecentUsers = ()=>async(dispatch)=>{
+    try{
+        const {data} = await api.getRecentUsers();
+        dispatch({type:GET_RECENTS,payload:data})
+    }catch(err){
+        console.log(err);
+    }
+}
 export const editProfile = (userData) => async (dispatch) => {
 
     try {
