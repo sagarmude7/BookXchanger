@@ -48,11 +48,11 @@ const App = () => {
       const id = JSON.parse(localStorage.getItem('profile')).profile.id
       socket.emit('login',{id:id})
     }
-  },[user])
+  },[])
 
   useEffect(()=>{
     socket.on('send_msg',(msg)=>{
-      console.log(msg)
+      // console.log(msg)
       dispatch({type:GET_NOTIFICATION,payload:msg})
     })
   },[])

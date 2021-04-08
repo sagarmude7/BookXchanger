@@ -114,13 +114,12 @@ io.on('connection', async(socket) => {
   })
 
   socket.on('join',async(data)=>{
-    socket.join(data.receiver);
     console.log("both"+data.id+" "+data.receiver)
     var messages = await Message.find({$or:[{from:data.id,to:data.receiver},{from:data.receiver,to:data.id}] })
     console.log(messages)
     const msgs = []
     messages.forEach(msg=>{
-      msgs.push({content:msg.content,to:msg.to,from:msg.from,fromName:msg.fromName,sentAt:msg.sentAt})
+      msgs.push({content:msg.content,to:msg.to,from:msg.from,fromName:msg.sentAt,sentAt:msg.sentAt})
     })
     
     
@@ -137,8 +136,6 @@ io.on('connection', async(socket) => {
         from:msg.from,to:msg.to,content:msg.content,fromName:msg.fromName,sentAt:Date.now()
       })
       await message.save()
-     
-      console.log(message.sentAt.toLocaleTimeString([], { hour: '2-digit', minute: "2-digit" }))
       console.log(socket.adapter.rooms)
       console.log(msg.from)
       console.log("sending msg")
@@ -149,7 +146,6 @@ io.on('connection', async(socket) => {
     }  
   })
 })
-
 
 
 

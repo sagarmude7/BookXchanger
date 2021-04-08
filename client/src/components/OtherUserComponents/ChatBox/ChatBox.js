@@ -45,12 +45,18 @@ const ChatBox = (props) => {
   },[receiver])
   var i=0;
   useEffect(()=>{
-    socket.on('send_msg',async(msg)=>{
-      console.log(msg)
-      console.log(++i)
-      console.log(msg.from===receiver._id)
-      if((msg.from===receiver._id)||(msg.from===user.id))
-        await dispatch({type:ADD_CHAT,payload:msg})
+    socket.on('send_msg',(msg)=>{
+      // console.log(msg)
+      
+      // console.log(++i)
+      // console.log(msg.from===receiver._id)
+      if(i == 0 ){
+        console.log("Msg")
+        console.log(i++)
+        if((msg.from===receiver._id)||(msg.from===user.id))
+         dispatch({type:ADD_CHAT,payload:msg})
+      }
+
     })
   },[])
   
