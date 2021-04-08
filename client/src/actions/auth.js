@@ -1,4 +1,4 @@
-import { AUTH } from "../constants/actions";
+import { AUTH, VALID } from "../constants/actions";
 import api from "../api/index";
 
 export const signUp = (formData, history) => async (dispatch) => {
@@ -6,10 +6,11 @@ export const signUp = (formData, history) => async (dispatch) => {
     const { data } = await api.signUp(formData);
     console.log("hello");
     dispatch({ type: AUTH, payload: data });
+    dispatch({type:VALID,payload:{msg:"Logged In Successfully"}})
     history.push("/");
   } catch (err) {
     const data = err.response.data;
-    dispatch({ type: AUTH, payload: data });
+    dispatch({type:VALID,payload:data})
   }
 };
 
@@ -18,10 +19,11 @@ export const signIn = (formData, history) => async (dispatch) => {
     const { email, password } = formData;
     const { data } = await api.signIn({ email, password });
     dispatch({ type: AUTH, payload: data });
+    dispatch({type:VALID,payload:{msg:"Logged In Successfully"}})
     history.push("/");
   } catch (err) {
     const data = err.response.data;
-    dispatch({ type: AUTH, payload: data });
+    dispatch({type:VALID,payload:data})
   }
 };
 
@@ -30,9 +32,10 @@ export const googleFacebookSignIn = (formData, history) => async (dispatch) => {
     const { data } = await api.googleFacebookSignIn(formData);
     console.log(data);
     dispatch({ type: AUTH, payload: data });
+    dispatch({type:VALID,payload:{msg:"Logged In Successfully"}})
     history.push("/");
   } catch (err) {
     const data = err?.response?.data;
-    dispatch({ type: AUTH, payload: data });
+    dispatch({type:VALID,payload:data})
   }
 };

@@ -5,6 +5,7 @@ const MessageSchema = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
+    fromName:String,
     to:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'

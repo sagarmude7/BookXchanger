@@ -19,6 +19,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import {AlertTitle} from '@material-ui/lab'
 import { green } from '@material-ui/core/colors';
+import history from './history/history.js'
 import { useDispatch,useSelector } from "react-redux";
 import { getBooks } from "./actions/books";
 import OtherUser from "./components/OtherUserComponents/OtherUser";
@@ -29,16 +30,16 @@ import { GET_NOTIFICATION,CLEAR_NOTIFICATION } from "./constants/actions.js";
 
 const App = () => {
   const dispatch = useDispatch()
+  
   const notification = useSelector((state)=>state.notification)
   const [shownoti,setShowNoti] = useState(false)
-  const user = JSON.parse(localStorage.getItem('profile')).profile
+  const user = JSON.parse(localStorage.getItem('profile'))
+
   useEffect(()=>{
     if(notification.content){
-      if(notification.from !== user.id){
-        setShowNoti(true)
-      }
+      if(notification.from!==user.profile.id)
+      setShowNoti(true)
     }
-
   },[notification])
 
   useEffect(()=>{
@@ -47,7 +48,7 @@ const App = () => {
       const id = JSON.parse(localStorage.getItem('profile')).profile.id
       socket.emit('login',{id:id})
     }
-  },[])
+  },[user])
 
   useEffect(()=>{
     socket.on('send_msg',(msg)=>{
@@ -74,6 +75,9 @@ const App = () => {
     dispatch({type:CLEAR_NOTIFICATION})
   }
 
+  const handleClickNoti = ()=>{
+    history.push(`/user/${notification.from}`)
+  }
   function displayLoading() {
     return <Loading />;
   }
@@ -87,11 +91,12 @@ const App = () => {
         {
           shownoti?(
             <Snackbar
-              style={{ top: "10%", left: "55%"}}
+              style={{ top: "10%", left: "55%",cursor:"pointer"}}
               anchorOrigin={{ horizontal: "right", vertical: "top" }}
               open={shownoti}
               autoHideDuration={5000}
               onClose={handleCloseNoti}
+              onClick={handleClickNoti}
             >
               <Alert onClose={handleCloseNoti} icon={false} severity="info">
                 <AlertTitle>New Message &nbsp; &nbsp;<NotificationsActiveIcon  style={{color: green[500],float:"right",marginTop:"0.1rem"}}/></AlertTitle>

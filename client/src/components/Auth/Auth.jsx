@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Container,Paper,Grid,Typography,Button,TextField,Avatar, Box,Divider} from '@material-ui/core'
 import LabelImportantSharpIcon from '@material-ui/icons/LabelImportantSharp';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -21,7 +21,7 @@ import {GoogleLogin} from 'react-google-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import {signUp,signIn,googleFacebookSignIn} from '../../actions/auth'
 import Navbar from '../Navbar/Navbar'
-import {AUTH} from '../../constants/actions'
+import {AUTH, VALID} from '../../constants/actions'
 import Swing from 'react-reveal/Swing';
 import Fade from 'react-reveal/Fade';
 const initialState = {firstName:'',lastName:'',college:'',location:'',email:'',password:'',confirmPassword:''}
@@ -30,11 +30,16 @@ const Auth = () => {
     const [isSignup,setIsSignup] = useState(true)
     const [showPassword,setShowPassword] = useState(false)
     const [formData,setFormData] = useState(initialState)
+    const book = useSelector(state=>state.book)
     const [err,setErr] = useState(false) 
-    const authData = useSelector(state=>state.authData)
+    // const authData = useSelector(state=>state.authData)
     const history = useHistory()
     const dispatch = useDispatch()
 
+    useEffect(()=>{
+        if(book.msg)
+            setErr(true)
+    },[book])
     const handleSubmit = (e)=>{
         e.preventDefault()
         if(isSignup){
@@ -43,8 +48,6 @@ const Auth = () => {
         }else{
             dispatch(signIn(formData,history))
         }
-        if(authData?.msg)
-            setErr(true)
     }
     
     const handleChange = (e)=>{
@@ -63,6 +66,7 @@ const Auth = () => {
         }
     
         setErr(false);
+        dispatch({ type: VALID, payload: {} });
     };
 
     const switchMode = ()=>{
@@ -88,14 +92,14 @@ const Auth = () => {
         alert('Google Sign In was unsuccessful. Try again later');
     }
 
-    const componentClicked = ()=>{
-        console.log("clicked")
-    }
+    // const componentClicked = ()=>{
+    //     console.log("clicked")
+    // }
 
-    const responseFacebook = (res)=>{
-        console.log(res)
-        dispatch(googleFacebookSignIn({email:res.email,name:res.name,profilePic:`http://graph.facebook.com/${res.userID}/picture?type=square&access_token=${res.accessToken}`},history))
-    }
+    // const responseFacebook = (res)=>{
+    //     console.log(res)
+    //     dispatch(googleFacebookSignIn({email:res.email,name:res.name,profilePic:`http://graph.facebook.com/${res.userID}/picture?type=square&access_token=${res.accessToken}`},history))
+    // }
     return (
         <div className={classes.mainContainer}>
 
@@ -162,7 +166,7 @@ const Auth = () => {
                         err?(
                             <Snackbar style={{"top":"10%",'left':"55%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={err} autoHideDuration={5000} onClose={handleClose}>
                                 <Alert onClose={handleClose} severity="error">
-                                    <strong>{authData?.msg}</strong>
+                                    <strong>{book?.msg}</strong>
                                 </Alert>
                             </Snackbar>
                         

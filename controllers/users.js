@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
+const Message = require('../models/Message')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const { regValidator, loginValidator, editValidator, changePasswordValidator,feedBackValidator } = require('../validators/joi-validator')
@@ -234,4 +235,29 @@ exports.sendMail = async(req,res)=>{
         return res.status(500).json({ msg: "Something went wrong" });
     }
     
+}
+
+
+exports.getRecentUsers = async(req,res)=>{
+    const userId = req.userId;
+    try{
+        console.log("Hello")
+        const recentUsers = await Message.distinct('fromName',{to:userId})
+        const recentIds = await Message.distinct('from',{to:userId})
+        const users = []
+        for(const recent of recentUsers){
+            users.push({name:recent})
+        }
+        
+        var j=0;
+        for(const id of recentIds){
+            users[j] = {...users[j],id:id}
+            j++;
+        }
+        console.log(users)
+        // console.log(recentUsers)
+        return res.status(200).json(users)
+    }catch(err){
+        return res.status(500).json({ msg: "hing went wrong" });
+    }
 }
