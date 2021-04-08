@@ -35,7 +35,7 @@ const AllBooks = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [color, setColor] = useState("#ffff00");
-  const [sortType, setSortType] = useState();
+  const [sortType, setSortType] = useState("");
   const [SORTBY, setSORTBY] = useState();
   const filterData = useSelector((state) => state.filterData);
 
@@ -112,9 +112,6 @@ const AllBooks = () => {
     dispatch({ type: ADDFILTER, payload: books });
   }
 
-  const handleChange = (event) => {
-    setSortType(event.target.value);
-  };
 
   return (
     <>
@@ -127,28 +124,32 @@ const AllBooks = () => {
           <div className={classes.sortby}>
             <hr color="red" height="2px" width="100%"></hr>
             <Box textAlign="right">
-              <Select
-                className={classes.box}
-                id="outlined-select-currency"
-                select
-                label="Sort By"
-                value={sortType}
-                onChange={handleChange}
-                variant="outlined"
-              >
-                <MenuItem value="datenewest">
-                  Newest to Oldest
-                </MenuItem>
-                <MenuItem value="dateoldest">
-                  Oldest to Newest
-                </MenuItem>
-                <MenuItem value="pricelowest">
-                  Price: Low to High
-                </MenuItem>
-                <MenuItem value="pricehighest">
-                  Price: High to Low
-                </MenuItem>
-              </Select>
+              <FormControl variant="outlined">
+                  <InputLabel id="type-label">SORT BY</InputLabel>
+                  <Select
+                    labelId="type-label"
+                    id="sortType"
+                    label="SORT BY"
+                    name="sortType"
+                    className={classes.box}
+                    value={sortType}
+                    onChange={(e)=>setSortType(e.target.value)}
+                    placeholder="Select Price Type"
+                  >
+                    <MenuItem value="datenewest">
+                    Newest to Oldest
+                    </MenuItem>
+                    <MenuItem value="dateoldest">
+                      Oldest to Newest
+                    </MenuItem>
+                    <MenuItem value="pricelowest">
+                      Price: Low to High
+                    </MenuItem>
+                    <MenuItem value="pricehighest">
+                      Price: High to Low
+                    </MenuItem>
+                  </Select>
+                </FormControl>
               <Button
               variant="text"
               color="secondary"
