@@ -44,13 +44,13 @@ const Description = () => {
   return (
     <>
       <Carousel
-        indicators={false}
+        indicators={true}
         animation="fade"
         autoPlay={true}
-        interval={10000}
+        interval={5000}
         stopAutoPlayOnHover={false}
         navButtonsAlwaysInvisible={true}
-      >
+      > 
         {descData.map((item, index) => (
           <Item key={index} item={item} />
         ))}

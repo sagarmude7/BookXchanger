@@ -35,13 +35,13 @@ const AllBooks = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [color, setColor] = useState("#ffff00");
-  const [sortType, setSortType] = useState();
+  const [sortType, setSortType] = useState("");
   const [SORTBY, setSORTBY] = useState();
   const filterData = useSelector((state) => state.filterData);
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getBooks());
-  },[dispatch])
+  }, [dispatch])
 
   useEffect(() => {
     dispatch({ type: ADDFILTER, payload: books });
@@ -54,10 +54,10 @@ const AllBooks = () => {
   }, [allBooks]);
 
   useEffect(() => {
-    if (allBooks.length !== 0){
+    if (allBooks.length !== 0) {
       setBooks(allBooks.filter((book) => book.isSold === false));
     }
-      
+
   }, [dispatch, allBooks]);
 
   useEffect(() => {
@@ -107,14 +107,14 @@ const AllBooks = () => {
   `;
 
 
-  const removeSort = ()=>{
+  const removeSort = () => {
     setSortType("")
     dispatch({ type: ADDFILTER, payload: books });
   }
 
-  const handleChange = (event) => {
-    setSortType(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setSortType(event.target.value);
+  // };
 
   return (
     <>
@@ -127,67 +127,72 @@ const AllBooks = () => {
           <div className={classes.sortby}>
             <hr color="red" height="2px" width="100%"></hr>
             <Box textAlign="right">
-              <Select
-                className={classes.box}
-                id="outlined-select-currency"
-                select
-                label="Sort By"
-                value={sortType}
-                onChange={handleChange}
-                variant="outlined"
-              >
-                <MenuItem value="datenewest">
-                  Newest to Oldest
-                </MenuItem>
-                <MenuItem value="dateoldest">
-                  Oldest to Newest
-                </MenuItem>
-                <MenuItem value="pricelowest">
-                  Price: Low to High
-                </MenuItem>
-                <MenuItem value="pricehighest">
-                  Price: High to Low
-                </MenuItem>
-              </Select>
-              <Button
-              variant="text"
-              color="secondary"
-              onClick={removeSort}
-              className={classes.button}
-              >
-                Reset Sort
+              <FormControl variant="outlined">
+                <InputLabel id="type-label">SORT BY</InputLabel>
+                <Select
+                  labelId="type-label"
+                  id="sortType"
+                  label="SORT BY"
+                  name="sortType"
+                  className={classes.box}
+                  value={sortType}
+                  onChange={(e) => setSortType(e.target.value)}
+                  placeholder="Select Price Type"
+                >
+
+                  <MenuItem value="datenewest">
+                    Newest to Oldest
+                    </MenuItem>
+                  <MenuItem value="dateoldest">
+                    Oldest to Newest
+                    </MenuItem>
+                  <MenuItem value="pricelowest">
+                    Price: Low to High
+                    </MenuItem>
+                  <MenuItem value="pricehighest">
+                    Price: High to Low
+                    </MenuItem>
+                </Select>
+                </FormControl>
+                <Button
+                  variant="text"
+                  color="secondary"
+                  onClick={removeSort}
+                  className={classes.button}
+                >
+                  Reset Sort
               </Button>
             </Box>
           </div>
-          <div style={{ marginTop: "2px" }}>
-            <Container>
-              {
-                loading?(
-                  <BounceLoader loading={loading} color={color} css={override} size={70} />
-                ):(
-                  filterData.length === 0 ? (
-                    <h3>No books found with applied filters</h3>
+            <div style={{ marginTop: "2px" }}>
+              <Container>
+                {
+                  loading ? (
+                    <BounceLoader loading={loading} color={color} css={override} size={70} />
                   ) : (
-                    <Grid
-                      className={classes.container}
-                      container
-                      alignItems="stretch"
-                      spacing={3}
-                    >
-                      {filterData.map((book) => (
-                        <Grid item xs={12} sm={3}>
-                          <Book key={book._id} book={book} />
-                        </Grid>
-                      ))}
-                    </Grid>
+                    filterData.length === 0 ? (
+                      <h3>No books found with applied filters</h3>
+                    ) : (
+                      <Grid
+                        className={classes.container}
+                        container
+                        alignItems="stretch"
+                        spacing={3}
+                      >
+                        {filterData.map((book) => (
+                          <Grid item xs={12} sm={3}>
+                            <Book key={book._id} book={book} />
+                          </Grid>
+                        ))}
+                      </Grid>
+                    )
                   )
-                )
-              }
-              
-            </Container>
+                }
+
+              </Container>
+            </div>
           </div>
         </div>
-      </div>
     </>
   );
 };

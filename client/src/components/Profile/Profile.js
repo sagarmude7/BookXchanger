@@ -1,5 +1,5 @@
 import Navbar from "../Navbar/Navbar";
-import { Container, Typography } from "@material-ui/core";
+import { Container, Typography,Card,CardActions,CardContent,Button } from "@material-ui/core";
 import Snackbar from "@material-ui/core/Snackbar";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import useStyles from "./styles.js";
@@ -16,11 +16,12 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
+import {useHistory} from 'react-router-dom'
 import numberSoldBooks from "./Dashboard components/Dashboard";
+import { getRecentUsers } from "../../actions/user";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -53,12 +54,19 @@ function a11yProps(index) {
 }
 
 const Profile = () => {
+  const dispatch = useDispatch()
   const classes = useStyles();
+  const history = useHistory()
   const theme = useTheme();
+
+  const recents = useSelector(state=>state.recents)
 
   const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
 
+  useEffect(()=>{
+    dispatch(getRecentUsers())
+  },[])
   const userId = JSON.parse(localStorage.getItem("profile")).profile.id;
   const books = useSelector((state) => state.books);
   var numberSoldBooks = 0;
@@ -170,7 +178,25 @@ const Profile = () => {
       </TabPanel>
 
       <TabPanel value={value} index={2} dir={theme.direction}>
-        Messages not available
+      <div className={classes.container}>
+      <Container className={classes.body}>
+        {recents.map((user)=>(
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <Typography variant="h5" component="h2">
+                {user.name}
+              </Typography>
+              <Typography variant="body2" component="p">
+                Recently Sent You a Message
+              </Typography>
+            </CardContent>
+              <CardActions>
+                <Button onClick={()=>history.push(`user/${user.id}`)} size="small">Go To ChatBox</Button>
+              </CardActions>
+        </Card>
+        ))}
+      </Container>
+      </div>
       </TabPanel>
 
       {/*<Footer/>*/}
