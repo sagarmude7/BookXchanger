@@ -5,26 +5,37 @@ import Description from "./Description/Description.js";
 import Chatbot from "./Chatbot/chatbot.js";
 import HowToUse from "./HowToUse/HowToUse.js";
 import BookSlider from "./BookSlider/BookSlider.js";
+import {AlertTitle} from '@material-ui/lab'
 import Feedback from "./Feedback/Feedback.js";
 import { useSelector, useDispatch } from "react-redux";
-import { AUTH, VALID } from "../../constants/actions.js";
-import Roll from "react-reveal/Roll";
-import LightSpeed from "react-reveal/LightSpeed";
-import Flip from "react-reveal/Flip";
+import { AUTH, CLEAR_NOTIFICATION, VALID } from "../../constants/actions.js";
+import Roll from 'react-reveal/Roll';
+import LightSpeed from 'react-reveal/LightSpeed';
+import Flip from 'react-reveal/Flip';
+import {socket} from '../../service/socket'
 const Home = () => {
-  const [open, setOpen] = useState(false);
-  const [bookPost, setBookPost] = useState(false);
+  const [alert, setAlert] = useState(false);
   const dispatch = useDispatch();
-  const authData = useSelector((state) => state.authData);
-  const user = JSON.parse(localStorage.getItem("profile"));
+  // const user = JSON.parse(localStorage.getItem("profile"));
   const book = useSelector((state) => state.book);
+  // const notification = useSelector((state)=>state.notification)
+  // const [shownoti,setShowNoti] = useState(false)
 
+  // useEffect(()=>{
+  //   if(localStorage.getItem('profile')){
+  //     const id = JSON.parse(localStorage.getItem('profile')).profile.id
+  //     socket.emit('login',{id:id})
+  //   }
+  // },[])
+  // useEffect(()=>{
+  //   if(notification.content)
+  //     setShowNoti(true)
+  // },[notification])
   useEffect(() => {
-    console.log(authData);
-    if (authData) setOpen(true);
-    if (book.msg) setBookPost(true);
+    if (book.msg) setAlert(true);
   }, []);
 
+  
   const Alert = (props) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   };
@@ -34,32 +45,25 @@ const Home = () => {
       return;
     }
 
-    setOpen(false);
-    setBookPost(false);
-    dispatch({ type: AUTH, payload: user });
+    setAlert(false)
     dispatch({ type: VALID, payload: {} });
   };
 
+  // const handleCloseNoti = (event,reason)=>{
+  //   if(reason==='clickaway'){
+  //     return;
+  //   }
+  //   setShowNoti(false)
+  //   dispatch({type:CLEAR_NOTIFICATION})
+  // }
+
   return (
     <>
-      {open ? (
+      {alert ? (
         <Snackbar
           style={{ top: "10%", left: "55%" }}
           anchorOrigin={{ horizontal: "center", vertical: "top" }}
-          open={open}
-          autoHideDuration={5000}
-          onClose={handleClose}
-        >
-          <Alert onClose={handleClose} severity="success">
-            <strong>Logged In Sucessfully</strong>
-          </Alert>
-        </Snackbar>
-      ) : null}
-      {bookPost ? (
-        <Snackbar
-          style={{ top: "10%", left: "55%" }}
-          anchorOrigin={{ horizontal: "center", vertical: "top" }}
-          open={bookPost}
+          open={alert}
           autoHideDuration={5000}
           onClose={handleClose}
         >

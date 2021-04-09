@@ -48,13 +48,19 @@ const BookSlider = () => {
         var r = Math.floor(Math.random() * allUnSoldbooks.length);
         if (indices.indexOf(r) === -1) indices.push(r);
       }
-      console.log(indices);
-      const arr = [];
+      console.log(indices)
+      const arr=[];
       for (const i of indices) {
         arr.push(allUnSoldbooks[i]);
       }
-      setBooks(arr);
-    } else {
+      setBooks(arr)
+      // for (var i=0;i<5;i++) {
+      //   var r = Math.floor(Math.random() * allUnSoldbooks.length)
+      //   console.log("Book in Slider" + r);
+      //   setBooks([...books,allUnSoldbooks[r]]);
+      // }
+    } 
+    else {
       setBooks(allUnSoldbooks);
     }
   }, [allUnSoldbooks]);

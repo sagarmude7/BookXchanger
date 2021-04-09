@@ -26,7 +26,7 @@ export const profiles = [
   {
     name: "Vishal Dange",
     subHeading: "Second Year IT, VJTI",
-    img: "https://i.ibb.co/nfCJ9Jr/IMG-20210407-105527.jpg",
+    img: "https://media-exp1.licdn.com/dms/image/C5603AQFlELdcbsOoNA/profile-displayphoto-shrink_200_200/0/1617858702504?e=1623283200&v=beta&t=hftwnNXTNnjUbHD-uFTL8nWrUKb3_CWIbKzqBG3zYKM",
     github: "https://github.com/vishalbdange",
     linkedin: "https://www.linkedin.com/in/vishal-dange-3b5294194",
   },
