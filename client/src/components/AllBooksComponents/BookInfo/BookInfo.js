@@ -60,7 +60,7 @@ const BookInfo = ({ match }) => {
   const dispatch = useDispatch();
   const books = useSelector((state) => state.books);
   const book = useSelector((state) => state.book);
-
+  const user = JSON.parse(localStorage.getItem("profile"));
   const bookId = match.params.bookId;
 
   useEffect(() => {
@@ -279,51 +279,13 @@ const BookInfo = ({ match }) => {
                 <Typography variant="h5">{book.ownerName}</Typography>
                 <Link
                   color="inherit"
-                  to="/"
+                  to={`/user/${book.owner}`}
                   component={RouterLink}
                   key="Home"
                   className={classes.name}
                 >
                   <Typography variant="body2">View Profile</Typography>
                 </Link>
-              </div>
-              <div className={classes.chatBox}>
-                <Typography variant="h6">Send Message</Typography>
-                <hr
-                  style={{
-                    border: "1px solid #DF4C73",
-                    width: "100%",
-                  }}
-                />
-                <TextField
-                  id="outlined-multiline-static"
-                  multiline
-                  rows={7}
-                  variant="outlined"
-                  style={{ width: "100%" }}
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.SendButton}
-                  endIcon={<SendIcon />}
-                >
-                  Send
-                </Button>
-              </div>
-            </div>
-            <div className={classes.guidelines}>
-              <Typography variant="body1">Read before you deal</Typography>
-              <div>
-                <ul
-                  style={{ listStyleType: "none" }}
-                  className={classes.guidelineList}
-                >
-                  <li>1. Please follow Government guidelines for COVID19.</li>
-                  <li>2. Use a safe location to meet seller</li>
-                  <li>3. Never provide your personal or banking information</li>
-                  <li>4. Beware of unrealistic offers</li>
-                </ul>
               </div>
             </div>
           </div>
