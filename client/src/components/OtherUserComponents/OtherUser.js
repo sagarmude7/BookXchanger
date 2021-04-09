@@ -34,7 +34,7 @@ const OtherUser = ({ match }) => {
   const user = useSelector((state) => state.user);
   const [err, setErr] = useState(false);
   const books = useSelector((state) => state.books);
-  const sender = JSON.parse(localStorage.getItem('profile'))?.profile
+  const sender = JSON.parse(localStorage.getItem('profile')).profile
   const userId = match.params.userId;
   const history = useHistory();
   useEffect(() => {
@@ -216,10 +216,7 @@ const OtherUser = ({ match }) => {
             user?(
               <ChatBox sender={sender}/>
             ):(<h2>ChatBox ...Loading</h2>)
-          }
-          
-          {/* <Contact /> */}
-          
+          }          
         </Grid>
       </Grid>
     </div>

@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
+const user = JSON.parse(localStorage.getItem("profile"));
 const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -97,9 +97,16 @@ const Book = ({ book }) => {
               color: "#df4c73",
             }}
           />
-          <Link to={`/user/${book.owner}`} style={{ textDecoration: "none" }}>
+          {
+            user ? 
+            <Link to={`/user/${book.owner}`}  style={{ textDecoration: "none" }}>
             <Typography className={classes.owner}>{book.ownerName}</Typography>
           </Link>
+            :
+            <Link to={`/auth`}  style={{ textDecoration: "none" }}>
+            <Typography className={classes.owner}>{book.ownerName}</Typography>
+          </Link>
+          }
         </CardActions>
 
         <CardActions disableSpacing>
