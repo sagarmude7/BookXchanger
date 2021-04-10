@@ -1,10 +1,13 @@
 import { makeStyles } from "@material-ui/core";
+import { keyframes } from "styled-components";
 
 const styles = makeStyles((theme) => ({
-  Main: {},
+  Main: {
+    background: "rgb(234,231,220)",
+  },
 
   name: {
-    marginTop: "10px",
+    paddingTop: "15px",
     alignContent: "center",
   },
 
@@ -75,10 +78,15 @@ const styles = makeStyles((theme) => ({
 
   //Images
 
-  image: {
-    width: "100%",
-    height: "300px",
-  },
+  // image1: {
+  //   height: "400px",
+  //   width: "500px",
+  //   transition: "transform 2000ms ease-in-out",
+  //   "&:hover": {
+  //     transform: "scale(1.2)",
+  //   },
+  // },
+
   //Images
 }));
 
