@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
+const user = JSON.parse(localStorage.getItem("profile"));
 const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -67,9 +67,13 @@ const Book = ({ book }) => {
           <CardActions className={classes.favourite}>
             <Button size="medium" color="secondary" onClick={addtofavourite}>
               {fav ? (
-                <FavoriteIcon disableFocusRipple={true} disableRipple={false} />
+                <FavoriteIcon
+                  disableFocusRipple={true}
+                  disableRipple={false}
+                  style={{ color: "#e98074" }}
+                />
               ) : (
-                <FavoriteBorderIcon />
+                <FavoriteBorderIcon style={{ color: "#e98074" }} />
               )}
             </Button>
           </CardActions>
@@ -94,12 +98,22 @@ const Book = ({ book }) => {
             style={{
               marginLeft: "5px",
               marginRight: "5px",
-              color: "#df4c73",
+              color: "#e98074",
             }}
           />
-          <Link to={`/user/${book.owner}`} style={{ textDecoration: "none" }}>
-            <Typography className={classes.owner}>{book.ownerName}</Typography>
-          </Link>
+          {user ? (
+            <Link to={`/user/${book.owner}`} style={{ textDecoration: "none" }}>
+              <Typography className={classes.owner}>
+                {book.ownerName}
+              </Typography>
+            </Link>
+          ) : (
+            <Link to={`/auth`} style={{ textDecoration: "none" }}>
+              <Typography className={classes.owner}>
+                {book.ownerName}
+              </Typography>
+            </Link>
+          )}
         </CardActions>
 
         <CardActions disableSpacing>

@@ -1,25 +1,26 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   mainContainer: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
+    background: "rgb(234,231,220)",
   },
   smMargin: {
     margin: theme.spacing(1),
   },
-  container:{
-    paddingTop:'20px'
+  container: {
+    paddingTop: "20px",
   },
   actionDiv: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   },
-  sortButton:{
-    margin: '20px',
-  }
+  sortButton: {
+    margin: "20px",
+  },
 }));

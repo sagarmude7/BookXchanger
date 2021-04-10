@@ -1,7 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 const styles = makeStyles((theme) => ({
   appBar: {
-    background: "#DF4C73",
+    background: "rgb(236,75,56)",
+    background:
+      "linear-gradient(90deg, rgba(236,75,56,1) 10%, rgba(232,90,79,1) 55%)",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -32,6 +34,20 @@ const styles = makeStyles((theme) => ({
     borderRadius: "20px",
     margin: "10px",
     fontWeigth: "500",
+  },
+
+  image1: {
+    width: "200px",
+    margin: "3px 5px 3px 15px",
+    position: "centre",
+    transition: ".5s",
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
+    "@media (max-width : 700px)": {
+      width: "170px",
+      margin: "2px",
+    },
   },
   brandContainer: {
     display: "flex",

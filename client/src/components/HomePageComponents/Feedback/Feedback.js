@@ -18,10 +18,15 @@ const Feedback = () => {
     return (
       <div className={classes.parent}>
         <div className={classes.content}>
-          <Typography variant="h6" align="center">
+          <Typography variant="h6" align="center" className={classes.name}>
             {props.item.name}
           </Typography>
-          <Typography variant="body1" align="center" component="p">
+          <Typography
+            variant="body1"
+            align="center"
+            component="p"
+            className={classes.description}
+          >
             {props.item.feedback}
             <br />
           </Typography>
@@ -32,27 +37,36 @@ const Feedback = () => {
 
   return (
     <>
-      <hr style={{ borderWidth: "0px" }} />
-      <hr style={{ borderWidth: "0px" }} />
+      <div style={{ background: "rgb(234,231,220)", paddingTop: "20px" }}>
+        <Typography
+          variant="h6"
+          style={{ textAlign: "center", background: "rgb(234,231,220)" }}
+        >
+          Testimonials
+        </Typography>
+        <hr
+          style={{
+            border: "1.5px solid #8e8d8a",
+            width: "300px",
+            background: "rgb(234,231,220)",
+            marginTop: "0px",
+            marginBottom: "0px",
+          }}
+        />
 
-      <Typography variant="h6" style={{ textAlign: "center", color: "black" }}>
-        Testimonials
-      </Typography>
-      <hr style={{ border: "1px solid black", width: "300px" }} />
-      <hr style={{ borderWidth: "0px" }} />
-
-      <Carousel
-        indicators={false}
-        animation="slide"
-        autoPlay={true}
-        interval={5000}
-        stopAutoPlayOnHover={false}
-        navButtonsAlwaysInvisible={true}
-      >
-        {descFeedback.map((item, index) => (
-          <Item key={index} item={item} />
-        ))}
-      </Carousel>
+        <Carousel
+          indicators={false}
+          animation="slide"
+          autoPlay={true}
+          interval={10000}
+          stopAutoPlayOnHover={false}
+          navButtonsAlwaysInvisible={true}
+        >
+          {descFeedback.map((item, index) => (
+            <Item key={index} item={item} />
+          ))}
+        </Carousel>
+      </div>
     </>
   );
 };

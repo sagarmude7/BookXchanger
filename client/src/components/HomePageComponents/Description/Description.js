@@ -18,10 +18,9 @@ const Description = () => {
               ")",
           }}
         >
-          
           <div className={classes.content}>
-            <Typography variant="h1" className={classes.text}>
-              {props.item.heading}
+            <Typography variant="h1">
+              <div className={classes.text}> {props.item.heading}</div>
               <Box
                 fontWeight="fontWeightBold"
                 letterSpacing={10}
@@ -44,13 +43,13 @@ const Description = () => {
   return (
     <>
       <Carousel
-        indicators={true}
+        indicators={false}
         animation="fade"
         autoPlay={true}
-        interval={5000}
+        interval={8000}
         stopAutoPlayOnHover={false}
         navButtonsAlwaysInvisible={true}
-      > 
+      >
         {descData.map((item, index) => (
           <Item key={index} item={item} />
         ))}
