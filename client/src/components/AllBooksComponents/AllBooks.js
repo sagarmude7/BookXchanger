@@ -25,6 +25,7 @@ import Zoom from "react-reveal/Zoom";
 import BounceLoader from 'react-spinners/BounceLoader'
 import { css } from "@emotion/react";
 import { getBooks } from "../../actions/books";
+import {Pagination} from './Pagination/Pagination';
 
 const AllBooks = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,8 @@ const AllBooks = () => {
   const [sortType, setSortType] = useState("");
   const [SORTBY, setSORTBY] = useState();
   const filterData = useSelector((state) => state.filterData);
+  const [currentPage, setcurrentPage] = useState(1);
+  const [booksPerpage, setbooksPerpage] = useState(4);
 
   useEffect(() => {
     dispatch(getBooks());
@@ -116,6 +119,13 @@ const AllBooks = () => {
   //   setSortType(event.target.value);
   // };
 
+  const indexLast = currentPage * booksPerpage;
+  const indexFirst = indexLast - booksPerpage;
+  const currentBooks = filterData.slice(indexFirst,indexLast);
+  //console.log(currentBooks);
+  
+  const paginate = (pageNumber) => setcurrentPage(pageNumber);
+
   return (
     <>
       <div className={classes.maincontainer}>
@@ -179,7 +189,7 @@ const AllBooks = () => {
                         alignItems="stretch"
                         spacing={3}
                       >
-                        {filterData.map((book) => (
+                        {currentBooks.map((book) => (
                           <Grid item xs={12} sm={3}>
                             <Book key={book._id} book={book} />
                           </Grid>
@@ -188,7 +198,10 @@ const AllBooks = () => {
                     )
                   )
                 }
-
+                <br/>
+                <Pagination booksPerpage={booksPerpage} totalBooks={filterData.length} paginate={paginate}/>
+                <br/>
+                <br/>
               </Container>
             </div>
           </div>
