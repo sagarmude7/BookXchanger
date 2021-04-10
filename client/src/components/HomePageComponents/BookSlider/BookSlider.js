@@ -48,19 +48,18 @@ const BookSlider = () => {
         var r = Math.floor(Math.random() * allUnSoldbooks.length);
         if (indices.indexOf(r) === -1) indices.push(r);
       }
-      console.log(indices)
-      const arr=[];
+      console.log(indices);
+      const arr = [];
       for (const i of indices) {
         arr.push(allUnSoldbooks[i]);
       }
-      setBooks(arr)
+      setBooks(arr);
       // for (var i=0;i<5;i++) {
       //   var r = Math.floor(Math.random() * allUnSoldbooks.length)
       //   console.log("Book in Slider" + r);
       //   setBooks([...books,allUnSoldbooks[r]]);
       // }
-    } 
-    else {
+    } else {
       setBooks(allUnSoldbooks);
     }
   }, [allUnSoldbooks]);
@@ -99,61 +98,116 @@ const BookSlider = () => {
 
   return (
     <>
-      <hr style={{ borderWidth: "0px" }} />
-      <hr style={{ borderWidth: "0px" }} />
-
-      <Typography variant="h6" style={{ textAlign: "center", color: "black" }}>
-        Most Trending Books
-      </Typography>
-      <hr style={{ border: "1px solid black", width: "300px" }} />
-      <hr style={{ borderWidth: "0px" }} />
-      {loading ? (
-        <PulseLoader loading={loading} color={color} css={override} size={30} />
-      ) : (
-        <Carousel
-          responsive={responsive}
-          arrows={false}
-          infinite={true}
-          autoPlay={true}
+      <div style={{ background: "rgb(234,231,220)" }}>
+        <Typography
+          variant="h6"
+          style={{
+            textAlign: "center",
+            background: "rgb(234,231,220)",
+            paddingTop: "10px",
+          }}
         >
-          {books.map((book) => (
-            <Grid>
-              <Container>
-                <Book key={book._id} book={book} />
-              </Container>
-            </Grid>
-          ))}
-        </Carousel>
+          Most Trending Books
+        </Typography>
+        <hr
+          style={{
+            border: "1.5px solid #8e8d8a",
+            width: "300px",
+            background: "rgb(234,231,220)",
+            marginTop: "0px",
+            marginBottom: "0px",
+          }}
+        />
+      </div>
+
+      {loading ? (
+        <PulseLoader
+          loading={loading}
+          color="#e98074"
+          css={override}
+          size={30}
+        />
+      ) : (
+        <div
+          style={{
+            padding: "20px 10px",
+            background: "rgb(234,231,220)",
+            marginTop: "0px",
+            marginBottom: "0px",
+          }}
+        >
+          <Carousel
+            responsive={responsive}
+            arrows={false}
+            infinite={true}
+            autoPlay={true}
+          >
+            {books.map((book) => (
+              <Grid>
+                <Container>
+                  <Book key={book._id} book={book} />
+                </Container>
+              </Grid>
+            ))}
+          </Carousel>
+        </div>
       )}
 
-      <hr style={{ borderWidth: "0px" }} />
-      <hr style={{ borderWidth: "0px" }} />
-      <Typography
-        variant="h6"
-        style={{ textAlign: "center", marginTop: "25px" }}
-      >
-        Most View Books
-      </Typography>
-      <hr style={{ border: "1px solid black", width: "300px" }} />
-      <hr style={{ borderWidth: "0px" }} />
-      {loading ? (
-        <PulseLoader loading={loading} color={color} css={override} size={30} />
-      ) : (
-        <Carousel
-          responsive={responsive}
-          arrows={false}
-          infinite={true}
-          autoPlay={true}
-          autoPlaySpeed={6000}
+      <div style={{ background: "rgb(234,231,220)" }}>
+        <Typography
+          variant="h6"
+          style={{
+            textAlign: "center",
+            background: "rgb(234,231,220)",
+            paddingTop: "10px",
+          }}
         >
-          {books.map((book) => (
-            <Grid>
-              <Container>
-                <Book key={book._id} book={book} />
-              </Container>
-            </Grid>
-          ))}
-        </Carousel>
+          Most Viewed Books
+        </Typography>
+        <hr
+          style={{
+            border: "1.5px solid #8e8d8a",
+            width: "300px",
+            background: "rgb(234,231,220)",
+            marginTop: "0px",
+            marginBottom: "0px",
+          }}
+        />
+      </div>
+
+      {loading ? (
+        <PulseLoader
+          loading={loading}
+          color="#e98074"
+          css={override}
+          size={30}
+          style={{ background: "rgb(234,231,220)" }}
+        />
+      ) : (
+        <div
+          style={{
+            padding: "20px 10px",
+            background: "rgb(234,231,220)",
+            marginTop: "0px",
+            marginBottom: "0px",
+          }}
+        >
+          <Carousel
+            responsive={responsive}
+            arrows={false}
+            infinite={true}
+            autoPlay={true}
+            autoPlaySpeed={6000}
+          >
+            {books.map((book) => (
+              <Grid>
+                <Container>
+                  <Book key={book._id} book={book} />
+                </Container>
+              </Grid>
+            ))}
+          </Carousel>
+        </div>
       )}
     </>
   );

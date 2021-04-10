@@ -3,10 +3,12 @@ import { makeStyles } from "@material-ui/core";
 const styles = makeStyles(() => ({
   parent: {
     width: "100%",
-
-    marginTop: "20px",
+    paddingTop: "20px",
     height: "auto",
-    marginBottom: "20px",
+    paddingBottom: "20px",
+    background: "rgb(234,231,220)",
+    background:
+      "linear-gradient(180deg, rgba(234,231,220,1) 48%, rgba(216,199,165,1) 96%)",
   },
 
   content: {
@@ -19,7 +21,12 @@ const styles = makeStyles(() => ({
 
   title: {
     fontSize: 14,
+    //fontFamily: "'Open Sans', sans-serif",
   },
+
+  name: {},
+
+  description: {},
 }));
 
 export default styles;

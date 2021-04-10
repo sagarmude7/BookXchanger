@@ -3,15 +3,16 @@ import { colors, makeStyles } from "@material-ui/core";
 const styles = makeStyles((theme) => ({
   footer: {
     position: "center",
-    margin: "10px 0 0 0",
 
-    background: "#286FB4",
+    background: "#E85A4F",
   },
 
   flexContainer: {
     display: "flex",
     flexFlow: "row nowrap",
-    background: "#286FB4",
+    background: "rgb(236,75,56)",
+    background:
+      "linear-gradient(90deg, rgba(236,75,56,1) 10%, rgba(232,90,79,1) 55%)",
     padding: "30px 0px 10px 0px",
     justifyContent: "center",
     alignItems: "ceter",
@@ -25,8 +26,8 @@ const styles = makeStyles((theme) => ({
   },
 
   image1: {
-    width: "70px",
-    margin: "5px 0px 30px 0px ",
+    width: "300px",
+    margin: "5px 0px 15px 0px ",
     position: "centre",
     transition: ".5s",
     "&:hover": {
@@ -40,14 +41,14 @@ const styles = makeStyles((theme) => ({
     paddingInlineStart: "0px",
     transition: "1s",
     "&:hover": {
-      color: "#ffffff",
+      color: "#eae7dc",
 
-      textShadow: "0 0 5px #ffffff",
+      textShadow: "0 0 5px #eae7dc",
     },
   },
 
   name: {
-    color: "#DF4C73",
+    color: "#E85A4F",
     "&:hover": {
       color: "#E2F0F9",
     },
@@ -75,9 +76,11 @@ const styles = makeStyles((theme) => ({
     },
 
     "&:hover": {
+      color: "#eae7dc",
+
+      textShadow: "0 0 5px #eae7dc",
       color: "#ffffff",
       transform: "scale(1.3)",
-      textShadow: "0 0 5px #ffffff",
     },
     "@media (max-width : 700px)": {
       margin: "0px 10px 10px 10px",

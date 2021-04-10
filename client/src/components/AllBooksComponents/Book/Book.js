@@ -67,9 +67,13 @@ const Book = ({ book }) => {
           <CardActions className={classes.favourite}>
             <Button size="medium" color="secondary" onClick={addtofavourite}>
               {fav ? (
-                <FavoriteIcon disableFocusRipple={true} disableRipple={false} />
+                <FavoriteIcon
+                  disableFocusRipple={true}
+                  disableRipple={false}
+                  style={{ color: "#e98074" }}
+                />
               ) : (
-                <FavoriteBorderIcon />
+                <FavoriteBorderIcon style={{ color: "#e98074" }} />
               )}
             </Button>
           </CardActions>
@@ -94,19 +98,22 @@ const Book = ({ book }) => {
             style={{
               marginLeft: "5px",
               marginRight: "5px",
-              color: "#df4c73",
+              color: "#e98074",
             }}
           />
-          {
-            user ? 
-            <Link to={`/user/${book.owner}`}  style={{ textDecoration: "none" }}>
-            <Typography className={classes.owner}>{book.ownerName}</Typography>
-          </Link>
-            :
-            <Link to={`/auth`}  style={{ textDecoration: "none" }}>
-            <Typography className={classes.owner}>{book.ownerName}</Typography>
-          </Link>
-          }
+          {user ? (
+            <Link to={`/user/${book.owner}`} style={{ textDecoration: "none" }}>
+              <Typography className={classes.owner}>
+                {book.ownerName}
+              </Typography>
+            </Link>
+          ) : (
+            <Link to={`/auth`} style={{ textDecoration: "none" }}>
+              <Typography className={classes.owner}>
+                {book.ownerName}
+              </Typography>
+            </Link>
+          )}
         </CardActions>
 
         <CardActions disableSpacing>
