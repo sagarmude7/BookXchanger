@@ -43,12 +43,19 @@ const App = () => {
   },[notification])
 
   useEffect(()=>{
-    if(localStorage.getItem('profile')){
-      socket.connect()
-      const id = JSON.parse(localStorage.getItem('profile')).profile.id
-      socket.emit('login',{id:id})
+    if(socket.disconnected){
+      if(localStorage.getItem('profile')){
+        socket.connect()
+        console.log("I am running")
+        const id = JSON.parse(localStorage.getItem('profile')).profile.id
+        // socket.emit('login',{id:id})
+        socket.on("connect", () => {
+          socket.emit('login',{id:id})
+          console.log(socket.id)
+        });
+      }
     }
-  },[])
+  },[socket])
 
   useEffect(()=>{
     socket.on('send_msg',(msg)=>{

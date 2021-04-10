@@ -43,6 +43,7 @@ import {
   Divider,
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Error404 from '../../ErrorComponent/Error404'
 import { useParams } from "react-router";
 import { GET_BOOK } from "../../../constants/actions";
 import Carousel from "react-multi-carousel";
@@ -62,18 +63,20 @@ const BookInfo = ({ match }) => {
   const book = useSelector((state) => state.book);
   const user = JSON.parse(localStorage.getItem("profile"));
   const bookId = match.params.bookId;
+  const [found,setFound] = useState(books.find(bk=>bk._id===bookId)!==undefined)
 
   useEffect(() => {
-    dispatch({
-      type: GET_BOOK,
-      payload:
-        books.find((bk) => bk._id === bookId) === undefined
-          ? {}
-          : books.find((bk) => bk._id === bookId),
-    });
+    console.log(found)
+    if(books.find((bk) => bk._id === bookId) !== undefined){
+      dispatch({
+        type: GET_BOOK,
+        payload:books.find((bk) => bk._id === bookId),
+      });
+    }
+    
   }, [dispatch]);
 
-  const bookImage = book?.selectedFile;
+  
 
   //Similar books
 
@@ -82,7 +85,7 @@ const BookInfo = ({ match }) => {
     (books) =>
       books.isSold === false &&
       books.branch === book.branch &&
-      books.owner != book.owner
+      books.owner !== book.owner
   );
   const [sortbool, setSortbool] = useState(false);
 
@@ -116,7 +119,8 @@ const BookInfo = ({ match }) => {
   //Similar books
 
   return (
-    <>
+    found?(
+      <>
       <div className={classes.root}>
         <div className={classes.topContainer}>
           <ArrowBackIcon
@@ -127,11 +131,11 @@ const BookInfo = ({ match }) => {
 
           <Typography className={classes.bottomLeft}>
             <div className={classes.bookMain}>
-              <Typography className={classes.branch}>{book?.branch}</Typography>
-              {book?.bookName}
+              <Typography className={classes.branch}>{book.branch}</Typography>
+              {book.bookName}
               <div className={classes.edition}>
                 {" ("}
-                {book?.edition}
+                {book.edition}
                 {"th edition)"}
               </div>
               <div className={classes.date}>
@@ -156,7 +160,7 @@ const BookInfo = ({ match }) => {
                   <img
                     className={classes.bookImage}
                     src={book.selectedFile}
-                    alt="Book Image"
+                    alt="Book"
                   />
                 </Roll>
               </div>
@@ -348,6 +352,10 @@ const BookInfo = ({ match }) => {
         </div>
       </div>
     </>
+    ):(
+      <Error404/>
+    )
+    
   );
 };
 

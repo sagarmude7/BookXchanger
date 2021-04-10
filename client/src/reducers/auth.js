@@ -6,6 +6,7 @@ const authReducer = (authData={},action)=>{
             console.log(action.payload)
             localStorage.setItem('profile',JSON.stringify(action?.payload))
             var id = JSON.parse(localStorage.getItem('profile')).profile.id
+            console.log("i am running")
             socket.connect()
             socket.emit('login',{id:id})
             return action.payload
