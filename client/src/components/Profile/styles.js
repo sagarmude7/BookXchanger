@@ -208,6 +208,41 @@ export default makeStyles((theme) => ({
         fontWeight:5,
       },
 
+      messageCard:{
+        display:'flex',
+        flexDirection:'row',
+        width:"100%",
+        backgroundColor:'#D8C3A5',
+        //backgroundColor:'#EAE7DC',
+      },
+
+      messageCardContent:{
+        display:'flex',
+        flexDirection:'row',
+        width:"94%",
+        border:"solid green",
+        
+      },
+
+     messagePrimary:{
+        marginLeft:"15%",
+        width:"100%",
+     },
+
+     messageSecondary:{
+      marginLeft:"15%",
+      width:"100%",
+     },
+
+     messageBody:{
+      padding:0,
+      backgroundColor:'#E2F0F9',
+      border:"solid pink",
+      width:"88%"
+      
+    },
+     
+
       [theme.breakpoints.up(700)]:{
         removePhoto:{
           
@@ -395,8 +430,6 @@ export default makeStyles((theme) => ({
      
         marginTop:10,
         
-
-
       },
 
       removePhoto:{
@@ -426,6 +459,32 @@ export default makeStyles((theme) => ({
         alignItems:"center",
 
       },
+
+      messagePrimary:{
+        fontSize:20,
+     },
+
+     messageSecondary:{
+        fontSize:12,
+     },
+
+     messageCardContent:{
+      width:"100%",
+      
+    },
+
+    messageCard:{
+      
+      height:60,
+      alignItems:"center",
+    },
+
+     large: {
+      width: theme.spacing(6),
+      height: theme.spacing(6),
+    },
+
+   
     },
 
     [theme.breakpoints.down(500)]:{
@@ -465,6 +524,37 @@ export default makeStyles((theme) => ({
 
     uploadPhoto:{
       fontSize:10.5,
+      
+    },
+
+    messagePrimary:{
+      fontSize:17,
+      marginLeft:"8%",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+   },
+
+   messageSecondary:{
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      overflow:'hidden',
+      whiteSpace:'nowrap',
+      textOverflow:'ellipsis',
+      
+      
+      fontSize:10,
+      marginLeft:"8%",
+   },
+
+    large: {
+      width: theme.spacing(4.5),
+      height: theme.spacing(4.5),
+    },
+    messageButton:{
+      
+      fontSize:20,
       
     },
 

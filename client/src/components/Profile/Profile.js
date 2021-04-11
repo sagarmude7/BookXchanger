@@ -19,6 +19,7 @@ import Box from "@material-ui/core/Box";
 import {useHistory} from 'react-router-dom'
 import numberSoldBooks from "./Dashboard components/Dashboard";
 import { getRecentUsers } from "../../actions/user";
+import Message from "./Messages/Message"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -178,25 +179,7 @@ const Profile = () => {
       </TabPanel>
 
       <TabPanel value={value} index={2} dir={theme.direction}>
-      <div className={classes.container}>
-      <Container className={classes.body}>
-        {recents.map((user)=>(
-          <Card className={classes.root} variant="outlined">
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                {user.name}
-              </Typography>
-              <Typography variant="body2" component="p">
-                Recently Sent You a Message
-              </Typography>
-            </CardContent>
-              <CardActions>
-                <Button onClick={()=>history.push(`user/${user.id}`)} size="small">Go To ChatBox</Button>
-              </CardActions>
-        </Card>
-        ))}
-      </Container>
-      </div>
+          <Message/>
       </TabPanel>
 
       {/*<Footer/>*/}
