@@ -10,7 +10,9 @@ const styles = makeStyles((theme) => ({
     color: "white",
     height: "350px",
     paddingTop: "20px",
-    backgroundImage: "linear-gradient(0deg, #B0DDE4, #E2F0F9)",
+    backgroundColor: "rgb(216,199,165)",
+    zIndex  : "10",
+    backgroundImage : "url('https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1600')",
     "@media (max-width : 700px)": {
       height: "225px",
       paddingTop: "40px",
@@ -19,7 +21,7 @@ const styles = makeStyles((theme) => ({
 
   bottomLeft: {
     color: "black",
-    fontSize: "50px",
+    fontSize: "60px",
     paddingLeft: "8%",
     position: "absolute",
     bottom: "8px",
@@ -33,7 +35,7 @@ const styles = makeStyles((theme) => ({
   topLeft: {
     color: "black",
     margin: "10px",
-    fontSize: "35px",
+    fontSize: "55px",
     "@media (max-width : 700px)": {
       margin: "5px",
       fontSize: "25px",
@@ -42,6 +44,7 @@ const styles = makeStyles((theme) => ({
 
   edition: {
     fontSize: "30px",
+    color: "rgb(216,199,165)",
     display: "inline",
     "@media (max-width : 700px)": {
       fontSize: "15px",
@@ -49,6 +52,7 @@ const styles = makeStyles((theme) => ({
   },
 
   branch: {
+    color: "rgb(216,199,165)",
     backgroundColor: "#df4c73",
     width: "200px",
     minWidth: "10px",
@@ -67,14 +71,18 @@ const styles = makeStyles((theme) => ({
   },
 
   date: {
+    color: "white",
     fontSize: "15px",
     "@media (max-width : 700px)": {
       fontSize: "9px",
     },
+    zIndex :"-2"
   },
 
   bookMain: {
+    color: "rgb(216,199,165)",
     display: "inline-block",
+    textShadow :"1px 1px 2px black ,0 0 10px blue, 0 0 5px green"
   },
   price: {
     display: "inline-block",
@@ -89,6 +97,7 @@ const styles = makeStyles((theme) => ({
   },
 
   middleContainer: {
+
     color: "black",
     position: "relative",
     paddingTop: "20px",
@@ -105,6 +114,7 @@ const styles = makeStyles((theme) => ({
       paddingLeft: "2%",
       paddingRight: "2%",
     },
+    borderRadius : "10px 20px 10px 30px"
   },
 
   imgAndInfo: {
@@ -115,11 +125,15 @@ const styles = makeStyles((theme) => ({
     display: "inline-block",
     width: "800px",
     marginRight: "10px",
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "rgb(216,199,165)",
+    padding :"1px",
+    borderRadius : "10px 2px 20px 10px",
+    boxShadow:  "4px 1px 20px 10px grey",
     "@media (max-width : 900px)": {
       width: "100%",
       marginRight: "0px",
     },
+
   },
 
   bookImage: {
@@ -152,6 +166,7 @@ const styles = makeStyles((theme) => ({
       paddingLeft: "10px",
       paddingRight: "10px",
     },
+
   },
 
   bookDescription: {
@@ -182,24 +197,34 @@ const styles = makeStyles((theme) => ({
     width: "400px",
     backgroundColor: "#f2f2f2",
     height: "auto",
+    margin :"40px",
+    padding :"20px",
+    borderRadius : "10px 2px 20px 10px",
+    boxShadow:  "4px 1px 20px 10px grey",
     "@media (max-width : 700px)": {
       width: "100%",
       paddingLeft: "2%",
       paddingRight: "2%",
+      margin :"10px",
+      padding :"2px",
+      width: "350px",
     },
+
   },
 
   contactUser: {
     display: "block",
     margin: "20px",
+   
   },
 
   UserInfo: {
     margin: "10px",
+    fontSize : "29px"
   },
   userProfilePic: {
-    height: "70px",
-    width: "70px",
+    height: "100px",
+    width: "100px",
     borderRadius: "50%",
     float: "left",
     marginRight: "10px",

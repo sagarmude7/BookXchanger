@@ -1,7 +1,8 @@
 import React from "react";
 import useStyles from "./styles.js";
+import "./style.css";
 import Carousel from "react-material-ui-carousel";
-
+import logo from "../../../logo/final_logo.png";
 import {
   Grid,
   Paper,
@@ -17,19 +18,6 @@ import {
 
 const Feature = () => {
   const classes = useStyles();
-  // const Item = (props) => {
-  //   return (
-  //     <div
-  //       className={classes.image}
-  //       style={{
-  //         backgroundImage:
-  //           "linear-gradient(rgba(0,1,1,0.3),rgba(1,0,0.5)),url(" +
-  //           props.item.img +
-  //           ")",
-  //       }}
-  //     ></div>
-  //   );
-  // };
 
   return (
     <>
@@ -201,23 +189,9 @@ const Feature = () => {
             </List>
           </div>
           <div className={classes.Images}>
-            <img
-              src="https://png.pngtree.com/png-clipart/20190515/original/pngtree-beautiful-hologram-water-color-frame-png-image_3643167.jpg"
-              alt="Logo"
-              style={{ height: "300px", width: "100%" }}
-            />
-            {/* <Carousel
-              indicators={false}
-              animation="fade"
-              autoPlay={true}
-              interval={10000}
-              stopAutoPlayOnHover={false}
-              navButtonsAlwaysInvisible={true}
-            >
-              {descImages.map((item, index) => (
-                <Item key={index} item={item} />
-              ))}
-            </Carousel> */}
+            <Typography align="center">
+              <img className="image1" src={logo} alt="Logo" />
+            </Typography>
           </div>
         </div>
       </div>

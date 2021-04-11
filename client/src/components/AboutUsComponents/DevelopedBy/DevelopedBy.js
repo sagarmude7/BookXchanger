@@ -31,20 +31,37 @@ const DevelopedBy = () => {
 
   return (
     <>
-      <Typography variant="h6" style={{ textAlign: "center", color: "black" }}>
-        Developed By-
-      </Typography>
-      <hr style={{ border: "1px solid black", width: "300px" }} />
-      <hr style={{ borderWidth: "0px" }} />
+      <div style={{ background: "rgb(234,231,220)" }}>
+        <Typography
+          variant="h6"
+          style={{
+            textAlign: "center",
+            background: "rgb(234,231,220)",
+            paddingTop: "10px",
+          }}
+        >
+          Developed By
+        </Typography>
+        <hr
+          style={{
+            border: "1.5px solid #8e8d8a",
+            width: "300px",
+            background: "rgb(234,231,220)",
+            marginTop: "0px",
+            marginBottom: "0px",
+          }}
+        />
+      </div>
 
       <Carousel
         responsive={responsive}
         arrows={false}
         infinite={true}
         autoPlay={true}
+        autoPlaySpeed={6000}
       >
         {profiles.map((profile, index) => (
-          <div>
+          <div style={{ background: "rgb(234,231,220)", padding: " 20px 0px" }}>
             <Grid>
               <Container>
                 <Profile

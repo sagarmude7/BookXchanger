@@ -4,7 +4,8 @@ export default makeStyles({
   card: {
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "space-between",
+    backgroundColor: "rgb(216,199,165)",
+
     borderRadius: "15px",
     height: "100%",
     position: "relative",
@@ -45,9 +46,9 @@ export default makeStyles({
     transition: ".5s",
 
     "&:hover": {
-      color: "#ffffff",
-      //transform: "scale(1.31)",
-      textShadow: "0 0 5px #ffffff",
+      color: "#e85a4f",
+      transform: "scale(1.31)",
+      textShadow: "0 0 5px #e85a4f",
     },
     "@media (max-width : 900px)": {
       bottom: "2.5px",
@@ -55,16 +56,16 @@ export default makeStyles({
       paddingBottom: "1px",
       transform: "scale(1.3)",
     },
-    "@media (max-width : 700px)": {
+    "@media (max-width : 720px)": {
       bottom: "2.5px",
-      left: "23px",
+      left: "200px",
       paddingBottom: "10px",
       transform: "scale(1.3)",
     },
   },
 
   price: {
-    color: "white",
+    color: "#eae7dc",
     position: "relative",
     top: "-50px",
     left: "15px",
@@ -82,18 +83,19 @@ export default makeStyles({
   },
 
   Branch: {
-    backgroundColor: "#df4c73",
+    backgroundColor: "#e98074",
     width: "140px",
     marginLeft: "15px",
     fontSize: "11px",
     fontWeight: "500",
     padding: "1px auto",
-    color: "#fff",
+    color: "black",
     textAlign: "center",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
     "@media (max-width : 700px)": {
       fontSize: "12px",
+      marginTop :"0px"
     },
   },
 
@@ -114,11 +116,14 @@ export default makeStyles({
     color: "black",
     transition: "0.5s",
     "&:hover": {
-      color: "#df4c73",
-      textShadow: "0 0 5px #df4c73",
+      color: "#e85a4f",
+      textShadow: "0 0 5px ##e98074",
     },
   },
   button: {
-    backgroundColor: "#df4c73",
+    backgroundColor: "#e98074",
+    "&:hover": {
+      backgroundColor: "#e85a4f",
+    },
   },
 });

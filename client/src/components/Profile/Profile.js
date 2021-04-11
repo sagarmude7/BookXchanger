@@ -19,6 +19,7 @@ import Box from "@material-ui/core/Box";
 import {useHistory} from 'react-router-dom'
 import numberSoldBooks from "./Dashboard components/Dashboard";
 import { getRecentUsers } from "../../actions/user";
+import Message from "./Messages/Message"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,16 +59,23 @@ const Profile = () => {
   const classes = useStyles();
   const history = useHistory()
   const theme = useTheme();
-
+  const localUser = JSON.parse(localStorage.getItem('profile'))
   const recents = useSelector(state=>state.recents)
 
   const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
 
   useEffect(()=>{
+    if(!localUser){
+      history.push('/auth')
+    }
+  })
+  useEffect(()=>{
     dispatch(getRecentUsers())
   },[])
-  const userId = JSON.parse(localStorage.getItem("profile")).profile.id;
+  var userId;
+  if(localUser)
+    userId = JSON.parse(localStorage.getItem("profile")).profile.id;
   const books = useSelector((state) => state.books);
   var numberSoldBooks = 0;
   var totalListing = 0;
@@ -99,7 +107,7 @@ const Profile = () => {
     setOpen(false);
   };
 
-  console.log(user.profilePic);
+  // console.log(user.profilePic);
 
   return (
     <div className={classes.container}>
@@ -178,25 +186,7 @@ const Profile = () => {
       </TabPanel>
 
       <TabPanel value={value} index={2} dir={theme.direction}>
-      <div className={classes.container}>
-      <Container className={classes.body}>
-        {recents.map((user)=>(
-          <Card className={classes.root} variant="outlined">
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                {user.name}
-              </Typography>
-              <Typography variant="body2" component="p">
-                Recently Sent You a Message
-              </Typography>
-            </CardContent>
-              <CardActions>
-                <Button onClick={()=>history.push(`user/${user.id}`)} size="small">Go To ChatBox</Button>
-              </CardActions>
-        </Card>
-        ))}
-      </Container>
-      </div>
+          <Message/>
       </TabPanel>
 
       {/*<Footer/>*/}

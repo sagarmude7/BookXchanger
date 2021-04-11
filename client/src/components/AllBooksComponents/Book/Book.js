@@ -12,15 +12,13 @@ import PersonPinIcon from "@material-ui/icons/PersonPin";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import DeleteIcon from "@material-ui/icons/Delete";
-import CloseIcon from "@material-ui/icons/Close";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { addToWishList, getBooks } from "../../../actions/books";
+import { addToWishList} from "../../../actions/books";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { VALID } from "../../../constants/actions";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -35,10 +33,17 @@ const Book = ({ book }) => {
     if (book)
       setFav(book?.wishListedBy?.find((id) => id === user?.profile?.id));
   }, []);
+
+  
   const addtofavourite = () => {
-    console.log("Adding To Favorites..");
-    fav ? setFav(false) : setFav(true);
-    dispatch(addToWishList(book._id));
+    if(user){
+      console.log("Adding To Favorites..");
+      fav ? setFav(false) : setFav(true);
+      dispatch(addToWishList(book._id));
+    }else{
+      dispatch({type:VALID,payload:{msg:"Please Sign In To Add To Wishlist"}})
+      history.push('/auth')
+    }
     // dispatch(getBooks())
   };
 
@@ -48,7 +53,7 @@ const Book = ({ book }) => {
 
   return (
     <>
-      <Card className={classes.card}>
+      <Card raised className={classes.card}>
         <div className={classes.top}>
           <CardMedia
             className={classes.media}
@@ -67,9 +72,13 @@ const Book = ({ book }) => {
           <CardActions className={classes.favourite}>
             <Button size="medium" color="secondary" onClick={addtofavourite}>
               {fav ? (
-                <FavoriteIcon disableFocusRipple={true} disableRipple={false} />
+                <FavoriteIcon
+                  disableFocusRipple={true}
+                  disableRipple={false}
+                  style={{ color: "#e98074" }}
+                />
               ) : (
-                <FavoriteBorderIcon />
+                <FavoriteBorderIcon style={{ color: "#e98074" }} />
               )}
             </Button>
           </CardActions>
@@ -94,19 +103,22 @@ const Book = ({ book }) => {
             style={{
               marginLeft: "5px",
               marginRight: "5px",
-              color: "#df4c73",
+              color: "#e98074",
             }}
           />
-          {
-            user ? 
-            <Link to={`/user/${book.owner}`}  style={{ textDecoration: "none" }}>
-            <Typography className={classes.owner}>{book.ownerName}</Typography>
-          </Link>
-            :
-            <Link to={`/auth`}  style={{ textDecoration: "none" }}>
-            <Typography className={classes.owner}>{book.ownerName}</Typography>
-          </Link>
-          }
+          {user ? (
+            <Link to={`/user/${book.owner}`} style={{ textDecoration: "none" }}>
+              <Typography className={classes.owner}>
+                {book.ownerName}
+              </Typography>
+            </Link>
+          ) : (
+            <Link to={`/auth`} style={{ textDecoration: "none" }}>
+              <Typography className={classes.owner}>
+                {book.ownerName}
+              </Typography>
+            </Link>
+          )}
         </CardActions>
 
         <CardActions disableSpacing>

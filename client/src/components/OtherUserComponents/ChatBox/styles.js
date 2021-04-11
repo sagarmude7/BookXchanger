@@ -26,20 +26,27 @@ export default makeStyles((theme) => ({
   },
     title :{
       color: "black", 
-      textAlign: "center"
+      textAlign: "center",
+      textShadow : "1px 1px 2px 10px white"
     },
     chatHead : {
-      backgroundColor : "#7f00ff",
+      color :"black",
+      backgroundColor: "#e98074",
       zIndex:  "-1",
-      boxShadow : "1px 1px 5px 1px solid grey"
+      borderRadius : "10px 10px 10px 10px",
+      boxShadow:  "2px 1px 10px 5px grey",
+      marginTop : "20px",
+      
     },
     msgBox : {
       height:"300px",
-      backgroundColor : "#38ef7d",
+      backgroundColor: "rgb(216,199,165)",
       color :"white",
       borderRadius : "20px",
       padding : "10px",
-      overflowY :  "scroll"
+      overflowY :  "scroll",
+      borderRadius : "10px 10px 10px 10px",
+      boxShadow:  "4px 1px 10px 5px grey",
     },
     msg1  :{
       marginTop:"2px",
@@ -51,7 +58,7 @@ export default makeStyles((theme) => ({
       maxWidth:"250px",
       textAlign:"left",
       marginLeft :"200px",
-      borderRadius :  "10px",
+      borderRadius :  "30px 1px 30px 30px ",
       wordWrap:" break-word",
       overflowX : "auto",
       padding : "12px 10px 4px 12px "
@@ -66,6 +73,8 @@ export default makeStyles((theme) => ({
       borderRadius :  "10px",
       overflowX : "auto",
       wordWrap:" break-word",
+      borderRadius :  "1px 30px 30px 30px ",
+
       padding : "12px 10px 4px 12px"
       
     }

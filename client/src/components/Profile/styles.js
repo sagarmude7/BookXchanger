@@ -35,10 +35,14 @@ export default makeStyles((theme) => ({
 
 
       head: {
-        backgroundColor:'#E2F0F9',
+        backgroundColor:'#EAE7DC',
         display:'flex',
         flexDirection:'row',
           
+      },
+      profileImage:{
+        width: "150px",
+        height:"150px",
       },
 
       root: {
@@ -76,7 +80,7 @@ export default makeStyles((theme) => ({
       },
 
       body:{
-        backgroundColor:'#E2F0F9',
+        backgroundColor:'#EAE7DC',
         display:'flex',
         flexDirection:'column',
         width:"88%",
@@ -158,7 +162,7 @@ export default makeStyles((theme) => ({
       },
 
       rootTab: {
-        backgroundColor:'#F0F8FF' ,
+        backgroundColor:'#E98074' ,
         
         
       },
@@ -207,6 +211,47 @@ export default makeStyles((theme) => ({
         fontSize:17,
         fontWeight:5,
       },
+
+      messageCard:{
+        display:'flex',
+        flexDirection:'row',
+        width:"100%",
+        backgroundColor:'#D8C3A5',
+        //backgroundColor:'#EAE7DC',
+      },
+
+      messageCardContent:{
+        display:'flex',
+        flexDirection:'row',
+        width:"94%",
+        //border:"solid green",
+        
+      },
+
+     messagePrimary:{
+        marginLeft:"15%",
+        width:"100%",
+     },
+
+     messageSecondary:{
+      marginLeft:"15%",
+      width:"100%",
+     },
+
+     messageBody:{
+      padding:0,
+      backgroundColor:'#EAE7DC',
+      //border:"solid pink",
+      width:"88%"
+      
+    },
+
+    messageHeading:{
+      fontSize:28,
+      fontWeight:2,
+      margin:20,
+    },
+     
 
       [theme.breakpoints.up(700)]:{
         removePhoto:{
@@ -395,8 +440,6 @@ export default makeStyles((theme) => ({
      
         marginTop:10,
         
-
-
       },
 
       removePhoto:{
@@ -426,6 +469,32 @@ export default makeStyles((theme) => ({
         alignItems:"center",
 
       },
+
+      messagePrimary:{
+        fontSize:20,
+     },
+
+     messageSecondary:{
+        fontSize:12,
+     },
+
+     messageCardContent:{
+      width:"100%",
+      
+    },
+
+    messageCard:{
+      
+      height:60,
+      alignItems:"center",
+    },
+
+     large: {
+      width: theme.spacing(6),
+      height: theme.spacing(6),
+    },
+
+   
     },
 
     [theme.breakpoints.down(500)]:{
@@ -468,6 +537,33 @@ export default makeStyles((theme) => ({
       
     },
 
+    messagePrimary:{
+      fontSize:17,
+      marginLeft:"8%",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      width:"90%",
+   },
+
+   messageSecondary:{
+      overflow:'hidden',
+      whiteSpace:'nowrap',
+      textOverflow:'ellipsis',
+      fontSize:10,
+      marginLeft:"8%",
+   },
+
+    large: {
+      width: theme.spacing(4.5),
+      height: theme.spacing(4.5),
+    },
+    messageButton:{
+      
+      fontSize:20,
+      
+    },
+
   },
 
   [theme.breakpoints.down(400)]:{
@@ -492,7 +588,17 @@ export default makeStyles((theme) => ({
 
   passTitle:{
     fontSize:10,
-  }
+  },
+
+  messagePrimary:{
+    fontSize:16,
+    
+ },
+
+ messageSecondary:{
+    fontSize:9,
+   
+ },
 
 
 },

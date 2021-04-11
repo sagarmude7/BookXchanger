@@ -1,12 +1,13 @@
 import React from "react";
 import useStyles from "./style.js";
+import logo from "../../logo/final.png";
 import { Typography, CssBaseline, Container, Link } from "@material-ui/core";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import EmailIcon from "@material-ui/icons/Email";
-import Rotate from 'react-reveal/Rotate';
+import Rotate from "react-reveal/Rotate";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 
 const Footer = () => {
@@ -22,11 +23,7 @@ const Footer = () => {
           >
             <Typography align="center">
               <Link href="#" color="inherit">
-                <img
-                  className={classes.image1}
-                  src="https://picsum.photos/80/80"
-                  alt="123"
-                />
+                <img className={classes.image1} src={logo} alt="BookXchanger" />
               </Link>
               <br />
               <Typography

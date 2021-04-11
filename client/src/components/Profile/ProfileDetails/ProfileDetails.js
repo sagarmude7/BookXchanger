@@ -42,7 +42,8 @@ const Profile = () => {
 
 
   useEffect(() => {
-    dispatch(getProfile(user1.profile.id));
+    if(user1)
+      dispatch(getProfile(user1.profile.id));
   }, [dispatch]);
 
   const [userData, setUserData] = useState({

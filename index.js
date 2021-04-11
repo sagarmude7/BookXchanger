@@ -83,9 +83,9 @@ options={
 const io = require('socket.io')(server,options)
 
 io.on('connection', async(socket) => {
-  console.log("connected "+socket.id)
-  console.log(socket.rooms)
-
+  console.log("connected ")
+  console.log(socket.id)
+  console.log(socket.adapter.rooms)
   socket.on('disconnect',()=>{
     console.log("disconnected")
   })

@@ -108,7 +108,6 @@ const Auth = () => {
              <Fade down>
                 <Typography component="h1" variant="h4" style={{"textAlign":"center"}}>{ isSignup ? 'Register With Us' : 'Sign In to your Account' }</Typography>
                 <hr width='70%' style={{ border: "1px solid white"}}></hr>
-
                 <List>
                     <ListItem className={classes.list}>
                         <ListItemAvatar>

@@ -16,7 +16,7 @@ import {
 } from "@material-ui/core";
 import ChatBox from "./ChatBox/ChatBox";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-
+import img from "../Profile/profilepic.png";
 import Contact from "./ContactForm/Contact";
 import useStyles from "./styles.js";
 import { editProfile, getProfile } from "../../actions/user";
@@ -27,6 +27,10 @@ import { useHistory } from "react-router-dom";
 import Bounce from "react-reveal/Bounce";
 import Roll from "react-reveal/Roll";
 import Rotate from "react-reveal/Rotate";
+import {getBooks} from '../../actions/books'
+
+
+
 const OtherUser = ({ match }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -35,10 +39,18 @@ const OtherUser = ({ match }) => {
   const [err, setErr] = useState(false);
   const books = useSelector((state) => state.books);
   const sender = JSON.parse(localStorage.getItem('profile')).profile
+  
   const userId = match.params.userId;
   const history = useHistory();
   useEffect(() => {
     dispatch(getProfile(userId));
+  }, [dispatch]);
+
+  
+  useEffect(() => {
+    console.log("Getting Books");
+    //accepts an action call as an argument -> goes to actions folder
+    dispatch(getBooks());
   }, [dispatch]);
 
   //console.log(person);
@@ -61,6 +73,11 @@ const OtherUser = ({ match }) => {
       });
   }, [user, setUserData]);
 
+  useEffect(()=>{
+    if(userId === sender.id){
+      history.push('/profile')
+    }
+  },[])
   const [key, setKey] = useState(true);
 
   const [open, setOpen] = useState(false);
@@ -82,6 +99,8 @@ const OtherUser = ({ match }) => {
       setKey(true);
     }
   }, [user]);
+
+  
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -157,13 +176,20 @@ const OtherUser = ({ match }) => {
               onClick={() => history.goBack()}
               fontSize="large"
             ></ArrowBackIcon>
-            <img
+            {
+            user.profilePic?(
+              <img
               className={classes.pic}
-              src={user?.profilePic}
+              src={user.profilePic}
               alt="M"
               width="175"
               height="190"
             />
+            ):(
+              <img className={classes.pic} src={img} alt="M"></img>
+            )
+            }
+            
             <div className={classes.userDetails}>
               <Typography
                 variant="h5"

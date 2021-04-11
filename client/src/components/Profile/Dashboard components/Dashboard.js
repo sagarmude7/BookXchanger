@@ -9,7 +9,10 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Book from "./Book/Book";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getBooks } from "../../../actions/books.js";
+import { css } from "@emotion/react";
+import RiseLoader from "react-spinners/RiseLoader";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -35,6 +38,27 @@ const Dashboard = () => {
   const user = useSelector((state) => state.user);
   const books = useSelector((state)=>state.books);
   
+  const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    if(books.length===0){
+      dispatch(getBooks())
+      console.log("Books length 0");
+    }
+  })
+  useEffect(()=>{
+    if(books.length!==0){
+      setLoading(false)
+    }
+  },[books])
+
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
   function card(book) {
     return (
       <Grid item xs={12} sm={3}>
@@ -72,7 +96,12 @@ const Dashboard = () => {
   return (
   
       <Container className={classes.body}>
-        
+          {loading?(
+            <div style={{textAlign:"center"}}>
+              <RiseLoader loading={loading} css={override} size="50" color="#ff0"/>
+            </div>   
+          ):(
+            <>
             <Paper className={classes.root}>
               <Tabs
                 value={value}
@@ -113,6 +142,9 @@ const Dashboard = () => {
                 )}
                 </Grid>
             </TabPanel>
+            </>
+          )}
+            
            
     </Container>
     

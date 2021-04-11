@@ -3,18 +3,22 @@ import { makeStyles } from "@material-ui/core";
 const styles = makeStyles((theme) => ({
   main: {
     display: "flex",
+    background: "rgb(234,231,220)",
     "@media (max-width : 700px)": {
       display: "inline",
     },
   },
   sell: {
     width: "50%",
+    background: "rgb(234,231,220)",
+
     "@media (max-width : 700px)": {
       width: "100%",
     },
   },
   buy: {
     width: "50%",
+    background: "rgb(234,231,220)",
     borderRight: "groove",
     "@media (max-width : 700px)": {
       width: "100%",
@@ -23,8 +27,8 @@ const styles = makeStyles((theme) => ({
   },
 
   heading: {
-    marginTop: "10px",
-    color: "#df4c73",
+    paddingTop: "10px",
+    color: "#e98074",
     transition: ".5s",
     "&:hover::before": {
       transform: "scale(1.1)",
@@ -40,7 +44,7 @@ const styles = makeStyles((theme) => ({
   image: {
     height: "400px",
     width: "400px",
-
+    background: "rgb(234,231,220)",
     "@media (max-width : 700px)": {
       height: "250px",
       width: "250px",
@@ -50,6 +54,7 @@ const styles = makeStyles((theme) => ({
   paper: {
     border: "5px solid #000WWW",
     backgroundSize: "cover",
+    background: "rgb(234,231,220)",
     height: "400px",
     backgroundPosition: "center",
     width: "400px",
@@ -57,7 +62,9 @@ const styles = makeStyles((theme) => ({
 
   parent: {
     width: "80%",
-    margin: "20px auto",
+    background: "rgb(234,231,220)",
+    padding: "20px auto",
+    margin: "0px auto",
   },
 }));
 export default styles;

@@ -7,10 +7,12 @@ import ContactForm from "./ContactForm/contactform.js";
 const About = () => {
   return (
     <>
-      <Description />
-      <Feature />
-      <DevelopedBy/>
-      <ContactForm />
+      <div style={{ background: "e85a4f" }}>
+        <Description />
+        <Feature />
+        <DevelopedBy />
+        <ContactForm />
+      </div>
     </>
   );
 };

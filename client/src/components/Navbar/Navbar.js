@@ -1,9 +1,4 @@
-//Navbar
-//Importing Required Hooks
 import React, { useEffect, useState } from "react";
-
-//UseState  : For initializing and seting the state as per requirement.
-//UseEffect : For : When window is loaded depending upon the size it displays corresponding view.
 import {
   AppBar,
   Toolbar,
@@ -13,18 +8,18 @@ import {
   Drawer,
   Link,
   Avatar,
-  Tooltip,
-  Fab,
 } from "@material-ui/core";
+import logo from "../../logo/final.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import useStyles from "./styles.js";
 import { useDispatch } from "react-redux";
-import { Link as RouterLink, useHistory,useLocation } from "react-router-dom";
+import { Link as RouterLink, useHistory, useLocation } from "react-router-dom";
 import { LOGOUT } from "../../constants/actions";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Wishlist from "../WishlistComponent/Wishlist";
+import decode from 'jwt-decode'
 
 const Navbar = () => {
   const {
@@ -32,7 +27,6 @@ const Navbar = () => {
     parentTool,
     midNavbar,
     appBarSpacer,
-    logo,
     menuButton,
     appBar,
     brandContainer,
@@ -40,25 +34,25 @@ const Navbar = () => {
     drawerContainer,
     image,
     heading,
+    image1,
   } = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  //console.log(user);
   const [push, setPush] = useState(false);
   const history = useHistory();
   const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
   });
-  //Setting state fro mobileview
   const { mobileView, drawerOpen } = state;
 
+  
   const dispatch = useDispatch();
   const location = useLocation();
   const bookLogo = (
     <div className={brandContainer}>
-      <Typography component={Link} to="/" style={{ color: "white" }}>
-        Logo
-      </Typography>
+      <Link href="#" color="inherit">
+        <img className={image1} src={logo} alt="BookXchanger" />
+      </Link>
       {/* <img className={image} src="src" alt="icon" height="60" /> */}
     </div>
   );
@@ -72,6 +66,23 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(()=>{
+    if(user){
+      const token = user.token
+      const decodedToken = decode(token)
+      console.log(decodedToken.exp*1000,new Date().getTime())
+      if(decodedToken.exp*1000 < new Date().getTime()) 
+          logout()
+    }
+  },[])
+
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+    setUser(null);
+    history.push("/");
+  };
+  
 
   //get user data
 
@@ -90,11 +101,9 @@ const Navbar = () => {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("profile")));
     const token = user?.token;
-    
-  }, [location,user?.token]);
+  }, [location, user?.token]);
 
   const getDrawerChoices = () => {
-
     return (
       <>
         <Link
@@ -131,17 +140,13 @@ const Navbar = () => {
           className={menuButton}
           key="Sell Books"
         >
-          <MenuItem>Sell Books</MenuItem>
+          <MenuItem style={{ color: "rgb(216,199,165)"}}>Sell Books</MenuItem>
         </Link>
       </>
     );
   };
 
-  const logout = () => {
-    dispatch({ type: LOGOUT });
-    setUser(null);
-    history.push("/");
-  };
+  
   const getMenuButtons = () => {
     return (
       <>
@@ -233,14 +238,13 @@ const Navbar = () => {
         <Button
           component={RouterLink}
           to="/add"
-          style={{ padding: " 0px", margin: "2px" }}
+          style={{ padding: " 0px", margin: "2px", color: "rgb(216,199,165)" }}
           className={menuButton}
         >
           Sell Books
         </Button>
       </>
     );
-    
   };
 
   ///DisplayDesktop() Functionality
@@ -249,7 +253,9 @@ const Navbar = () => {
   const displayDesktop = () => {
     return (
       <>
-        <MenuBookIcon style={{ margin: "20px" }} />
+        <Link href="#" color="inherit">
+          <img className={image1} src={logo} alt="BookXchanger" />
+        </Link>
         <Toolbar className={toolbar}>{getMenuButtons()}</Toolbar>
       </>
     );
@@ -287,7 +293,9 @@ const Navbar = () => {
             <div className={drawerContainer}>{getDrawerChoices()}</div>
           </Drawer>
 
-          <MenuBookIcon style={{ margin: "20px" }} />
+          <Link href="#" color="inherit">
+            <img className={image1} src={logo} alt="BookXchanger" />
+          </Link>
         </Toolbar>
 
         {user ? (
@@ -376,4 +384,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

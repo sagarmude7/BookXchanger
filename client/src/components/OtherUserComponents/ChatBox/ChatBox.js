@@ -34,6 +34,7 @@ const ChatBox = (props) => {
 
   useEffect(() => {
     if (receiver) {
+      console.log(socket.disconnected)
       socket.emit('join', { id: user.id, receiver: receiver._id })
       console.log({ id: user.id, receiver: receiver._id })
     }
@@ -47,16 +48,15 @@ const ChatBox = (props) => {
   useEffect(() => {
     socket.on('send_msg', (msg) => {
       // console.log(msg)
-
+      console.log("incoming msg",msg)
       // console.log(++i)
       // console.log(msg.from===receiver._id)
-      if (i == 0) {
-        console.log("Msg")
-        console.log(i++)
-        if ((msg.from === receiver._id) || (msg.from === user.id))
-          dispatch({ type: ADD_CHAT, payload: msg })
+      console.log(i++)
+      if ((msg.from === receiver._id) || (msg.from === user.id)){
+        console.log("before called")
+         dispatch({ type: ADD_CHAT, payload: msg })
+         console.log("called")
       }
-
     })
   }, [])
 

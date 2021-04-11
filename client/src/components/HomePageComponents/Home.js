@@ -5,14 +5,15 @@ import Description from "./Description/Description.js";
 import Chatbot from "./Chatbot/chatbot.js";
 import HowToUse from "./HowToUse/HowToUse.js";
 import BookSlider from "./BookSlider/BookSlider.js";
-import {AlertTitle} from '@material-ui/lab'
+import { AlertTitle } from "@material-ui/lab";
 import Feedback from "./Feedback/Feedback.js";
 import { useSelector, useDispatch } from "react-redux";
 import { AUTH, CLEAR_NOTIFICATION, VALID } from "../../constants/actions.js";
-import Roll from 'react-reveal/Roll';
-import LightSpeed from 'react-reveal/LightSpeed';
-import Flip from 'react-reveal/Flip';
-import {socket} from '../../service/socket'
+import Roll from "react-reveal/Roll";
+import LightSpeed from "react-reveal/LightSpeed";
+import Flip from "react-reveal/Flip";
+import { socket } from "../../service/socket";
+import {getBooks} from '../../actions/books'
 const Home = () => {
   const [alert, setAlert] = useState(false);
   const dispatch = useDispatch();
@@ -32,10 +33,15 @@ const Home = () => {
   //     setShowNoti(true)
   // },[notification])
   useEffect(() => {
+    console.log("Getting Books");
+    //accepts an action call as an argument -> goes to actions folder
+    dispatch(getBooks());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (book.msg) setAlert(true);
   }, []);
 
-  
   const Alert = (props) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   };
@@ -45,7 +51,7 @@ const Home = () => {
       return;
     }
 
-    setAlert(false)
+    setAlert(false);
     dispatch({ type: VALID, payload: {} });
   };
 
@@ -59,25 +65,27 @@ const Home = () => {
 
   return (
     <>
-      {alert ? (
-        <Snackbar
-          style={{ top: "10%", left: "55%" }}
-          anchorOrigin={{ horizontal: "center", vertical: "top" }}
-          open={alert}
-          autoHideDuration={5000}
-          onClose={handleClose}
-        >
-          <Alert onClose={handleClose} severity="success">
-            <strong>{book.msg}</strong>
-          </Alert>
-        </Snackbar>
-      ) : null}
+      <div style={{ background: "e85a4f" }}>
+        {alert ? (
+          <Snackbar
+            style={{ top: "10%", left: "55%" }}
+            anchorOrigin={{ horizontal: "center", vertical: "top" }}
+            open={alert}
+            autoHideDuration={5000}
+            onClose={handleClose}
+          >
+            <Alert onClose={handleClose} severity="success">
+              <strong>{book.msg}</strong>
+            </Alert>
+          </Snackbar>
+        ) : null}
 
-      <Description />
-      <BookSlider />
-      <HowToUse />
-      <Feedback />
-      {/* <Chatbot /> */}
+        <Description />
+        <BookSlider />
+        <HowToUse />
+        <Feedback />
+       
+      </div>
     </>
   );
 };
