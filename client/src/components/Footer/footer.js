@@ -118,7 +118,7 @@ const Footer = () => {
                   <Link
                     to="/aboutus"
                     component={RouterLink}
-                    key="Conatct Us"
+                    key="About Us"
                     color="inherit"
                   >
                     Contact Us

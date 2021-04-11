@@ -74,14 +74,26 @@ const Contact = () => {
   return (
     <>
       <div className={classes.main}>
-        <div className={classes.top}>
-          <hr style={{ borderWidth: "0px" }} />
-          <hr style={{ borderWidth: "0px" }} />
-          <Typography variant="h5" align="center">
-            Get in touch with Us
+        <div style={{ background: "rgb(234,231,220)", paddingBottom: "20px" }}>
+          <Typography
+            variant="h5"
+            style={{
+              textAlign: "center",
+              background: "rgb(234,231,220)",
+              paddingTop: "10px",
+            }}
+          >
+            Get in Touch with US
           </Typography>
-          <hr style={{ border: "1px solid black", width: "300px" }} />
-          <hr style={{ borderWidth: "0px" }} />
+          <hr
+            style={{
+              border: "1.5px solid #8e8d8a",
+              width: "300px",
+              background: "rgb(234,231,220)",
+              marginTop: "0px",
+              marginBottom: "0px",
+            }}
+          />
         </div>
         <div className={classes.bottom}>
           <div className={classes.left}>

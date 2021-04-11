@@ -53,7 +53,7 @@ const Book = ({ book }) => {
 
   return (
     <>
-      <Card className={classes.card}>
+      <Card raised className={classes.card}>
         <div className={classes.top}>
           <CardMedia
             className={classes.media}

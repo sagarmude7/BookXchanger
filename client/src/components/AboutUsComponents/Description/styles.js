@@ -24,7 +24,7 @@ const styles = makeStyles(() => ({
     zIndex: "10",
     position: "absolute",
     transform: "translate(-50%,-50%)",
-    color: "white",
+    color: "#eae7dc",
     "@media (max-width : 700px)": {
       textAlign: "center",
       top: "50%",
@@ -34,7 +34,9 @@ const styles = makeStyles(() => ({
   },
 
   contentBold: {
-    color: "#df4c73",
+    background: "-webkit-linear-gradient(#e73426, #e85a4f)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
     "@media (max-width : 700px)": {
       textAlign: "center",
       top: "30%",
@@ -44,7 +46,6 @@ const styles = makeStyles(() => ({
   },
   parent: {
     width: "100%",
-    marginTop: "20px",
   },
 }));
 

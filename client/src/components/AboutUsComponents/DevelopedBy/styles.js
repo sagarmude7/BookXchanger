@@ -3,12 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles((theme) => ({
   card: {
     display: "flex",
+
     flexDirection: "column",
     justifyContent: "center",
     textDecoration: "none",
-    height: "27rem",
+    height: "25rem",
     marginBottom: "10px",
-    width: "20rem",
+    width: "auto",
     cursor: "pointer",
     transition: ".5s",
 
@@ -19,7 +20,7 @@ export default makeStyles((theme) => ({
     },
   },
   frontCard: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "rgb(216,199,165)",
     padding: "1rem 0rem 1rem 0rem",
   },
   backCard: {
@@ -28,7 +29,7 @@ export default makeStyles((theme) => ({
     backgroundPosition: "center",
   },
   backCardContent: {
-    backgroundColor: "rgba(223,76,115, 0.4)",
+    backgroundColor: "rgba(232, 90, 79, 0.4)",
     height: "100%",
     color: "#fff",
     display: "flex",
@@ -67,6 +68,7 @@ export default makeStyles((theme) => ({
     width: "100%",
     height: "80%",
     padding: "5px",
+    border: "5px solid #e85a4f",
     borderRadius: "50%",
     objectFit: "cover",
     margin: "0 1rem 1rem 1rem",
