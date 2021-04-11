@@ -24,7 +24,7 @@ const Message = () => {
         
     <div >
       <Container className={classes.messageBody}>
-      <Typography variant="h6" component="h6">Messages</Typography>
+      <Typography className={classes.messageHeading} >Recent Messages</Typography>
         {recents.map((user)=>(
           <Card className={classes.messageCard} variant="outlined">
             <CardContent className={classes.messageCardContent} >

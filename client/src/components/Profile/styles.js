@@ -35,7 +35,7 @@ export default makeStyles((theme) => ({
 
 
       head: {
-        backgroundColor:'#E2F0F9',
+        backgroundColor:'#EAE7DC',
         display:'flex',
         flexDirection:'row',
           
@@ -80,7 +80,7 @@ export default makeStyles((theme) => ({
       },
 
       body:{
-        backgroundColor:'#E2F0F9',
+        backgroundColor:'#EAE7DC',
         display:'flex',
         flexDirection:'column',
         width:"88%",
@@ -162,7 +162,7 @@ export default makeStyles((theme) => ({
       },
 
       rootTab: {
-        backgroundColor:'#F0F8FF' ,
+        backgroundColor:'#E98074' ,
         
         
       },
@@ -224,7 +224,7 @@ export default makeStyles((theme) => ({
         display:'flex',
         flexDirection:'row',
         width:"94%",
-        border:"solid green",
+        //border:"solid green",
         
       },
 
@@ -240,10 +240,16 @@ export default makeStyles((theme) => ({
 
      messageBody:{
       padding:0,
-      backgroundColor:'#E2F0F9',
-      border:"solid pink",
+      backgroundColor:'#EAE7DC',
+      //border:"solid pink",
       width:"88%"
       
+    },
+
+    messageHeading:{
+      fontSize:28,
+      fontWeight:2,
+      margin:20,
     },
      
 
@@ -537,17 +543,13 @@ export default makeStyles((theme) => ({
       textOverflow: "ellipsis",
       whiteSpace: "nowrap",
       overflow: "hidden",
+      width:"90%",
    },
 
    messageSecondary:{
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
       overflow:'hidden',
       whiteSpace:'nowrap',
       textOverflow:'ellipsis',
-      
-      
       fontSize:10,
       marginLeft:"8%",
    },
@@ -586,7 +588,17 @@ export default makeStyles((theme) => ({
 
   passTitle:{
     fontSize:10,
-  }
+  },
+
+  messagePrimary:{
+    fontSize:16,
+    
+ },
+
+ messageSecondary:{
+    fontSize:9,
+   
+ },
 
 
 },
