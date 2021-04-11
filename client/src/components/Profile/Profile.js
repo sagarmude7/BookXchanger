@@ -59,16 +59,23 @@ const Profile = () => {
   const classes = useStyles();
   const history = useHistory()
   const theme = useTheme();
-
+  const localUser = JSON.parse(localStorage.getItem('profile'))
   const recents = useSelector(state=>state.recents)
 
   const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
 
   useEffect(()=>{
+    if(!localUser){
+      history.push('/auth')
+    }
+  })
+  useEffect(()=>{
     dispatch(getRecentUsers())
   },[])
-  const userId = JSON.parse(localStorage.getItem("profile")).profile.id;
+  var userId;
+  if(localUser)
+    userId = JSON.parse(localStorage.getItem("profile")).profile.id;
   const books = useSelector((state) => state.books);
   var numberSoldBooks = 0;
   var totalListing = 0;
@@ -100,7 +107,7 @@ const Profile = () => {
     setOpen(false);
   };
 
-  console.log(user.profilePic);
+  // console.log(user.profilePic);
 
   return (
     <div className={classes.container}>

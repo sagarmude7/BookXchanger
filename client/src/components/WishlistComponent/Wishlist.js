@@ -24,27 +24,59 @@ import Carousel from "react-material-ui-carousel";
 import useStyles from "./style.js";
 import { getWishList } from "../../actions/user";
 import { FETCH_FAV } from "../../constants/actions";
+import {getBooks} from '../../actions/books'
 import Zoom from 'react-reveal/Zoom';
+import { css } from "@emotion/react";
+import RiseLoader from "react-spinners/RiseLoader";
+
 const Wishlist = () => {
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
-  const wishList = useSelector((state) => state.wishList);
+  // const wishList = useSelector((state) => state.wishList);
   const books = useSelector((state) => state.books);
-
+  const [loading, setLoading] = useState(true);
+  const [wishListedBooks,setWishListedBooks] = useState(books.filter(
+    (book) => book.wishListedBy.includes(user.profile.id) === true
+  ))
   const [type, settype] = useState("");
   const [sortbool, setSortbool] = useState(false);
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState();
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch({
-      type: FETCH_FAV,
-      payload: books.filter(
+
+  useEffect(()=>{
+    if(books.length===0){
+      dispatch(getBooks())
+      console.log("Books length 0");
+    }
+  })
+
+
+  useEffect(()=>{
+    if(books.length!==0){
+      setLoading(false)
+      setWishListedBooks(books.filter(
         (book) => book.wishListedBy.includes(user.profile.id) === true
-      ),
-    });
-  }, [dispatch, books]);
+      ))
+    }
+  },[books])
+
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
+
+  // useEffect(() => {
+  //   dispatch({
+  //     type: FETCH_FAV,
+  //     payload: books.filter(
+  //       (book) => book.wishListedBy.includes(user.profile.id) === true
+  //     ),
+  //   });
+  // }, [dispatch, books]);
 
   useEffect(() => {
     const sortArray = (type) => {
@@ -59,18 +91,18 @@ const Wishlist = () => {
       const sortProperty = types[type];
 
       if (type === "pricelowest") {
-        const sorted = [...wishList].sort(
+        const sorted = [...wishListedBooks].sort(
           (b, a) => b[sortProperty] - a[sortProperty]
         );
         setData(sorted);
       } else if (type === "datenewest") {
-        const sorted = [...wishList].sort(
+        const sorted = [...wishListedBooks].sort(
           (b, a) => b[sortProperty] - a[sortProperty]
         );
         sorted.reverse();
         setData(sorted);
       } else {
-        const sorted = [...wishList].sort(
+        const sorted = [...wishListedBooks].sort(
           (a, b) => b[sortProperty] - a[sortProperty]
         );
         setData(sorted);
@@ -130,8 +162,14 @@ const Wishlist = () => {
       </Carousel>
       <div className={classes.mainContainer}>
         <br />
-        <div>
-          {wishList.length !==0 ? (
+        {
+          loading?(
+            <div style={{textAlign:"center"}}>
+              <RiseLoader loading={loading} css={override} size="50" color="#ff0"/>
+            </div>   
+          ):(
+            <div>
+          {wishListedBooks.length !==0 ? (
             <button
             className={classes.sortButton}
             onClick={() => setSortbool(!sortbool)}
@@ -215,7 +253,7 @@ const Wishlist = () => {
           )}
           <div>
             <Container>
-              {wishList.length === 0 ? (
+              {wishListedBooks.length === 0 ? (
                 <CircularProgress />
               ) : (
                 <Grid
@@ -230,7 +268,7 @@ const Wishlist = () => {
                           <Book key={book._id} book={book} />
                         </Grid>
                       ))
-                    : wishList.map((book) => (
+                    : wishListedBooks.map((book) => (
                         <Grid item xs={12} sm={3}>
                           <Zoom bottom>
                           <Book key={book._id} book={book} />
@@ -242,7 +280,11 @@ const Wishlist = () => {
             </Container>
           </div>
         </div>
-      </div>
+      
+          )
+        }
+        </div>
+        
     </>
   );
 };

@@ -4,7 +4,6 @@ import { ADDFILTER} from "../../../constants/actions";
 import "./styles.css";
 import useStyles from "./styles.js";
 import { useSelector, useDispatch } from "react-redux";
-import { getBooks } from "../../../actions/books";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,

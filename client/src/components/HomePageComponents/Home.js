@@ -13,6 +13,7 @@ import Roll from "react-reveal/Roll";
 import LightSpeed from "react-reveal/LightSpeed";
 import Flip from "react-reveal/Flip";
 import { socket } from "../../service/socket";
+import {getBooks} from '../../actions/books'
 const Home = () => {
   const [alert, setAlert] = useState(false);
   const dispatch = useDispatch();
@@ -31,6 +32,12 @@ const Home = () => {
   //   if(notification.content)
   //     setShowNoti(true)
   // },[notification])
+  useEffect(() => {
+    console.log("Getting Books");
+    //accepts an action call as an argument -> goes to actions folder
+    dispatch(getBooks());
+  }, [dispatch]);
+
   useEffect(() => {
     if (book.msg) setAlert(true);
   }, []);

@@ -42,20 +42,20 @@ const App = () => {
     }
   },[notification])
 
+  
   useEffect(()=>{
-    if(socket.disconnected){
       if(localStorage.getItem('profile')){
         socket.connect()
         console.log("I am running")
         const id = JSON.parse(localStorage.getItem('profile')).profile.id
         // socket.emit('login',{id:id})
         socket.on("connect", () => {
+          console.log("connected")
           socket.emit('login',{id:id})
           console.log(socket.id)
         });
       }
-    }
-  },[socket])
+  },[])
 
   useEffect(()=>{
     socket.on('send_msg',(msg)=>{
@@ -64,11 +64,6 @@ const App = () => {
     })
   },[])
 
-  useEffect(() => {
-    console.log("Getting Books");
-    //accepts an action call as an argument -> goes to actions folder
-    dispatch(getBooks());
-  }, [dispatch]);
 
   const Alert = (props) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
