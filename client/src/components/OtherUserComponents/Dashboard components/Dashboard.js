@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Book from "../../AllBooksComponents/Book/Book";
 import { useSelector } from "react-redux";
+import { css } from "@emotion/react";
+import RiseLoader from "react-spinners/RiseLoader";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -33,7 +35,20 @@ function TabPanel(props) {
 const Dashboard = ({userId}) => {
   const user = useSelector((state) => state.user);
   const books = useSelector((state)=>state.books)
-  
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+    if(books.length!==0){
+      setLoading(false)
+    }
+  },[books])
+
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
   function card(book) {
     return (
       <Grid item xs={12} sm={4}>
@@ -76,9 +91,15 @@ const Dashboard = ({userId}) => {
         <Typography  variant="h5"  style={{textAlign: "center"}}>Ads Posted By {user.name}</Typography>
         <hr style={{ borderWidth: "0px" ,display :"none" }} />
         <hr style={{ borderWidth: "0px" ,border: "1.4px solid black", width:"30%" ,background :"black"}} />
-       <br />
-
-                <Grid
+        <br />
+        {
+          loading?(
+            <div style={{textAlign:"center",height:"40%"}} >
+              <RiseLoader loading={loading} css={override} size="50" color="#ff0"/>
+            </div>
+            
+          ):(
+            <Grid
                   className={classes.container}
                   container
                   alignItems="stretch"
@@ -91,6 +112,11 @@ const Dashboard = ({userId}) => {
                   <>No Active Ads</>
                 )}
                 </Grid>
+          )
+        }
+       
+
+                
       </Container>
     </>
   );

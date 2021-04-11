@@ -39,16 +39,19 @@ const AllBooks = () => {
   const [SORTBY, setSORTBY] = useState();
   const filterData = useSelector((state) => state.filterData);
 
-  useEffect(() => {
-    dispatch(getBooks());
-  }, [dispatch])
+  useEffect(()=>{
+    if(allBooks.length===0){
+      dispatch(getBooks())
+      console.log("Books length 0");
+    }
+  })
 
   useEffect(() => {
     dispatch({ type: ADDFILTER, payload: books });
   }, [dispatch, books]);
 
   useEffect(() => {
-    if (books.length !== 0) {
+    if (allBooks.length !== 0) {
       setLoading(false);
     }
   }, [allBooks]);

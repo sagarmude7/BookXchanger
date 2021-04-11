@@ -40,6 +40,10 @@ export default makeStyles((theme) => ({
         flexDirection:'row',
           
       },
+      profileImage:{
+        width: "150px",
+        height:"150px",
+      },
 
       root: {
         minWidth: 275,

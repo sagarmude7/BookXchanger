@@ -49,8 +49,6 @@ import { GET_BOOK } from "../../../constants/actions";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Book from "../../AllBooksComponents/Book/Book";
-
-import { getBooks } from "../../../actions/books";
 import Flip from "react-reveal/Flip";
 import Roll from "react-reveal/Roll";
 import HeadShake from "react-reveal/HeadShake";
@@ -91,11 +89,6 @@ const BookInfo = ({ match }) => {
 
   const [data, setData] = useState([]);
   const [sortType, setSortType] = useState();
-  useEffect(() => {
-    console.log("Getting Books");
-    //accepts an action call as an argument -> goes to actions folder
-    dispatch(getBooks());
-  }, [dispatch]);
 
   const responsive = {
     superLargeDesktop: {

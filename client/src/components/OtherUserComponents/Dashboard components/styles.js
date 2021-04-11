@@ -6,11 +6,13 @@ export default makeStyles((theme) => ({
      background:"#FFFFFF",
      borderRadius : "20px",
      margin: "20px 20px 0px 20px",
+     minHeight:"20rem",
      border : "1px solid blue",
      paddingBottom : "10px",
   },
   container : {
     width : "100%",
+   
     padding :"12px",
   }
 }));

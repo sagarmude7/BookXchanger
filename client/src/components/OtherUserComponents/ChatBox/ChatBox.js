@@ -52,8 +52,11 @@ const ChatBox = (props) => {
       // console.log(++i)
       // console.log(msg.from===receiver._id)
       console.log(i++)
-      if ((msg.from === receiver._id) || (msg.from === user.id))
+      if ((msg.from === receiver._id) || (msg.from === user.id)){
+        console.log("before called")
          dispatch({ type: ADD_CHAT, payload: msg })
+         console.log("called")
+      }
     })
   }, [])
 
