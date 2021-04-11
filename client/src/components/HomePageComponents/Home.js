@@ -77,7 +77,7 @@ const Home = () => {
       <BookSlider />
       <HowToUse />
       <Feedback />
-      <Chatbot />
+      {/* <Chatbot /> */}
     </>
   );
 };

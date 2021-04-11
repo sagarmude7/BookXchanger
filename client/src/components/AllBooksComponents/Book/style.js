@@ -39,7 +39,7 @@ export default makeStyles({
 
   favourite: {
     position: "relative",
-    top: "-90px",
+    top: "-28px",
     left: "250px",
     transform: "scale(1.3)",
     transition: ".5s",
@@ -51,13 +51,13 @@ export default makeStyles({
     },
     "@media (max-width : 900px)": {
       bottom: "2.5px",
-      left: "730px",
-      paddingBottom: "10px",
+      left: "73px",
+      paddingBottom: "1px",
       transform: "scale(1.3)",
     },
     "@media (max-width : 700px)": {
       bottom: "2.5px",
-      left: "230px",
+      left: "23px",
       paddingBottom: "10px",
       transform: "scale(1.3)",
     },
