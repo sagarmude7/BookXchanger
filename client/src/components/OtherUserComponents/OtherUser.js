@@ -1,35 +1,14 @@
-import Navbar from "../Navbar/Navbar";
-import {
-  TextField,
-  Divider,
-  Fab,
-  Card,
-  CardMedia,
-  Container,
-  Avatar,
-  Button,
-  Typography,
-  Paper,
-  Grid,
-  TextareaAutosize,
-  Box,
-} from "@material-ui/core";
+import { Container, Typography, Grid } from "@material-ui/core";
 import ChatBox from "./ChatBox/ChatBox";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import img from "../Profile/profilepic.png";
-import Contact from "./ContactForm/Contact";
 import useStyles from "./styles.js";
 import { editProfile, getProfile } from "../../actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
 import Dashboard from "./Dashboard components/Dashboard";
 import { useHistory } from "react-router-dom";
-import Bounce from "react-reveal/Bounce";
-import Roll from "react-reveal/Roll";
-import Rotate from "react-reveal/Rotate";
-import {getBooks} from '../../actions/books'
-
-
+import { getBooks } from "../../actions/books";
 
 const OtherUser = ({ match }) => {
   const classes = useStyles();
@@ -38,18 +17,15 @@ const OtherUser = ({ match }) => {
   const user = useSelector((state) => state.user);
   const [err, setErr] = useState(false);
   const books = useSelector((state) => state.books);
-  const sender = JSON.parse(localStorage.getItem('profile')).profile
-  
+  const sender = JSON.parse(localStorage.getItem("profile")).profile;
+
   const userId = match.params.userId;
   const history = useHistory();
   useEffect(() => {
     dispatch(getProfile(userId));
   }, [dispatch]);
 
-  
   useEffect(() => {
-    console.log("Getting Books");
-    //accepts an action call as an argument -> goes to actions folder
     dispatch(getBooks());
   }, [dispatch]);
 
@@ -73,11 +49,11 @@ const OtherUser = ({ match }) => {
       });
   }, [user, setUserData]);
 
-  useEffect(()=>{
-    if(userId === sender.id){
-      history.push('/profile')
+  useEffect(() => {
+    if (userId === sender.id) {
+      history.push("/profile");
     }
-  },[])
+  }, []);
   const [key, setKey] = useState(true);
 
   const [open, setOpen] = useState(false);
@@ -99,8 +75,6 @@ const OtherUser = ({ match }) => {
       setKey(true);
     }
   }, [user]);
-
-  
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -167,82 +141,71 @@ const OtherUser = ({ match }) => {
 
   return (
     <div className={classes.container}>
-      {/* <Navbar /> */}
-      <Bounce left>
-        <div className={classes.topBox}>
-          <Container className={classes.head}>
-            <ArrowBackIcon
-              className={classes.topLeft}
-              onClick={() => history.goBack()}
-              fontSize="large"
-            ></ArrowBackIcon>
-            {
-            user.profilePic?(
-              <img
+      <div className={classes.topBox}>
+        <Container className={classes.head}>
+          <ArrowBackIcon
+            className={classes.topLeft}
+            onClick={() => history.goBack()}
+            fontSize="large"
+          ></ArrowBackIcon>
+          {user.profilePic ? (
+            <img
               className={classes.pic}
               src={user.profilePic}
               alt="M"
               width="175"
               height="190"
             />
-            ):(
-              <img className={classes.pic} src={img} alt="M"></img>
-            )
-            }
-            
-            <div className={classes.userDetails}>
-              <Typography
-                variant="h5"
-                color="textPrimary"
-                className={classes.headUser}
-              >
-                {user.college}
-              </Typography>
-              <Typography
-                variant="h5"
-                color="textPrimary"
-                className={classes.headUser}
-              >
-                {user.location}
-              </Typography>
-            </div>
+          ) : (
+            <img className={classes.pic} src={img} alt="Profile Pic"></img>
+          )}
 
-            <div className={classes.listing1}>
-              <Typography className={classes.listNumber}>
-                {books.filter((book) => book.owner === userId).length}
-              </Typography>
-              <Typography className={classes.listLetter}>
-                {" "}
-                Total Listing{" "}
-              </Typography>
-            </div>
+          <div className={classes.userDetails}>
+            <Typography
+              variant="h4"
+              color="textPrimary"
+              className={classes.name}
+            >
+              {user.name}
+            </Typography>
 
-            <div className={classes.listing2}>
-              <Typography className={classes.listNumber}>
-                {
-                  books.filter(
-                    (book) => book.owner === userId && book.isSold === true
-                  ).length
-                }
-              </Typography>
-              <Typography className={classes.listLetter}> Ads Sold </Typography>
-            </div>
-          </Container>
-        </div>
-      </Bounce>
+            <Typography className={classes.headUser}>
+              College: {user.college}
+            </Typography>
+            <Typography className={classes.headUser}>
+              Location: {user.location}
+            </Typography>
+          </div>
+
+          <div className={classes.listing1}>
+            <Typography className={classes.listNumber}>
+              {books.filter((book) => book.owner === userId).length}
+            </Typography>
+            <Typography className={classes.listLetter}>
+              {" "}
+              Total Listing{" "}
+            </Typography>
+          </div>
+
+          <div className={classes.listing2}>
+            <Typography className={classes.listNumber}>
+              {
+                books.filter(
+                  (book) => book.owner === userId && book.isSold === true
+                ).length
+              }
+            </Typography>
+            <Typography className={classes.listLetter}> Ads Sold </Typography>
+          </div>
+        </Container>
+      </div>
 
       <Grid container spacing={2}>
         <Grid item xs={12} sm={8}>
-          <Roll left>
-            <Dashboard userId={userId} />
-          </Roll>
+          <Dashboard userId={userId} />
         </Grid>
         <Grid item xs={12} sm={4}>
-          {
-            user?(
-              <ChatBox sender={sender}/>
-            ):(<h2>ChatBox ...Loading</h2>)
-          }          
+          {user ? <ChatBox sender={sender} /> : <h2>ChatBox ...Loading</h2>}
         </Grid>
       </Grid>
     </div>

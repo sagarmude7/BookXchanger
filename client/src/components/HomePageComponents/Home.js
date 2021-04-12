@@ -13,7 +13,7 @@ import Roll from "react-reveal/Roll";
 import LightSpeed from "react-reveal/LightSpeed";
 import Flip from "react-reveal/Flip";
 import { socket } from "../../service/socket";
-import {getBooks} from '../../actions/books'
+import { getBooks } from "../../actions/books";
 const Home = () => {
   const [alert, setAlert] = useState(false);
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ const Home = () => {
       <div style={{ background: "e85a4f" }}>
         {alert ? (
           <Snackbar
-            style={{ top: "10%", left: "55%" }}
+            style={{ top: "10%", left: "50%" }}
             anchorOrigin={{ horizontal: "center", vertical: "top" }}
             open={alert}
             autoHideDuration={5000}
@@ -84,7 +84,6 @@ const Home = () => {
         <BookSlider />
         <HowToUse />
         <Feedback />
-       
       </div>
     </>
   );

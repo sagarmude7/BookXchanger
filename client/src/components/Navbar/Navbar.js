@@ -137,7 +137,7 @@ const Navbar = () => {
           className={menuButton}
           key="Sell Books"
         >
-          <MenuItem style={{ background: "#D8C3A5" }}>Sell Books</MenuItem>
+          <MenuItem style={{ backgroundColor: "#e98074" }}>Sell Books</MenuItem>
         </Link>
       </>
     );
@@ -234,7 +234,12 @@ const Navbar = () => {
         <Button
           component={RouterLink}
           to="/add"
-          // style={{ padding: " 0px", margin: "2px", color: "rgb(216,199,165)" }}
+          style={{
+            padding: " 10px",
+            margin: "5px",
+            color: "white",
+            backgroundColor: "#e98074",
+          }}
           className={sellButton}
         >
           Sell Books

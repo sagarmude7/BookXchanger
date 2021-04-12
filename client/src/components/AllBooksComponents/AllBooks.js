@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ADDFILTER, UPDATE_BOOKS } from "../../constants/actions";
+import { css } from "@emotion/react";
 import {
   Button,
   Grid,
@@ -23,8 +24,8 @@ import Book from "./Book/Book";
 import useStyles from "./style";
 import SearchBox from "./SearchBar/SearchBox.js";
 import Zoom from "react-reveal/Zoom";
-import BounceLoader from "react-spinners/BounceLoader";
-import { css } from "@emotion/react";
+import PulseLoader from "react-spinners/PulseLoader";
+
 import { getBooks } from "../../actions/books";
 import { Pagination } from "./Pagination/Pagination";
 
@@ -179,11 +180,12 @@ const AllBooks = () => {
           <div style={{ marginTop: "2px" }}>
             <Container>
               {loading ? (
-                <BounceLoader
+                <PulseLoader
                   loading={loading}
-                  color={color}
+                  color="#e98074"
                   css={override}
-                  size={70}
+                  size={30}
+                  style={{ background: "rgb(234,231,220)" }}
                 />
               ) : filterData.length === 0 ? (
                 <Typography align="center" variant="h5">
