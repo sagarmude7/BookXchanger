@@ -13,6 +13,9 @@ export default makeStyles({
       width: "100% !important",
       margin: "auto",
     },
+    // "@media (max-width : 900px)": {
+    //     height : "400px"
+    // },
   },
 
   top: {
@@ -34,7 +37,7 @@ export default makeStyles({
       height: "200px",
     },
     "@media (max-width : 400px)": {
-      height: "200px",
+      height: "160px",
     },
   },
 
@@ -51,17 +54,24 @@ export default makeStyles({
       textShadow: "0 0 5px #e85a4f",
     },
     "@media (max-width : 900px)": {
-      bottom: "2.5px",
-      left: "73px",
+      top: "2.5px",
+      left: "293px",
       paddingBottom: "1px",
       transform: "scale(1.3)",
     },
     "@media (max-width : 720px)": {
       bottom: "2.5px",
-      left: "200px",
+      left: "180px",
       paddingBottom: "10px",
       transform: "scale(1.3)",
     },
+    "@media (max-width : 428px)": {
+      top : "-29px",
+      left: "265px",
+      paddingBottom: "1px",
+      transform: "scale(1.3)",
+    },
+    
   },
 
   price: {
@@ -93,14 +103,36 @@ export default makeStyles({
     textAlign: "center",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
+    "@media (max-width : 900px)": {
+      fontSize: "12px",
+      marginTop :"0px",
+      padding : "1px",
+      position : "absolute",
+      top : "250px"
+    },
     "@media (max-width : 700px)": {
       fontSize: "12px",
       marginTop :"0px"
+    },
+    "@media (max-width : 428px)": {
+      fontSize: "12px",
+      marginTop :"0px",
+      width: "180px",
+      padding :"1px",
+      position : "absolute",
+      top : "190px"
+
     },
   },
 
   BookName: {
     margin: "5px 15px 7px 15px",
+    "@media (max-width : 900px)": {
+      margin: "-40px 15px 7px 15px",
+    },
+    "@media (max-width : 428px)": {
+      margin: "15px 15px 7px 15px",
+    },
   },
 
   Description: {
