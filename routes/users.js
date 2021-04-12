@@ -14,4 +14,4 @@ router.post('/send-email',auth,sendMail);
 
 // router.get('/wishList',auth,getWishList);
 
-module.exports = router
+module.exports = router;

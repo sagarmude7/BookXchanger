@@ -63,8 +63,9 @@ const ChatBox = (props) => {
   var i = 0;
   useEffect(() => {
     socket.on("send_msg", (msg) => {
-      console.log(i++);
-      if (msg.from === receiver._id || msg.from === user.id) {
+    
+      if ((msg.from === receiver._id || msg.from === user.id )) {
+        console.log("Sending..")
         dispatch({ type: ADD_CHAT, payload: msg });
       }
     });

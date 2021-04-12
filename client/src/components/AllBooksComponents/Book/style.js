@@ -44,7 +44,7 @@ export default makeStyles({
   favourite: {
     position: "relative",
     top: "-28px",
-    left: "250px",
+    left: "220px",
     transform: "scale(1.3)",
     transition: ".5s",
 
