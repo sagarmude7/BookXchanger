@@ -6,6 +6,10 @@ const styles = makeStyles((theme) => ({
     background: "rgb(234,231,220)",
     padding: "30px",
     display: "flex",
+    "@media (max-width : 700px)": {
+      display: "inline",
+      margin: "10px",
+    },
   },
 
   Part1: {

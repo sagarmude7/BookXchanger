@@ -35,6 +35,7 @@ const Navbar = () => {
     image,
     heading,
     image1,
+    sellButton,
   } = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [push, setPush] = useState(false);
@@ -52,7 +53,6 @@ const Navbar = () => {
       <Link href="#" color="inherit">
         <img className={image1} src={logo} alt="BookXchanger" />
       </Link>
-      {/* <img className={image} src="src" alt="icon" height="60" /> */}
     </div>
   );
 
@@ -70,7 +70,7 @@ const Navbar = () => {
     if (user) {
       const token = user.token;
       const decodedToken = decode(token);
-      console.log(decodedToken.exp * 1000, new Date().getTime());
+      // console.log(decodedToken.exp * 1000, new Date().getTime());
       if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
   }, []);
@@ -112,6 +112,7 @@ const Navbar = () => {
         >
           <MenuItem>Home</MenuItem>
         </Link>
+
         <Link
           to="/all"
           component={RouterLink}
@@ -133,11 +134,10 @@ const Navbar = () => {
         <Link
           to="/add"
           component={RouterLink}
-          color="inherit"
           className={menuButton}
           key="Sell Books"
         >
-          <MenuItem style={{ color: "rgb(216,199,165)" }}>Sell Books</MenuItem>
+          <MenuItem style={{ background: "#D8C3A5" }}>Sell Books</MenuItem>
         </Link>
       </>
     );
@@ -234,8 +234,8 @@ const Navbar = () => {
         <Button
           component={RouterLink}
           to="/add"
-          style={{ padding: " 0px", margin: "2px", color: "rgb(216,199,165)" }}
-          className={menuButton}
+          // style={{ padding: " 0px", margin: "2px", color: "rgb(216,199,165)" }}
+          className={sellButton}
         >
           Sell Books
         </Button>
