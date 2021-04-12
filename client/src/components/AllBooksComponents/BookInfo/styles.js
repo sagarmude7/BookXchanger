@@ -97,7 +97,8 @@ const styles = makeStyles((theme) => ({
   },
 
   middleContainer: {
-
+    display :"flex",
+    flexDirection : "row",
     color: "black",
     position: "relative",
     paddingTop: "20px",
@@ -120,10 +121,13 @@ const styles = makeStyles((theme) => ({
   imgAndInfo: {
     display: "block",
   },
-
+container : {
+    display : "flex",
+    flexDirection : "row"
+},
   bookDetails: {
     display: "inline-block",
-    width: "800px",
+    width: "900px",
     marginRight: "10px",
     backgroundColor: "rgb(216,199,165)",
     padding :"1px",
@@ -138,7 +142,7 @@ const styles = makeStyles((theme) => ({
 
   bookImage: {
     width: "400px",
-    height: "300px",
+    height: "400px",
     // width: "450px",
     // height: "500px",
     margin: "20px",
@@ -155,11 +159,12 @@ const styles = makeStyles((theme) => ({
   list: {
     lineHeight: "45px",
     font: "18px Sans-serif ",
-    width: "350px",
-    margin: "0px",
+    width: "428px",
+    marginRight : "10px",
     display: "inline-block",
+    paddingTop  : "20px",
     paddingLeft: "20px",
-    paddingRight: "20px",
+    paddingRight: "10px",
     marginTop: "6px",
     "@media (max-width : 700px)": {
       width: "100%",
@@ -178,6 +183,7 @@ const styles = makeStyles((theme) => ({
       margin: "10px",
       paddingRight: "10px",
     },
+    wordWrap : "break-word",
   },
 
   socialMediaButton: {
@@ -195,11 +201,11 @@ const styles = makeStyles((theme) => ({
     color: "black",
     display: "inline-block",
     width: "400px",
-    backgroundColor: "#f2f2f2",
-    height: "auto",
+    backgroundColor: "rgb(216,199,165)",
+    height: "400px",
     margin :"40px",
     padding :"20px",
-    borderRadius : "10px 2px 20px 10px",
+    borderRadius : "10px 1px 10px 10px",
     boxShadow:  "4px 1px 20px 10px grey",
     "@media (max-width : 700px)": {
       width: "100%",
@@ -210,12 +216,13 @@ const styles = makeStyles((theme) => ({
       width: "350px",
     },
 
+
   },
 
   contactUser: {
     display: "block",
     margin: "20px",
-   
+
   },
 
   UserInfo: {

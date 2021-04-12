@@ -5,7 +5,7 @@ body{
     /* background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%); */
     background-attachment: fixed;
     background-size: contain;
-    font-family: 'Patrick Hand', cursive !important;
+    font-family: 'Patrick Hand' !important;
 }
 #root {
     padding: 0px !important;
