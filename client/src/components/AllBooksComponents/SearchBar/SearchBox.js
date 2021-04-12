@@ -133,15 +133,22 @@ const SearchBox = () => {
 
   return (
     <>
-      <div className={classes.topContainer}>
+      <div
+        className={classes.topContainer}
+        style={{ backgroundColor: "#eae7dc" }}
+      >
         <Typography className={classes.head}>Search a Book </Typography>
       </div>
-      <div className={classes.middleContainer}>
+      <div
+        className={classes.middleContainer}
+        style={{ backgroundColor: "#eae7dc" }}
+      >
         <div className={classes.searchboxes} noValidate autoComplete="off">
           <div>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={4} className={classes.paper}>
                 <TextField
+                  className={classes.text}
                   id="outlined-basic"
                   label="Name of Book"
                   variant="outlined"
@@ -268,7 +275,6 @@ const SearchBox = () => {
           <Box textAlign="center">
             <Button
               variant="contained"
-              color="secondary"
               onClick={updateBooks}
               className={classes.button}
               startIcon={<SearchIcon />}
@@ -280,13 +286,14 @@ const SearchBox = () => {
           <ButtonGroup
             variant="text"
             size="large"
-            color="secondary"
             aria-label="outlined secondary button group"
           >
-            <Button onClick={showAdv}>
+            <Button style={{ color: "#e85a4f" }} onClick={showAdv}>
               {isadv ? "Hide Advanced Search" : "Advanced Search"}
             </Button>
-            <Button onClick={removeFilters}>Reset Search</Button>
+            <Button style={{ color: "#e85a4f" }} onClick={removeFilters}>
+              Reset Search
+            </Button>
           </ButtonGroup>
         </div>
       </div>

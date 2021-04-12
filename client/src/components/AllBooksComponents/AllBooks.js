@@ -17,6 +17,7 @@ import {
   InputLabel,
   TextField,
   FormControl,
+  Typography,
 } from "@material-ui/core";
 import Book from "./Book/Book";
 import useStyles from "./style";
@@ -133,10 +134,20 @@ const AllBooks = () => {
           <SearchBox />
         </Zoom>
 
-        <div className={classes.maincontainer}>
+        <div
+          className={classes.maincontainer}
+          style={{ backgroundColor: "#eae7dc" }}
+        >
           <div className={classes.sortby}>
-            <hr color="red" height="2px" width="100%"></hr>
-            <Box textAlign="right">
+            <hr
+              style={{
+                border: "1.5px solid #e85a4f",
+                width: "100%",
+                background: "rgb(234,231,220)",
+                margin: "0px auto",
+              }}
+            />
+            <Box textAlign="right" style={{ paddingTop: "15px" }}>
               <FormControl variant="outlined">
                 <InputLabel id="type-label">SORT BY</InputLabel>
                 <Select
@@ -175,7 +186,9 @@ const AllBooks = () => {
                   size={70}
                 />
               ) : filterData.length === 0 ? (
-                <h3>No books found with applied filters</h3>
+                <Typography align="center" variant="h5">
+                  No books found
+                </Typography>
               ) : (
                 <Grid
                   className={classes.container}
