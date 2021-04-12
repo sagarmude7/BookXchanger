@@ -19,7 +19,7 @@ import MenuBookIcon from "@material-ui/icons/MenuBook";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Wishlist from "../WishlistComponent/Wishlist";
-import decode from 'jwt-decode'
+import decode from "jwt-decode";
 
 const Navbar = () => {
   const {
@@ -45,7 +45,6 @@ const Navbar = () => {
   });
   const { mobileView, drawerOpen } = state;
 
-  
   const dispatch = useDispatch();
   const location = useLocation();
   const bookLogo = (
@@ -67,22 +66,20 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
-  useEffect(()=>{
-    if(user){
-      const token = user.token
-      const decodedToken = decode(token)
-      console.log(decodedToken.exp*1000,new Date().getTime())
-      if(decodedToken.exp*1000 < new Date().getTime()) 
-          logout()
+  useEffect(() => {
+    if (user) {
+      const token = user.token;
+      const decodedToken = decode(token);
+      console.log(decodedToken.exp * 1000, new Date().getTime());
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
-  },[])
+  }, []);
 
   const logout = () => {
     dispatch({ type: LOGOUT });
     setUser(null);
     history.push("/");
   };
-  
 
   //get user data
 
@@ -140,13 +137,12 @@ const Navbar = () => {
           className={menuButton}
           key="Sell Books"
         >
-          <MenuItem style={{ color: "rgb(216,199,165)"}}>Sell Books</MenuItem>
+          <MenuItem style={{ color: "rgb(216,199,165)" }}>Sell Books</MenuItem>
         </Link>
       </>
     );
   };
 
-  
   const getMenuButtons = () => {
     return (
       <>

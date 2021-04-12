@@ -52,7 +52,7 @@ const styles = makeStyles((theme) => ({
   button: {
     justifyContent: "center",
     backgroundColor: "#DF4C73",
-    marginBottom: "25px",
+    margin: "25px 0px",
     "@media (max-width : 700px)": {
       marginBottom: "10px",
     },

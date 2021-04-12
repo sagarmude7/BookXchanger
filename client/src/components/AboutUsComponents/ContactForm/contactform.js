@@ -74,7 +74,13 @@ const Contact = () => {
   return (
     <>
       <div className={classes.main}>
-        <div style={{ background: "rgb(234,231,220)", paddingBottom: "20px" }}>
+        <div
+          style={{
+            background: "rgb(234,231,220)",
+            paddingBottom: "20px",
+            alignItems: "centetr",
+          }}
+        >
           <Typography
             variant="h5"
             style={{
@@ -87,11 +93,11 @@ const Contact = () => {
           </Typography>
           <hr
             style={{
+              textAlign: "center",
               border: "1.5px solid #8e8d8a",
               width: "300px",
               background: "rgb(234,231,220)",
-              marginTop: "0px",
-              marginBottom: "0px",
+              margin: "0px auto",
             }}
           />
         </div>

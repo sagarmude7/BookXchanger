@@ -32,7 +32,7 @@ const Feature = () => {
           </Typography>
         </div>
 
-        <div>
+        <div className={classes.main1}>
           <div className={classes.Feature}>
             <List className={classes.root}>
               <ListItem alignItems="center" className={classes.listItem}>

@@ -5,10 +5,10 @@ const styles = makeStyles((theme) => ({
   root: {
     background: "rgb(234,231,220)",
     padding: "30px",
+    display: "flex",
   },
 
   Part1: {
-    display: "inline-block",
     alignItems: "center",
     width: "50%",
     padding: "10px",
@@ -27,9 +27,9 @@ const styles = makeStyles((theme) => ({
 
   Part2: {
     textAlign: "center",
-    display: "inline-block",
+
     width: "50%",
-    padding: "10px",
+    paddingTop: "100px",
     "@media (max-width : 700px)": {
       width: "100%",
     },

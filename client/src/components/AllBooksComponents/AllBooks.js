@@ -22,10 +22,10 @@ import Book from "./Book/Book";
 import useStyles from "./style";
 import SearchBox from "./SearchBar/SearchBox.js";
 import Zoom from "react-reveal/Zoom";
-import BounceLoader from 'react-spinners/BounceLoader'
+import BounceLoader from "react-spinners/BounceLoader";
 import { css } from "@emotion/react";
 import { getBooks } from "../../actions/books";
-import {Pagination} from './Pagination/Pagination';
+import { Pagination } from "./Pagination/Pagination";
 
 const AllBooks = () => {
   const dispatch = useDispatch();
@@ -40,14 +40,14 @@ const AllBooks = () => {
   const [SORTBY, setSORTBY] = useState();
   const filterData = useSelector((state) => state.filterData);
   const [currentPage, setcurrentPage] = useState(1);
-  const [booksPerpage, setbooksPerpage] = useState(4);
+  const [booksPerpage, setbooksPerpage] = useState(12);
 
-  useEffect(()=>{
-    if(allBooks.length===0){
-      dispatch(getBooks())
+  useEffect(() => {
+    if (allBooks.length === 0) {
+      dispatch(getBooks());
       console.log("Books length 0");
     }
-  })
+  });
 
   useEffect(() => {
     dispatch({ type: ADDFILTER, payload: books });
@@ -63,7 +63,6 @@ const AllBooks = () => {
     if (allBooks.length !== 0) {
       setBooks(allBooks.filter((book) => book.isSold === false));
     }
-
   }, [dispatch, allBooks]);
 
   useEffect(() => {
@@ -105,18 +104,16 @@ const AllBooks = () => {
     sortArray(sortType);
   }, [sortType]);
 
-
   const override = css`
     display: block;
     margin-left: 45%;
     border-color: red;
   `;
 
-
   const removeSort = () => {
-    setSortType("")
+    setSortType("");
     dispatch({ type: ADDFILTER, payload: books });
-  }
+  };
 
   // const handleChange = (event) => {
   //   setSortType(event.target.value);
@@ -124,9 +121,9 @@ const AllBooks = () => {
 
   const indexLast = currentPage * booksPerpage;
   const indexFirst = indexLast - booksPerpage;
-  const currentBooks = filterData.slice(indexFirst,indexLast);
+  const currentBooks = filterData.slice(indexFirst, indexLast);
   //console.log(currentBooks);
-  
+
   const paginate = (pageNumber) => setcurrentPage(pageNumber);
 
   return (
@@ -152,63 +149,59 @@ const AllBooks = () => {
                   onChange={(e) => setSortType(e.target.value)}
                   placeholder="Select Price Type"
                 >
-
-                  <MenuItem value="datenewest">
-                    Newest to Oldest
-                    </MenuItem>
-                  <MenuItem value="dateoldest">
-                    Oldest to Newest
-                    </MenuItem>
-                  <MenuItem value="pricelowest">
-                    Price: Low to High
-                    </MenuItem>
-                  <MenuItem value="pricehighest">
-                    Price: High to Low
-                    </MenuItem>
+                  <MenuItem value="datenewest">Newest to Oldest</MenuItem>
+                  <MenuItem value="dateoldest">Oldest to Newest</MenuItem>
+                  <MenuItem value="pricelowest">Price: Low to High</MenuItem>
+                  <MenuItem value="pricehighest">Price: High to Low</MenuItem>
                 </Select>
-                </FormControl>
-                <Button
-                  variant="text"
-                  color="secondary"
-                  onClick={removeSort}
-                  className={classes.button}
-                >
-                  Reset Sort
+              </FormControl>
+              <Button
+                variant="text"
+                color="secondary"
+                onClick={removeSort}
+                className={classes.button}
+              >
+                Reset Sort
               </Button>
             </Box>
           </div>
-            <div style={{ marginTop: "2px" }}>
-              <Container>
-                {
-                  loading ? (
-                    <BounceLoader loading={loading} color={color} css={override} size={70} />
-                  ) : (
-                    filterData.length === 0 ? (
-                      <h3>No books found with applied filters</h3>
-                    ) : (
-                      <Grid
-                        className={classes.container}
-                        container
-                        alignItems="stretch"
-                        spacing={3}
-                      >
-                        {currentBooks.map((book) => (
-                          <Grid item xs={12} sm={3}>
-                            <Book key={book._id} book={book} />
-                          </Grid>
-                        ))}
-                      </Grid>
-                    )
-                  )
-                }
-                <br/>
-                <Pagination booksPerpage={booksPerpage} totalBooks={filterData.length} paginate={paginate}/>
-                <br/>
-                <br/>
-              </Container>
-            </div>
+          <div style={{ marginTop: "2px" }}>
+            <Container>
+              {loading ? (
+                <BounceLoader
+                  loading={loading}
+                  color={color}
+                  css={override}
+                  size={70}
+                />
+              ) : filterData.length === 0 ? (
+                <h3>No books found with applied filters</h3>
+              ) : (
+                <Grid
+                  className={classes.container}
+                  container
+                  alignItems="stretch"
+                  spacing={3}
+                >
+                  {currentBooks.map((book) => (
+                    <Grid item xs={12} sm={3}>
+                      <Book key={book._id} book={book} />
+                    </Grid>
+                  ))}
+                </Grid>
+              )}
+              <br />
+              <Pagination
+                booksPerpage={booksPerpage}
+                totalBooks={filterData.length}
+                paginate={paginate}
+              />
+              <br />
+              <br />
+            </Container>
           </div>
         </div>
+      </div>
     </>
   );
 };
