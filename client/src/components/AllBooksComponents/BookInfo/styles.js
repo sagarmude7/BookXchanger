@@ -123,7 +123,7 @@ const styles = makeStyles((theme) => ({
 
   bookDetails: {
     display: "inline-block",
-    width: "800px",
+    width: "100%",
     marginRight: "10px",
     backgroundColor: "rgb(216,199,165)",
     padding :"1px",
@@ -137,8 +137,8 @@ const styles = makeStyles((theme) => ({
   },
 
   bookImage: {
-    width: "400px",
-    height: "300px",
+    width: "500px",
+    height: "400px",
     // width: "450px",
     // height: "500px",
     margin: "20px",
@@ -155,11 +155,12 @@ const styles = makeStyles((theme) => ({
   list: {
     lineHeight: "45px",
     font: "18px Sans-serif ",
-    width: "350px",
-    margin: "0px",
+    width: "450px",
+    marginRight : "10px",
     display: "inline-block",
-    paddingLeft: "20px",
-    paddingRight: "20px",
+    paddingTop  : "20px",
+    paddingLeft: "190px",
+    paddingRight: "10px",
     marginTop: "6px",
     "@media (max-width : 700px)": {
       width: "100%",

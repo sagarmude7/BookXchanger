@@ -164,7 +164,7 @@ const BookInfo = ({ match }) => {
                   </li>
 
                   <li>
-                    Subject:{" "}
+                    Subject:{" "} 
                     <span className={classes.name}>{book.subject}</span>
                   </li>
 
