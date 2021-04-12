@@ -14,9 +14,9 @@ export default makeStyles((theme) => ({
     transition: ".5s",
 
     "&:hover": {
-      color: "#df4c73",
+      color: "#e85a4f",
 
-      textShadow: "0 0 3px #df4c73",
+      textShadow: "0 0 2px #e85a4f",
     },
   },
   frontCard: {

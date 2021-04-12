@@ -21,7 +21,9 @@ const styles = makeStyles((theme) => ({
   },
   contentBold: {
     display: "inline-block",
-    color: "#df4c73",
+    background: "-webkit-linear-gradient(#e73426, #e85a4f)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
     textAlign: "center",
     "@media (max-width : 700px)": {
       textAlign: "center",
