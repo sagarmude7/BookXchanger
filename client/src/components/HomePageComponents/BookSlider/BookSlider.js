@@ -30,9 +30,11 @@ const BookSlider = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    console.log("Getting Books");
-    //accepts an action call as an argument -> goes to actions folder
-    dispatch(getBooks());
+    if (allBooks.length === 0) {
+      console.log("Getting Books");
+      //accepts an action call as an argument -> goes to actions folder
+      dispatch(getBooks());
+    }
   }, [dispatch]);
 
   useEffect(() => {
