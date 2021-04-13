@@ -264,8 +264,7 @@ const BookInfo = ({ match }) => {
                     margin: "0 10px 0 0",
                   }}
                 />
-
-                {book.tags.map((tags) => (
+                {book?.tags?.map((tags) => (
                   <Typography variant="body2" style={{ display: "inline" }}>
                     {" | "}
                     {tags}

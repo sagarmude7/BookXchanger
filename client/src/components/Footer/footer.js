@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useStyles from "./style.js";
 import logo from "../../logo/final.png";
 import { Typography, CssBaseline, Container, Link } from "@material-ui/core";
@@ -7,11 +7,17 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import EmailIcon from "@material-ui/icons/Email";
+import tawkTo from "tawkto-react";
 import Rotate from "react-reveal/Rotate";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 
 const Footer = () => {
   const classes = useStyles();
+  // const tawkToPropertyId = "6074710cf7ce182709399768";
+  // const tawkToKey = "e379d389f904666fc0d2df936b0d067dfdd5911e";
+  // useEffect(() => {
+  //   tawkTo(tawkToPropertyId, tawkToKey);
+  // }, []);
   return (
     <>
       <CssBaseline />
