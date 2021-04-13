@@ -3,6 +3,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Description from "./Description/Description.js";
 import Chatbot from "./Chatbot/chatbot.js";
+import tawkTo from "tawkto-react";
 import HowToUse from "./HowToUse/HowToUse.js";
 import BookSlider from "./BookSlider/BookSlider.js";
 import { AlertTitle } from "@material-ui/lab";
@@ -32,6 +33,7 @@ const Home = () => {
   //   if(notification.content)
   //     setShowNoti(true)
   // },[notification])
+
   useEffect(() => {
     console.log("Getting Books");
     //accepts an action call as an argument -> goes to actions folder
@@ -79,7 +81,6 @@ const Home = () => {
             </Alert>
           </Snackbar>
         ) : null}
-
         <Description />
         <BookSlider />
         <HowToUse />
