@@ -108,8 +108,9 @@ const AllBooks = () => {
 
   const override = css`
     display: block;
-    margin-left: 45%;
+    padding-left: 45%;
     border-color: red;
+    background-color: #eae7dc;
   `;
 
   const removeSort = () => {

@@ -72,8 +72,9 @@ const BookSlider = () => {
 
   const override = css`
     display: block;
-    margin-left: 45%;
+    padding-left: 45%;
     border-color: red;
+    background-color: #eae7dc;
   `;
 
   const responsive = {
@@ -91,7 +92,7 @@ const BookSlider = () => {
       items: 2,
     },
     mobile: {
-      breakpoint: { max: 460, min: 0 },
+      breakpoint: { max: 360, min: 0 },
       items: 1,
     },
   };

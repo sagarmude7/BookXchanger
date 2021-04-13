@@ -7,14 +7,13 @@ const styles = makeStyles((theme) => ({
   topContainer: {
     position: "relative",
     width: "100%",
-    color: "white",
     height: "350px",
+    zIndex: "10",
     paddingTop: "20px",
-    backgroundColor: "rgb(216,199,165)",
-    zIndex  : "10",
-    backgroundImage : "url('https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1600')",
+    backgroundImage:
+      "linear-gradient(rgba(0,1,1,0.3),rgba(1,0,0.5)),url('https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')",
     "@media (max-width : 700px)": {
-      height: "225px",
+      height: "275px",
       paddingTop: "40px",
     },
   },
@@ -33,11 +32,11 @@ const styles = makeStyles((theme) => ({
   },
 
   topLeft: {
-    color: "black",
+    color: "white",
     margin: "10px",
-    fontSize: "55px",
+    fontSize: "40px",
     "@media (max-width : 700px)": {
-      margin: "5px",
+      margin: "10px",
       fontSize: "25px",
     },
   },
@@ -46,6 +45,7 @@ const styles = makeStyles((theme) => ({
     fontSize: "30px",
     color: "rgb(216,199,165)",
     display: "inline",
+    textShadow: "1px 1px 2px black ,0 0 10px blue, 0 0 5px green",
     "@media (max-width : 700px)": {
       fontSize: "15px",
     },
@@ -53,7 +53,7 @@ const styles = makeStyles((theme) => ({
 
   branch: {
     color: "rgb(216,199,165)",
-    backgroundColor: "#df4c73",
+    backgroundColor: "#e98074",
     width: "200px",
     minWidth: "10px",
     padding: "3px 5px",
@@ -64,6 +64,7 @@ const styles = makeStyles((theme) => ({
     textAlign: "center",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
+    textShadow: "none",
     "@media (max-width : 700px)": {
       fontSize: "10px",
       width: "125px",
@@ -73,23 +74,25 @@ const styles = makeStyles((theme) => ({
   date: {
     color: "white",
     fontSize: "15px",
+    textShadow: "1px 1px 2px black ,0 0 10px blue, 0 0 5px green",
     "@media (max-width : 700px)": {
       fontSize: "9px",
     },
-    zIndex :"-2"
+    zIndex: "-2",
   },
 
   bookMain: {
     color: "rgb(216,199,165)",
     display: "inline-block",
-    textShadow :"1px 1px 2px black ,0 0 10px blue, 0 0 5px green"
+    textShadow: "1px 1px 2px black ,0 0 10px blue, 0 0 5px green",
   },
   price: {
     display: "inline-block",
     fontSize: "25px",
     fontWeight: "600",
-    color: "#df4c73",
+    color: "#d8c3a5",
     marginLeft: "100px",
+    textShadow: "1px 1px 2px black ,0 0 10px blue, 0 0 5px green",
     "@media (max-width : 700px)": {
       fontSize: "15px",
       marginLeft: "0px",
@@ -97,81 +100,77 @@ const styles = makeStyles((theme) => ({
   },
 
   middleContainer: {
-    display :"flex",
-    flexDirection : "row",
+    display: "flex",
+    flexDirection: "row",
     color: "black",
     position: "relative",
     paddingTop: "20px",
     paddingLeft: "6%",
     paddingRight: "6%",
     paddingBottom: "20px",
+    background: "rgb(234,231,220)",
     position: "relative",
     width: "100%",
     color: "black",
     margin: "auto",
     height: "auto",
-    background: "#e6e6e6",
+
     "@media (max-width : 700px)": {
       paddingLeft: "2%",
       paddingRight: "2%",
+      display: "inline",
+      background: "rgb(234,231,220)",
     },
-    borderRadius : "10px 20px 10px 30px"
   },
 
   imgAndInfo: {
     display: "block",
   },
-container : {
-    display : "flex",
-    flexDirection : "row"
-},
+  container: {
+    display: "flex",
+    flexDirection: "row",
+  },
   bookDetails: {
-    display: "inline-block",
+    display: "inline",
     width: "900px",
     marginRight: "10px",
     backgroundColor: "rgb(216,199,165)",
-    padding :"1px",
-    borderRadius : "10px 2px 20px 10px",
-    boxShadow:  "4px 1px 20px 10px grey",
+    padding: "1px",
+    borderRadius: "5px",
+    boxShadow: "1px 1px 30px 2px grey",
     "@media (max-width : 900px)": {
       width: "100%",
       marginRight: "0px",
     },
-
   },
 
   bookImage: {
     width: "400px",
     height: "400px",
-    // width: "450px",
-    // height: "500px",
     margin: "20px",
     float: "left",
     display: "inline-block",
     "@media (max-width : 900px)": {
       width: "100%",
       height: "400px",
-      margin: "10px",
-      paddingRight: "20px",
+      margin: "0px",
+      padding: "20px",
     },
   },
 
   list: {
     lineHeight: "45px",
     font: "18px Sans-serif ",
-    width: "428px",
-    marginRight : "10px",
+    width: "auto",
     display: "inline-block",
-    paddingTop  : "20px",
-    paddingLeft: "20px",
-    paddingRight: "10px",
+
+    padding: "20px",
     marginTop: "6px",
     "@media (max-width : 700px)": {
       width: "100%",
-      paddingLeft: "10px",
-      paddingRight: "10px",
+      margin: "0px",
+      padding: "20px",
     },
-
   },
 
   bookDescription: {
@@ -180,58 +179,56 @@ container : {
     paddingRight: "",
     "@media (max-width : 700px)": {
       width: "100%",
-      margin: "10px",
-      paddingRight: "10px",
+      margin: "0px",
+      padding: "20px",
     },
-    wordWrap : "break-word",
+    wordWrap: "break-word",
   },
 
   socialMediaButton: {
     margin: "4px",
+    transition: "0.5s",
+    "&:hover": {
+      transform: "scale(1.3)",
+    },
   },
 
   name: {
-    color: "#DF4C73",
+    color: "#E85A4F",
     "&:hover": {
-      color: "black",
+      color: "E98O74",
     },
   },
 
   sideContainer: {
     color: "black",
-    display: "inline-block",
-    width: "400px",
+    display: "inline",
+    width: "350px",
     backgroundColor: "rgb(216,199,165)",
-    height: "400px",
-    margin :"40px",
-    padding :"20px",
-    borderRadius : "10px 1px 10px 10px",
-    boxShadow:  "4px 1px 20px 10px grey",
+    height: "auto",
+    padding: "20px",
+    marginLeft: "10px",
+    borderRadius: "5px",
+    boxShadow: "1px 1px 30px 2px grey",
     "@media (max-width : 700px)": {
       width: "100%",
-      paddingLeft: "2%",
-      paddingRight: "2%",
-      margin :"10px",
-      padding :"2px",
-      width: "350px",
+      padding: "20px",
+      marginLeft: "0px",
     },
-
-
   },
 
   contactUser: {
     display: "block",
-    margin: "20px",
-
+    margin: "5px",
   },
 
   UserInfo: {
     margin: "10px",
-    fontSize : "29px"
+    fontSize: "29px",
   },
   userProfilePic: {
-    height: "100px",
-    width: "100px",
+    height: "80px",
+    width: "80px",
     borderRadius: "50%",
     float: "left",
     marginRight: "10px",

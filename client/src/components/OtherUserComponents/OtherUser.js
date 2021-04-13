@@ -200,7 +200,7 @@ const OtherUser = ({ match }) => {
         </Container>
       </div>
 
-      <Grid container spacing={2}>
+      <Grid container style={{ padding: "10px" }}>
         <Grid item xs={12} sm={8}>
           <Dashboard userId={userId} />
         </Grid>

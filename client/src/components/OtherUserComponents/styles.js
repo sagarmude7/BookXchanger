@@ -11,10 +11,15 @@ import { createMuiTheme } from "@material-ui/core/styles";
 export default makeStyles((theme) => ({
   container: {
     paddingTop: "20px",
+    backgroundColor: "#EAE7DC",
   },
 
   topBox: {
+    paddingTop: "10px",
     width: "100%",
+    backgroundColor: "rgb(255,255,255)",
+    backgroundColor:
+      "radial-gradient(circle, rgba(255,255,255,1) 7%, rgba(216,195,165,1) 97%)",
   },
 
   userDetails: {
@@ -27,7 +32,12 @@ export default makeStyles((theme) => ({
   },
 
   head: {
-    backgroundColor: "#E2F0F9",
+    paddingTop: "10px",
+    border: "2px solid #8e8d8a",
+    backgroundColor: "rgb(255,255,255)",
+
+    backgroundColor:
+      "radial-gradient(circle, rgba(255,255,255,1) 7%, rgba(216,195,165,1) 97%)",
     display: "flex",
     flexDirection: "row",
     transform: "translateY(10%,0%)",

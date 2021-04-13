@@ -2,17 +2,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 
 export default makeStyles((theme) => ({
-  body:{
-     background:"#FFFFFF",
-     borderRadius : "20px",
-     margin: "20px 20px 0px 20px",
-     minHeight:"20rem",
-     border : "1px solid blue",
-     paddingBottom : "10px",
+  body: {
+    background: "#eae7dc",
+    borderRadius: "5px",
+    minHeight: "auto",
+    margin: "20px 10px",
+    border: "2px solid #8e8d8a",
   },
-  container : {
-    width : "100%",
-   
-    padding :"12px",
-  }
+  container: {
+    width: "100%",
+    padding: "12px",
+    margin: "0px",
+  },
 }));

@@ -63,9 +63,8 @@ const ChatBox = (props) => {
   var i = 0;
   useEffect(() => {
     socket.on("send_msg", (msg) => {
-    
-      if ((msg.from === receiver._id || msg.from === user.id )) {
-        console.log("Sending..")
+      if (msg.from === receiver._id || msg.from === user.id) {
+        console.log("Sending..");
         dispatch({ type: ADD_CHAT, payload: msg });
       }
     });
@@ -85,20 +84,14 @@ const ChatBox = (props) => {
   };
 
   return (
-    <Container className={classes.chatBox}>
+    <Container>
       <div className={classes.chatHead}>
-        <Typography variant="h5" className={classes.title}>
+        <Typography variant="h6" className={classes.title}>
           Contact {receiver?.name}
         </Typography>
-        <Typography variant="h6" style={{ textAlign: "center" }}>
+        <Typography variant="body1" style={{ textAlign: "center" }}>
           Send Message
         </Typography>
-        <hr
-          style={{
-            border: "1px solid #eae7dc",
-            width: "100%",
-          }}
-        />
       </div>
 
       <div className={classes.msgBox}>
@@ -106,24 +99,32 @@ const ChatBox = (props) => {
           ? chats.map((msg) =>
               msg.from === user.id ? (
                 <>
-                  <p className={classes.msg1}>
+                  <Typography
+                    variant="body2"
+                    component="p"
+                    className={classes.msg1}
+                  >
                     {msg.content} <br />
-                    <span className={classes.time}>
+                    <span style={{ fontSize: "12px" }} className={classes.time}>
                       {moment(msg.sentAt).format("LT")}
                     </span>{" "}
-                  </p>
+                  </Typography>
 
                   <br />
                 </>
               ) : (
                 <>
-                  <p className={classes.msg2}>
+                  <Typography
+                    variant="body2"
+                    component="p"
+                    className={classes.msg2}
+                  >
                     {msg.content} <br />
-                    <span className={classes.time}>
+                    <span style={{ fontSize: "12px" }} className={classes.time}>
                       {" "}
                       {moment(msg.sentAt).format("LT")}
                     </span>
-                  </p>
+                  </Typography>
 
                   <br />
                 </>
@@ -146,8 +147,9 @@ const ChatBox = (props) => {
           aria-label="edit"
           onClick={handleSubmit}
           className={classes.SendButton}
+          style={{ backgroundColor: "#e85a4f", margin: "0px 10px" }}
         >
-          <SendIcon />
+          <SendIcon style={{ backgroundColor: "#e85a4f", color: "white" }} />
         </Fab>
       </div>
     </Container>

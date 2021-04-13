@@ -5,7 +5,6 @@ export default makeStyles({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "rgb(216,199,165)",
-
     borderRadius: "15px",
     height: "100%",
     position: "relative",
@@ -66,12 +65,11 @@ export default makeStyles({
       transform: "scale(1.3)",
     },
     "@media (max-width : 428px)": {
-      top : "-29px",
+      top: "-29px",
       left: "265px",
       paddingBottom: "1px",
       transform: "scale(1.3)",
     },
-    
   },
 
   price: {
@@ -105,23 +103,22 @@ export default makeStyles({
     verticalAlign: "middle",
     "@media (max-width : 900px)": {
       fontSize: "12px",
-      marginTop :"0px",
-      padding : "1px",
-      position : "absolute",
-      top : "250px"
+      marginTop: "0px",
+      padding: "1px",
+      position: "absolute",
+      top: "250px",
     },
     "@media (max-width : 700px)": {
       fontSize: "12px",
-      marginTop :"0px"
+      marginTop: "0px",
     },
     "@media (max-width : 428px)": {
       fontSize: "12px",
-      marginTop :"0px",
+      marginTop: "0px",
       width: "180px",
-      padding :"1px",
-      position : "absolute",
-      top : "190px"
-
+      padding: "1px",
+      position: "absolute",
+      top: "190px",
     },
   },
 
