@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   mainContainer: {
-    backgroundColor: "#286FB4",
+    backgroundColor: "rgb(216,199,165)",
     backgroundImage: `url(${"https://www.transparenttextures.com/patterns/concrete-wall-2.png"})`,
   },
   container: {

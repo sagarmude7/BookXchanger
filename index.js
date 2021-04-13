@@ -5,6 +5,8 @@ const connectDB = require("./config/db");
 const compression = require('compression')
 const http = require('http')
 const Message = require('./models/Message')
+const {sendChatMail} = require('./controllers/users')
+const User = require('./models/User')
 
 
 //port
@@ -138,10 +140,18 @@ io.on('connection', async(socket) => {
       })
       await message.save()
       console.log(socket.adapter.rooms)
-      console.log(msg.from)
-      console.log("sending msg")
-      await io.sockets.in(msg.from).emit('send_msg',{content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt})
-      await io.sockets.in(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt} );
+      if(socket.adapter.rooms.has(msg.to)){
+        console.log("sending msg")
+        await io.sockets.in(msg.from).emit('send_msg',{content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt})
+        await io.sockets.in(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt} );
+      }else{
+        const receiver = await User.findById(message.to)
+        console.log(receiver.email,receiver.name,message.fromName,`http://localhost:3000/user/${message.from}`)
+        await sendChatMail(receiver.email,receiver.name,message.fromName,`http://localhost:3000/user/${message.from}`)
+      }
+      
+
+      
     }catch(err){
       console.log("Some error occured")
     }  

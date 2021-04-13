@@ -24,8 +24,8 @@ import Carousel from "react-material-ui-carousel";
 import useStyles from "./style.js";
 import { getWishList } from "../../actions/user";
 import { FETCH_FAV } from "../../constants/actions";
-import {getBooks} from '../../actions/books'
-import Zoom from 'react-reveal/Zoom';
+import { getBooks } from "../../actions/books";
+import Zoom from "react-reveal/Zoom";
 import { css } from "@emotion/react";
 import RiseLoader from "react-spinners/RiseLoader";
 
@@ -35,9 +35,9 @@ const Wishlist = () => {
   // const wishList = useSelector((state) => state.wishList);
   const books = useSelector((state) => state.books);
   const [loading, setLoading] = useState(true);
-  const [wishListedBooks,setWishListedBooks] = useState(books.filter(
-    (book) => book.wishListedBy.includes(user.profile.id) === true
-  ))
+  const [wishListedBooks, setWishListedBooks] = useState(
+    books.filter((book) => book.wishListedBy.includes(user.profile.id) === true)
+  );
   const [type, settype] = useState("");
   const [sortbool, setSortbool] = useState(false);
   const [data, setData] = useState([]);
@@ -45,71 +45,29 @@ const Wishlist = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    if(books.length===0){
-      dispatch(getBooks())
+  useEffect(() => {
+    if (books.length === 0) {
+      dispatch(getBooks());
       console.log("Books length 0");
     }
-  })
-
-
-  useEffect(()=>{
-    if(books.length!==0){
-      setLoading(false)
-      setWishListedBooks(books.filter(
-        (book) => book.wishListedBy.includes(user.profile.id) === true
-      ))
-    }
-  },[books])
-
-  const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
-
-
-  // useEffect(() => {
-  //   dispatch({
-  //     type: FETCH_FAV,
-  //     payload: books.filter(
-  //       (book) => book.wishListedBy.includes(user.profile.id) === true
-  //     ),
-  //   });
-  // }, [dispatch, books]);
+  });
 
   useEffect(() => {
-    const sortArray = (type) => {
-      //console.log(type);
-      const types = {
-        pricehighest: "price",
-        pricelowest: "price",
-        dateoldest: "createdAt",
-        datenewest: "createdAt",
-      };
+    if (books.length !== 0) {
+      setLoading(false);
+      setWishListedBooks(
+        books.filter(
+          (book) => book.wishListedBy.includes(user.profile.id) === true
+        )
+      );
+    }
+  }, [books]);
 
-      const sortProperty = types[type];
-
-      if (type === "pricelowest") {
-        const sorted = [...wishListedBooks].sort(
-          (b, a) => b[sortProperty] - a[sortProperty]
-        );
-        setData(sorted);
-      } else if (type === "datenewest") {
-        const sorted = [...wishListedBooks].sort(
-          (b, a) => b[sortProperty] - a[sortProperty]
-        );
-        sorted.reverse();
-        setData(sorted);
-      } else {
-        const sorted = [...wishListedBooks].sort(
-          (a, b) => b[sortProperty] - a[sortProperty]
-        );
-        setData(sorted);
-      }
-    };
-    sortArray(sortType);
-  }, [sortType]);
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
 
   var images = [
     {
@@ -152,7 +110,7 @@ const Wishlist = () => {
         indicators={false}
         animation="fade"
         autoPlay={true}
-        interval={5000}
+        interval={7000}
         stopAutoPlayOnHover={false}
         navButtonsAlwaysInvisible={true}
       >
@@ -162,129 +120,47 @@ const Wishlist = () => {
       </Carousel>
       <div className={classes.mainContainer}>
         <br />
-        {
-          loading?(
-            <div style={{textAlign:"center"}}>
-              <RiseLoader loading={loading} css={override} size="50" color="#ff0"/>
-            </div>   
-          ):(
-            <div>
-          {wishListedBooks.length !==0 ? (
-            <button
-            className={classes.sortButton}
-            onClick={() => setSortbool(!sortbool)}
-            >
-              <span style={{ fontSize: "1.1rem" }}>Sort</span>
-          </button>
-          ):(
-            <></>
-          )}
-          
-
-          {sortbool === true ? (
-            <>
-              <Box textAlign="center">
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="Sort ByTypeLabel">Sort By</InputLabel>
-                  <Select
-                    labelId="SortByLabel"
-                    id="SortBy"
-                    label="SortBy"
-                    value={type}
-                  >
-                    <MenuItem value="Price Lowest">
-                      <Paper className={classes.paper}>
-                        <FormControlLabel
-                          value="pricelowest"
-                          control={
-                            <Radio
-                              onClick={(e) => setSortType(e.target.value)}
-                            />
-                          }
-                          label="Price (Lowest)"
-                        />
-                      </Paper>
-                    </MenuItem>
-                    <MenuItem value="Price Highest">
-                      <Paper className={classes.paper}>
-                        <FormControlLabel
-                          value="pricehighest"
-                          control={
-                            <Radio
-                              onClick={(e) => setSortType(e.target.value)}
-                            />
-                          }
-                          label="Price (Highest)"
-                        />
-                      </Paper>
-                    </MenuItem>
-                    <MenuItem value="Date Newest">
-                      <Paper className={classes.paper}>
-                        <FormControlLabel
-                          value="datenewest"
-                          control={
-                            <Radio
-                              onClick={(e) => setSortType(e.target.value)}
-                            />
-                          }
-                          label="Date Added (Newest)"
-                        />
-                      </Paper>
-                    </MenuItem>
-                    <MenuItem value="Date Oldest">
-                      <Paper className={classes.paper}>
-                        <FormControlLabel
-                          value="dateoldest"
-                          control={
-                            <Radio
-                              onClick={(e) => setSortType(e.target.value)}
-                            />
-                          }
-                          label="Date Added (Oldest)"
-                        />
-                      </Paper>
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </>
-          ) : (
-            <></>
-          )}
-          <div>
-            <Container>
-              {wishListedBooks.length === 0 ? (
-                <CircularProgress />
-              ) : (
-                <Grid
-                  className={classes.container}
-                  container
-                  alignItems="stretch"
-                  spacing={3}
-                >
-                  {sortbool === true
-                    ? data.map((book) => (
-                        <Grid item xs={12} sm={3}>
-                          <Book key={book._id} book={book} />
-                        </Grid>
-                      ))
-                    : wishListedBooks.map((book) => (
-                        <Grid item xs={12} sm={3}>
-                          <Zoom bottom>
-                          <Book key={book._id} book={book} />
-                          </Zoom>
-                        </Grid>
-                      ))}
-                </Grid>
-              )}
-            </Container>
+        {loading ? (
+          <div style={{ textAlign: "center" }}>
+            <RiseLoader
+              loading={loading}
+              css={override}
+              size="50"
+              color="#ff0"
+            />
           </div>
-        </div>
-      
-          )
-        }
-        </div>
-        
+        ) : (
+          <div>
+            <div>
+              <Container>
+                <div style={{background:"#df4c73",borderRadius:"0.7rem",textAlign:"center"}}>
+                  <h1>Your WishListed Books</h1>
+                </div>              
+                {wishListedBooks.length === 0 ? (
+                  <CircularProgress />
+                ) : (
+                  <Grid
+                    className={classes.container}
+                    container
+                    alignItems="stretch"
+                    spacing={3}
+                  >
+                    {wishListedBooks.map((book) => (
+                      <Grid item xs={12} sm={3}>
+                        <Zoom bottom>
+                          <Book key={book._id} book={book} />
+                        </Zoom>
+                      </Grid>
+                    ))}
+                  </Grid>
+                )}
+                <br/>
+                <br/>
+              </Container>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 };
