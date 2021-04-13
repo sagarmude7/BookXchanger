@@ -33,8 +33,8 @@ const AllBooks = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
-  const [books, setBooks] = useState([]);
-  const [sortbool, setSortbool] = useState(true);
+  // const [books, setBooks] = useState([]);
+  const [sortbool, setSortbool] = useState(false);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [color, setColor] = useState("#ffff00");
@@ -52,10 +52,6 @@ const AllBooks = () => {
   });
 
   useEffect(() => {
-    dispatch({ type: ADDFILTER, payload: books });
-  }, [dispatch, books]);
-
-  useEffect(() => {
     if (allBooks.length !== 0) {
       setLoading(false);
     }
@@ -63,14 +59,18 @@ const AllBooks = () => {
 
   useEffect(() => {
     if (allBooks.length !== 0) {
-      setBooks(allBooks.filter((book) => book.isSold === false));
+      console.log("Hello");
+      console.log(allBooks.filter((book) => book.isSold === false));
+      dispatch({
+        type: ADDFILTER,
+        payload: allBooks.filter((book) => book.isSold === false),
+      });
     }
-  }, [dispatch, allBooks]);
+  }, []);
 
   useEffect(() => {
-    if (sortbool === true) {
+    if (sortbool) 
       dispatch({ type: ADDFILTER, payload: data });
-    }
   }, [dispatch, data]);
 
   useEffect(() => {
@@ -86,18 +86,18 @@ const AllBooks = () => {
       const sortProperty = types[type];
 
       if (type === "pricelowest") {
-        const sorted = [...books].sort(
+        const sorted = [...filterData].sort(
           (b, a) => b[sortProperty] - a[sortProperty]
         );
         setData(sorted);
       } else if (type === "datenewest") {
-        const sorted = [...books].sort(
+        const sorted = [...filterData].sort(
           (b, a) => b[sortProperty] - a[sortProperty]
         );
         sorted.reverse();
         setData(sorted);
       } else {
-        const sorted = [...books].sort(
+        const sorted = [...filterData].sort(
           (a, b) => b[sortProperty] - a[sortProperty]
         );
         setData(sorted);
@@ -105,7 +105,6 @@ const AllBooks = () => {
     };
     sortArray(sortType);
   }, [sortType]);
-
   const override = css`
     display: block;
     padding-left: 45%;
@@ -115,7 +114,11 @@ const AllBooks = () => {
 
   const removeSort = () => {
     setSortType("");
-    dispatch({ type: ADDFILTER, payload: books });
+    setSortbool(false);
+    dispatch({
+      type: ADDFILTER,
+      payload: allBooks.filter((book) => book.isSold === false),
+    });
   };
 
   // const handleChange = (event) => {

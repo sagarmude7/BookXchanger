@@ -84,8 +84,8 @@ const io = require('socket.io')(server,options)
 
 io.on('connection', async(socket) => {
   console.log("connected ")
-  console.log(socket.id)
-  console.log(socket.adapter.rooms)
+  // console.log(socket.id)
+  // console.log(socket.adapter.rooms)
   socket.on('disconnect',()=>{
     console.log("disconnected")
   })
@@ -117,6 +117,7 @@ io.on('connection', async(socket) => {
     console.log("both"+data.id+" "+data.receiver)
     var messages = await Message.find({$or:[{from:data.id,to:data.receiver},{from:data.receiver,to:data.id}] })
     console.log(messages)
+    console.log(socket.adapter.rooms)
     const msgs = []
     messages.forEach(msg=>{
       msgs.push({content:msg.content,to:msg.to,from:msg.from,fromName:msg.sentAt,sentAt:msg.sentAt})
