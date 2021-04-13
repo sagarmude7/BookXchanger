@@ -34,6 +34,7 @@ const ChatBox = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [msgData, setMsgData] = useState(initialState);
+  const [newMsg,setNewMsg] = useState({})
   const user = JSON.parse(localStorage.getItem("profile")).profile;
 
   useEffect(() => {
@@ -48,6 +49,10 @@ const ChatBox = (props) => {
     }
   }, [receiver]);
 
+  useEffect(()=>{
+    console.log("Sending....")
+    dispatch({ type: ADD_CHAT, payload: newMsg });
+  },[newMsg,dispatch])
   useEffect(() => {
     if (receiver) {
       console.log(socket.disconnected);
@@ -64,8 +69,7 @@ const ChatBox = (props) => {
   useEffect(() => {
     socket.on("send_msg", (msg) => {
       if (msg.from === receiver._id || msg.from === user.id) {
-        console.log("Sending..");
-        dispatch({ type: ADD_CHAT, payload: msg });
+        setNewMsg(msg);
       }
     });
   }, []);
@@ -77,9 +81,10 @@ const ChatBox = (props) => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    await socket.emit("message", msgData);
-    // dispatch({type:ADD_CHAT,payload:msgData})
+  const handleSubmit = (e) => {
+    if(msgData.content!==""){
+      socket.emit("message", msgData);
+    }
     setMsgData({ ...msgData, content: "" });
   };
 
