@@ -2,8 +2,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   mainContainer: {
-    backgroundColor: "rgb(216,199,165)",
-    backgroundImage: `url(${"https://www.transparenttextures.com/patterns/concrete-wall-2.png"})`,
+    backgroundColor: "#e5e1d4",
+    //backgroundImage: `url(${"https://www.transparenttextures.com/patterns/concrete-wall-2.png"})`,
   },
   container: {
     paddingTop: "20px",
@@ -52,6 +52,6 @@ export default makeStyles((theme) => ({
     top: "50%",
     left: "50%",
     transform: "translate(-50%,-50%)",
-    color: "#DF4C73",
+    color: "#E85A4F",
   },
 }));

@@ -133,7 +133,7 @@ const Wishlist = () => {
           <div>
             <div>
               <Container>
-                <div style={{background:"#df4c73",borderRadius:"0.7rem",textAlign:"center"}}>
+                <div style={{background:"#E85A4F",borderRadius:"0.7rem",textAlign:"center"}}>
                   <h1>Your WishListed Books</h1>
                 </div>              
                 {wishListedBooks.length === 0 ? (
