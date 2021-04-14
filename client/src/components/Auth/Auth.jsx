@@ -106,8 +106,12 @@ const Auth = () => {
         <Grid container>
             <Grid xs={12} sm={6} className={classes.grid}>
              <Fade down>
-                <Typography component="h1" variant="h4" style={{"textAlign":"center"}}>{ isSignup ? 'Register With Us' : 'Sign In to your Account' }</Typography>
-                <hr width='70%' style={{ border: "1px solid white"}}></hr>
+                <Box align="center">
+                <div style={{background:"#e2d3bd",borderRadius:"0.7rem",width:"80%"}}>
+                    <Typography component="h1" variant="h4" style={{"textAlign":"center",color:"#4f4847"}}>{ isSignup ? 'Register With Us' : 'Sign In to your Account' }</Typography>
+                </div>
+                </Box>
+                {/* <hr align="center" style={{ border: "1px solid #19120b"}}></hr> */}
                 <List>
                     <ListItem className={classes.list}>
                         <ListItemAvatar>
@@ -147,7 +151,7 @@ const Auth = () => {
                         }
                         />
                     </ListItem>
-                <hr width='50%'></hr>
+                <Divider variant="inset" component="li" />
                     <ListItem className={classes.list}>
                         <ListItemAvatar>
                         <Avatar
@@ -184,7 +188,7 @@ const Auth = () => {
                         }
                         />
                     </ListItem>
-                <hr width='50%'></hr>
+                <Divider variant="inset" component="li" />
                     <ListItem className={classes.list}>
                         <ListItemAvatar>
                         <Avatar
@@ -222,7 +226,7 @@ const Auth = () => {
                         }
                         />
                     </ListItem>
-                <hr width='50%'></hr>
+                    <Divider variant="inset" component="li" />
                     <ListItem className={classes.list}>
                         <ListItemAvatar>
                         <Avatar
@@ -260,7 +264,7 @@ const Auth = () => {
                         }
                         />
                     </ListItem>
-                <hr width='50%'></hr>
+                    <Divider variant="inset" component="li" />
                 </List>
              </Fade>
             </Grid>
@@ -271,7 +275,7 @@ const Auth = () => {
                     <Avatar className={classes.avt}>
                     <LockOutlinedIcon fontSize='large'/>
                     </Avatar>
-                    <Typography component="h1" variant="h4">{ isSignup ? 'Register' : 'Login' }</Typography>
+                    <Typography component="h1" variant="h4" style={{color:"#4f4847"}}>{ isSignup ? 'Register' : 'Login' }</Typography>
                     {
                         err?(
                             <Snackbar style={{"top":"10%",'left':"55%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={err} autoHideDuration={5000} onClose={handleClose}>
@@ -334,7 +338,7 @@ const Auth = () => {
                     <Grid >
                         <Grid item>
                         <Box textAlign='center'>
-                        <Button onClick={switchMode}>
+                        <Button onClick={switchMode} className={classes.switch}>
                             { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
                         </Button>
                         </Box>
