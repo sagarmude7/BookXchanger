@@ -38,52 +38,78 @@ const ChatBox = (props) => {
   const user = JSON.parse(localStorage.getItem("profile")).profile;
 
   useEffect(() => {
-    if (receiver) {
+    if (receiver._id) {
+      localStorage.setItem('receiver',JSON.stringify({id:receiver._id}))
+      console.log("messsages set")
       setMsgData({
         ...msgData,
         to: receiver._id,
         from: user.id,
         fromName: user.name,
       });
-      console.log(receiver._id);
+      socket.emit("join", { id: user.id, receiver: receiver._id });
+      console.log("room joined")
+      socket.on("initial_msgs",(chat) => {
+            dispatch({ type: INITIAL_CHAT, payload: chat });
+      });
+      console.log("Got initial messages")
     }
-  }, [receiver]);
+  }, [receiver._id]);
 
+  useEffect(() => {
+      socket.on("send_msg", (msg) => {
+        console.log("got a new message")
+        console.log(msg.from)
+        const receiver_id = JSON.parse(localStorage.getItem('receiver')).id
+        console.log(receiver_id)
+        console.log(msg.from === receiver_id)
+        if (msg.from === receiver_id || msg.from === user.id) {
+          console.log("inside")
+          setNewMsg(msg);
+        }
+      });
+  }, []);
   useEffect(()=>{
-    console.log("Sending....")
+    console.log(newMsg)
     dispatch({ type: ADD_CHAT, payload: newMsg });
   },[newMsg,dispatch])
-  useEffect(() => {
-    if (receiver) {
-      console.log(socket.disconnected);
-      socket.emit("join", { id: user.id, receiver: receiver._id });
-      console.log({ id: user.id, receiver: receiver._id });
-    }
-    socket.on("initial_msgs", async (chat) => {
-      // if(chats.length===0)
-      await dispatch({ type: INITIAL_CHAT, payload: chat });
-    });
-    setMsgData({ ...msgData, from: user.id, fromName: user.name });
-  }, [receiver]);
-  var i = 0;
-  useEffect(() => {
-    socket.on("send_msg", (msg) => {
-      if (msg.from === receiver._id || msg.from === user.id) {
-        setNewMsg(msg);
-      }
-    });
-  }, []);
+
+  // useEffect(()=>{
+  //   console.log("Sending....")
+  //   console.log(newMsg)
+  //   dispatch({ type: ADD_CHAT, payload: newMsg });
+  // },[newMsg,dispatch])
+  // useEffect(() => {
+  //   if (receiver) {
+  //     socket.emit("join", { id: user.id, receiver: receiver._id });
+  //     console.log({ id: user.id, receiver: receiver._id });
+  //   }
+  //   socket.on("initial_msgs", async (chat) => {
+  //     // if(chats.length===0)
+  //     await dispatch({ type: INITIAL_CHAT, payload: chat });
+  //   });
+  //   setMsgData({ ...msgData, from: user.id, fromName: user.name });
+  // }, [receiver]);
+  // var i = 0;
+  // useEffect(() => {
+  //   socket.on("send_msg", (msg) => {
+  //     console.log("setting new msg")
+  //     console.log(msg.from === receiver._id)
+  //     if (msg.from === receiver._id || msg.from === user.id) {
+  //       console.log("iniside")
+  //       setNewMsg(msg);
+  //     }
+  //   });
+  // }, []);
 
   const handleChange = (e) => {
     setMsgData({ ...msgData, [e.target.name]: e.target.value });
-    if (msgData.to === "") {
-      setMsgData({ ...msgData, to: receiver._id });
-    }
   };
 
   const handleSubmit = (e) => {
     if(msgData.content!==""){
       socket.emit("message", msgData);
+      console.log("emitting message")
     }
     setMsgData({ ...msgData, content: "" });
   };

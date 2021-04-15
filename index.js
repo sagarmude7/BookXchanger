@@ -120,13 +120,13 @@ io.on('connection', async(socket) => {
     var messages = await Message.find({$or:[{from:data.id,to:data.receiver},{from:data.receiver,to:data.id}] })
     console.log(messages)
     console.log(socket.adapter.rooms)
-    const msgs = []
-    messages.forEach(msg=>{
-      msgs.push({content:msg.content,to:msg.to,from:msg.from,fromName:msg.sentAt,sentAt:msg.sentAt})
-    })
+    // const msgs = []
+    // messages.forEach(msg=>{
+    //   msgs.push({content:msg.content,to:msg.to,from:msg.from,fromName:msg.sentAt,sentAt:msg.sentAt})
+    // })
     
     
-    socket.emit('initial_msgs',msgs)
+    socket.emit('initial_msgs',messages)
   })
 
 
@@ -145,6 +145,7 @@ io.on('connection', async(socket) => {
         await io.sockets.in(msg.from).emit('send_msg',{content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt})
         await io.sockets.in(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt} );
       }else{
+        await io.sockets.in(msg.from).emit('send_msg',{content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt})
         const receiver = await User.findById(message.to)
         console.log(receiver.email,receiver.name,message.fromName,`http://localhost:3000/user/${message.from}`)
         await sendChatMail(receiver.email,receiver.name,message.fromName,`http://localhost:3000/user/${message.from}`)
