@@ -3,7 +3,9 @@ import React from "react";
 
 export default makeStyles((theme) => ({
   body: {
-    background: "white",
+    padding:0,
+    width:"88%",
+    background: "#EAE7DC",
   },
 
   container: {
@@ -11,6 +13,7 @@ export default makeStyles((theme) => ({
   },
 
   root: {
-    padding: "10px 0px",
+    
+    backgroundColor:'#E98074' ,
   },
 }));

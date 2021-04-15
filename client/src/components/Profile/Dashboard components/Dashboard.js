@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBooks } from "../../../actions/books.js";
 import { css } from "@emotion/react";
 import RiseLoader from "react-spinners/RiseLoader";
+import AppBar from "@material-ui/core/AppBar";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -93,24 +94,27 @@ const Dashboard = () => {
     setAnchorEl(null);
   };
   return (
-    <Container className={classes.body}>
-      {loading ? (
-        <div style={{ textAlign: "center" }}>
-          <RiseLoader loading={loading} css={override} size="50" color="#ff0" />
-        </div>
-      ) : (
-        <>
-          <Paper className={classes.root}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-            >
-              <Tab label="Active Ads" {...a11yProps(0)} />
-              <Tab label="Sold Ads" {...a11yProps(1)} />
-            </Tabs>
-          </Paper>
+  
+      <Container className={classes.body}>
+          {loading?(
+            <div style={{textAlign:"center"}}>
+              <RiseLoader loading={loading} css={override} size="50" color="#ff0"/>
+            </div>   
+          ):(
+            <>
+            
+            <AppBar className={classes.root} position="static" color="default">
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+              >
+                <Tab label="Active Ads" {...a11yProps(0)} />
+                <Tab label="Sold Ads" {...a11yProps(1)} />
+              </Tabs>
+            </AppBar>
+            
 
           <TabPanel value={value} index={0}>
             <Grid
