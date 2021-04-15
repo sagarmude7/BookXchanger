@@ -115,7 +115,8 @@ const PostAdForm = () => {
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return <Container>
+        return <Grow in> 
+               <Container>
                 <Paper className={classes.paper}>
                   {/* <Typography component="h1" variant="h5">
                      Post a Book for Selling
@@ -186,10 +187,12 @@ const PostAdForm = () => {
                       </FormControl>
                     </Grid>
                  </Paper>
-                </Container>;
+                </Container>
+                </Grow>;
                
       case 1:
-        return <Container>
+        return <Grow in>
+               <Container>
                 <Paper className={classes.paper}>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
@@ -312,9 +315,11 @@ const PostAdForm = () => {
                     </Grid>
                   </Grid>
                 </Paper>
-               </Container>;
+               </Container>
+               </Grow>;
       case 2:
-        return <Container>
+        return <Grow in>
+               <Container>
                 <Paper className={classes.paper}>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
@@ -371,7 +376,8 @@ const PostAdForm = () => {
                       </Button>
                     </Box>
                 </Paper>
-               </Container>;
+               </Container>
+               </Grow>;
       default:
         return 'Unknown stepIndex';
     }
@@ -410,19 +416,21 @@ const PostAdForm = () => {
        ) : null}
       <br/>
       <form noValidate autoComplete='off' onSubmit={handleSubmit}>
+      <Grow in>
       <Box align="center" className={classes.box}> 
         <Stepper activeStep={activeStep} alternativeLabel className={classes.stepper}>
           {steps.map((label) => (
             <Step  key={label} >
               <StepLabel>
-                <Typography component="span" variant="h5" style={{color:"#F3EFFE"}}>
+                <Typography component="span" variant="h5" style={{color:"#6c6b68"}}>
                   {label}
                 </Typography>
               </StepLabel>
             </Step>
           ))}
         </Stepper>
-      </Box> 
+      </Box>
+      </Grow> 
       
       <div>
             <Typography>{getStepContent(activeStep)}</Typography>
@@ -446,304 +454,6 @@ const PostAdForm = () => {
             </Box>
       </div>
       </form>
-      
-
-         {/* <Container>
-          <Paper className={classes.paper}>
-            <form
-              autoComplete="off"
-              noValidate
-              className={`${classes.root} ${classes.form}`}
-              onSubmit={handleSubmit}
-            >
-              {err ? (
-                <Snackbar
-                  style={{ top: "10%", left: "55%" }}
-                  anchorOrigin={{ horizontal: "center", vertical: "top" }}
-                  open={err}
-                  autoHideDuration={5000}
-                  onClose={handleClose}
-                >
-                  <Alert onClose={handleClose} severity="error">
-                    <strong>{book.msg}</strong>
-                  </Alert>
-                </Snackbar>
-              ) : null}
-              <Typography color="secondary" variant="h6">
-                Post a Book for Selling
-              </Typography>
-              {!next ? (
-                <>
-                  <TextField
-                    name="bookName"
-                    variant="outlined"
-                    label="Name of Book"
-                    fullWidth
-                    value={bookData.bookName}
-                    onChange={handleChange}
-                  />
-                  <TextField
-                    name="subject"
-                    variant="outlined"
-                    label="Subject of Book"
-                    fullWidth
-                    value={bookData.subject}
-                    onChange={handleChange}
-                  />
-                  <Grid item xs={12} sm={12}>
-                    <FormControl
-                      variant="outlined"
-                      className={classes.formControl}
-                      fullWidth
-                    >
-                      <InputLabel id="type-label">
-                        Engineering Branch related to Book
-                      </InputLabel>
-                      <Select
-                        labelId="type-label"
-                        id="type"
-                        label="Engineering Branch related to Book"
-                        name="branch"
-                        onChange={handleChange}
-                        value={bookData.branch}
-                      >
-                        <MenuItem value="First Year">First Year</MenuItem>
-                        <MenuItem value="Computer Engineering">
-                          Computer Engineering
-                        </MenuItem>
-                        <MenuItem value="Information Technology">
-                          Information Technology
-                        </MenuItem>
-                        <MenuItem value="Electronics Engineering">
-                          Electronics Engineering
-                        </MenuItem>
-                        <MenuItem value="Electronics and Telecommunication Engineering">
-                          Electronics and Telecommunication Engineering
-                        </MenuItem>
-                        <MenuItem value="Mechanical Engineering">
-                          Mechanical Engineering
-                        </MenuItem>
-                        <MenuItem value="Civil Engineering">
-                          Civil Engineering
-                        </MenuItem>
-                        <MenuItem value="Production Engineering">
-                          Production Engineering
-                        </MenuItem>
-                        <MenuItem value="Textile Engineering">
-                          Textile Engineering
-                        </MenuItem>
-                        <MenuItem value="Other">Other</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid container justify="flex-end">
-                    <Grid item>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => setNext(true)}
-                      >
-                        Next
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </>
-              ) : (
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      name="author"
-                      variant="outlined"
-                      label="Name of the Author/Publication"
-                      fullWidth
-                      value={bookData.author}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FormControl
-                      variant="outlined"
-                      className={classes.formControl}
-                      fullWidth
-                    >
-                      <InputLabel id="conditionTypeLabel">
-                        Condition Of Book
-                      </InputLabel>
-                      <Select
-                        labelId="conditionLabel"
-                        id="condition"
-                        label="Condition Of Book"
-                        onChange={handleChange}
-                        value={bookData.condition}
-                        name="condition"
-                      >
-                        <MenuItem value="Used">Used</MenuItem>
-                        <MenuItem value="New">New</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      name="price"
-                      variant="outlined"
-                      label="Selling Price"
-                      fullWidth
-                      value={bookData.price}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FormControl
-                      variant="outlined"
-                      className={classes.formControl}
-                      fullWidth
-                    >
-                      <InputLabel id="type-label">Price Type</InputLabel>
-                      <Select
-                        labelId="type-label"
-                        id="priceType"
-                        label="Price Type"
-                        name="priceType"
-                        value={bookData.priceType}
-                        onChange={handleChange}
-                      >
-                        <MenuItem value="Fixed">Fixed</MenuItem>
-                        <MenuItem value="Negotiable">Negotiable</MenuItem>
-                        <MenuItem value="Price on Call">Price on Call</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      name="mrp"
-                      variant="outlined"
-                      label="MRP Of Book"
-                      fullWidth
-                      value={bookData.mrp}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={12}>
-                    <div className={classes.root1}>
-                      <input
-                        accept="image/*"
-                        className={classes.input}
-                        id="contained-button-file"
-                        multiple
-                        type="file"
-                      />
-                       <FileBase
-                        type="file"
-                        multiple={false}
-                        onDone={({ base64 }) =>
-                          setBookData({ ...bookData, selectedFile: base64 })
-                        }
-                      /> 
-
-                       <label htmlFor="icon-button-file">
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          component="span"
-                        >
-                          Upload Photos Of Book
-                        </Button>
-                      </label>
-                      <input
-                        accept="image/*"
-                        className={classes.input}
-                        id="icon-button-file"
-                        type="file"
-                        onChange={addImage}
-                        multiple
-                      />
-                      <label htmlFor="icon-button-file">
-                        <IconButton
-                          color="primary"
-                          aria-label="upload picture"
-                          component="span"
-                        >
-                          <PhotoCamera />
-                        </IconButton>
-                      </label>
-                    </div>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      name="tags"
-                      variant="outlined"
-                      label="Add Tags(seperated by commas)"
-                      fullWidth
-                      value={bookData.tags}
-                      onChange={(e) =>
-                        setBookData({
-                          ...bookData,
-                          tags: e.target.value.split(","),
-                        })
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      name="noOfPages"
-                      variant="outlined"
-                      label="Number Of Pages(Approx)"
-                      value={bookData.noOfPages}
-                      fullWidth
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      name="edition"
-                      variant="outlined"
-                      label="Edition Of Book"
-                      fullWidth
-                      value={bookData.edition}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={12}>
-                    <TextField
-                      name="description"
-                      variant="outlined"
-                      label="Description Of Book"
-                      fullWidth
-                      multiline
-                      rows={4}
-                      value={bookData.description}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                  <Grid container justify="space-between">
-                    <Grid item>
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => setNext(false)}
-                      >
-                        Previous
-                      </Button>
-                    </Grid>
-                    <Grid item>
-                      <Button
-                        className={classes.buttonSubmit}
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        type="submit"
-                        fullWidth
-                      >
-                        Submit
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              )}
-            </form>
-          </Paper>
-        </Container>  */}
     </div>
   );
 };

@@ -13,7 +13,10 @@ export default makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
     backgroundColor:'#e7dbc9',
-    borderRadius:"0.7rem"
+    borderRadius:"0.7rem",
+    border: "3px solid #E98074",
+    textShadow: "0 0 1px #e98074",
+    boxShadow:"8px 8px 8px grey" 
   },
   form: {
     display: 'flex',
@@ -51,7 +54,9 @@ export default makeStyles((theme) => ({
     backgroundColor: "#e5e1d4",
   },
   textfield:{
-    marginBottom:'20px'
+    marginBottom:'20px',
+    //border: "1px solid black",
+
   },
   backbutton:{
     backgroundColor: "#8E8D8A",
@@ -73,11 +78,30 @@ export default makeStyles((theme) => ({
   stepper:{
     background:"#E98074",
     borderRadius:"0.7rem",
-    width:"80%"
+    width:"80%",
+    //marginTop:"15px" #E98074 #6c6b68
   },
   step:{
     margin: theme.spacing(1),
     width: theme.spacing(10),
     height: theme.spacing(10)
+  },
+
+  [theme.breakpoints.down(700)]:{
+    stepper:{
+      background:"#E98074",
+      borderRadius:"0.7rem",
+      width:"100%",
+      marginTop:"40px"
+    },
+  },
+
+  [theme.breakpoints.between(700,1200)]:{
+    stepper:{
+      background:"#E98074",
+      borderRadius:"0.7rem",
+      width:"80%",
+      marginTop:"40px"
+    },
   }
 }));
