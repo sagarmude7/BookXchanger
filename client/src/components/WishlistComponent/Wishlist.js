@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar.js";
 import Footer from "../Footer/footer.js";
+import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../AllBooksComponents/Book/Book";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -48,7 +49,6 @@ const Wishlist = () => {
   useEffect(() => {
     if (books.length === 0) {
       dispatch(getBooks());
-      console.log("Books length 0");
     }
   });
 
@@ -65,8 +65,9 @@ const Wishlist = () => {
 
   const override = css`
     display: block;
-    margin: 0 auto;
+
     border-color: red;
+    background-color: #eae7dc;
   `;
 
   var images = [
@@ -122,20 +123,29 @@ const Wishlist = () => {
         <br />
         {loading ? (
           <div style={{ textAlign: "center" }}>
-            <RiseLoader
+            <PulseLoader
               loading={loading}
+              color="#e98074"
               css={override}
-              size="50"
-              color="#ff0"
+              size={30}
+              style={{ background: "rgb(234,231,220)" }}
             />
           </div>
         ) : (
           <div>
             <div>
               <Container>
-                <div style={{background:"#df4c73",borderRadius:"0.7rem",textAlign:"center"}}>
-                  <h1>Your WishListed Books</h1>
-                </div>              
+                <div
+                  style={{
+                    background: "#e85a4f",
+                    borderRadius: "0.7rem",
+                    textAlign: "center",
+                  }}
+                >
+                  <Typography variant="h4" style={{ color: "white" }}>
+                    Your WishListed Books
+                  </Typography>
+                </div>
                 {wishListedBooks.length === 0 ? (
                   <CircularProgress />
                 ) : (
@@ -154,8 +164,8 @@ const Wishlist = () => {
                     ))}
                   </Grid>
                 )}
-                <br/>
-                <br/>
+                <br />
+                <br />
               </Container>
             </div>
           </div>

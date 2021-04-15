@@ -57,13 +57,12 @@ const Contact = () => {
     if (feedback.msg) setErr(true);
     if (feedback.severity === "success") {
       setFeedData({ ...feedData, name: "", message: "" });
-      console.log("Done");
     }
   }, [feedback]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+
     if (!user) {
       history.push("/auth");
     }

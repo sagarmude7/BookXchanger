@@ -14,18 +14,15 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./style";
 import moment from "moment";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updatedIsSold,deleteaBook } from "../../../../actions/books";
+import { updatedIsSold, deleteaBook } from "../../../../actions/books";
 
 const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   // const [book, setBook] = useState({});
-  
-
-
 
   return (
     <Card className={classes.card}>
@@ -40,11 +37,7 @@ const Book = ({ book }) => {
           {moment(book?.createdAt).fromNow()}
         </Typography>
       </div>
-      {/* <div className={classes.overlay2}>
-        <Button color="primary" size="small" onClick={editaBook}>
-          <MoreHorizIcon fontSize="default" />
-        </Button>
-      </div> */}
+
       <Typography
         className={classes.title}
         gutterBottom

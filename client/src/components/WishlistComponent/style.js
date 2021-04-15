@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   mainContainer: {
-    backgroundColor: "rgb(216,199,165)",
+    backgroundColor: "#eae7dc",
     backgroundImage: `url(${"https://www.transparenttextures.com/patterns/concrete-wall-2.png"})`,
   },
   container: {
@@ -45,13 +45,13 @@ export default makeStyles((theme) => ({
   heading: {
     textAlign: "center",
     zIndex: "10",
-
     fontWeight: "900",
-
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%,-50%)",
-    color: "#DF4C73",
+    background: "-webkit-linear-gradient(#e73426, #e85a4f)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
   },
 }));

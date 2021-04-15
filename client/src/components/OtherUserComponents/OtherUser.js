@@ -29,14 +29,12 @@ const OtherUser = ({ match }) => {
     dispatch(getBooks());
   }, [dispatch]);
 
-  //console.log(person);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     college: "",
     location: "",
   });
-  //console.log(typeof userData)
 
   useEffect(() => {
     if (user)
@@ -68,9 +66,7 @@ const OtherUser = ({ match }) => {
     if (user.msg) {
       setErr(true);
       setUserData(userData);
-      //console.log(user,"in 33333333333333")
     } else {
-      //console.log(user,"in 44444444444444444444444")
       setErr(false);
       setKey(true);
     }

@@ -43,7 +43,7 @@ const Auth = () => {
     const handleSubmit = (e)=>{
         e.preventDefault()
         if(isSignup){
-            console.log(formData)
+           
             dispatch(signUp(formData,history))
         }else{
             dispatch(signIn(formData,history))
@@ -80,11 +80,11 @@ const Auth = () => {
     }
 
     const googleSuccess = async(res)=>{
-        console.log(res)
+    
         try{
             dispatch(googleFacebookSignIn({email:res.profileObj.email,name:res.profileObj.name,profilePic:res.profileObj.imageUrl},history))
         }catch(err){
-            console.log(err)
+         
         }
     }
 
@@ -92,14 +92,7 @@ const Auth = () => {
         alert('Google Sign In was unsuccessful. Try again later');
     }
 
-    // const componentClicked = ()=>{
-    //     console.log("clicked")
-    // }
-
-    // const responseFacebook = (res)=>{
-    //     console.log(res)
-    //     dispatch(googleFacebookSignIn({email:res.email,name:res.name,profilePic:`http://graph.facebook.com/${res.userID}/picture?type=square&access_token=${res.accessToken}`},history))
-    // }
+   
     return (
         <div className={classes.mainContainer}>
 

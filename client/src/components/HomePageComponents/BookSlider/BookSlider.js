@@ -31,8 +31,6 @@ const BookSlider = () => {
 
   useEffect(() => {
     if (allBooks.length === 0) {
-      console.log("Getting Books");
-      //accepts an action call as an argument -> goes to actions folder
       dispatch(getBooks());
     }
   }, [dispatch]);
@@ -50,17 +48,12 @@ const BookSlider = () => {
         var r = Math.floor(Math.random() * allUnSoldbooks.length);
         if (indices.indexOf(r) === -1) indices.push(r);
       }
-      console.log(indices);
+
       const arr = [];
       for (const i of indices) {
         arr.push(allUnSoldbooks[i]);
       }
       setBooks(arr);
-      // for (var i=0;i<5;i++) {
-      //   var r = Math.floor(Math.random() * allUnSoldbooks.length)
-      //   console.log("Book in Slider" + r);
-      //   setBooks([...books,allUnSoldbooks[r]]);
-      // }
     } else {
       setBooks(allUnSoldbooks);
     }

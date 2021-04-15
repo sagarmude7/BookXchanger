@@ -84,7 +84,6 @@ const SearchBox = () => {
       inputTags === ""
     ) {
       dispatch({ type: ADDFILTER, payload: books });
-      console.log("filtered books are", books);
     } else {
       var filteredBookArr = [];
       for (const book of books) {
@@ -126,7 +125,7 @@ const SearchBox = () => {
           }
         }
       }
-      console.log("filtered books are", filteredBookArr);
+
       dispatch({ type: ADDFILTER, payload: filteredBookArr });
     }
   };
@@ -149,7 +148,6 @@ const SearchBox = () => {
               <Grid item xs={12} sm={4} className={classes.paper}>
                 <TextField
                   className={classes.text}
-                  id="outlined-basic"
                   label="Name of Book"
                   variant="outlined"
                   key="random1"

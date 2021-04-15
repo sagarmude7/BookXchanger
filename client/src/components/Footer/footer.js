@@ -13,11 +13,7 @@ import { Link as RouterLink, useHistory } from "react-router-dom";
 
 const Footer = () => {
   const classes = useStyles();
-  // const tawkToPropertyId = "6074710cf7ce182709399768";
-  // const tawkToKey = "e379d389f904666fc0d2df936b0d067dfdd5911e";
-  // useEffect(() => {
-  //   tawkTo(tawkToPropertyId, tawkToKey);
-  // }, []);
+
   return (
     <>
       <CssBaseline />

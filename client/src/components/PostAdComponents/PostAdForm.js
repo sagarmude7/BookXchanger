@@ -90,7 +90,7 @@ const PostAdForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(bookData);
+
     dispatch(
       createBookAd(
         {

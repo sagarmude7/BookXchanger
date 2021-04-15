@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Description from "./Description/Description.js";
-import Chatbot from "./Chatbot/chatbot.js";
-import tawkTo from "tawkto-react";
 import HowToUse from "./HowToUse/HowToUse.js";
 import BookSlider from "./BookSlider/BookSlider.js";
 import { AlertTitle } from "@material-ui/lab";
@@ -18,25 +16,10 @@ import { getBooks } from "../../actions/books";
 const Home = () => {
   const [alert, setAlert] = useState(false);
   const dispatch = useDispatch();
-  // const user = JSON.parse(localStorage.getItem("profile"));
-  const book = useSelector((state) => state.book);
-  // const notification = useSelector((state)=>state.notification)
-  // const [shownoti,setShowNoti] = useState(false)
 
-  // useEffect(()=>{
-  //   if(localStorage.getItem('profile')){
-  //     const id = JSON.parse(localStorage.getItem('profile')).profile.id
-  //     socket.emit('login',{id:id})
-  //   }
-  // },[])
-  // useEffect(()=>{
-  //   if(notification.content)
-  //     setShowNoti(true)
-  // },[notification])
+  const book = useSelector((state) => state.book);
 
   useEffect(() => {
-    console.log("Getting Books");
-    //accepts an action call as an argument -> goes to actions folder
     dispatch(getBooks());
   }, [dispatch]);
 
@@ -56,14 +39,6 @@ const Home = () => {
     setAlert(false);
     dispatch({ type: VALID, payload: {} });
   };
-
-  // const handleCloseNoti = (event,reason)=>{
-  //   if(reason==='clickaway'){
-  //     return;
-  //   }
-  //   setShowNoti(false)
-  //   dispatch({type:CLEAR_NOTIFICATION})
-  // }
 
   return (
     <>

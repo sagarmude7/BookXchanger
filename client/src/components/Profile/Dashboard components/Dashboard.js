@@ -36,28 +36,27 @@ function TabPanel(props) {
 const Dashboard = () => {
   const userId = JSON.parse(localStorage.getItem("profile")).profile.id;
   const user = useSelector((state) => state.user);
-  const books = useSelector((state)=>state.books);
-  
+  const books = useSelector((state) => state.books);
+
   const [loading, setLoading] = useState(true);
 
-  const dispatch = useDispatch()
-  useEffect(()=>{
-    if(books.length===0){
-      dispatch(getBooks())
-      console.log("Books length 0");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (books.length === 0) {
+      dispatch(getBooks());
     }
-  })
-  useEffect(()=>{
-    if(books.length!==0){
-      setLoading(false)
+  });
+  useEffect(() => {
+    if (books.length !== 0) {
+      setLoading(false);
     }
-  },[books])
+  }, [books]);
 
   const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
 
   function card(book) {
     return (
@@ -94,60 +93,72 @@ const Dashboard = () => {
     setAnchorEl(null);
   };
   return (
-  
-      <Container className={classes.body}>
-          {loading?(
-            <div style={{textAlign:"center"}}>
-              <RiseLoader loading={loading} css={override} size="50" color="#ff0"/>
-            </div>   
-          ):(
-            <>
-            <Paper className={classes.root}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-              >
-                <Tab label="Active Ads" {...a11yProps(0)} />
-                <Tab label="Sold Ads" {...a11yProps(1)} />
-              </Tabs>
-            </Paper>
+    <Container className={classes.body}>
+      {loading ? (
+        <div style={{ textAlign: "center" }}>
+          <RiseLoader loading={loading} css={override} size="50" color="#ff0" />
+        </div>
+      ) : (
+        <>
+          <Paper className={classes.root}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+            >
+              <Tab label="Active Ads" {...a11yProps(0)} />
+              <Tab label="Sold Ads" {...a11yProps(1)} />
+            </Tabs>
+          </Paper>
 
-            <TabPanel value={value} index={0}>
-                <Grid
-                  className={classes.container}
-                  container
-                  alignItems="stretch"
-                  spacing={3}
-                >
-                {books.filter(book=>(book.owner===userId)&&(book.isSold===false)).length !== 0 ? (
-                  <>{books.filter(book=>(book.owner===userId)&&(book.isSold===false))?.map(card)}</>
-                ) : (
-                  <>No Active Ads</>
-                )}
-                </Grid>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <Grid
-                  className={classes.container}
-                  container
-                  alignItems="stretch"
-                  spacing={3}
-                >
-                {books.filter(book=>(book.owner===userId)&&(book.isSold===true)).length !== 0 ? (
-                  <>{books.filter(book=>(book.owner===userId)&&(book.isSold===true)).map(card)}</>
-                ) : (
-                  <>No Sold Ads</>
-                )}
-                </Grid>
-            </TabPanel>
-            </>
-          )}
-            
-           
+          <TabPanel value={value} index={0}>
+            <Grid
+              className={classes.container}
+              container
+              alignItems="stretch"
+              spacing={3}
+            >
+              {books.filter(
+                (book) => book.owner === userId && book.isSold === false
+              ).length !== 0 ? (
+                <>
+                  {books
+                    .filter(
+                      (book) => book.owner === userId && book.isSold === false
+                    )
+                    ?.map(card)}
+                </>
+              ) : (
+                <>No Active Ads</>
+              )}
+            </Grid>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Grid
+              className={classes.container}
+              container
+              alignItems="stretch"
+              spacing={3}
+            >
+              {books.filter(
+                (book) => book.owner === userId && book.isSold === true
+              ).length !== 0 ? (
+                <>
+                  {books
+                    .filter(
+                      (book) => book.owner === userId && book.isSold === true
+                    )
+                    .map(card)}
+                </>
+              ) : (
+                <>No Sold Ads</>
+              )}
+            </Grid>
+          </TabPanel>
+        </>
+      )}
     </Container>
-    
   );
 };
 

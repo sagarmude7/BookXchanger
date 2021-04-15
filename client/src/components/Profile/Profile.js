@@ -1,5 +1,12 @@
 import Navbar from "../Navbar/Navbar";
-import { Container, Typography,Card,CardActions,CardContent,Button } from "@material-ui/core";
+import {
+  Container,
+  Typography,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+} from "@material-ui/core";
 import Snackbar from "@material-ui/core/Snackbar";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import useStyles from "./styles.js";
@@ -16,10 +23,10 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import numberSoldBooks from "./Dashboard components/Dashboard";
 import { getRecentUsers } from "../../actions/user";
-import Message from "./Messages/Message"
+import Message from "./Messages/Message";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +53,6 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -55,26 +61,26 @@ function a11yProps(index) {
 }
 
 const Profile = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const history = useHistory()
+  const history = useHistory();
   const theme = useTheme();
-  const localUser = JSON.parse(localStorage.getItem('profile'))
-  const recents = useSelector(state=>state.recents)
+  const localUser = JSON.parse(localStorage.getItem("profile"));
+  const recents = useSelector((state) => state.recents);
 
   const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
 
-  useEffect(()=>{
-    if(!localUser){
-      history.push('/auth')
+  useEffect(() => {
+    if (!localUser) {
+      history.push("/auth");
     }
-  })
-  useEffect(()=>{
-    dispatch(getRecentUsers())
-  },[])
+  });
+  useEffect(() => {
+    dispatch(getRecentUsers());
+  }, []);
   var userId;
-  if(localUser)
+  if (localUser)
     userId = JSON.parse(localStorage.getItem("profile")).profile.id;
   const books = useSelector((state) => state.books);
   var numberSoldBooks = 0;
@@ -107,8 +113,6 @@ const Profile = () => {
     setOpen(false);
   };
 
-  // console.log(user.profilePic);
-
   return (
     <div className={classes.container}>
       {user?.editMessage ? (
@@ -126,16 +130,11 @@ const Profile = () => {
       ) : null}
       <div className={classes.topBox}>
         <Container className={classes.head}>
-          {
-          user.profilePic?(
+          {user.profilePic ? (
             <img className={classes.pic} src={user.profilePic} alt="M"></img>
-
-          ):
-          (
-          
+          ) : (
             <img className={classes.pic} src={img} alt="M"></img>
-          )
-          }
+          )}
           <Typography
             variant="body1"
             color="textPrimary"
@@ -186,7 +185,7 @@ const Profile = () => {
       </TabPanel>
 
       <TabPanel value={value} index={2} dir={theme.direction}>
-          <Message/>
+        <Message />
       </TabPanel>
 
       {/*<Footer/>*/}

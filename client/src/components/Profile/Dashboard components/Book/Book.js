@@ -46,7 +46,6 @@ const Book = ({ book }) => {
   };
 
   const deleteBook = () => {
-    console.log("Delete a Book");
     dispatch(deleteaBook(book._id));
   };
 
@@ -61,9 +60,7 @@ const Book = ({ book }) => {
   };
 
   const soldBook = () => {
-    console.log("Adding To isSold");
     dispatch(updatedIsSold(book._id));
-    console.log("Updating isSold");
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
