@@ -5,6 +5,8 @@ const connectDB = require("./config/db");
 const compression = require('compression')
 const http = require('http')
 const Message = require('./models/Message')
+const {sendChatMail} = require('./controllers/users')
+const User = require('./models/User')
 
 
 //port
@@ -84,8 +86,8 @@ const io = require('socket.io')(server,options)
 
 io.on('connection', async(socket) => {
   console.log("connected ")
-  console.log(socket.id)
-  console.log(socket.adapter.rooms)
+  // console.log(socket.id)
+  // console.log(socket.adapter.rooms)
   socket.on('disconnect',()=>{
     console.log("disconnected")
   })
@@ -117,13 +119,14 @@ io.on('connection', async(socket) => {
     console.log("both"+data.id+" "+data.receiver)
     var messages = await Message.find({$or:[{from:data.id,to:data.receiver},{from:data.receiver,to:data.id}] })
     console.log(messages)
-    const msgs = []
-    messages.forEach(msg=>{
-      msgs.push({content:msg.content,to:msg.to,from:msg.from,fromName:msg.sentAt,sentAt:msg.sentAt})
-    })
+    console.log(socket.adapter.rooms)
+    // const msgs = []
+    // messages.forEach(msg=>{
+    //   msgs.push({content:msg.content,to:msg.to,from:msg.from,fromName:msg.sentAt,sentAt:msg.sentAt})
+    // })
     
     
-    socket.emit('initial_msgs',msgs)
+    socket.emit('initial_msgs',messages)
   })
 
 
@@ -137,10 +140,19 @@ io.on('connection', async(socket) => {
       })
       await message.save()
       console.log(socket.adapter.rooms)
-      console.log(msg.from)
-      console.log("sending msg")
-      await io.sockets.in(msg.from).emit('send_msg',{content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt})
-      await io.sockets.in(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt} );
+      if(socket.adapter.rooms.has(msg.to)){
+        console.log("sending msg")
+        await io.sockets.in(msg.from).emit('send_msg',{content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt})
+        await io.sockets.in(msg.to).emit( 'send_msg', {content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt} );
+      }else{
+        await io.sockets.in(msg.from).emit('send_msg',{content:message.content,from:message.from,to:message.to,fromName:msg.fromName,sentAt:message.sentAt})
+        const receiver = await User.findById(message.to)
+        console.log(receiver.email,receiver.name,message.fromName,`http://localhost:3000/user/${message.from}`)
+        await sendChatMail(receiver.email,receiver.name,message.fromName,`http://localhost:3000/user/${message.from}`)
+      }
+      
+
+      
     }catch(err){
       console.log("Some error occured")
     }  

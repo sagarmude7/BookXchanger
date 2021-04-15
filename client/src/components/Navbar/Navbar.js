@@ -19,7 +19,7 @@ import MenuBookIcon from "@material-ui/icons/MenuBook";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Wishlist from "../WishlistComponent/Wishlist";
-import decode from 'jwt-decode'
+import decode from "jwt-decode";
 
 const Navbar = () => {
   const {
@@ -35,6 +35,7 @@ const Navbar = () => {
     image,
     heading,
     image1,
+    sellButton,
   } = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [push, setPush] = useState(false);
@@ -45,7 +46,6 @@ const Navbar = () => {
   });
   const { mobileView, drawerOpen } = state;
 
-  
   const dispatch = useDispatch();
   const location = useLocation();
   const bookLogo = (
@@ -53,7 +53,6 @@ const Navbar = () => {
       <Link href="#" color="inherit">
         <img className={image1} src={logo} alt="BookXchanger" />
       </Link>
-      {/* <img className={image} src="src" alt="icon" height="60" /> */}
     </div>
   );
 
@@ -67,22 +66,20 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
-  useEffect(()=>{
-    if(user){
-      const token = user.token
-      const decodedToken = decode(token)
-      console.log(decodedToken.exp*1000,new Date().getTime())
-      if(decodedToken.exp*1000 < new Date().getTime()) 
-          logout()
+  useEffect(() => {
+    if (user) {
+      const token = user.token;
+      const decodedToken = decode(token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
-  },[])
+  }, []);
 
   const logout = () => {
     dispatch({ type: LOGOUT });
     setUser(null);
     history.push("/");
   };
-  
 
   //get user data
 
@@ -115,6 +112,7 @@ const Navbar = () => {
         >
           <MenuItem>Home</MenuItem>
         </Link>
+
         <Link
           to="/all"
           component={RouterLink}
@@ -136,17 +134,15 @@ const Navbar = () => {
         <Link
           to="/add"
           component={RouterLink}
-          color="inherit"
           className={menuButton}
           key="Sell Books"
         >
-          <MenuItem style={{ color: "rgb(216,199,165)"}}>Sell Books</MenuItem>
+          <MenuItem style={{ backgroundColor: "#e98074" }}>Sell Books</MenuItem>
         </Link>
       </>
     );
   };
 
-  
   const getMenuButtons = () => {
     return (
       <>
@@ -238,8 +234,13 @@ const Navbar = () => {
         <Button
           component={RouterLink}
           to="/add"
-          style={{ padding: " 0px", margin: "2px", color: "rgb(216,199,165)" }}
-          className={menuButton}
+          style={{
+            padding: " 10px",
+            margin: "5px",
+            color: "white",
+            backgroundColor: "#e98074",
+          }}
+          className={sellButton}
         >
           Sell Books
         </Button>

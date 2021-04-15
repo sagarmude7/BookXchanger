@@ -30,9 +30,9 @@ const BookSlider = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    console.log("Getting Books");
-    //accepts an action call as an argument -> goes to actions folder
-    dispatch(getBooks());
+    if (allBooks.length === 0) {
+      dispatch(getBooks());
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -48,17 +48,12 @@ const BookSlider = () => {
         var r = Math.floor(Math.random() * allUnSoldbooks.length);
         if (indices.indexOf(r) === -1) indices.push(r);
       }
-      console.log(indices);
+
       const arr = [];
       for (const i of indices) {
         arr.push(allUnSoldbooks[i]);
       }
       setBooks(arr);
-      // for (var i=0;i<5;i++) {
-      //   var r = Math.floor(Math.random() * allUnSoldbooks.length)
-      //   console.log("Book in Slider" + r);
-      //   setBooks([...books,allUnSoldbooks[r]]);
-      // }
     } else {
       setBooks(allUnSoldbooks);
     }
@@ -72,8 +67,9 @@ const BookSlider = () => {
 
   const override = css`
     display: block;
-    margin-left: 45%;
+    padding-left: 45%;
     border-color: red;
+    background-color: #eae7dc;
   `;
 
   const responsive = {
@@ -91,7 +87,7 @@ const BookSlider = () => {
       items: 2,
     },
     mobile: {
-      breakpoint: { max: 460, min: 0 },
+      breakpoint: { max: 360, min: 0 },
       items: 1,
     },
   };
@@ -114,8 +110,7 @@ const BookSlider = () => {
             border: "1.5px solid #8e8d8a",
             width: "300px",
             background: "rgb(234,231,220)",
-            marginTop: "0px",
-            marginBottom: "0px",
+            margin: "0px auto",
           }}
         />
       </div>
@@ -169,8 +164,7 @@ const BookSlider = () => {
             border: "1.5px solid #8e8d8a",
             width: "300px",
             background: "rgb(234,231,220)",
-            marginTop: "0px",
-            marginBottom: "0px",
+            margin: "0px auto",
           }}
         />
       </div>

@@ -11,7 +11,7 @@ import Box from "@material-ui/core/Box";
 import Book from "../../AllBooksComponents/Book/Book";
 import { useSelector } from "react-redux";
 import { css } from "@emotion/react";
-import RiseLoader from "react-spinners/RiseLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -32,27 +32,28 @@ function TabPanel(props) {
   );
 }
 
-const Dashboard = ({userId}) => {
+const Dashboard = ({ userId }) => {
   const user = useSelector((state) => state.user);
-  const books = useSelector((state)=>state.books)
+  const books = useSelector((state) => state.books);
   const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    if(books.length!==0){
-      setLoading(false)
+  useEffect(() => {
+    if (books.length !== 0) {
+      setLoading(false);
     }
-  },[books])
+  }, [books]);
 
   const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
+    display: block;
+    padding-left: 40%;
+    border-color: red;
+    background-color: #eae7dc;
+  `;
 
   function card(book) {
     return (
       <Grid item xs={12} sm={4}>
-        <Book key={book._id} book={book} style={{width:"400px"}}/>
+        <Book key={book._id} book={book} style={{ width: "auto" }} />
       </Grid>
     );
   }
@@ -86,37 +87,56 @@ const Dashboard = ({userId}) => {
   return (
     <>
       <Container className={classes.body}>
-      <br />
-  
-        <Typography  variant="h5"  style={{textAlign: "center"}}>Ads Posted By {user.name}</Typography>
-        <hr style={{ borderWidth: "0px" ,display :"none" }} />
-        <hr style={{ borderWidth: "0px" ,border: "1.4px solid black", width:"30%" ,background :"black"}} />
-        <br />
-        {
-          loading?(
-            <div style={{textAlign:"center",height:"40%"}} >
-              <RiseLoader loading={loading} css={override} size="50" color="#ff0"/>
-            </div>
-            
-          ):(
-            <Grid
-                  className={classes.container}
-                  container
-                  alignItems="stretch"
-                  spacing={2}
-                  
-                >
-                {books.filter(book=>(book.owner===userId)&&(book.isSold===false)).length !== 0 ? (
-                  <>{books.filter(book=>(book.owner===userId)&&(book.isSold===false))?.map(card)}</>
-                ) : (
-                  <>No Active Ads</>
-                )}
-                </Grid>
-          )
-        }
-       
-
-                
+        <Typography
+          variant="h5"
+          style={{ textAlign: "center", paddingTop: "10px" }}
+        >
+          Ads Posted By {user.name}
+        </Typography>
+        <hr
+          style={{
+            border: "1.5px solid #8e8d8a",
+            width: "50%",
+            background: "rgb(234,231,220)",
+            margin: "0px auto",
+          }}
+        />
+        {loading ? (
+          <div style={{ textAlign: "center", height: "40%" }}>
+            <PulseLoader
+              loading={loading}
+              color="#e98074"
+              css={override}
+              size={30}
+            />
+          </div>
+        ) : (
+          <Grid
+            className={classes.container}
+            container
+            alignItems="stretch"
+            spacing={2}
+          >
+            {books.filter(
+              (book) => book.owner === userId && book.isSold === false
+            ).length !== 0 ? (
+              <>
+                {books
+                  .filter(
+                    (book) => book.owner === userId && book.isSold === false
+                  )
+                  ?.map(card)}
+              </>
+            ) : (
+              <>
+                <Typography align="center" variant="h3">
+                  {" "}
+                  No Active Ads{" "}
+                </Typography>{" "}
+              </>
+            )}
+          </Grid>
+        )}
       </Container>
     </>
   );

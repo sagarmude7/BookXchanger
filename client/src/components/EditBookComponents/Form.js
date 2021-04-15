@@ -62,7 +62,7 @@ const EditBook = ({ match }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(bookData);
+
     dispatch(
       editaBook(book._id, {
         ...bookData,

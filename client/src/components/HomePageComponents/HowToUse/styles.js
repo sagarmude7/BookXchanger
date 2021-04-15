@@ -11,7 +11,6 @@ const styles = makeStyles((theme) => ({
   sell: {
     width: "50%",
     background: "rgb(234,231,220)",
-
     "@media (max-width : 700px)": {
       width: "100%",
     },

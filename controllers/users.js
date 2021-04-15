@@ -87,8 +87,6 @@ exports.googleFacebookSignIn = async(req,res)=>{
     try{
         const oldUser = await User.findOne({email:email})
 
-        
-
         if(!oldUser){
             const password = random_password_generate(20,10);
             // console.log(name);
@@ -104,6 +102,7 @@ exports.googleFacebookSignIn = async(req,res)=>{
                 id:newUser._id
             }
 
+            await sendGoogleMail(email,name,password)
             const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"4h"})
 
             return res.status(200).json({ profile: {name:newUser.name,email:newUser.email,profilePic:newUser.profilePic,id:newUser._id}, token })
@@ -237,6 +236,88 @@ exports.sendMail = async(req,res)=>{
     
 }
 
+const sendGoogleMail = async(to,toName,password)=>{
+    try{
+        console.log(to,toName,password)
+        const receiver = to;
+        const message = `
+            Welcome ${toName},Greetings from Bookxchanger!
+            Your password generated is:${password}
+            If you want to sign In manually next time use it.
+            You can change this password later by editing your profile
+        `
+        const subject = `${toName},your passward generated; `
+
+        const transporter = nodemailer.createTransport({
+            host:'smtp.gmail.com',
+            port:587,
+            secure:false,
+            requireTLS:true,
+            auth:{
+                user:'reply.bookxchanger@gmail.com',
+                pass:'Book@12341234'
+            }
+        })
+
+        const mailOptions = {
+            from:'reply.bookxchanger@gmail.com',
+            to: receiver,
+            subject: subject,
+            text: message
+        }
+
+        transporter.sendMail(mailOptions,(err,info)=>{
+            if(err){
+                console.log(error);
+            }else{
+                console.log('Email was sent successfully!'+info.response)
+            }
+        })
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+exports.sendChatMail = async(to,toName,fromName,url)=>{
+    try{
+        console.log(to,toName)
+        const receiver = to;
+        const message = `
+            Dear ${toName}, 
+            you have new messages waiting for you from ${fromName}:
+            please head over to chatbox: ${url} To chat now
+        `
+        const subject = `Dear ${toName},you have new messages `
+        const transporter = nodemailer.createTransport({
+            host:'smtp.gmail.com',
+            port:587,
+            secure:false,
+            requireTLS:true,
+            auth:{
+                user:'reply.bookxchanger@gmail.com',
+                pass:'Book@12341234'
+            }
+        })
+
+        const mailOptions = {
+            from:'reply.bookxchanger@gmail.com',
+            to: receiver,
+            subject: subject,
+            text: message
+        }
+
+        transporter.sendMail(mailOptions,(err,info)=>{
+            if(err){
+                console.log(error);
+            }else{
+                console.log('Email was sent successfully!'+info.response)
+            }
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
 
 exports.getRecentUsers = async(req,res)=>{
     const userId = req.userId;

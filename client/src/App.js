@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import ScrollUpButton from "react-scroll-up-button";
 import { Container } from "@material-ui/core";
@@ -14,72 +14,67 @@ import Footer from "./components/Footer/footer";
 import BookInfo from "./components/AllBooksComponents/BookInfo/BookInfo";
 import EditBook from "./components/EditBookComponents/Form";
 import About from "./components/AboutUsComponents/About.js";
-import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
-import {AlertTitle} from '@material-ui/lab'
-import { green } from '@material-ui/core/colors';
-import history from './history/history.js'
-import { useDispatch,useSelector } from "react-redux";
+import { AlertTitle } from "@material-ui/lab";
+import { green } from "@material-ui/core/colors";
+import history from "./history/history.js";
+import { useDispatch, useSelector } from "react-redux";
 import { getBooks } from "./actions/books";
 import OtherUser from "./components/OtherUserComponents/OtherUser";
-import {socket} from './service/socket'
-import { GET_NOTIFICATION,CLEAR_NOTIFICATION } from "./constants/actions.js";
-
-
+import { socket } from "./service/socket";
+import { GET_NOTIFICATION, CLEAR_NOTIFICATION } from "./constants/actions.js";
 
 const App = () => {
-  const dispatch = useDispatch()
-  
-  const notification = useSelector((state)=>state.notification)
-  const [shownoti,setShowNoti] = useState(false)
-  const user = JSON.parse(localStorage.getItem('profile'))
+  const dispatch = useDispatch();
 
-  useEffect(()=>{
-    if(notification.content){
-      if(notification.from!==user.profile.id)
-      setShowNoti(true)
+  const notification = useSelector((state) => state.notification);
+  const [shownoti, setShowNoti] = useState(false);
+  const user = JSON.parse(localStorage.getItem("profile"));
+
+  useEffect(() => {
+    if (notification.content) {
+      if (notification.from !== user.profile.id) setShowNoti(true);
     }
-  },[notification])
+  }, [notification]);
 
-  
-  useEffect(()=>{
-      if(localStorage.getItem('profile')){
-        socket.connect()
-        console.log("I am running")
-        const id = JSON.parse(localStorage.getItem('profile')).profile.id
-        // socket.emit('login',{id:id})
-        socket.on("connect", () => {
-          console.log("connected")
-          socket.emit('login',{id:id})
-          console.log(socket.id)
-        });
-      }
-  },[])
+  useEffect(() => {
+    if (localStorage.getItem("profile")) {
+      socket.connect();
+      console.log("I am running");
+      const id = JSON.parse(localStorage.getItem("profile")).profile.id;
+      // socket.emit('login',{id:id})
+      socket.on("connect", () => {
+        console.log("connected");
+        socket.emit("login", { id: id });
+        console.log(socket.id);
+      });
+    }
+  }, []);
 
-  useEffect(()=>{
-    socket.on('send_msg',(msg)=>{
+  useEffect(() => {
+    socket.on("send_msg", (msg) => {
       // console.log(msg)
-      dispatch({type:GET_NOTIFICATION,payload:msg})
-    })
-  },[])
-
+      dispatch({ type: GET_NOTIFICATION, payload: msg });
+    });
+  }, []);
 
   const Alert = (props) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   };
 
-  const handleCloseNoti = (event,reason)=>{
-    if(reason==='clickaway'){
+  const handleCloseNoti = (event, reason) => {
+    if (reason === "clickaway") {
       return;
     }
-    setShowNoti(false)
-    dispatch({type:CLEAR_NOTIFICATION})
-  }
+    setShowNoti(false);
+    dispatch({ type: CLEAR_NOTIFICATION });
+  };
 
-  const handleClickNoti = ()=>{
-    history.push(`/user/${notification.from}`)
-  }
+  const handleClickNoti = () => {
+    history.push(`/user/${notification.from}`);
+  };
   function displayLoading() {
     return <Loading />;
   }
@@ -90,27 +85,36 @@ const App = () => {
     <Router>
       <Container maxWidth="lg">
         <Navbar />
-        {
-          shownoti?(
-            <Snackbar
-              style={{ top: "10%", left: "55%",cursor:"pointer"}}
-              anchorOrigin={{ horizontal: "right", vertical: "top" }}
-              open={shownoti}
-              autoHideDuration={5000}
-              onClose={handleCloseNoti}
-              onClick={handleClickNoti}
-            >
-              <Alert onClose={handleCloseNoti} icon={false} severity="info">
-                <AlertTitle>New Message &nbsp; &nbsp;<NotificationsActiveIcon  style={{color: green[500],float:"right",marginTop:"0.1rem"}}/></AlertTitle>
-                
-                <div style={{width:"300px"}}>
-                  <p>{notification.content}</p>
-                  <div style={{float:"right"}}>from <strong>{notification.fromName}</strong></div>
+        {shownoti ? (
+          <Snackbar
+            style={{ top: "10%", left: "55%", cursor: "pointer" }}
+            anchorOrigin={{ horizontal: "right", vertical: "top" }}
+            open={shownoti}
+            autoHideDuration={5000}
+            onClose={handleCloseNoti}
+            onClick={handleClickNoti}
+          >
+            <Alert onClose={handleCloseNoti} icon={false} severity="info">
+              <AlertTitle>
+                New Message &nbsp; &nbsp;
+                <NotificationsActiveIcon
+                  style={{
+                    color: green[500],
+                    float: "right",
+                    marginTop: "0.1rem",
+                  }}
+                />
+              </AlertTitle>
+
+              <div style={{ width: "300px" }}>
+                <p>{notification.content}</p>
+                <div style={{ float: "right" }}>
+                  from <strong>{notification.fromName}</strong>
                 </div>
-              </Alert>
-            </Snackbar>
-          ):null
-        }
+              </div>
+            </Alert>
+          </Snackbar>
+        ) : null}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/all" component={DisplayBooks} />
@@ -123,7 +127,7 @@ const App = () => {
           <Route exact path="/editBook/:bookId" component={EditBook} />
           <Route exact path="/user/:userId" component={OtherUser} />
         </Switch>
-        <Footer/>
+        <Footer />
       </Container>
     </Router>
   );

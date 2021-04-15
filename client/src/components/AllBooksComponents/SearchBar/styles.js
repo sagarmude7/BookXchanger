@@ -6,7 +6,6 @@ const styles = makeStyles((theme) => ({
     textAlign: "center",
     color: "white",
     height: "200px",
-    marginBottom: "20px",
     backgroundImage:
       "url(https://images.pexels.com/photos/694740/pexels-photo-694740.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)",
     "@media (max-width : 700px)": {
@@ -16,7 +15,7 @@ const styles = makeStyles((theme) => ({
   },
 
   head: {
-    color: "white",
+    color: "e8e7dc",
     fontSize: "50px",
     paddingLeft: "8%",
     position: "absolute",
@@ -29,14 +28,18 @@ const styles = makeStyles((theme) => ({
   },
 
   middleContainer: {
-    margin: "0px 70px",
+    padding: "0px 70px",
     "@media (max-width : 700px)": {
-      margin: "0px 10px",
+      padding: "0px 10px",
     },
   },
 
   searchboxes: {
-    padding: "10px 25px",
+    padding: "30px 25px",
+  },
+
+  text: {
+    color: "#e85a4f",
   },
 
   root: {
@@ -51,14 +54,14 @@ const styles = makeStyles((theme) => ({
   },
   button: {
     justifyContent: "center",
-    backgroundColor: "#DF4C73",
-    marginBottom: "25px",
+    backgroundColor: "#e85a4f",
+    margin: "25px 0px",
     "@media (max-width : 700px)": {
       marginBottom: "10px",
     },
   },
   advance: {
-    backgroundColor: "#DF4C73",
+    backgroundColor: "#e85a4f",
     float: "right",
     marginBottom: "10px",
     marginRight: "60px",

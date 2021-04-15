@@ -45,7 +45,7 @@ const Error404 = () => {
             color="textSecondary"
           >
             Despite sleeping on the couch most of the day, our junior web
-            developer still finds time to do do coding...
+            developer still finds time to do coding...
           </Typography>
 
           <Box alignItems="center">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import bookData from "./bookData.js"
-import { ADDFILTER} from "../../../constants/actions";
+import { ADDFILTER } from "../../../constants/actions";
 import "./styles.css";
 import useStyles from "./styles.js";
 import { useSelector, useDispatch } from "react-redux";
@@ -35,7 +35,7 @@ const SearchBox = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const allbooks = useSelector((state) => state.books);
-  const books = allbooks.filter((book) => book.isSold === false)
+  const books = allbooks.filter((book) => book.isSold === false);
 
   function setName(value) {
     setInputName(value);
@@ -75,66 +75,79 @@ const SearchBox = () => {
   };
 
   const updateBooks = () => {
-    if((inputName === "")&&(inputSubject === "")&&(inputBranch === "")&&(inputPrice === "")&&(inputCondition === "")&&(inputTags === "")){
-      dispatch({type:ADDFILTER,payload:books})
-      console.log("filtered books are",books)
-    }else{
-      var filteredBookArr = []
-      for(const book of books){
-        if(inputName!==""){
-          if(book.bookName.toLowerCase().includes(inputName.toLowerCase())){
-            filteredBookArr.push(book)
+    if (
+      inputName === "" &&
+      inputSubject === "" &&
+      inputBranch === "" &&
+      inputPrice === "" &&
+      inputCondition === "" &&
+      inputTags === ""
+    ) {
+      dispatch({ type: ADDFILTER, payload: books });
+    } else {
+      var filteredBookArr = [];
+      for (const book of books) {
+        if (inputName !== "") {
+          if (book.bookName.toLowerCase().includes(inputName.toLowerCase())) {
+            filteredBookArr.push(book);
           }
         }
-        if(inputSubject!==""){
-          if(book.subject.toLowerCase().includes(inputSubject.toLowerCase())){
-            if(filteredBookArr.length!==0){
-              if(filteredBookArr[filteredBookArr.length-1]._id!==book._id)
-                filteredBookArr.push(book)
-            }else{
-              filteredBookArr.push(book)
-            }
-            
-          }
-        }
-        if(inputTags!==""){
-          if(book.tags[0].toLowerCase().includes(inputTags.toLowerCase())){
-            if(filteredBookArr.length!==0){
-              if(filteredBookArr[filteredBookArr.length-1]._id!==book._id)
-                filteredBookArr.push(book)
-            }else{
-                filteredBookArr.push(book)
+        if (inputSubject !== "") {
+          if (book.subject.toLowerCase().includes(inputSubject.toLowerCase())) {
+            if (filteredBookArr.length !== 0) {
+              if (filteredBookArr[filteredBookArr.length - 1]._id !== book._id)
+                filteredBookArr.push(book);
+            } else {
+              filteredBookArr.push(book);
             }
           }
         }
-        if((book.branch===inputBranch)||(book.condition===inputCondition.toLowerCase())||(book.priceType===inputPrice)){
-          if(filteredBookArr.length!==0){
-            if(filteredBookArr[filteredBookArr.length-1]._id!==book._id)
-              filteredBookArr.push(book)
-          }else{
-            filteredBookArr.push(book)
+        if (inputTags !== "") {
+          if (book.tags[0].toLowerCase().includes(inputTags.toLowerCase())) {
+            if (filteredBookArr.length !== 0) {
+              if (filteredBookArr[filteredBookArr.length - 1]._id !== book._id)
+                filteredBookArr.push(book);
+            } else {
+              filteredBookArr.push(book);
+            }
+          }
+        }
+        if (
+          book.branch === inputBranch ||
+          book.condition === inputCondition.toLowerCase() ||
+          book.priceType === inputPrice
+        ) {
+          if (filteredBookArr.length !== 0) {
+            if (filteredBookArr[filteredBookArr.length - 1]._id !== book._id)
+              filteredBookArr.push(book);
+          } else {
+            filteredBookArr.push(book);
           }
         }
       }
-      console.log("filtered books are",filteredBookArr)
-      dispatch({type:ADDFILTER,payload:filteredBookArr})
-    }
-  }
-  
 
+      dispatch({ type: ADDFILTER, payload: filteredBookArr });
+    }
+  };
 
   return (
     <>
-      <div className={classes.topContainer}>
-        <Typography className={classes.head}>Search a Book you want</Typography>
+      <div
+        className={classes.topContainer}
+        style={{ backgroundColor: "#eae7dc" }}
+      >
+        <Typography className={classes.head}>Search a Book </Typography>
       </div>
-      <div className={classes.middleContainer}>
+      <div
+        className={classes.middleContainer}
+        style={{ backgroundColor: "#eae7dc" }}
+      >
         <div className={classes.searchboxes} noValidate autoComplete="off">
           <div>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={4} className={classes.paper}>
                 <TextField
-                  id="outlined-basic"
+                  className={classes.text}
                   label="Name of Book"
                   variant="outlined"
                   key="random1"
@@ -201,8 +214,7 @@ const SearchBox = () => {
               </Grid>
             </Grid>
           </div>
-          <hr style={{ borderWidth: "0px" }} />
-          <hr style={{ borderWidth: "0px" }} />
+
           {isadv ? (
             <Grid container spacing={4} className={classes.gridContainer}>
               <Grid item xs={12} sm={4} className={classes.paper}>
@@ -261,7 +273,6 @@ const SearchBox = () => {
           <Box textAlign="center">
             <Button
               variant="contained"
-              color="secondary"
               onClick={updateBooks}
               className={classes.button}
               startIcon={<SearchIcon />}
@@ -273,13 +284,14 @@ const SearchBox = () => {
           <ButtonGroup
             variant="text"
             size="large"
-            color="secondary"
             aria-label="outlined secondary button group"
           >
-            <Button onClick={showAdv}>
+            <Button style={{ color: "#e85a4f" }} onClick={showAdv}>
               {isadv ? "Hide Advanced Search" : "Advanced Search"}
             </Button>
-            <Button onClick={removeFilters}>Reset Search</Button>
+            <Button style={{ color: "#e85a4f" }} onClick={removeFilters}>
+              Reset Search
+            </Button>
           </ButtonGroup>
         </div>
       </div>
@@ -288,4 +300,3 @@ const SearchBox = () => {
 };
 
 export default SearchBox;
-

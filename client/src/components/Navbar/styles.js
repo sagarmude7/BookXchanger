@@ -22,17 +22,31 @@ const styles = makeStyles((theme) => ({
       transform: "translateY(4px)",
     },
   },
+
+  sellButtom: {
+    fontWeight: 700,
+    marginLeft: "30px",
+    background: "#D8C3A5",
+    color: "white !important",
+    "&:hover": {
+      borderBottom: "2px solid white",
+      borderRadius: "0px !important",
+      transform: "translateY(4px)",
+    },
+  },
+
   toolbar: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
   },
   drawerContainer: {
-    padding: "20px 30px",
-    background: "#000",
-
-    borderRadius: "20px",
-    margin: "10px",
+    padding: "10px 10px",
+    background: "rgb(236,75,56)",
+    background:
+      "linear-gradient(90deg, rgba(236,75,56,1) 10%, rgba(232,90,79,1) 55%)",
+    borderRadius: "5px",
+    margin: "7px",
     fontWeigth: "500",
   },
 
@@ -58,7 +72,7 @@ const styles = makeStyles((theme) => ({
   },
   midNavbar: {
     width: "650px",
-    alignItems :"center"
+    alignItems: "center",
   },
   mobileloginMenu: {
     float: "right",

@@ -32,7 +32,7 @@ export default makeStyles((theme) => ({
   box: {
     width: "250px",
     "@media (max-width : 700px)": {
-      width: "100%",
+      width: "200px",
     },
   },
 

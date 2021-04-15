@@ -9,7 +9,9 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2),
     width:'540px',
     marginBottom:'20px',
-    marginLeft:'80px'
+    marginLeft:'80px',
+    backgroundColor:'#e7dbc9',
+    borderRadius:"0.7rem"
   },
 
   root: {
@@ -31,25 +33,40 @@ export default makeStyles((theme) => ({
 
   submit: {
     margin: theme.spacing(3, 0, 2),
-    width:'40%'
+    width:'40%',
+    backgroundColor:"#E85A4F",
+    "&:hover": {
+      backgroundColor: "#8E8D8A",
+    },
   },
 
   customLogin:{
     width:'60%',
+    backgroundColor:"#E85A4F",
+    "&:hover": {
+      backgroundColor: "#8E8D8A",
+    },
   },
 
   googleButton: {
     marginBottom: theme.spacing(2),
   },
 
+  switch:{
+    backgroundColor:"#E98074",
+    "&:hover": {
+      backgroundColor: "#8E8D8A",
+    },
+  },
+
   mainContainer:{
-    backgroundColor: "#286FB4",
-    backgroundImage: `url(${'https://www.transparenttextures.com/patterns/concrete-wall-2.png'})`,
+    backgroundColor: "#e5e1d4",
+    //backgroundImage: `url(${'https://www.transparenttextures.com/patterns/concrete-wall-2.png'})`,
   },
 
   avt:{
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#E85A4F",
     width: theme.spacing(7),
     height: theme.spacing(7)
   },

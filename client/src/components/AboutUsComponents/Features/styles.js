@@ -33,8 +33,14 @@ const styles = makeStyles((theme) => ({
     },
   },
 
+  main1: {
+    display: "flex",
+    "@media (max-width : 700px)": {
+      display: "inline",
+    },
+  },
+
   Feature: {
-    display: "inline-block",
     width: "50%",
     padding: "10px",
     "@media (max-width : 700px)": {
@@ -43,11 +49,11 @@ const styles = makeStyles((theme) => ({
   },
 
   Images: {
-    display: "inline-block",
     width: "50%",
-    padding: "10px",
+    paddingTop: "80px",
     "@media (max-width : 700px)": {
       width: "100%",
+      paddingTop: "20px",
     },
   },
 

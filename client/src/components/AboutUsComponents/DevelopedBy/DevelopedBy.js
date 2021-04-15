@@ -5,7 +5,6 @@ import { Typography, Grid, Container } from "@material-ui/core";
 import Profile from "./Profile";
 import { profiles } from "./descProfile";
 const DevelopedBy = () => {
-  console.log(profiles);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -47,8 +46,7 @@ const DevelopedBy = () => {
             border: "1.5px solid #8e8d8a",
             width: "300px",
             background: "rgb(234,231,220)",
-            marginTop: "0px",
-            marginBottom: "0px",
+            margin: "0px auto",
           }}
         />
       </div>
