@@ -88,7 +88,7 @@ const Contact = () => {
               paddingTop: "10px",
             }}
           >
-            Get in Touch with US
+            Give Your Feedback
           </Typography>
           <hr
             style={{
