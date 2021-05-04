@@ -143,7 +143,7 @@ const Wishlist = () => {
                   }}
                 >
                   <Typography variant="h4" style={{ color: "white" }}>
-                    Your WishListed Books
+                    Your Favourite Books
                   </Typography>
                 </div>
                 {wishListedBooks.length === 0 ? (
