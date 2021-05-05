@@ -3,7 +3,7 @@ import descBuyer from "./descBuyer.js";
 import descSeller from "./descSeller.js";
 import useStyles from "./styles.js";
 import Carousel from "react-material-ui-carousel";
-import logo from "./buyerImages/register.svg";
+
 import {
   Button,
   CardContent,
@@ -21,7 +21,7 @@ const HowToSell = () => {
       <div className={classes.parent}>
         <div>
           <Typography align="center">
-            <img src={props.buyer.img} className={classes.image} />
+            <img src={props.buyer.img} className={classes.image} loading="lazy" />
           </Typography>
 
           <div>
@@ -42,7 +42,7 @@ const HowToSell = () => {
       <div className={classes.parent}>
         <div>
           <Typography align="center">
-            <img src={props.seller.img} className={classes.image} />
+            <img src={props.seller.img} className={classes.image} loading="lazy" />
           </Typography>
 
           <div>

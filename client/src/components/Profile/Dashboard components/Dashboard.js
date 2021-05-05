@@ -12,7 +12,7 @@ import Book from "./Book/Book";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooks } from "../../../actions/books.js";
 import { css } from "@emotion/react";
-import RiseLoader from "react-spinners/RiseLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 import AppBar from "@material-ui/core/AppBar";
 
 function TabPanel(props) {
@@ -55,8 +55,9 @@ const Dashboard = () => {
 
   const override = css`
     display: block;
-    margin: 0 auto;
+
     border-color: red;
+    background-color: #eae7dc;
   `;
 
   function card(book) {
@@ -94,30 +95,29 @@ const Dashboard = () => {
     setAnchorEl(null);
   };
   return (
-  
-      <Container className={classes.body}>
-          {loading?(
-            <div style={{textAlign:"center"}}>
-              <RiseLoader loading={loading} css={override} size="50" color="#ff0"/>
-            </div>   
-          ):(
-            <>
-            
-            <AppBar className={classes.root} position="static" >
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                
-                style={{ indicatorColor: "#D8C3A5" }}
-                style={{color:"#E8D8A"}}
-                style={{textColor:""}}
-                
-              >
-                <Tab label="Active Ads" {...a11yProps(0)} />
-                <Tab label="Sold Ads" {...a11yProps(1)} />
-              </Tabs>
-            </AppBar>
-            
+    <Container className={classes.body}>
+      {loading ? (
+        <div style={{ textAlign: "center" }}>
+          <PulseLoader
+            loading={loading}
+            color="#e98074"
+            css={override}
+            size={30}
+          />
+        </div>
+      ) : (
+        <>
+          <AppBar className={classes.root} position="static" color="default">
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+            >
+              <Tab label="Active Ads" {...a11yProps(0)} />
+              <Tab label="Sold Ads" {...a11yProps(1)} />
+            </Tabs>
+          </AppBar>
 
           <TabPanel value={value} index={0}>
             <Grid

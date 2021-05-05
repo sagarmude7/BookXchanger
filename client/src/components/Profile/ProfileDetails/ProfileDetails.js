@@ -31,7 +31,7 @@ import img from '../profilepic.png'
 const Profile = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user1 = JSON.parse(localStorage.getItem('profile'));
+  const user1 = JSON.parse(localStorage.getItem('profile')); 
   const user = useSelector((state) => state.user);
   const error = useSelector(state=>state.book)
   const [err,setErr] = useState(false) 
@@ -502,7 +502,7 @@ const Profile = () => {
           <Container className={classes.picture}>
 
             <div>
-              <img className={classes.editProfilePic} src={userData.profilePic} alt="M"></img>
+              <img className={classes.editProfilePic} src={userData.profilePic} alt="M" loading="lazy"></img>
             </div>
 
             <div className={classes.innerPic}>

@@ -123,7 +123,7 @@ const Navbar = () => {
           <MenuItem>Books</MenuItem>
         </Link>
         <Link
-          to="/about"
+          to="/aboutus"
           component={RouterLink}
           color="inherit"
           className={menuButton}

@@ -3,7 +3,7 @@ export const profiles = [
     name: "Harshil Doshi (Mentor)",
     subHeading: "Third Year CS, VJTI",
     img:
-      "https://media-exp1.licdn.com/dms/image/C4D03AQFOYBobdNDStA/profile-displayphoto-shrink_400_400/0/1609918432528?e=1623283200&v=beta&t=I_burUvwWf8gli1QYAifUnKqYb-4-SbgIUPmRBTvebA",
+      "https://res.cloudinary.com/bookxchanger/image/upload/v1620148960/profiles/Harshil_Doshi_b8fhba.jpg",
     github: "https://github.com/Harshil333",
     linkedin: "https://www.linkedin.com/in/harshil-doshi-a83443191/",
   },
@@ -11,7 +11,7 @@ export const profiles = [
     name: "Sagar Mude",
     subHeading: "Second Year IT, VJTI",
     img:
-      "https://media-exp1.licdn.com/dms/image/C4E03AQHyJZCFPlVTuQ/profile-displayphoto-shrink_400_400/0/1591539628757?e=1623283200&v=beta&t=2-ute5UNioprjscM0J1gk7GTNUP1-Zg5yt3xyEVz-Lo",
+      "https://res.cloudinary.com/bookxchanger/image/upload/v1620148960/profiles/Sagar_Mude_ubrd3k.jpg",
     github: "https://github.com/sagarmude7",
     linkedin: "www.linkedin.com/in/sagar-mude",
   },
@@ -19,14 +19,15 @@ export const profiles = [
     name: "Vedant Mondkar",
     subHeading: "Second Year IT, VJTI",
     img:
-      "https://media-exp1.licdn.com/dms/image/C4D03AQHi_JCYGsteOg/profile-displayphoto-shrink_400_400/0/1595828910508?e=1623283200&v=beta&t=ZUeix6_VJ81W2ASquAm-wIQRYMFEUQ99inS-uuTiqFQ",
+      "https://res.cloudinary.com/bookxchanger/image/upload/v1620148961/profiles/Vedant_Mondkar_pmkr1h.jpg",
     github: "https://github.com/vdmondkr2002",
     linkedin: "https://www.linkedin.com/in/vedant-mondkar-9349451b3/",
   },
   {
     name: "Vishal Dange",
     subHeading: "Second Year IT, VJTI",
-    img: "https://media-exp1.licdn.com/dms/image/C5603AQFlELdcbsOoNA/profile-displayphoto-shrink_200_200/0/1617858702504?e=1623283200&v=beta&t=hftwnNXTNnjUbHD-uFTL8nWrUKb3_CWIbKzqBG3zYKM",
+    img:
+      "https://res.cloudinary.com/bookxchanger/image/upload/v1620149310/profiles/Vishal_Dange_cybung.jpg",
     github: "https://github.com/vishalbdange",
     linkedin: "https://www.linkedin.com/in/vishal-dange-3b5294194",
   },
@@ -34,7 +35,7 @@ export const profiles = [
     name: "Mohak Chandani",
     subHeading: "Second Year IT, VJTI",
     img:
-      "https://media-exp1.licdn.com/dms/image/C4E03AQGBnDXhOyQhaQ/profile-displayphoto-shrink_400_400/0/1612885705241?e=1623283200&v=beta&t=9bRUF_OkLFQ6XTf7_xP44DVylagMhjb550Zn9RI-snw",
+      "https://res.cloudinary.com/bookxchanger/image/upload/v1620148960/profiles/Mohak_Chandani_vf2sti.jpg",
     github: "https://github.com/MohakChandani",
     linkedin: "https://www.linkedin.com/in/mohak-chandani-913036205/",
   },
@@ -42,7 +43,7 @@ export const profiles = [
     name: "Shashank Pagrut",
     subHeading: "Third Year EE, VJTI",
     img:
-      "https://media-exp1.licdn.com/dms/image/C4E03AQG0RztM2tCQtQ/profile-displayphoto-shrink_400_400/0/1599936550812?e=1623283200&v=beta&t=jtTLDCttNGFrrVAxkbiLBTV3V6KPitNtF1qzLTGlNng",
+      "https://res.cloudinary.com/bookxchanger/image/upload/v1620148960/profiles/Shashank_Pagrut_l2sdhm.jpg",
     github: "https://github.com/Shashank2370",
     linkedin: "https://www.linkedin.com/in/shashank-pagrut-ab77681b5/",
   },
@@ -50,7 +51,7 @@ export const profiles = [
     name: "Vedant Mankar",
     subHeading: "Third Year EE, VJTI",
     img:
-      "https://media-exp1.licdn.com/dms/image/C4E03AQFHfh1I2GRydw/profile-displayphoto-shrink_400_400/0/1594830751005?e=1623283200&v=beta&t=LTHMD-FSS-7zkaQk07O7rnXMmSrHkKxOSUIB4FRlvsk",
+      "https://res.cloudinary.com/bookxchanger/image/upload/v1620148961/profiles/Vedant_Mankar_hfysba.jpg",
     github: "https://github.com/VedantMankar",
     linkedin: "https://www.linkedin.com/in/vedant-mankar-637112158/",
   },
