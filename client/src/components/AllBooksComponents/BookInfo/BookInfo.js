@@ -152,6 +152,7 @@ const BookInfo = ({ match }) => {
                   className={classes.bookImage}
                   src={book.selectedFile}
                   alt="Book"
+                  loading ="lazy"
                 />
               </div>
               <div>
@@ -284,6 +285,7 @@ const BookInfo = ({ match }) => {
                   className={classes.userProfilePic}
                   src="http://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png"
                   alt="User Profile"
+                  loading="lazy"
                 />
                 {/* <Avatar>{book.ownerName[0]}</Avatar> */}
                 <Typography variant="h6">{book.ownerName}</Typography>
@@ -298,7 +300,7 @@ const BookInfo = ({ match }) => {
                 </Link>
                 <br />
                 <Link
-                  to={`/user/${book.owner}`}
+                  to='/auth'
                   component={RouterLink}
                   key="Home"
                   className={classes.name}

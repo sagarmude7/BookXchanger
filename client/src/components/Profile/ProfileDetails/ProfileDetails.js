@@ -504,7 +504,7 @@ const Profile = () => {
           <Container className={classes.picture}>
 
             <div>
-              <img className={classes.editProfilePic} src={userData.profilePic} alt="M"></img>
+              <img className={classes.editProfilePic} src={userData.profilePic} alt="M" loading="lazy"></img>
             </div>
 
             <div className={classes.innerPic}>

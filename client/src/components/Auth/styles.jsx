@@ -16,7 +16,8 @@ export default makeStyles((theme) => ({
 
   root: {
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
+        margin: theme.spacing(1),
+        width: '25ch',
     },
   },
 
@@ -46,6 +47,13 @@ export default makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#8E8D8A",
     },
+  },
+  reg : {
+    background:"#e2d3bd",
+    borderRadius:"200px",
+    width:"80%",
+    padding : "4px",
+    backgroundColor:"#E85A4F",
   },
 
   googleButton: {
@@ -80,7 +88,9 @@ export default makeStyles((theme) => ({
   },
 
   list:{
-    margin:theme.spacing(1.5)
+    
+  margin:theme.spacing(1.5),
+  paddingLeft: "0px" 
   },
 
 
