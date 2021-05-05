@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles({
   //
   card: {
+    backgroundColor:'#D8C3A5',
     display: "flex",
     flexDirection: "column",
     // justifyContent: "space-between",
@@ -12,6 +13,7 @@ export default makeStyles({
     "@media (max-width : 900px)": {
       width: "100% !important",
       margin: "auto",
+      
     },
   },
 
@@ -90,13 +92,13 @@ export default makeStyles({
   },
 
   Branch: {
-    backgroundColor: "#df4c73",
+    backgroundColor: "#e98074",
     width: "140px",
     marginLeft: "15px",
     fontSize: "11px",
     fontWeight: "500",
     padding: "1px auto",
-    color: "#fff",
+    color: "black",
     textAlign: "center",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
@@ -122,11 +124,15 @@ export default makeStyles({
     color: "black",
     transition: "0.5s",
     "&:hover": {
-      color: "#df4c73",
-      textShadow: "0 0 5px #df4c73",
+      color: "#e98074",
+      //textShadow: "0 0 5px #e98074",
     },
   },
   button: {
-    backgroundColor: "#df4c73",
+    backgroundColor: "#e98074",
+    "&:hover": {
+     backgroundColor: "#e85A4f",
+      
+    },
   },
 });

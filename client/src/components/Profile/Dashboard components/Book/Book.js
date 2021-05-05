@@ -83,7 +83,7 @@ const Book = ({ book }) => {
         <div className={classes.top}>
           <div className={classes.overlay2}>
             <Button
-              style={{ color: "#df4c73" }}
+              style={{ color: "#E98074" }}
               size="medium"
               aria-controls="simple-menu"
               aria-haspopup="true"
@@ -149,7 +149,7 @@ const Book = ({ book }) => {
           </Typography>
 
           <CardActions className={classes.favourite}>
-            <Button size="medium" color="secondary" onClick={handleDeleteOpen}>
+            <Button size="medium" style={{ color: "#E98074" }} onClick={handleDeleteOpen}>
               <DeleteIcon />
             </Button>
             <Dialog
@@ -163,10 +163,10 @@ const Book = ({ book }) => {
               </DialogTitle>
 
               <DialogActions>
-                <Button onClick={handleDeleteClose} color="primary">
+                <Button onClick={handleDeleteClose} style={{ color: "#E85A4F" }}>
                   No
                 </Button>
-                <Button onClick={deleteBook} color="primary" autoFocus>
+                <Button onClick={deleteBook} style={{ color: "#E85A4F" }} autoFocus>
                   Yes
                 </Button>
               </DialogActions>
@@ -193,7 +193,7 @@ const Book = ({ book }) => {
             style={{
               marginLeft: "5px",
               marginRight: "5px",
-              color: "#df4c73",
+              color: "#E98074",
             }}
           />
           <Link to={`/user/${book.owner}`} style={{ textDecoration: "none" }}>

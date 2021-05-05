@@ -103,12 +103,15 @@ const Dashboard = () => {
           ):(
             <>
             
-            <AppBar className={classes.root} position="static" color="default">
+            <AppBar className={classes.root} position="static" >
               <Tabs
                 value={value}
                 onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
+                
+                style={{ indicatorColor: "#D8C3A5" }}
+                style={{color:"#E8D8A"}}
+                style={{textColor:""}}
+                
               >
                 <Tab label="Active Ads" {...a11yProps(0)} />
                 <Tab label="Sold Ads" {...a11yProps(1)} />
