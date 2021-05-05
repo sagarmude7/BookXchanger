@@ -3,7 +3,7 @@ import descBuyer from "./descBuyer.js";
 import descSeller from "./descSeller.js";
 import useStyles from "./styles.js";
 import Carousel from "react-material-ui-carousel";
-import logo from "./buyerImages/register.svg";
+
 import {
   Button,
   CardContent,
