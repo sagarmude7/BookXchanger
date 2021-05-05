@@ -131,7 +131,9 @@ const Profile = () => {
       <div className={classes.topBox}>
         <Container className={classes.head}>
           {user.profilePic ? (
-            <img className={classes.pic} src={user.profilePic} alt="M"></img>
+            
+            <img className={classes.pic} src={user.profilePic} alt="M" ></img>
+          
           ) : (
             <img className={classes.pic} src={img} alt="M"></img>
           )}

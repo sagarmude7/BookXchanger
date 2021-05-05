@@ -31,7 +31,7 @@ import img from '../profilepic.png'
 const Profile = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user1 = JSON.parse(localStorage.getItem('profile'));
+  const user1 = JSON.parse(localStorage.getItem('profile')); 
   const user = useSelector((state) => state.user);
   const error = useSelector(state=>state.book)
   const [err,setErr] = useState(false) 

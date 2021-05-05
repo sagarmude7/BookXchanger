@@ -36,6 +36,7 @@
     "filereader": "^0.10.3",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
+    "mailgun-js": "^0.22.0",
     "mongoose": "^5.11.15",
     "node-blob": "0.0.2",
     "nodemailer": "^6.5.0",
