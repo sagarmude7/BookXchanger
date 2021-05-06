@@ -10,6 +10,9 @@ export default makeStyles((theme) => ({
   },
   container: {
     paddingTop: "20px",
+    display : "flex",
+    flexWrap : "wrap"
+
   },
   actionDiv: {
     textAlign: "center",

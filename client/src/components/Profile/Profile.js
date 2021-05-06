@@ -27,8 +27,12 @@ import { useHistory } from "react-router-dom";
 import numberSoldBooks from "./Dashboard components/Dashboard";
 import { getRecentUsers } from "../../actions/user";
 import Message from "./Messages/Message";
+import { ThemeProvider } from "@emotion/react";
+import { green, pink } from '@material-ui/core/colors';
 
 function TabPanel(props) {
+
+
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -61,6 +65,9 @@ function a11yProps(index) {
 }
 
 const Profile = () => {
+
+  
+  
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
@@ -131,7 +138,9 @@ const Profile = () => {
       <div className={classes.topBox}>
         <Container className={classes.head}>
           {user.profilePic ? (
-            <img className={classes.pic} src={user.profilePic} alt="M"></img>
+            
+            <img className={classes.pic} src={user.profilePic} alt="M" ></img>
+          
           ) : (
             <img className={classes.pic} src={img} alt="M"></img>
           )}
@@ -160,8 +169,11 @@ const Profile = () => {
           </div>
         </Container>
 
+
         <AppBar className={classes.rootTab} position="static" color="default">
+      
           <Tabs
+          className={classes.rootTab} 
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
@@ -169,11 +181,12 @@ const Profile = () => {
             variant="fullWidth"
             aria-label="full width tabs example"
           >
-            <Tab label="Profile" {...a11yProps(0)} />
-            <Tab label="My Ads" {...a11yProps(1)} />
-            <Tab label="Messages" {...a11yProps(2)} />
+            <Tab className={classes.rootTab} label="Profile" {...a11yProps(0)} />
+            <Tab className={classes.rootTab} label="My Ads" {...a11yProps(1)} />
+            <Tab className={classes.rootTab} label="Messages" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
+        
       </div>
 
       <TabPanel value={value} index={0} dir={theme.direction}>

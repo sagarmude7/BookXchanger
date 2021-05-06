@@ -31,7 +31,7 @@ import img from '../profilepic.png'
 const Profile = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user1 = JSON.parse(localStorage.getItem('profile'));
+  const user1 = JSON.parse(localStorage.getItem('profile')); 
   const user = useSelector((state) => state.user);
   const error = useSelector(state=>state.book)
   const [err,setErr] = useState(false) 
@@ -226,8 +226,7 @@ const Profile = () => {
 
           <Button
               className={classes.Edit}
-              variant="outlined"
-              color="primary"
+              variant="contained"
               onClick={() => setKey(false)}
 
             >Edit Profile</Button>
@@ -311,8 +310,7 @@ const Profile = () => {
           <div>
             <Button
               className={classes.changePassword}
-              variant="outlined"
-              color="primary"
+              variant="contained"
               onClick={handleClickOpen}
 
             >
@@ -433,10 +431,10 @@ const Profile = () => {
               </DialogContent>
 
               <DialogActions>
-                <Button onClick={handleClose} color="primary">
+                <Button style={{color:"#E8D8A"}} onClick={handleClose} >
                   Cancel
                 </Button>
-                <Button color="primary" type="submit">
+                <Button style={{color:"#E85A4F"}} type="submit">
                   Reset Password
                 </Button>
               </DialogActions>
@@ -504,7 +502,7 @@ const Profile = () => {
           <Container className={classes.picture}>
 
             <div>
-              <img className={classes.editProfilePic} src={userData.profilePic} alt="M"></img>
+              <img className={classes.editProfilePic} src={userData.profilePic} alt="M" loading="lazy"></img>
             </div>
 
             <div className={classes.innerPic}>
@@ -512,7 +510,6 @@ const Profile = () => {
               <label htmlFor="icon-button-file">
                 <Button
                   variant="contained"
-                  color="primary"
                   component="span"
                   className={classes.uploadPhoto}
                 >
@@ -550,7 +547,7 @@ const Profile = () => {
             <Button
               className={classes.saveChanges}
               variant="contained"
-              color="secondary"
+              
               type="submit"
             >
               Save Changes

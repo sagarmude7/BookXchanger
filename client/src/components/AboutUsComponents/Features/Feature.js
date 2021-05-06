@@ -190,7 +190,7 @@ const Feature = () => {
           </div>
           <div className={classes.Images}>
             <Typography align="center">
-              <img className="image1" src={logo} alt="Logo" />
+              <img className="image1" src={logo} alt="Logo" loading="lazy" />
             </Typography>
           </div>
         </div>

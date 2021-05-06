@@ -100,8 +100,8 @@ const Auth = () => {
             <Grid xs={12} sm={6} className={classes.grid}>
              <Fade down>
                 <Box align="center">
-                <div style={{background:"#e2d3bd",borderRadius:"0.7rem",width:"80%"}}>
-                    <Typography component="h1" variant="h4" style={{"textAlign":"center",color:"#4f4847"}}>{ isSignup ? 'Register With Us' : 'Sign In to your Account' }</Typography>
+                <div className={classes.reg}>
+                    <Typography component="h2" variant="h4" style={{"textAlign":"center",color:"#000"}}>{ isSignup ? 'Register With Us' : 'Sign In to your Account' }</Typography>
                 </div>
                 </Box>
                 {/* <hr align="center" style={{ border: "1px solid #19120b"}}></hr> */}
@@ -121,7 +121,7 @@ const Auth = () => {
                             <React.Fragment>
                             <Typography
                                 component="span"
-                                variant="h5"
+                                variant="h6"
                                 className={classes.inline}
                                 color="textPrimary"
                             >
@@ -159,7 +159,7 @@ const Auth = () => {
                             <React.Fragment>
                             <Typography
                                 component="span"
-                                variant="h5"
+                                variant="h6"
                                 className={classes.inline}
                                 color="textPrimary"
                             >
@@ -196,7 +196,7 @@ const Auth = () => {
                             <React.Fragment>
                             <Typography
                                 component="span"
-                                variant="h5"
+                                variant="h6"
                                 className={classes.inline}
                                 color="textPrimary"
                             >
@@ -234,7 +234,7 @@ const Auth = () => {
                             <React.Fragment>
                             <Typography
                                 component="span"
-                                variant="h5"
+                                variant="h6"
                                 className={classes.inline}
                                 color="textPrimary"
                             >

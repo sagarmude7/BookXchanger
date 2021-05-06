@@ -207,7 +207,7 @@ const AllBooks = () => {
                   spacing={3}
                 >
                   {currentBooks.map((book) => (
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} sm={3}>      
                       <Book key={book._id} book={book} />
                     </Grid>
                   ))}

@@ -151,9 +151,10 @@ const OtherUser = ({ match }) => {
               alt="M"
               width="175"
               height="190"
+              loading="lazy"
             />
           ) : (
-            <img className={classes.pic} src={img} alt="Profile Pic"></img>
+            <img className={classes.pic} src={img} alt="Profile Pic" loading="lazy"></img>
           )}
 
           <div className={classes.userDetails}>
