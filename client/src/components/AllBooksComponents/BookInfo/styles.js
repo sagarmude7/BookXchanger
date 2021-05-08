@@ -3,6 +3,16 @@ const styles = makeStyles((theme) => ({
   root: {
     margin: "auto",
   },
+  back:{
+    position:'absolute',
+    margin:20,
+    marginTop:20,
+    color:'white',
+    zIndex:10,
+    [theme.breakpoints.down(900)]:{
+      marginTop:35,
+    },
+  },
 
   topContainer: {
     position: "relative",

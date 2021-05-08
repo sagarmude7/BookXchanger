@@ -5,6 +5,16 @@ export default makeStyles((theme) => ({
     backgroundColor: "#eae7dc",
     backgroundImage: `url(${"https://www.transparenttextures.com/patterns/concrete-wall-2.png"})`,
   },
+  back:{
+    position:'absolute',
+    margin:20,
+    marginTop:40,
+    color:'white',
+    zIndex:10,
+    [theme.breakpoints.down(900)]:{
+      marginTop:60,
+    },
+  },
   container: {
     paddingTop: "20px",
   },

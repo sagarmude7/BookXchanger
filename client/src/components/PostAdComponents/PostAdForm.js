@@ -29,6 +29,7 @@ import Navbar from "../Navbar/Navbar.js";
 import Footer from "../Footer/footer.js";
 import { createBookAd } from "../../actions/books";
 import { VALID } from "../../constants/actions";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const initialState = {
   bookName: "",
@@ -401,6 +402,11 @@ const PostAdForm = () => {
   return (
 
     <div className={classes.mainContainer}>
+    <ArrowBackIcon
+                className={classes.back}
+                onClick={() => history.goBack()}
+                fontSize="large"
+              ></ArrowBackIcon>
       {err ? (
          <Snackbar
            style={{ top: "10%", left: "55%" }}
