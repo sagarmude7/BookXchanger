@@ -83,10 +83,6 @@ export default makeStyles({
       fontSize: "12px",
       left: "10px",
     },
-    "@media (max-width : 900px)": {
-      width: "100% !important",
-      margin: "auto",
-    },
   },
 
   Branch: {

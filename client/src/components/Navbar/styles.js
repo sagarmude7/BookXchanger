@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 const styles = makeStyles((theme) => ({
   appBar: {
-    background: "rgb(236,75,56)",
     background:
       "linear-gradient(90deg, rgba(236,75,56,1) 10%, rgba(232,90,79,1) 55%)",
     display: "flex",
@@ -42,7 +41,6 @@ const styles = makeStyles((theme) => ({
   },
   drawerContainer: {
     padding: "10px 10px",
-    background: "rgb(236,75,56)",
     background:
       "linear-gradient(90deg, rgba(236,75,56,1) 10%, rgba(232,90,79,1) 55%)",
     borderRadius: "5px",

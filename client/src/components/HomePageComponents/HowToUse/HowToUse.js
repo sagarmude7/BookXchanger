@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import descBuyer from "./descBuyer.js";
 import descSeller from "./descSeller.js";
 import useStyles from "./styles.js";
@@ -14,6 +14,7 @@ const HowToSell = () => {
         <div>
           <Typography align="center">
             <img
+              alt="buyer"
               src={props.buyer.img}
               className={classes.image}
               loading="lazy"
@@ -39,6 +40,7 @@ const HowToSell = () => {
         <div>
           <Typography align="center">
             <img
+              alt="seller"
               src={props.seller.img}
               className={classes.image}
               loading="lazy"

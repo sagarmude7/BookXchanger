@@ -73,8 +73,6 @@ const Dashboard = () => {
     setValue(newValue);
   };
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
   function a11yProps(index) {
     return {
       id: `full-width-tab-${index}`,

@@ -27,7 +27,6 @@ const Navbar = () => {
     appBarSpacer,
     menuButton,
     appBar,
-    brandContainer,
     toolbar,
     drawerContainer,
 
@@ -83,7 +82,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("profile")));
-    const token = user?.token;
   }, [location, user?.token]);
 
   const getDrawerChoices = () => {

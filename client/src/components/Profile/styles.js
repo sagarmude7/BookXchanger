@@ -39,11 +39,9 @@ export default makeStyles((theme) => ({
 
   root: {
     minWidth: 275,
-  },
-
-  root: {
     backgroundColor: "#E98074",
   },
+
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -173,8 +171,6 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "#286FB4",
-    backgroundColor: "#ed591a",
-    //backgroundColor:'#783d10',
     width: "14%",
     height: 120,
     marginTop: 60,
@@ -187,7 +183,6 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "#1abc9c",
-    backgroundColor: "#f5c118",
     width: "14%",
     height: 120,
     marginTop: 60,

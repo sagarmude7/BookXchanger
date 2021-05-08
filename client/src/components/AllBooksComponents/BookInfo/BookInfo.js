@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useStyles from "./styles.js";
 import { Link as RouterLink, useHistory } from "react-router-dom";
-import { useTheme } from "@material-ui/core/styles";
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -13,7 +12,6 @@ import {
   WhatsappIcon,
 } from "react-share";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
-
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { Grid, Container, Typography, Link } from "@material-ui/core";
@@ -26,16 +24,12 @@ import Book from "../../AllBooksComponents/Book/Book";
 
 const BookInfo = ({ match }) => {
   const classes = useStyles();
-  const theme = useTheme();
   const history = useHistory();
   const dispatch = useDispatch();
   const books = useSelector((state) => state.books);
   const book = useSelector((state) => state.book);
-  const user = JSON.parse(localStorage.getItem("profile"));
   const bookId = match.params.bookId;
-  const [found, setFound] = useState(
-    books.find((bk) => bk._id === bookId) !== undefined
-  );
+  const [found] = useState(books.find((bk) => bk._id === bookId) !== undefined);
 
   useEffect(() => {
     if (books.find((bk) => bk._id === bookId) !== undefined) {

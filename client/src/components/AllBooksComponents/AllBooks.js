@@ -35,7 +35,7 @@ const AllBooks = () => {
   const [sortType, setSortType] = useState("");
   const filterData = useSelector((state) => state.filterData);
   const [currentPage, setcurrentPage] = useState(1);
-  const [booksPerpage, setbooksPerpage] = useState(12);
+  const [booksPerpage] = useState(12);
 
   useEffect(() => {
     if (allBooks.length === 0) {

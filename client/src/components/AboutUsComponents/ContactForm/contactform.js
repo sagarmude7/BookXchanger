@@ -26,7 +26,7 @@ const Contact = () => {
   });
   const history = useHistory();
   const [err, setErr] = useState(false);
-  const [loader, setLoader] = useState(false);
+  const [, setLoader] = useState(false);
   const user = JSON.parse(localStorage.getItem("profile"));
   const feedback = useSelector((state) => state.user);
 

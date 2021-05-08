@@ -3,14 +3,14 @@ const styles = makeStyles((theme) => ({
   root: {
     margin: "auto",
   },
-  back:{
-    position:'absolute',
-    margin:20,
-    marginTop:20,
-    color:'white',
-    zIndex:10,
-    [theme.breakpoints.down(900)]:{
-      marginTop:35,
+  back: {
+    position: "absolute",
+    margin: 20,
+    marginTop: 20,
+    color: "white",
+    zIndex: 10,
+    [theme.breakpoints.down(900)]: {
+      marginTop: 35,
     },
   },
 
@@ -70,7 +70,7 @@ const styles = makeStyles((theme) => ({
     fontSize: "15px",
     fontWeight: "700",
     lineHeight: "1.5",
-    color: "#fff",
+
     textAlign: "center",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
@@ -119,9 +119,7 @@ const styles = makeStyles((theme) => ({
     paddingRight: "6%",
     paddingBottom: "20px",
     background: "rgb(234,231,220)",
-    position: "relative",
     width: "100%",
-    color: "black",
     margin: "auto",
     height: "auto",
 

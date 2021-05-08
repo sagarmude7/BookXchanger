@@ -2,7 +2,6 @@ import React,{useState,useEffect} from 'react'
 import {Paper,Grid,Typography,Button,Avatar, Box,Divider,ListItem,ListItemAvatar,ListItemText,List} from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar'
-
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -12,8 +11,9 @@ import GoogleIcon from './GoogleIcon'
 import {useDispatch} from 'react-redux'
 import {GoogleLogin} from 'react-google-login'
 import {signUp,signIn,googleFacebookSignIn} from '../../actions/auth'
-import {AUTH, VALID} from '../../constants/actions'
+import { VALID} from '../../constants/actions'
 import Fade from 'react-reveal/Fade';
+
 const initialState = {firstName:'',lastName:'',college:'',location:'',email:'',password:'',confirmPassword:''}
 const Auth = () => {
     const classes = useStyles()

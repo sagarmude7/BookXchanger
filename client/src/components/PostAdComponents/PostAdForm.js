@@ -390,10 +390,6 @@ const PostAdForm = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   return (
     <div className={classes.mainContainer}>
       <ArrowBackIcon

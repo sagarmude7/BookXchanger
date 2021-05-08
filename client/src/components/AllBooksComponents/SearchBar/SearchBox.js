@@ -15,7 +15,6 @@ import {
   InputLabel,
   Box,
 } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 
 const SearchBox = () => {

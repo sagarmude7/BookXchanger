@@ -6,7 +6,6 @@ import "react-multi-carousel/lib/styles.css";
 import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../../AllBooksComponents/Book/Book";
 import { Grid, Container, Typography } from "@material-ui/core";
-import useStyles from "./style";
 import { getBooks } from "../../../actions/books";
 
 const BookSlider = () => {

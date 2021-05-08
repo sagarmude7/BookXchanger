@@ -20,7 +20,6 @@ export default makeStyles((theme) => ({
   topBox: {
     paddingTop: "10px",
     width: "100%",
-    backgroundColor: "rgb(255,255,255)",
     backgroundColor:
       "radial-gradient(circle, rgba(255,255,255,1) 7%, rgba(216,195,165,1) 97%)",
   },
@@ -37,8 +36,6 @@ export default makeStyles((theme) => ({
   head: {
     paddingTop: "10px",
     border: "2px solid #8e8d8a",
-    backgroundColor: "rgb(255,255,255)",
-
     backgroundColor:
       "radial-gradient(circle, rgba(255,255,255,1) 7%, rgba(216,195,165,1) 97%)",
     display: "flex",

@@ -9,7 +9,6 @@ const styles = makeStyles(() => ({
   flexContainer: {
     display: "flex",
     flexFlow: "row nowrap",
-    background: "rgb(236,75,56)",
     background:
       "linear-gradient(90deg, rgba(236,75,56,1) 10%, rgba(232,90,79,1) 55%)",
     padding: "30px 0px 10px 0px",
@@ -74,7 +73,6 @@ const styles = makeStyles(() => ({
     "&:hover": {
       color: "#eae7dc",
       textShadow: "0 0 5px #eae7dc",
-      color: "#ffffff",
       transform: "scale(1.3)",
     },
     "@media (max-width : 700px)": {

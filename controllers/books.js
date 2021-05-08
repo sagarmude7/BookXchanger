@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
 const Book = require("../models/Book");
 const User = require("../models/User");
-const Blob = require("node-blob");
-const Compress = require("compress.js");
 
 const { postBookValidator } = require("../validators/joi-validator");
-exports.getBooks = async (res) => {
+exports.getBooks = async (req, res) => {
   try {
     const books = await Book.find();
     return res.status(200).json(books);

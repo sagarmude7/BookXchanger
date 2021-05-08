@@ -14,7 +14,7 @@ const OtherUser = ({ match }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const [err, setErr] = useState(false);
+  const [, setErr] = useState(false);
   const books = useSelector((state) => state.books);
   const sender = JSON.parse(localStorage.getItem("profile")).profile;
 
@@ -51,9 +51,7 @@ const OtherUser = ({ match }) => {
       history.push("/profile");
     }
   }, []);
-  const [key, setKey] = useState(true);
-
-  const [open, setOpen] = useState(false);
+  const [, setKey] = useState(true);
 
   useEffect(() => {
     if (user.msg) {
@@ -64,21 +62,6 @@ const OtherUser = ({ match }) => {
       setKey(true);
     }
   }, [user]);
-
-  const [values1, setValues1] = useState({
-    currentpassword: "",
-    showPassword: false,
-  });
-
-  const [values2, setValues2] = useState({
-    password: "",
-    showPassword: false,
-  });
-
-  const [values3, setValues3] = useState({
-    password: "",
-    showPassword: false,
-  });
 
   return (
     <div className={classes.container}>
