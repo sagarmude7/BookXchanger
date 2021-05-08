@@ -30,6 +30,7 @@ import Footer from "../Footer/footer.js";
 import { createBookAd } from "../../actions/books";
 import { VALID } from "../../constants/actions";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { red } from "@material-ui/core/colors";
 
 const initialState = {
   bookName: "",
@@ -424,16 +425,20 @@ const PostAdForm = () => {
       <form noValidate autoComplete='off' onSubmit={handleSubmit}>
       <Grow in>
       <Box align="center" className={classes.box}> 
-        <Stepper activeStep={activeStep} alternativeLabel className={classes.stepper}>
-          {steps.map((label) => (
-            <Step  key={label} >
-              <StepLabel>
-                <Typography component="span" variant="h5" style={{color:"#6c6b68"}}>
+        <Stepper activeStep={activeStep} alternativeLabel className={classes.stepper} >
+          {steps.map((label,index) => {
+            const props = {};
+            const labelProps = {};
+            labelProps.icon = <div className={classes.stepcolor}>{index+1}</div>
+            return (
+            <Step  key={label} {...props}>
+              <StepLabel {...labelProps}>
+                <Typography component="span" variant="h5" className={classes.stepname}>
                   {label}
                 </Typography>
               </StepLabel>
             </Step>
-          ))}
+          )})}
         </Stepper>
       </Box>
       </Grow> 

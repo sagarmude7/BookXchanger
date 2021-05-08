@@ -143,10 +143,10 @@ const Profile = () => {
         <Container className={classes.head}>
           {user.profilePic ? (
             
-            <img className={classes.pic} src={user.profilePic} alt="M" ></img>
+            <img className={classes.pic} src={user.profilePic} alt="M" loading="lazy"></img>
           
           ) : (
-            <img className={classes.pic} src={img} alt="M"></img>
+            <img className={classes.pic} src={img} alt="M" loading="lazy"></img>
           )}
           <Typography
             variant="body1"

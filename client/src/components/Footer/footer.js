@@ -23,7 +23,7 @@ const Footer = () => {
             className={classes.flexbox}
             style={{ flexGrow: "1", flex: "auto", flexDirection: "row" }}
           >
-            <Typography align="center" component={"span"}>
+            <Typography align="center">
               <Link href="#" color="inherit">
                 <img className={classes.image1} src={logo} alt="BookXchanger" />
               </Link>
@@ -31,7 +31,6 @@ const Footer = () => {
               <Typography
                 style={{ fontSize: "20px", fontWeight: "bold" }}
                 align="center"
-                component={"span"}
               >
                 Best Recycle is Book Recycle.
               </Typography>
@@ -43,7 +42,7 @@ const Footer = () => {
               Get in Touch
               <br />
             </Typography>
-            <Typography align="center" component={"span"}>
+            <Typography align="center">
               <Link
                 href="https://www.facebook.com/"
                 target="_blank"
@@ -85,7 +84,7 @@ const Footer = () => {
             >
               Quick Links
             </Typography>
-            <Typography align="center" component={"span"}>
+            <Typography align="center">
               <li style={{ listStyleType: "none", textAlign: "center" }}>
                 <ul className={classes.link}>
                   <Link

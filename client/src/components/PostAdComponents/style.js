@@ -95,6 +95,19 @@ export default makeStyles((theme) => ({
     width: theme.spacing(10),
     height: theme.spacing(10)
   },
+  stepname:{
+    // color:"#6c6b68"
+  },
+  stepcolor:{
+    backgroundColor: "#8E8D8A",
+    width: '35px',
+    padding: '5px',
+    textAlign: 'center',
+    height: '35px',
+    fontSize: '17px',
+    borderRadius: '50%',
+    marginBottom:'20px' 
+  },
 
   [theme.breakpoints.down(700)]:{
     stepper:{
@@ -102,6 +115,20 @@ export default makeStyles((theme) => ({
       borderRadius:"0.7rem",
       width:"100%",
       marginTop:"40px"
+    },
+    stepname:{
+      // color:"#6c6b68",
+      fontSize:16
+    },
+    stepcolor:{
+      backgroundColor: "#8E8D8A",
+      width: '30px',
+      padding: '5px',
+      textAlign: 'center',
+      height: '30px',
+      fontSize: '17px',
+      borderRadius: '50%',
+      marginBottom:'20px' 
     },
   },
 
@@ -112,5 +139,10 @@ export default makeStyles((theme) => ({
       width:"80%",
       marginTop:"40px"
     },
+    stepname:{
+      // color:"#6c6b68",
+      fontSize:19
+    }
+
   }
 }));
