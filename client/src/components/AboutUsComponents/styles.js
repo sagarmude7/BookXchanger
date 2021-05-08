@@ -1,7 +1,18 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-const useStyles = makeStyles({
+export default makeStyles((theme) => ({
   top: {},
+  back:{
+    position:'absolute',
+    margin:20,
+    marginTop:40,
+    color:'white',
+    zIndex:10,
+    [theme.breakpoints.down(900)]:{
+      marginTop:60,
+    },
+  },
+  
   root: {
     maxWidth: 360,
     alignItems: "right",
@@ -11,6 +22,7 @@ const useStyles = makeStyles({
   media: {
     height: 150,
   },
-});
+}
+));
 
-export default useStyles;
+

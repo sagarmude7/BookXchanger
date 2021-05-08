@@ -21,6 +21,7 @@ import useStyles from "./styles";
 import Navbar from "../Navbar/Navbar.js";
 import Footer from "../Footer/footer.js";
 import { editaBook } from "../../actions/books";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const initialState = {
   bookName: "",
@@ -80,9 +81,16 @@ const EditBook = ({ match }) => {
 
   return (
     <>
+    <ArrowBackIcon
+                className={classes.back}
+                onClick={() => history.goBack()}
+                fontSize="large"
+              ></ArrowBackIcon>
       \
       <Grow in>
+      
         <Container>
+        
           <Paper className={classes.paper}>
             <form
               autoComplete="off"

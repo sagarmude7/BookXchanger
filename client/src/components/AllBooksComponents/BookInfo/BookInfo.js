@@ -116,7 +116,7 @@ const BookInfo = ({ match }) => {
         <div className={classes.topContainer}>
           <ArrowBackIcon
             style={{ cursor: "pointer" }}
-            className={classes.topLeft}
+            className={classes.back}
             onClick={() => history.goBack()}
           ></ArrowBackIcon>
 

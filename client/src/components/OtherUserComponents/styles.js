@@ -14,6 +14,11 @@ export default makeStyles((theme) => ({
     backgroundColor: "#EAE7DC",
   },
 
+  back:{
+    position:'absolute',
+    margin:20,
+  },
+
   topBox: {
     paddingTop: "10px",
     width: "100%",
@@ -214,6 +219,10 @@ export default makeStyles((theme) => ({
   },
 
   [theme.breakpoints.down(1000)]: {
+    back:{
+      position:'absolute',
+      marginTop:40,
+    },
     pic: {
       marginTop: 40,
     },

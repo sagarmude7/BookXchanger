@@ -25,11 +25,13 @@ import useStyles from "./style";
 import SearchBox from "./SearchBar/SearchBox.js";
 import Zoom from "react-reveal/Zoom";
 import PulseLoader from "react-spinners/PulseLoader";
-
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { getBooks } from "../../actions/books";
 import { Pagination } from "./Pagination/Pagination";
+import { useHistory } from "react-router-dom";
 
 const AllBooks = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
@@ -138,6 +140,11 @@ const AllBooks = () => {
 
   return (
     <>
+      <ArrowBackIcon
+            className={classes.back}
+            onClick={() => history.goBack()}
+            fontSize="large"
+          ></ArrowBackIcon>
       <div className={classes.maincontainer}>
         <Zoom>
           <SearchBox />

@@ -6,6 +6,15 @@ export default makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  back:{
+    position:'absolute',
+    margin:20,
+    marginTop:40,
+    zIndex:10,
+    [theme.breakpoints.down(900)]:{
+      marginTop:60,
+    },
+  },
   paper: {
     padding: theme.spacing(2),
   },

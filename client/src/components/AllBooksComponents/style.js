@@ -5,6 +5,17 @@ import { makeStyles } from "@material-ui/core/styles";
 </style>;
 
 export default makeStyles((theme) => ({
+  back:{
+    position:'absolute',
+    margin:20,
+    marginTop:40,
+    color:'white',
+    zIndex:10,
+    [theme.breakpoints.down(900)]:{
+      marginTop:60,
+    },
+
+  },
   smMargin: {
     margin: theme.spacing(1),
   },

@@ -29,6 +29,7 @@ import { getRecentUsers } from "../../actions/user";
 import Message from "./Messages/Message";
 import { ThemeProvider } from "@emotion/react";
 import { green, pink } from '@material-ui/core/colors';
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 function TabPanel(props) {
 
@@ -66,8 +67,6 @@ function a11yProps(index) {
 
 const Profile = () => {
 
-  
-  
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
@@ -135,6 +134,11 @@ const Profile = () => {
           </Alert>
         </Snackbar>
       ) : null}
+      <ArrowBackIcon
+            className={classes.back}
+            onClick={() => history.goBack()}
+            fontSize="large"
+          ></ArrowBackIcon>
       <div className={classes.topBox}>
         <Container className={classes.head}>
           {user.profilePic ? (

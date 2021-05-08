@@ -137,13 +137,14 @@ const OtherUser = ({ match }) => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.topBox}>
-        <Container className={classes.head}>
-          <ArrowBackIcon
-            className={classes.topLeft}
+      <ArrowBackIcon
+            className={classes.back}
             onClick={() => history.goBack()}
             fontSize="large"
           ></ArrowBackIcon>
+      <div className={classes.topBox}>
+        <Container className={classes.head}>
+          
           {user.profilePic ? (
             <img
               className={classes.pic}

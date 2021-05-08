@@ -29,8 +29,11 @@ import { getBooks } from "../../actions/books";
 import Zoom from "react-reveal/Zoom";
 import { css } from "@emotion/react";
 import RiseLoader from "react-spinners/RiseLoader";
+import { useHistory } from "react-router-dom";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const Wishlist = () => {
+  const history = useHistory();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
   // const wishList = useSelector((state) => state.wishList);
@@ -88,6 +91,11 @@ const Wishlist = () => {
   const Item = (props) => {
     return (
       <div className={classes.parent}>
+      <ArrowBackIcon
+            className={classes.back}
+            onClick={() => history.goBack()}
+            fontSize="large"
+          ></ArrowBackIcon>
         <div
           className={classes.main}
           style={{

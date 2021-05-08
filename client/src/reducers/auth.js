@@ -11,7 +11,7 @@ const authReducer = (authData={},action)=>{
             socket.emit('login',{id:id})
             return action.payload
         case LOGOUT:
-            id = JSON.parse(localStorage.getItem('profile')).profile.id
+            id = JSON.parse(localStorage.getItem('profile')).profile?.id
             socket.emit('logout',{id:id})
             localStorage.clear()
             socket.close()
