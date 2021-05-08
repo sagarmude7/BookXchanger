@@ -47,7 +47,6 @@ const Wishlist = () => {
 
   const override = css`
     display: block;
-
     border-color: red;
     background-color: #eae7dc;
   `;

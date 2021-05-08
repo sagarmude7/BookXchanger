@@ -52,7 +52,6 @@ const Dashboard = () => {
 
   const override = css`
     display: block;
-
     border-color: red;
     background-color: #eae7dc;
   `;
@@ -88,6 +87,7 @@ const Dashboard = () => {
             color="#e98074"
             css={override}
             size={30}
+            style={{ background: "rgb(234,231,220)" }}
           />
         </div>
       ) : (

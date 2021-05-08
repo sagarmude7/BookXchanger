@@ -53,7 +53,6 @@ const BookSlider = () => {
 
   const override = css`
     display: block;
-    padding-left: 45%;
     border-color: red;
     background-color: #eae7dc;
   `;
@@ -101,12 +100,15 @@ const BookSlider = () => {
       </div>
 
       {loading ? (
-        <PulseLoader
-          loading={loading}
-          color="#e98074"
-          css={override}
-          size={30}
-        />
+        <div style={{ textAlign: "center" }}>
+          <PulseLoader
+            loading={loading}
+            color="#e98074"
+            css={override}
+            size={30}
+            style={{ background: "rgb(234,231,220)" }}
+          />
+        </div>
       ) : (
         <div
           style={{
@@ -155,13 +157,15 @@ const BookSlider = () => {
       </div>
 
       {loading ? (
-        <PulseLoader
-          loading={loading}
-          color="#e98074"
-          css={override}
-          size={30}
-          style={{ background: "rgb(234,231,220)" }}
-        />
+        <div style={{ textAlign: "center" }}>
+          <PulseLoader
+            loading={loading}
+            color="#e98074"
+            css={override}
+            size={30}
+            style={{ background: "rgb(234,231,220)" }}
+          />
+        </div>
       ) : (
         <div
           style={{

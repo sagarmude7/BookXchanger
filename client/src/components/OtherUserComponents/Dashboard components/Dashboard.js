@@ -22,7 +22,6 @@ const Dashboard = ({ userId }) => {
 
   const override = css`
     display: block;
-    padding-left: 40%;
     border-color: red;
     background-color: #eae7dc;
   `;
@@ -55,12 +54,13 @@ const Dashboard = ({ userId }) => {
           }}
         />
         {loading ? (
-          <div style={{ textAlign: "center", height: "40%" }}>
+          <div style={{ textAlign: "center" }}>
             <PulseLoader
               loading={loading}
               color="#e98074"
               css={override}
               size={30}
+              style={{ background: "rgb(234,231,220)" }}
             />
           </div>
         ) : (
