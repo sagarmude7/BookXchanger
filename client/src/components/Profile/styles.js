@@ -13,9 +13,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
    
+  
     Container:{
-        backgroundColor:"",
-        
+      
     },
       
       pink: {
@@ -23,9 +23,9 @@ export default makeStyles((theme) => ({
         backgroundColor: pink[500],
       },
 
-      green: {
-        color: '#fff',
-        backgroundColor: green[500],
+      secondary: {
+        color: '#8E8D8A',
+        
       },
 
       large: {
@@ -38,6 +38,9 @@ export default makeStyles((theme) => ({
         backgroundColor:'#EAE7DC',
         display:'flex',
         flexDirection:'row',
+        
+        
+        
           
       },
       profileImage:{
@@ -47,6 +50,11 @@ export default makeStyles((theme) => ({
 
       root: {
         minWidth: 275,
+      },
+
+      root: {
+    
+        backgroundColor:'#E98074' ,
       },
       bullet: {
         display: 'inline-block',
@@ -66,7 +74,7 @@ export default makeStyles((theme) => ({
         fontWeight:300,
         fontSize:30,
         
-        //border:"2px solid red"
+        
     },
 
      
@@ -84,6 +92,7 @@ export default makeStyles((theme) => ({
         display:'flex',
         flexDirection:'column',
         width:"88%",
+        
       },
 
       bodyFields:{
@@ -118,6 +127,8 @@ export default makeStyles((theme) => ({
       Edit:{
         width:"18%",
         marginLeft:"80%",
+        backgroundColor:'#E85A4F',
+        color:'white'
       },
 
 
@@ -143,6 +154,7 @@ export default makeStyles((theme) => ({
       changePassword :{
         width:180,
         marginLeft:"77%",
+        backgroundColor:'#8E8D8A',
         
       },
 
@@ -159,18 +171,29 @@ export default makeStyles((theme) => ({
         marginBottom:30,
         marginTop:30,
         marginLeft:"72%",
+        color:'white',
+        backgroundColor:'#E85A4F',
+        "&:hover": {
+          backgroundColor: "#8E8D8A",
+           
+         },
       },
 
       rootTab: {
         backgroundColor:'#E98074' ,
-        
+        color:'black',
+        textColor:'green',
+        indicatorColor:'#ffffff',
         
       },
 
       topBox:{
         
         width:"84%",
-        marginLeft:"8%"
+        marginLeft:"8%",
+        marginTop:20,
+        
+        
 
       },
 
@@ -180,6 +203,8 @@ export default makeStyles((theme) => ({
         flexDirection:'column',
         alignItems:'center',
         backgroundColor:"#286FB4",
+        backgroundColor:'#ed591a',
+        //backgroundColor:'#783d10',
         width:"14%",
         height:120,
         marginTop:60,
@@ -192,6 +217,7 @@ export default makeStyles((theme) => ({
         flexDirection:'column',
         alignItems:'center',
         backgroundColor:"#1abc9c",
+        backgroundColor:"#f5c118",
         width:"14%",
         height:120,
         marginTop:60,
@@ -218,13 +244,15 @@ export default makeStyles((theme) => ({
         width:"100%",
         backgroundColor:'#D8C3A5',
         //backgroundColor:'#EAE7DC',
+        
+        
       },
 
       messageCardContent:{
         display:'flex',
         flexDirection:'row',
         width:"94%",
-        //border:"solid green",
+        
         
       },
 
@@ -239,17 +267,23 @@ export default makeStyles((theme) => ({
      },
 
      messageBody:{
-      padding:0,
+      paddingTop:10,
+      padding:20,
       backgroundColor:'#EAE7DC',
-      //border:"solid pink",
       width:"88%"
       
     },
 
     messageHeading:{
       fontSize:28,
-      fontWeight:2,
-      margin:20,
+      fontWeight:1,
+      margin:15,
+      marginLeft:30,
+      
+    },
+
+    uploadPhoto:{
+      backgroundColor:'#8E8D8A',
     },
      
 
@@ -263,7 +297,8 @@ export default makeStyles((theme) => ({
         uploadPhoto:{
           
           marginLeft:30,
-          marginTop:30
+          marginTop:30,
+          
         },
 
         editProfilePic:{
@@ -319,6 +354,7 @@ export default makeStyles((theme) => ({
           fontSize:14,
           fontWeight:5,
         },
+
       
       },
      
@@ -382,6 +418,27 @@ export default makeStyles((theme) => ({
       width:170,
       marginLeft:"65%",
       fontSize:13,
+      
+      
+    },
+
+    topBox:{
+        
+      width:"84%",
+      marginLeft:"8%",
+      marginTop:35
+
+    },
+
+    body:{
+     
+      width:"89%",
+      
+    },
+
+    messageBody:{
+    
+      width:"90%"
       
     },
 
@@ -494,6 +551,24 @@ export default makeStyles((theme) => ({
       height: theme.spacing(6),
     },
 
+    body:{
+     
+      width:"91%",
+      
+    },
+
+    messageHeading:{
+      fontSize:22,
+      margin:8,
+      marginLeft:25,
+      
+    },
+
+    messageBody:{
+    
+      width:"91%"
+      
+    },
    
     },
 
@@ -564,6 +639,26 @@ export default makeStyles((theme) => ({
       
     },
 
+    body:{
+     
+      width:"93%",
+      
+    },
+
+    messageHeading:{
+      fontSize:19,
+      margin:8,
+      marginLeft:25,
+      
+    },
+
+    messageBody:{
+      paddingTop:8,
+      padding:10,
+      width:"93%"
+      
+    },
+
   },
 
   [theme.breakpoints.down(400)]:{
@@ -600,6 +695,23 @@ export default makeStyles((theme) => ({
    
  },
 
+ body:{
+     
+  width:"95%",
+  
+},
+messageHeading:{
+  fontSize:19,
+  margin:8,
+  marginLeft:20,
+  
+},
+
+messageBody:{
+  
+  width:"95%"
+  
+},
 
 },
 
