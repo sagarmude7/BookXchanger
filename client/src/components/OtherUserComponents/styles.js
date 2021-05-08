@@ -1,8 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { green, pink } from "@material-ui/core/colors";
-import { CenterFocusStrong } from "@material-ui/icons";
-import { createMuiTheme } from "@material-ui/core/styles";
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
@@ -14,9 +12,9 @@ export default makeStyles((theme) => ({
     backgroundColor: "#EAE7DC",
   },
 
-  back:{
-    position:'absolute',
-    margin:20,
+  back: {
+    position: "absolute",
+    margin: 20,
   },
 
   topBox: {
@@ -112,7 +110,6 @@ export default makeStyles((theme) => ({
 
   textBox: {
     margin: 20,
-    //margin:'2%',
     width: "80%",
   },
 
@@ -219,9 +216,9 @@ export default makeStyles((theme) => ({
   },
 
   [theme.breakpoints.down(1000)]: {
-    back:{
-      position:'absolute',
-      marginTop:40,
+    back: {
+      position: "absolute",
+      marginTop: 40,
     },
     pic: {
       marginTop: 40,
@@ -233,23 +230,17 @@ export default makeStyles((theme) => ({
     },
 
     listing1: {
-      //display:'flex',
-      //flexDirection:'column',
       alignItems: "center",
-      //backgroundColor:"#286FB4",
 
       height: 120,
       marginTop: 20,
       margin: "0",
-      //marginLeft:"0",
+
       width: "100%",
     },
 
     listing2: {
-      //display:'flex',
-      //flexDirection:'column',
       alignItems: "center",
-      //backgroundColor:"#286FB4",
 
       height: 120,
       marginTop: 20,

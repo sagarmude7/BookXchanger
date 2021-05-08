@@ -4,24 +4,20 @@ import descSeller from "./descSeller.js";
 import useStyles from "./styles.js";
 import Carousel from "react-material-ui-carousel";
 
-import {
-  Button,
-  CardContent,
-  Typography,
-  CardActions,
-  Card,
-  Grid,
-} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 const HowToSell = () => {
   const classes = useStyles();
-
   const Buyer = (props) => {
     return (
       <div className={classes.parent}>
         <div>
           <Typography align="center">
-            <img src={props.buyer.img} className={classes.image} loading="lazy" />
+            <img
+              src={props.buyer.img}
+              className={classes.image}
+              loading="lazy"
+            />
           </Typography>
 
           <div>
@@ -42,7 +38,11 @@ const HowToSell = () => {
       <div className={classes.parent}>
         <div>
           <Typography align="center">
-            <img src={props.seller.img} className={classes.image} loading="lazy" />
+            <img
+              src={props.seller.img}
+              className={classes.image}
+              loading="lazy"
+            />
           </Typography>
 
           <div>

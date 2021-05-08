@@ -1,9 +1,8 @@
-import { colors, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
-const styles = makeStyles((theme) => ({
+const styles = makeStyles(() => ({
   footer: {
     position: "center",
-
     background: "#E85A4F",
   },
 
@@ -42,7 +41,6 @@ const styles = makeStyles((theme) => ({
     transition: "1s",
     "&:hover": {
       color: "#eae7dc",
-
       textShadow: "0 0 5px #eae7dc",
     },
   },
@@ -68,16 +66,13 @@ const styles = makeStyles((theme) => ({
     fontSize: "40px",
     transform: "scale(.9)",
     zIndex: "-1",
-
     transition: ".5s",
-
     "&:hover::before": {
       transform: "scale(1.1)",
     },
 
     "&:hover": {
       color: "#eae7dc",
-
       textShadow: "0 0 5px #eae7dc",
       color: "#ffffff",
       transform: "scale(1.3)",

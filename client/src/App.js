@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import ScrollUpButton from "react-scroll-up-button";
 import { Container } from "@material-ui/core";
 import PostAdForm from "./components/PostAdComponents/PostAdForm.js";
 import Home from "./components/HomePageComponents/Home.js";
@@ -21,7 +20,6 @@ import { AlertTitle } from "@material-ui/lab";
 import { green } from "@material-ui/core/colors";
 import history from "./history/history.js";
 import { useDispatch, useSelector } from "react-redux";
-import { getBooks } from "./actions/books";
 import OtherUser from "./components/OtherUserComponents/OtherUser";
 import { socket } from "./service/socket";
 import { GET_NOTIFICATION, CLEAR_NOTIFICATION } from "./constants/actions.js";
@@ -42,20 +40,17 @@ const App = () => {
   useEffect(() => {
     if (localStorage.getItem("profile")) {
       socket.connect();
-      console.log("I am running");
+
       const id = JSON.parse(localStorage.getItem("profile")).profile.id;
       // socket.emit('login',{id:id})
       socket.on("connect", () => {
-        console.log("connected");
         socket.emit("login", { id: id });
-        console.log(socket.id);
       });
     }
   }, []);
 
   useEffect(() => {
     socket.on("send_msg", (msg) => {
-      // console.log(msg)
       dispatch({ type: GET_NOTIFICATION, payload: msg });
     });
   }, []);

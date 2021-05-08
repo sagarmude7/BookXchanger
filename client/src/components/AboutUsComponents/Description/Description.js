@@ -1,13 +1,10 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Typography, Box } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 import useStyles from "./styles.js";
 import descData from "./descData.js";
-import Bounce from "react-reveal/Bounce";
-//import Typewriter from "typewriter-effect";
 const Description = () => {
   const classes = useStyles();
-
   const Item = (props) => {
     return (
       <div className={classes.parent}>

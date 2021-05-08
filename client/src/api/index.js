@@ -21,27 +21,28 @@ const addToWishList = (id) => API.patch(`${urlBooks}/${id}/addWishList`, id);
 
 const showBookInfo = (bookId) => API.get(`${urlBooks}/book/${bookId}`);
 
-const updatedIsSold = (bookId) =>API.patch(`${urlBooks}/${bookId}/sold`);
+const updatedIsSold = (bookId) => API.patch(`${urlBooks}/${bookId}/sold`);
 
-const deleteaBook = (bookId)=>API.delete(`${urlBooks}/${bookId}`)
+const deleteaBook = (bookId) => API.delete(`${urlBooks}/${bookId}`);
 
-const editaBook = (id,formData)=>API.patch(`${urlBooks}/${id}`,formData)
+const editaBook = (id, formData) => API.patch(`${urlBooks}/${id}`, formData);
 
-// '${urlBooks}/userBooks'
 const urlUsers = "/users";
 
 const signUp = (formData) => API.post(`${urlUsers}/signUp`, formData);
 const signIn = (formData) => API.post(`${urlUsers}/signIn`, formData);
 
-const googleFacebookSignIn = (formData) => API.post(`${urlUsers}/googleFacebookSignIn`, formData);
+const googleFacebookSignIn = (formData) =>
+  API.post(`${urlUsers}/googleFacebookSignIn`, formData);
 
 const getProfile = (id) => API.get(`${urlUsers}/profile/${id}`);
-const getRecentUsers = ()=> API.get(`${urlUsers}/profile/messages`)
-const editProfile = (updatedUser) => API.patch(`${urlUsers}/profile`, updatedUser);
-const changePassword = (updatedPassword) => API.patch(`${urlUsers}/profile/password`, updatedPassword);
+const getRecentUsers = () => API.get(`${urlUsers}/profile/messages`);
+const editProfile = (updatedUser) =>
+  API.patch(`${urlUsers}/profile`, updatedUser);
+const changePassword = (updatedPassword) =>
+  API.patch(`${urlUsers}/profile/password`, updatedPassword);
 
-const sendMail = (feedData) => API.post(`${urlUsers}/send-email`,feedData);
-// const getWishList = (id) => API.get(`${urlUsers}/wishList`);
+const sendMail = (feedData) => API.post(`${urlUsers}/send-email`, feedData);
 
 module.exports = {
   fetchBooks,
@@ -58,5 +59,5 @@ module.exports = {
   editaBook,
   changePassword,
   sendMail,
-  getRecentUsers
+  getRecentUsers,
 };

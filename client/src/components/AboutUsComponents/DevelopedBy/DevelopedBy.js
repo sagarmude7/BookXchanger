@@ -9,22 +9,18 @@ const DevelopedBy = () => {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
-      // profile: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 4,
-      // profile: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 460 },
       items: 2,
-      // profile: 2,
     },
     mobile: {
       breakpoint: { max: 460, min: 0 },
       items: 1,
-      // profile: 1,
     },
   };
 

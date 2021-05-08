@@ -4,14 +4,10 @@ import Snackbar from "@material-ui/core/Snackbar";
 import Description from "./Description/Description.js";
 import HowToUse from "./HowToUse/HowToUse.js";
 import BookSlider from "./BookSlider/BookSlider.js";
-import { AlertTitle } from "@material-ui/lab";
+
+import { VALID } from "../../constants/actions.js";
 import Feedback from "./Feedback/Feedback.js";
 import { useSelector, useDispatch } from "react-redux";
-import { AUTH, CLEAR_NOTIFICATION, VALID } from "../../constants/actions.js";
-import Roll from "react-reveal/Roll";
-import LightSpeed from "react-reveal/LightSpeed";
-import Flip from "react-reveal/Flip";
-import { socket } from "../../service/socket";
 import { getBooks } from "../../actions/books";
 const Home = () => {
   const [alert, setAlert] = useState(false);

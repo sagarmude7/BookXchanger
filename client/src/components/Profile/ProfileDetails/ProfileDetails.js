@@ -5,7 +5,7 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
-import Snackbar from '@material-ui/core/Snackbar'
+import Snackbar from "@material-ui/core/Snackbar";
 import useStyles from "../styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -17,33 +17,32 @@ import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import clsx from "clsx";
-import { Alert, AlertTitle } from '@material-ui/lab';
+import { Alert } from "@material-ui/lab";
 import IconButton from "@material-ui/core/IconButton";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
-import { editProfile, getProfile, changePassword } from "./../../../actions/user";
+import {
+  editProfile,
+  getProfile,
+  changePassword,
+} from "./../../../actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
-import { ERROR, VALID } from "../../../constants/actions";
-import { keys } from "@material-ui/core/styles/createBreakpoints";
-import Compress from 'compress.js'
-import img from '../profilepic.png'
+import { VALID } from "../../../constants/actions";
+import img from "../profilepic.png";
 
 const Profile = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user1 = JSON.parse(localStorage.getItem('profile')); 
+  const user1 = JSON.parse(localStorage.getItem("profile"));
   const user = useSelector((state) => state.user);
-  const error = useSelector(state=>state.book)
-  const [err,setErr] = useState(false) 
-  const [passErr,setPassErr] = useState(false)
+  const error = useSelector((state) => state.book);
+  const [err, setErr] = useState(false);
   const [key, setKey] = useState(true);
   const [open, setOpen] = useState(false);
-  const [severity,setSeverity] = useState("error")
-
+  const [severity, setSeverity] = useState("error");
 
   useEffect(() => {
-    if(user1)
-      dispatch(getProfile(user1.profile.id));
+    if (user1) dispatch(getProfile(user1.profile.id));
   }, [dispatch]);
 
   const [userData, setUserData] = useState({
@@ -62,28 +61,21 @@ const Profile = () => {
     setOpen(false);
   };
 
-
   const handleSubmitPassword = (e) => {
     e.preventDefault();
 
-    const passData={
-      currentPassword : values1.password,
-      newPassword : values2.password,
-      confirmPassword : values3.password
-    }
-    
+    const passData = {
+      currentPassword: values1.password,
+      newPassword: values2.password,
+      confirmPassword: values3.password,
+    };
+
     dispatch(changePassword(passData));
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setUserData(userData);
-    // if(user.message){
-    //   setKey(false);
-    // }
-    // else{
-    //   handleClose();
-    // }
-  },[user])
+  }, [user]);
 
   useEffect(() => {
     if (user)
@@ -97,49 +89,42 @@ const Profile = () => {
       });
   }, [user, setUserData]);
 
-
   const handleSubmitUserInfo = (e) => {
     e.preventDefault();
 
     dispatch(editProfile(userData));
-      
   };
 
-  
-  useEffect(()=>{
-      if(!key){
-        setUserData(userData);
-      }
-      if(error.msg==="Profile Updated Successfully"){
-        setKey(true)
-        setSeverity("success")
-        setErr(true)
-      }
-      if(error.msg==="Password Updated Successfully"){
-        handleClose()
-        setSeverity("success")
-      }
-  },[user,error])
-
-  useEffect(()=>{
-    if(error.msg || error.message){
-      setErr(true)
+  useEffect(() => {
+    if (!key) {
+      setUserData(userData);
     }
-  },[error])
-    
-  const addImage = async(e)=>{
-    const files = [...e.target.files]
-    //const imageData = await Compress.compress(files,{size:0.2,quality:0.5})
-    //const imageFile = imageData[0].prefix+imageData[0].data
-    const previewImage= URL.createObjectURL(e.target.files[0]);
-    
-    setUserData({...userData,profilePic:previewImage})
-  }
+    if (error.msg === "Profile Updated Successfully") {
+      setKey(true);
+      setSeverity("success");
+      setErr(true);
+    }
+    if (error.msg === "Password Updated Successfully") {
+      handleClose();
+      setSeverity("success");
+    }
+  }, [user, error]);
 
-  const removeImage = async(e)=>{
-    setUserData({...userData,profilePic:img});
-  }
+  useEffect(() => {
+    if (error.msg || error.message) {
+      setErr(true);
+    }
+  }, [error]);
 
+  const addImage = async (e) => {
+    const previewImage = URL.createObjectURL(e.target.files[0]);
+
+    setUserData({ ...userData, profilePic: previewImage });
+  };
+
+  const removeImage = async (e) => {
+    setUserData({ ...userData, profilePic: img });
+  };
 
   const handleChangeUserInfo = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -196,42 +181,45 @@ const Profile = () => {
     event.preventDefault();
   };
 
-  const handleCloseAlert1 = (event, reason) => {
-    if (reason === 'clickaway') {
+  const handleCloseAlert1 = (reason) => {
+    if (reason === "clickaway") {
       return;
     }
 
     setErr(false);
-    dispatch({type:VALID,payload:{}})
-    setSeverity("error")
+    dispatch({ type: VALID, payload: {} });
+    setSeverity("error");
   };
-
 
   if (key) {
     return (
       <div className={classes.container}>
-        {
-            err?(
-                <Snackbar style={{"top":"10%",'left':"50%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={err} autoHideDuration={5000} onClose={handleCloseAlert1}>
-                    <Alert onClose={handleCloseAlert1} severity={severity}>
-                        <strong>{error?.msg}</strong>
-                    </Alert>
-                </Snackbar>     
-            ):null
-        }
+        {err ? (
+          <Snackbar
+            style={{ top: "10%", left: "50%" }}
+            anchorOrigin={{ horizontal: "center", vertical: "top" }}
+            open={err}
+            autoHideDuration={5000}
+            onClose={handleCloseAlert1}
+          >
+            <Alert onClose={handleCloseAlert1} severity={severity}>
+              <strong>{error?.msg}</strong>
+            </Alert>
+          </Snackbar>
+        ) : null}
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
             Manage Your Profile
           </Typography>
 
           <Button
-              className={classes.Edit}
-              variant="contained"
-              onClick={() => setKey(false)}
+            className={classes.Edit}
+            variant="contained"
+            onClick={() => setKey(false)}
+          >
+            Edit Profile
+          </Button>
 
-            >Edit Profile</Button>
-
-          
           <Container className={classes.bodyFields}>
             <Typography className={classes.bodyText} variant="h6">
               Your Name :
@@ -274,34 +262,25 @@ const Profile = () => {
 
           <Typography className={classes.bodyText}></Typography>
         </Container>
-
-
       </div>
     );
   } else {
     return (
       <div className={classes.container}>
-          {/* {
-            err?(
-                <Snackbar style={{"top":"10%",'left':"50%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={passErr} autoHideDuration={5000} onClose={handleCloseAlert2}>
-                    <Alert onClose={handleCloseAlert2} severity="error">
-                        <strong>{error?.message}</strong>
-                    </Alert>
-                </Snackbar>
-                
-            ):null
-        } */}
+        {err ? (
+          <Snackbar
+            style={{ top: "10%", left: "50%" }}
+            anchorOrigin={{ horizontal: "center", vertical: "top" }}
+            open={err}
+            autoHideDuration={5000}
+            onClose={handleCloseAlert1}
+          >
+            <Alert onClose={handleCloseAlert1} severity={severity}>
+              <strong>{error?.msg}</strong>
+            </Alert>
+          </Snackbar>
+        ) : null}
 
-        {
-            err?(
-                <Snackbar style={{"top":"10%",'left':"50%"}} anchorOrigin={{'horizontal':'center','vertical':'top'}} open={err} autoHideDuration={5000} onClose={handleCloseAlert1}>
-                    <Alert onClose={handleCloseAlert1} severity={severity}>
-                        <strong>{error?.msg}</strong>
-                    </Alert>
-                </Snackbar>     
-            ):null
-        }
-       
         <Container className={classes.body}>
           <Typography className={classes.bodyHead}>
             Edit Your Profile
@@ -312,7 +291,6 @@ const Profile = () => {
               className={classes.changePassword}
               variant="contained"
               onClick={handleClickOpen}
-
             >
               Change Password
             </Button>
@@ -321,135 +299,133 @@ const Profile = () => {
               className={classes.dialog}
               aria-labelledby="form-dialog-title"
             >
-            <form noValidate autoComplete="off" onSubmit={handleSubmitPassword}>
-              <DialogTitle id="form-dialog-title">
-                Change Account Password
-              </DialogTitle>
-              {/*
-                user.message?(
-                    <Alert severity="error" className={classes.passAlert}>
-                        <strong>{user?.message}</strong>
-                    </Alert>
-                ):null
-                */}
-              <DialogContent>
-              
-                <FormControl
-                  className={clsx(classes.margin, classes.textField)}
-                  variant="outlined"
-                >
-                  <InputLabel htmlFor="current-password" className={classes.passTitle}>
-                    Current Password
-                  </InputLabel>
-                  <OutlinedInput
-                    id="current-password"
-                    type={values1.showPassword ? "text" : "password"}
-                    value={values1.password}
-                    onChange={handleChange1("password")}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword1}
-                          onMouseDown={handleMouseDownPassword1}
-                          edge="end"
-                        >
-                          {values1.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    labelWidth={140}
-                  />
-                </FormControl>
+              <form
+                noValidate
+                autoComplete="off"
+                onSubmit={handleSubmitPassword}
+              >
+                <DialogTitle id="form-dialog-title">
+                  Change Account Password
+                </DialogTitle>
 
-                <FormControl
-                  className={clsx(classes.margin, classes.textField)}
-                  variant="outlined"
-                >
-                  <InputLabel htmlFor="new-password" className={classes.passTitle}>New Password</InputLabel>
-                  <OutlinedInput
-                    id="new-password"
-                    type={values2.showPassword ? "text" : "password"}
-                    value={values2.password}
-                    onChange={handleChange2("password")}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword2}
-                          onMouseDown={handleMouseDownPassword2}
-                          edge="end"
-                        >
-                          {values2.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    labelWidth={120}
-                  />
-                </FormControl>
+                <DialogContent>
+                  <FormControl
+                    className={clsx(classes.margin, classes.textField)}
+                    variant="outlined"
+                  >
+                    <InputLabel
+                      htmlFor="current-password"
+                      className={classes.passTitle}
+                    >
+                      Current Password
+                    </InputLabel>
+                    <OutlinedInput
+                      id="current-password"
+                      type={values1.showPassword ? "text" : "password"}
+                      value={values1.password}
+                      onChange={handleChange1("password")}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword1}
+                            onMouseDown={handleMouseDownPassword1}
+                            edge="end"
+                          >
+                            {values1.showPassword ? (
+                              <Visibility />
+                            ) : (
+                              <VisibilityOff />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      labelWidth={140}
+                    />
+                  </FormControl>
 
-                <FormControl
-                  className={clsx(classes.margin, classes.textField)}
-                  variant="outlined"
-                >
-                  <InputLabel htmlFor="confirm-new-password" className={classes.passTitle}>
-                    Confirm New Password
-                  </InputLabel>
-                  <OutlinedInput
-                    id="confirm-new-password"
-                    type={values3.showPassword ? "text" : "password"}
-                    value={values3.password}
-                    onChange={handleChange3("password")}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword3}
-                          onMouseDown={handleMouseDownPassword3}
-                          edge="end"
-                        >
-                          {values3.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    labelWidth={180}
-                  />
-                </FormControl>
-                
-              </DialogContent>
+                  <FormControl
+                    className={clsx(classes.margin, classes.textField)}
+                    variant="outlined"
+                  >
+                    <InputLabel
+                      htmlFor="new-password"
+                      className={classes.passTitle}
+                    >
+                      New Password
+                    </InputLabel>
+                    <OutlinedInput
+                      id="new-password"
+                      type={values2.showPassword ? "text" : "password"}
+                      value={values2.password}
+                      onChange={handleChange2("password")}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword2}
+                            onMouseDown={handleMouseDownPassword2}
+                            edge="end"
+                          >
+                            {values2.showPassword ? (
+                              <Visibility />
+                            ) : (
+                              <VisibilityOff />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      labelWidth={120}
+                    />
+                  </FormControl>
 
-              <DialogActions>
-                <Button style={{color:"#E8D8A"}} onClick={handleClose} >
-                  Cancel
-                </Button>
-                <Button style={{color:"#E85A4F"}} type="submit">
-                  Reset Password
-                </Button>
-              </DialogActions>
+                  <FormControl
+                    className={clsx(classes.margin, classes.textField)}
+                    variant="outlined"
+                  >
+                    <InputLabel
+                      htmlFor="confirm-new-password"
+                      className={classes.passTitle}
+                    >
+                      Confirm New Password
+                    </InputLabel>
+                    <OutlinedInput
+                      id="confirm-new-password"
+                      type={values3.showPassword ? "text" : "password"}
+                      value={values3.password}
+                      onChange={handleChange3("password")}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword3}
+                            onMouseDown={handleMouseDownPassword3}
+                            edge="end"
+                          >
+                            {values3.showPassword ? (
+                              <Visibility />
+                            ) : (
+                              <VisibilityOff />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      labelWidth={180}
+                    />
+                  </FormControl>
+                </DialogContent>
+
+                <DialogActions>
+                  <Button style={{ color: "#E8D8A" }} onClick={handleClose}>
+                    Cancel
+                  </Button>
+                  <Button style={{ color: "#E85A4F" }} type="submit">
+                    Reset Password
+                  </Button>
+                </DialogActions>
               </form>
             </Dialog>
-            
           </div>
-          
-          {/*
-            user.msg?(
-                <Alert severity="error" className={classes.editAlert}>
-                    <strong>{user?.msg}</strong>
-                </Alert>
-            ):null
-          */}
 
           <form
             className={classes.editBody}
@@ -499,55 +475,55 @@ const Profile = () => {
               onChange={handleChangeUserInfo}
             />
 
-          <Container className={classes.picture}>
-
-            <div>
-              <img className={classes.editProfilePic} src={userData.profilePic} alt="M" loading="lazy"></img>
-            </div>
-
-            <div className={classes.innerPic}>
+            <Container className={classes.picture}>
               <div>
-              <label htmlFor="icon-button-file">
-                <Button
-                  variant="contained"
-                  component="span"
-                  className={classes.uploadPhoto}
-                >
-                  Upload Profile Photo
-                </Button>
-              <input
-                accept="image/*"
-                className={classes.input}
-                id="icon-button-file"
-                type="file"
-                hidden
-                onChange={addImage}
-              />
-              </label>
+                <img
+                  className={classes.editProfilePic}
+                  src={userData.profilePic}
+                  alt="M"
+                  loading="lazy"
+                ></img>
               </div>
-              <div>
-              {
-                userData.profilePic!=img?(
-                  <Button className={classes.removePhoto}
-                    variant="contained"
-                    color="primary"
-                    component="span"
-                    onClick={removeImage}
-                  >
-                    Remove Photo
-                  </Button>
-                ):null
-              
-              }
-              </div>
-            </div>
 
-        </Container>       
+              <div className={classes.innerPic}>
+                <div>
+                  <label htmlFor="icon-button-file">
+                    <Button
+                      variant="contained"
+                      component="span"
+                      className={classes.uploadPhoto}
+                    >
+                      Upload Profile Photo
+                    </Button>
+                    <input
+                      accept="image/*"
+                      className={classes.input}
+                      id="icon-button-file"
+                      type="file"
+                      hidden
+                      onChange={addImage}
+                    />
+                  </label>
+                </div>
+                <div>
+                  {userData.profilePic != img ? (
+                    <Button
+                      className={classes.removePhoto}
+                      variant="contained"
+                      color="primary"
+                      component="span"
+                      onClick={removeImage}
+                    >
+                      Remove Photo
+                    </Button>
+                  ) : null}
+                </div>
+              </div>
+            </Container>
 
             <Button
               className={classes.saveChanges}
               variant="contained"
-              
               type="submit"
             >
               Save Changes

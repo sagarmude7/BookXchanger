@@ -2,88 +2,62 @@ import {
   FETCH_ALL,
   CREATE,
   ADD_FAV,
-  GET_BOOK,
   UPDATE_SOLD,
   DELETE_BOOK,
   UPDATE_BOOKS,
-  VALID
+  VALID,
 } from "../constants/actions";
 const api = require("../api/index");
 
 export const getBooks = () => async (dispatch) => {
   try {
-    //get data from api
     const { data } = await api.fetchBooks();
-    //console.log(data)
+
     dispatch({ type: FETCH_ALL, payload: data });
-  } catch (err) {
-    // console.log("Some error occured")
-    console.log(err);
-  }
+  } catch (err) {}
 };
 
-export const createBookAd = (formData,history) => async (dispatch) => {
+export const createBookAd = (formData, history) => async (dispatch) => {
   try {
     const { data } = await api.createBookAd(formData);
-    console.log(data);
     dispatch({ type: CREATE, payload: data });
-    dispatch({type:VALID,payload:{msg:"Book Posted successfully"}})
-    history.push('/')
+    dispatch({ type: VALID, payload: { msg: "Book Posted successfully" } });
+    history.push("/");
   } catch (err) {
-    console.log(err.response.data)
-    const data = err.response.data
-    dispatch({type:VALID,payload:data})
+    const data = err.response.data;
+    dispatch({ type: VALID, payload: data });
   }
 };
 
 export const addToWishList = (id) => async (dispatch) => {
   try {
     const { data } = await api.addToWishList(id);
-    console.log(data);
     dispatch({ type: ADD_FAV, payload: data });
-  } catch (error){
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const showBookInfo = (bookId) => async (dispatch) => {
   try {
-    // console.log("Action here");
-    // console.log(bookId);
-    // const { data } = await api.showBookInfo(bookId);
-    // console.log("Inside actions, data from API is");
-    // dispatch({ type: GET_BOOK, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const updatedIsSold = (bookId) => async (dispatch) => {
   try {
-    console.log("in isSold actions");
     const { data } = await api.updatedIsSold(bookId);
-    console.log(data);
     dispatch({ type: UPDATE_SOLD, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
-export const deleteaBook = (bookId) =>async(dispatch) =>{
-  try{
-    await api.deleteaBook(bookId)
-    dispatch({type:DELETE_BOOK,payload:bookId})
-  }catch(err){
-    console.log(err)
-  }
-}
-
-export const editaBook = (id,formData) =>async(dispatch)=>{
+export const deleteaBook = (bookId) => async (dispatch) => {
   try {
-    console.log(id);
-    const {data} = await api.editaBook(id,formData)
-    dispatch({type:UPDATE_BOOKS,payload:data})
-  } catch (err) {
-    console.log(err)
-  }
-}
+    await api.deleteaBook(bookId);
+    dispatch({ type: DELETE_BOOK, payload: bookId });
+  } catch (err) {}
+};
+
+export const editaBook = (id, formData) => async (dispatch) => {
+  try {
+    const { data } = await api.editaBook(id, formData);
+    dispatch({ type: UPDATE_BOOKS, payload: data });
+  } catch (err) {}
+};

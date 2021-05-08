@@ -4,7 +4,6 @@ import { Card, Typography, Link } from "@material-ui/core";
 import ReactCardFlip from "react-card-flip";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import { Link as RouterLink, useHistory } from "react-router-dom";
 
 import useStyles from "./styles.js";
 
@@ -15,14 +14,7 @@ const Profile = ({ name, subHeading, img, github, linkedin }) => {
   const ProfileCardFront = () => {
     return (
       <Card raised className={`${classes.card} ${classes.frontCard}`}>
-        <img
-          // style={{
-          //   clipPath: mask || "circle(50% at 50% 50%)",
-          // }}
-          src={img}
-          alt="Profile"
-          className={classes.img}
-        />
+        <img src={img} alt="Profile" className={classes.img} />
         <Typography component="span" align="center" variant="h5">
           {name}
         </Typography>

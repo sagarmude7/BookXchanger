@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardActions,
-  CardContent,
   CardMedia,
   Button,
   Typography,
@@ -29,7 +28,6 @@ const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  // const [book, setBook] = useState({});
 
   const getBook = () => {
     history.push(`/all/book/${book._id}`);
@@ -149,7 +147,11 @@ const Book = ({ book }) => {
           </Typography>
 
           <CardActions className={classes.favourite}>
-            <Button size="medium" style={{ color: "#E98074" }} onClick={handleDeleteOpen}>
+            <Button
+              size="medium"
+              style={{ color: "#E98074" }}
+              onClick={handleDeleteOpen}
+            >
               <DeleteIcon />
             </Button>
             <Dialog
@@ -163,10 +165,17 @@ const Book = ({ book }) => {
               </DialogTitle>
 
               <DialogActions>
-                <Button onClick={handleDeleteClose} style={{ color: "#E85A4F" }}>
+                <Button
+                  onClick={handleDeleteClose}
+                  style={{ color: "#E85A4F" }}
+                >
                   No
                 </Button>
-                <Button onClick={deleteBook} style={{ color: "#E85A4F" }} autoFocus>
+                <Button
+                  onClick={deleteBook}
+                  style={{ color: "#E85A4F" }}
+                  autoFocus
+                >
                   Yes
                 </Button>
               </DialogActions>
@@ -216,52 +225,6 @@ const Book = ({ book }) => {
         </Button>
       </Card>
     </>
-    // <Card className={classes.card}>
-    //   <CardMedia
-    //     className={classes.media}
-    //     image={book?.selectedFile}
-    //     title={book?.title}
-    //   />
-    //   <div className={classes.overlay}>
-    //     <Typography variant="h6">{book?.bookName}</Typography>
-    //     <Typography variant="body2">
-    //       {moment(book?.createdAt).fromNow()}
-    //     </Typography>
-    //   </div>
-    //   <div className={classes.overlay2}>
-    //     <Button color="primary" size="small" onClick={editaBook}>
-    //       <MoreHorizIcon fontSize="default" />
-    //     </Button>
-    //   </div>
-    //   <Typography
-    //     className={classes.title}
-    //     gutterBottom
-    //     variant="h5"
-    //     component="h2"
-    //   >
-    //     ${book?.price}
-    //   </Typography>
-    //   <div className={classes.details}>
-    //     <Typography variant="body2" color="secondary" component="h2">
-    //       {book?.description}
-    //     </Typography>
-    //   </div>
-    //   <CardContent>
-    //     <Typography variant="body2" color="secondary" component="p">
-    //       {book?.tags.map((tag) => `#${tag} `)}
-    //     </Typography>
-    //   </CardContent>
-    //   <CardActions className={classes.cardActions}>
-    //     <Button size="medium" color="secondary" onClick={deleteBook}>
-    //       <DeleteIcon />
-    //     </Button>
-    //     {book.isSold === false ? (
-    //       <Button variant="contained" color="primary" onClick={onClickSold}>
-    //         Sold
-    //       </Button>
-    //     ) : null}
-    //   </CardActions>
-    // </Card>
   );
 };
 

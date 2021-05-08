@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core";
-import { keyframes } from "styled-components";
 
-const styles = makeStyles((theme) => ({
+const styles = makeStyles(() => ({
   root: {
     background: "rgb(234,231,220)",
     padding: "30px",

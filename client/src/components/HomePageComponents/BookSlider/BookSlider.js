@@ -5,28 +5,15 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../../AllBooksComponents/Book/Book";
-import {
-  Button,
-  Grid,
-  CircularProgress,
-  Grow,
-  Container,
-  Paper,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Container, Typography } from "@material-ui/core";
 import useStyles from "./style";
 import { getBooks } from "../../../actions/books";
 
 const BookSlider = () => {
   const dispatch = useDispatch();
-  const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
   const [allUnSoldbooks, setAllUnSoldBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState("#ffff00");
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -74,7 +61,6 @@ const BookSlider = () => {
 
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },

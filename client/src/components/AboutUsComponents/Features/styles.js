@@ -83,19 +83,6 @@ const styles = makeStyles((theme) => ({
       paddingLeft: "0px",
     },
   },
-
-  //Images
-
-  // image1: {
-  //   height: "400px",
-  //   width: "500px",
-  //   transition: "transform 2000ms ease-in-out",
-  //   "&:hover": {
-  //     transform: "scale(1.2)",
-  //   },
-  // },
-
-  //Images
 }));
 
 export default styles;

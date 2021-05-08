@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react";
-// import bookData from "./bookData.js"
+import React, { useState } from "react";
 import { ADDFILTER } from "../../../constants/actions";
 import "./styles.css";
 import useStyles from "./styles.js";
 import { useSelector, useDispatch } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import {
-  Container,
-  Grow,
   Grid,
-  Paper,
   Typography,
   TextField,
   Button,
@@ -32,7 +27,6 @@ const SearchBox = () => {
   const [inputCondition, setInputCondition] = useState("");
   const [inputTags, setInputTags] = useState("");
   const [isadv, setIsadv] = useState(false);
-  const history = useHistory();
   const dispatch = useDispatch();
   const allbooks = useSelector((state) => state.books);
   const books = allbooks.filter((book) => book.isSold === false);

@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ADDFILTER, UPDATE_BOOKS } from "../../constants/actions";
+import { ADDFILTER } from "../../constants/actions";
 import { css } from "@emotion/react";
 import {
   Button,
   Grid,
-  CircularProgress,
-  Grow,
   Container,
-  Paper,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
   Box,
   Select,
   MenuItem,
   InputLabel,
-  TextField,
   FormControl,
   Typography,
 } from "@material-ui/core";
@@ -39,9 +32,7 @@ const AllBooks = () => {
   const [sortbool, setSortbool] = useState(false);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState("#ffff00");
   const [sortType, setSortType] = useState("");
-  const [SORTBY, setSORTBY] = useState();
   const filterData = useSelector((state) => state.filterData);
   const [currentPage, setcurrentPage] = useState(1);
   const [booksPerpage, setbooksPerpage] = useState(12);
@@ -49,7 +40,6 @@ const AllBooks = () => {
   useEffect(() => {
     if (allBooks.length === 0) {
       dispatch(getBooks());
-      console.log("Books length 0");
     }
   });
 
@@ -71,17 +61,14 @@ const AllBooks = () => {
 
   useEffect(() => {
     if (sortbool === true) {
-      console.log("I am running")
       dispatch({ type: ADDFILTER, payload: data });
     }
-    
   }, [dispatch, data]);
 
   useEffect(() => {
-    
     const sortArray = (type) => {
-      setSortbool(true)
-      //console.log(type);
+      setSortbool(true);
+
       const types = {
         pricehighest: "price",
         pricelowest: "price",
@@ -109,7 +96,7 @@ const AllBooks = () => {
         setData(sorted);
       }
     };
-    if(sortType!==""){
+    if (sortType !== "") {
       sortArray(sortType);
     }
   }, [sortType]);
@@ -122,29 +109,24 @@ const AllBooks = () => {
   `;
 
   const removeSort = () => {
-    setSortbool(false)
+    setSortbool(false);
     setSortType("");
     dispatch({ type: ADDFILTER, payload: books });
   };
 
-  // const handleChange = (event) => {
-  //   setSortType(event.target.value);
-  // };
-
   const indexLast = currentPage * booksPerpage;
   const indexFirst = indexLast - booksPerpage;
   const currentBooks = filterData.slice(indexFirst, indexLast);
-  //console.log(currentBooks);
 
   const paginate = (pageNumber) => setcurrentPage(pageNumber);
 
   return (
     <>
       <ArrowBackIcon
-            className={classes.back}
-            onClick={() => history.goBack()}
-            fontSize="large"
-          ></ArrowBackIcon>
+        className={classes.back}
+        onClick={() => history.goBack()}
+        fontSize="large"
+      ></ArrowBackIcon>
       <div className={classes.maincontainer}>
         <Zoom>
           <SearchBox />
@@ -214,7 +196,7 @@ const AllBooks = () => {
                   spacing={3}
                 >
                   {currentBooks.map((book) => (
-                    <Grid item xs={12} sm={3}>      
+                    <Grid item xs={12} sm={3}>
                       <Book key={book._id} book={book} />
                     </Grid>
                   ))}

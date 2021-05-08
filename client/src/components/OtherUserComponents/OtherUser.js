@@ -3,7 +3,7 @@ import ChatBox from "./ChatBox/ChatBox";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import img from "../Profile/profilepic.png";
 import useStyles from "./styles.js";
-import { editProfile, getProfile } from "../../actions/user";
+import { getProfile } from "../../actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
 import Dashboard from "./Dashboard components/Dashboard";
@@ -13,7 +13,6 @@ import { getBooks } from "../../actions/books";
 const OtherUser = ({ match }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user1 = JSON.parse(localStorage.getItem("profile"));
   const user = useSelector((state) => state.user);
   const [err, setErr] = useState(false);
   const books = useSelector((state) => state.books);
@@ -56,12 +55,6 @@ const OtherUser = ({ match }) => {
 
   const [open, setOpen] = useState(false);
 
-  const handleSubmitUserInfo = (e) => {
-    e.preventDefault();
-
-    dispatch(editProfile(userData));
-  };
-
   useEffect(() => {
     if (user.msg) {
       setErr(true);
@@ -72,79 +65,30 @@ const OtherUser = ({ match }) => {
     }
   }, [user]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleChangeUserInfo = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-  };
-
   const [values1, setValues1] = useState({
     currentpassword: "",
     showPassword: false,
   });
-
-  const handleChange1 = (prop) => (event) => {
-    setValues1({ ...values1, [prop]: event.target.value });
-  };
-
-  const handleClickShowPassword1 = () => {
-    setValues1({ ...values1, showPassword: !values1.showPassword });
-  };
-
-  const handleMouseDownPassword1 = (event) => {
-    event.preventDefault();
-  };
 
   const [values2, setValues2] = useState({
     password: "",
     showPassword: false,
   });
 
-  const handleChange2 = (prop) => (event) => {
-    setValues2({ ...values2, [prop]: event.target.value });
-  };
-
-  const handleClickShowPassword2 = () => {
-    setValues2({ ...values2, showPassword: !values2.showPassword });
-  };
-
-  const handleMouseDownPassword2 = (event) => {
-    event.preventDefault();
-  };
-
   const [values3, setValues3] = useState({
     password: "",
     showPassword: false,
   });
 
-  const handleChange3 = (prop) => (event) => {
-    setValues3({ ...values3, [prop]: event.target.value });
-  };
-
-  const handleClickShowPassword3 = () => {
-    setValues3({ ...values3, showPassword: !values3.showPassword });
-  };
-
-  const handleMouseDownPassword3 = (event) => {
-    event.preventDefault();
-  };
-
   return (
     <div className={classes.container}>
       <ArrowBackIcon
-            className={classes.back}
-            onClick={() => history.goBack()}
-            fontSize="large"
-          ></ArrowBackIcon>
+        className={classes.back}
+        onClick={() => history.goBack()}
+        fontSize="large"
+      ></ArrowBackIcon>
       <div className={classes.topBox}>
         <Container className={classes.head}>
-          
           {user.profilePic ? (
             <img
               className={classes.pic}
@@ -155,7 +99,12 @@ const OtherUser = ({ match }) => {
               loading="lazy"
             />
           ) : (
-            <img className={classes.pic} src={img} alt="Profile Pic" loading="lazy"></img>
+            <img
+              className={classes.pic}
+              src={img}
+              alt="Profile Pic"
+              loading="lazy"
+            ></img>
           )}
 
           <div className={classes.userDetails}>

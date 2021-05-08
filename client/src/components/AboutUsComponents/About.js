@@ -12,11 +12,11 @@ const About = () => {
   const classes = useStyles();
   return (
     <>
-    <ArrowBackIcon
-            className={classes.back}
-            onClick={() => history.goBack()}
-            fontSize="large"
-          ></ArrowBackIcon>
+      <ArrowBackIcon
+        className={classes.back}
+        onClick={() => history.goBack()}
+        fontSize="large"
+      ></ArrowBackIcon>
       <div style={{ background: "e85a4f" }}>
         <Description />
         <Feature />

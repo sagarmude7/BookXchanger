@@ -21,7 +21,6 @@ const styles = makeStyles(() => ({
 
   title: {
     fontSize: 14,
-    //fontFamily: "'Open Sans', sans-serif",
   },
 
   name: {},

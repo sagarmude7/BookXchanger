@@ -1,8 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import { green, pink } from "@material-ui/core/colors";
-import { CenterFocusStrong } from "@material-ui/icons";
-import { createMuiTheme } from "@material-ui/core/styles";
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');

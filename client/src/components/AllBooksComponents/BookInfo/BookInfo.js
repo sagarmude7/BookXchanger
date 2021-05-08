@@ -13,46 +13,17 @@ import {
   WhatsappIcon,
 } from "react-share";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
-import Avatar from "@material-ui/core/Avatar";
-import SendIcon from "@material-ui/icons/Send";
+
 import { useDispatch, useSelector } from "react-redux";
-import Footer from "../../Footer/footer";
 import moment from "moment";
-import {
-  Button,
-  Grid,
-  CircularProgress,
-  Grow,
-  Container,
-  Paper,
-  Icon,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  List,
-  ListItemText,
-  ListItem,
-  IconButton,
-  Toolbar,
-  AppBar,
-  TextField,
-  Link,
-  Divider,
-} from "@material-ui/core";
+import { Grid, Container, Typography, Link } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Error404 from "../../ErrorComponent/Error404";
-import { useParams } from "react-router";
 import { GET_BOOK } from "../../../constants/actions";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Book from "../../AllBooksComponents/Book/Book";
-import Flip from "react-reveal/Flip";
-import Roll from "react-reveal/Roll";
-import HeadShake from "react-reveal/HeadShake";
+
 const BookInfo = ({ match }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -75,8 +46,6 @@ const BookInfo = ({ match }) => {
     }
   }, [dispatch]);
 
-  //Similar books
-
   const allBooks = useSelector((state) => state.books);
   const filterbooks = allBooks.filter(
     (books) =>
@@ -84,14 +53,9 @@ const BookInfo = ({ match }) => {
       books.branch === book.branch &&
       books.owner !== book.owner
   );
-  const [sortbool, setSortbool] = useState(false);
-
-  const [data, setData] = useState([]);
-  const [sortType, setSortType] = useState();
 
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
@@ -108,7 +72,6 @@ const BookInfo = ({ match }) => {
       items: 1,
     },
   };
-  //Similar books
 
   return found ? (
     <>
@@ -152,7 +115,7 @@ const BookInfo = ({ match }) => {
                   className={classes.bookImage}
                   src={book.selectedFile}
                   alt="Book"
-                  loading ="lazy"
+                  loading="lazy"
                 />
               </div>
               <div>
@@ -287,7 +250,6 @@ const BookInfo = ({ match }) => {
                   alt="User Profile"
                   loading="lazy"
                 />
-                {/* <Avatar>{book.ownerName[0]}</Avatar> */}
                 <Typography variant="h6">{book.ownerName}</Typography>
                 <Link
                   color="inherit"
@@ -300,7 +262,7 @@ const BookInfo = ({ match }) => {
                 </Link>
                 <br />
                 <Link
-                  to='/auth'
+                  to="/auth"
                   component={RouterLink}
                   key="Home"
                   className={classes.name}

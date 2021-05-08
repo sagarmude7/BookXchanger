@@ -1,39 +1,24 @@
-import Navbar from "../Navbar/Navbar";
-import {
-  Container,
-  Typography,
-  Card,
-  CardActions,
-  CardContent,
-  Button,
-} from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import Snackbar from "@material-ui/core/Snackbar";
-import { Alert, AlertTitle } from "@material-ui/lab";
+import { Alert } from "@material-ui/lab";
 import useStyles from "./styles.js";
 import img from "./profilepic.png";
 import { useDispatch, useSelector } from "react-redux";
 import { React, useEffect, useState } from "react";
 import Dashboard from "./Dashboard components/Dashboard";
-import Footer from "../Footer/footer.js";
 import ProfileDetails from "./ProfileDetails/ProfileDetails";
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import { useHistory } from "react-router-dom";
-import numberSoldBooks from "./Dashboard components/Dashboard";
 import { getRecentUsers } from "../../actions/user";
 import Message from "./Messages/Message";
-import { ThemeProvider } from "@emotion/react";
-import { green, pink } from '@material-ui/core/colors';
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 function TabPanel(props) {
-
-
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -66,14 +51,11 @@ function a11yProps(index) {
 }
 
 const Profile = () => {
-
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
   const theme = useTheme();
   const localUser = JSON.parse(localStorage.getItem("profile"));
-  const recents = useSelector((state) => state.recents);
-
   const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
 
@@ -105,14 +87,11 @@ const Profile = () => {
 
   const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (newValue) => {
     setValue(newValue);
   };
 
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-  const handleClose = (event, reason) => {
+  const handleClose = (reason) => {
     if (reason === "clickaway") {
       return;
     }
@@ -135,16 +114,19 @@ const Profile = () => {
         </Snackbar>
       ) : null}
       <ArrowBackIcon
-            className={classes.back}
-            onClick={() => history.goBack()}
-            fontSize="large"
-          ></ArrowBackIcon>
+        className={classes.back}
+        onClick={() => history.goBack()}
+        fontSize="large"
+      ></ArrowBackIcon>
       <div className={classes.topBox}>
         <Container className={classes.head}>
           {user.profilePic ? (
-            
-            <img className={classes.pic} src={user.profilePic} alt="M" loading="lazy"></img>
-          
+            <img
+              className={classes.pic}
+              src={user.profilePic}
+              alt="M"
+              loading="lazy"
+            ></img>
           ) : (
             <img className={classes.pic} src={img} alt="M" loading="lazy"></img>
           )}
@@ -173,11 +155,9 @@ const Profile = () => {
           </div>
         </Container>
 
-
         <AppBar className={classes.rootTab} position="static" color="default">
-      
           <Tabs
-          className={classes.rootTab} 
+            className={classes.rootTab}
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
@@ -185,12 +165,19 @@ const Profile = () => {
             variant="fullWidth"
             aria-label="full width tabs example"
           >
-            <Tab className={classes.rootTab} label="Profile" {...a11yProps(0)} />
+            <Tab
+              className={classes.rootTab}
+              label="Profile"
+              {...a11yProps(0)}
+            />
             <Tab className={classes.rootTab} label="My Ads" {...a11yProps(1)} />
-            <Tab className={classes.rootTab} label="Messages" {...a11yProps(2)} />
+            <Tab
+              className={classes.rootTab}
+              label="Messages"
+              {...a11yProps(2)}
+            />
           </Tabs>
         </AppBar>
-        
       </div>
 
       <TabPanel value={value} index={0} dir={theme.direction}>
@@ -204,8 +191,6 @@ const Profile = () => {
       <TabPanel value={value} index={2} dir={theme.direction}>
         <Message />
       </TabPanel>
-
-      {/*<Footer/>*/}
     </div>
   );
 };
