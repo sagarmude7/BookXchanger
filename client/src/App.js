@@ -42,7 +42,6 @@ const App = () => {
       socket.connect();
 
       const id = JSON.parse(localStorage.getItem("profile")).profile.id;
-      // socket.emit('login',{id:id})
       socket.on("connect", () => {
         socket.emit("login", { id: id });
       });
