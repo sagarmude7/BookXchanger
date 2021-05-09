@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar.js";
 import Footer from "../Footer/footer.js";
 import PulseLoader from "react-spinners/PulseLoader";
-import Book from "../Profile/Dashboard components/Book/Book";
+import Book from "../WishlistComponent/Book/Book.js";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,

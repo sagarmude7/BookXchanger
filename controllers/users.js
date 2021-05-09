@@ -1,10 +1,13 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
+const Book = require('../models/Book')
 const Message = require('../models/Message')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const { regValidator, loginValidator, editValidator, changePasswordValidator,feedBackValidator } = require('../validators/joi-validator')
+const { update } = require('../models/User')
+const { filter } = require('compression')
 
 
 exports.signUp = async(req,res)=>{
@@ -341,4 +344,27 @@ exports.getRecentUsers = async(req,res)=>{
     }catch(err){
         return res.status(500).json({ msg: "hing went wrong" });
     }
+}
+
+exports.deleteaBookFromWish = async(req,res) => {
+console.log("This is Backend Request to delete a book" );
+const {id} = req.params;
+console.log(id);
+try{
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).json({ msg: `No Book with id:${id}` });
+    console.log("Valid ID")
+    const book = await Book.findById(id);
+    const filteredBooks = book.wishListedBy.filter((userId)=> req.userId != userId);
+    console.log("My id"+ req.userId)
+    book.wishListedBy = filteredBooks;
+    console.log("Book"+ book.wishListedBy);
+    await Book.findOneAndUpdate({_id:id},book,{new: true});
+    console.log("Book deleted successfully")
+    
+    return res.status(204).json({msg:"Book Deleted Successfully"})
+  }catch(err){
+    return res.status(500).json({ msg: "Something went wrong on Server.." });
+  }
+
 }

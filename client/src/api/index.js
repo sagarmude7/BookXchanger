@@ -42,6 +42,7 @@ const changePassword = (updatedPassword) => API.patch(`${urlUsers}/profile/passw
 
 const sendMail = (feedData) => API.post(`${urlUsers}/send-email`,feedData);
 // const getWishList = (id) => API.get(`${urlUsers}/wishList`);
+const deleteaBookFromWish = (book_id,localUser) => API.delete(`${urlUsers}/${book_id}`,localUser)
 
 module.exports = {
   fetchBooks,
@@ -58,5 +59,6 @@ module.exports = {
   editaBook,
   changePassword,
   sendMail,
-  getRecentUsers
+  getRecentUsers,
+  deleteaBookFromWish
 };
