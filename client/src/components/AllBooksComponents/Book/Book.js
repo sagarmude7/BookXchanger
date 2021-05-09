@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import {
   Card,
   CardActions,
-  CardContent,
   CardMedia,
   Button,
   Typography,
-  Slide,
 } from "@material-ui/core/";
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 import ScheduleIcon from "@material-ui/icons/Schedule";
@@ -15,14 +13,11 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import useStyles from "./style";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { addToWishList} from "../../../actions/books";
+import { addToWishList } from "../../../actions/books";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { VALID } from "../../../constants/actions";
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-const user = JSON.parse(localStorage.getItem("profile"));
+
 const Book = ({ book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -34,17 +29,18 @@ const Book = ({ book }) => {
       setFav(book?.wishListedBy?.find((id) => id === user?.profile?.id));
   }, []);
 
-  
   const addtofavourite = () => {
-    if(user){
+    if (user) {
       console.log("Adding To Favorites..");
       fav ? setFav(false) : setFav(true);
       dispatch(addToWishList(book._id));
-    }else{
-      dispatch({type:VALID,payload:{msg:"Please Sign In To Add To Wishlist"}})
-      history.push('/auth')
+    } else {
+      dispatch({
+        type: VALID,
+        payload: { msg: "Please Sign In To Add To Wishlist" },
+      });
+      history.push("/auth");
     }
-    // dispatch(getBooks())
   };
 
   const getBook = () => {

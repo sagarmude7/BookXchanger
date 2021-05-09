@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles((theme) => ({
+export default makeStyles(() => ({
   card: {
     display: "flex",
 
@@ -15,7 +15,6 @@ export default makeStyles((theme) => ({
 
     "&:hover": {
       color: "#e85a4f",
-
       textShadow: "0 0 2px #e85a4f",
     },
   },

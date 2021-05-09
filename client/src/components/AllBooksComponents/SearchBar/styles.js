@@ -93,15 +93,7 @@ const styles = makeStyles((theme) => ({
     border: "1 px solid grey",
     borderRadius: "8px",
   },
-  //  adv : {
-  //    cursor : "pointer",
-  //    textAlign :"center",
-  //    width :"200px",
-  //    height :"40px",
-  //    position :"relative",
-  //    left :"800px",
-  //    fontSize : "20px"
-  //  },
+
   paper: {
     textAlign: "center",
   },

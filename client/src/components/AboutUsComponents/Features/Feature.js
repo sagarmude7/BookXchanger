@@ -1,11 +1,8 @@
 import React from "react";
 import useStyles from "./styles.js";
 import "./style.css";
-import Carousel from "react-material-ui-carousel";
 import logo from "../../../logo/final_logo.png";
 import {
-  Grid,
-  Paper,
   Typography,
   Box,
   List,

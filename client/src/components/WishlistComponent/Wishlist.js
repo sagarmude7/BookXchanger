@@ -1,34 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar.js";
-import Footer from "../Footer/footer.js";
 import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../WishlistComponent/Book/Book.js";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  Button,
   Grid,
   CircularProgress,
-  Grow,
   Container,
-  Paper,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Box,
-  FormControl,
-  InputLabel,
-  Select,
   Typography,
-  MenuItem,
 } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
 import useStyles from "./style.js";
-import { getWishList } from "../../actions/user";
-import { FETCH_FAV } from "../../constants/actions";
 import { getBooks } from "../../actions/books";
 import Zoom from "react-reveal/Zoom";
 import { css } from "@emotion/react";
-import RiseLoader from "react-spinners/RiseLoader";
 import { useHistory } from "react-router-dom";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
@@ -36,16 +20,11 @@ const Wishlist = () => {
   const history = useHistory();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
-  // const wishList = useSelector((state) => state.wishList);
   const books = useSelector((state) => state.books);
   const [loading, setLoading] = useState(true);
   const [wishListedBooks, setWishListedBooks] = useState(
     books.filter((book) => book.wishListedBy.includes(user.profile.id) === true)
   );
-  const [type, settype] = useState("");
-  const [sortbool, setSortbool] = useState(false);
-  const [data, setData] = useState([]);
-  const [sortType, setSortType] = useState();
 
   const dispatch = useDispatch();
 
@@ -68,7 +47,6 @@ const Wishlist = () => {
 
   const override = css`
     display: block;
-
     border-color: red;
     background-color: #eae7dc;
   `;
@@ -91,11 +69,11 @@ const Wishlist = () => {
   const Item = (props) => {
     return (
       <div className={classes.parent}>
-      <ArrowBackIcon
-            className={classes.back}
-            onClick={() => history.goBack()}
-            fontSize="large"
-          ></ArrowBackIcon>
+        <ArrowBackIcon
+          className={classes.back}
+          onClick={() => history.goBack()}
+          fontSize="large"
+        ></ArrowBackIcon>
         <div
           className={classes.main}
           style={{

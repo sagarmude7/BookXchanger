@@ -1,8 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import { green, pink } from "@material-ui/core/colors";
-import { CenterFocusStrong } from "@material-ui/icons";
-import { createMuiTheme } from "@material-ui/core/styles";
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
@@ -36,7 +33,6 @@ export default makeStyles((theme) => ({
   msgBox: {
     height: "350px",
     border: "1px solid black",
-    background: "rgb(216,195,165)",
     background:
       "linear-gradient(319deg, rgba(216,195,165,1) 3%, rgba(255,255,255,1) 100%)",
     color: "white",
@@ -45,9 +41,7 @@ export default makeStyles((theme) => ({
   },
   msg1: {
     marginTop: "2px",
-    padding: "5px",
     border: "1px solid #e85a4f",
-    background: "rgb(142,141,138)",
     background:
       "linear-gradient(319deg, rgba(142,141,138,1) 3%, rgba(255,255,255,1) 100%)",
     color: "black",
@@ -62,13 +56,11 @@ export default makeStyles((theme) => ({
   msg2: {
     marginTop: "2px",
     border: "1px solid #e85a4f",
-    background: "rgb(227,68,68)",
     background:
       "linear-gradient(319deg, rgba(227,68,68,1) 3%, rgba(255,255,255,1) 100%)",
     color: "black",
     maxWidth: "250px",
     textAlign: "left",
-    borderRadius: "10px",
     overflowX: "auto",
     wordWrap: " break-word",
     borderRadius: "1px 20px 20px 20px ",

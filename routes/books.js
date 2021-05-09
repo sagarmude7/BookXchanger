@@ -4,24 +4,17 @@ const {
   getBooks,
   createBookAd,
   addToWishList,
-  getWishList,
   updateIsSold,
   deleteaBook,
-  editBook
+  editBook,
 } = require("../controllers/books");
 const auth = require("../middleware/auth");
-
-// var corsOptions = {
-//     origin: 'http://localhost:3000',
-//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// }
 
 router.get("/all", getBooks);
 router.post("/add", auth, createBookAd);
 router.patch("/:id/addWishList", auth, addToWishList);
 router.patch("/:id/sold", auth, updateIsSold);
-router.delete('/:id',auth,deleteaBook)
-router.patch("/:id",auth,editBook)
-// router.get("/book/:bookId", auth, showBookInfo);
+router.delete("/:id", auth, deleteaBook);
+router.patch("/:id", auth, editBook);
 
 module.exports = router;

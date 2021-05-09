@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import Carousel from "react-material-ui-carousel";
 import useStyles from "./styles.js";
 import "react-multi-carousel/lib/styles.css";
 import descFeedback from "./descFeedback.js";
-import {
-  Button,
-  CardContent,
-  Typography,
-  CardActions,
-  Card,
-} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 const Feedback = () => {
   const classes = useStyles();

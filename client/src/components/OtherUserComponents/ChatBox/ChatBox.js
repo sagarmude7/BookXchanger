@@ -1,22 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SendIcon from "@material-ui/icons/Send";
 import useStyles from "./styles.js";
-import SearchIcon from "@material-ui/icons/Search";
-import {
-  Button,
-  Typography,
-  TextField,
-  Container,
-  Grid,
-  Fab,
-  FormControl,
-  Input,
-  InputLabel,
-  InputAdornment,
-  InputBase,
-  Paper,
-  IconButton,
-} from "@material-ui/core";
+import { Typography, TextField, Container, Fab } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { ADD_CHAT, INITIAL_CHAT } from "../../../constants/actions.js";
 import { socket } from "../../../service/socket";
@@ -28,19 +13,18 @@ const initialState = {
   to: "",
   fromName: "",
 };
-const ChatBox = (props) => {
+const ChatBox = () => {
   const receiver = useSelector((state) => state.user);
   const chats = useSelector((state) => state.chats);
   const classes = useStyles();
   const dispatch = useDispatch();
   const [msgData, setMsgData] = useState(initialState);
-  const [newMsg,setNewMsg] = useState({})
+  const [newMsg, setNewMsg] = useState({});
   const user = JSON.parse(localStorage.getItem("profile")).profile;
 
   useEffect(() => {
     if (receiver._id) {
-      localStorage.setItem('receiver',JSON.stringify({id:receiver._id}))
-      console.log("messsages set")
+      localStorage.setItem("receiver", JSON.stringify({ id: receiver._id }));
       setMsgData({
         ...msgData,
         to: receiver._id,
@@ -48,68 +32,32 @@ const ChatBox = (props) => {
         fromName: user.name,
       });
       socket.emit("join", { id: user.id, receiver: receiver._id });
-      console.log("room joined")
-      socket.on("initial_msgs",(chat) => {
-            dispatch({ type: INITIAL_CHAT, payload: chat });
+      socket.on("initial_msgs", (chat) => {
+        dispatch({ type: INITIAL_CHAT, payload: chat });
       });
-      console.log("Got initial messages")
     }
   }, [receiver._id]);
 
   useEffect(() => {
-      socket.on("send_msg", (msg) => {
-        console.log("got a new message")
-        console.log(msg.from)
-        const receiver_id = JSON.parse(localStorage.getItem('receiver')).id
-        console.log(receiver_id)
-        console.log(msg.from === receiver_id)
-        if (msg.from === receiver_id || msg.from === user.id) {
-          console.log("inside")
-          setNewMsg(msg);
-        }
-      });
-  }, []);
-  useEffect(()=>{
-    console.log(newMsg)
-    dispatch({ type: ADD_CHAT, payload: newMsg });
-  },[newMsg,dispatch])
+    socket.on("send_msg", (msg) => {
+      const receiver_id = JSON.parse(localStorage.getItem("receiver")).id;
 
-  // useEffect(()=>{
-  //   console.log("Sending....")
-  //   console.log(newMsg)
-  //   dispatch({ type: ADD_CHAT, payload: newMsg });
-  // },[newMsg,dispatch])
-  // useEffect(() => {
-  //   if (receiver) {
-  //     socket.emit("join", { id: user.id, receiver: receiver._id });
-  //     console.log({ id: user.id, receiver: receiver._id });
-  //   }
-  //   socket.on("initial_msgs", async (chat) => {
-  //     // if(chats.length===0)
-  //     await dispatch({ type: INITIAL_CHAT, payload: chat });
-  //   });
-  //   setMsgData({ ...msgData, from: user.id, fromName: user.name });
-  // }, [receiver]);
-  // var i = 0;
-  // useEffect(() => {
-  //   socket.on("send_msg", (msg) => {
-  //     console.log("setting new msg")
-  //     console.log(msg.from === receiver._id)
-  //     if (msg.from === receiver._id || msg.from === user.id) {
-  //       console.log("iniside")
-  //       setNewMsg(msg);
-  //     }
-  //   });
-  // }, []);
+      if (msg.from === receiver_id || msg.from === user.id) {
+        setNewMsg(msg);
+      }
+    });
+  }, []);
+  useEffect(() => {
+    dispatch({ type: ADD_CHAT, payload: newMsg });
+  }, [newMsg, dispatch]);
 
   const handleChange = (e) => {
     setMsgData({ ...msgData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    if(msgData.content!==""){
+    if (msgData.content !== "") {
       socket.emit("message", msgData);
-      console.log("emitting message")
     }
     setMsgData({ ...msgData, content: "" });
   };

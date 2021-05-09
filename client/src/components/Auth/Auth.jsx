@@ -1,29 +1,19 @@
 import React,{useState,useEffect} from 'react'
-import {Container,Paper,Grid,Typography,Button,TextField,Avatar, Box,Divider,ListItem,ListItemAvatar,ListItemText,List} from '@material-ui/core'
-import LabelImportantSharpIcon from '@material-ui/icons/LabelImportantSharp';
+import {Paper,Grid,Typography,Button,Avatar, Box,Divider,ListItem,ListItemAvatar,ListItemText,List} from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar'
-import Slide from '@material-ui/core/Slide'
-import {LockOutlined} from '@material-ui/icons';
-import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
-import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PersonIcon from '@material-ui/icons/Person';
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input'
 import useStyles from './styles'
 import GoogleIcon from './GoogleIcon'
-import FacebookIcon from './FacebookIcon'
 import {useDispatch} from 'react-redux'
 import {GoogleLogin} from 'react-google-login'
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import {signUp,signIn,googleFacebookSignIn} from '../../actions/auth'
-import Navbar from '../Navbar/Navbar'
-import {AUTH, VALID} from '../../constants/actions'
-import Swing from 'react-reveal/Swing';
+import { VALID} from '../../constants/actions'
 import Fade from 'react-reveal/Fade';
+
 const initialState = {firstName:'',lastName:'',college:'',location:'',email:'',password:'',confirmPassword:''}
 const Auth = () => {
     const classes = useStyles()
@@ -32,7 +22,6 @@ const Auth = () => {
     const [formData,setFormData] = useState(initialState)
     const book = useSelector(state=>state.book)
     const [err,setErr] = useState(false) 
-    // const authData = useSelector(state=>state.authData)
     const history = useHistory()
     const dispatch = useDispatch()
 

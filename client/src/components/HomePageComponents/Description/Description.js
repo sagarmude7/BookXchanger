@@ -1,11 +1,10 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Typography, Box } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 import useStyles from "./styles.js";
 import descData from "./descData.js";
 const Description = () => {
   const classes = useStyles();
-
   const Item = (props) => {
     return (
       <div className={classes.parent}>
@@ -46,7 +45,7 @@ const Description = () => {
         indicators={false}
         animation="fade"
         autoPlay={true}
-        interval={5000}
+        interval={10000}
         stopAutoPlayOnHover={false}
         navButtonsAlwaysInvisible={true}
       >

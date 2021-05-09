@@ -5,28 +5,14 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../../AllBooksComponents/Book/Book";
-import {
-  Button,
-  Grid,
-  CircularProgress,
-  Grow,
-  Container,
-  Paper,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Typography,
-} from "@material-ui/core";
-import useStyles from "./style";
+import { Grid, Container, Typography } from "@material-ui/core";
 import { getBooks } from "../../../actions/books";
 
 const BookSlider = () => {
   const dispatch = useDispatch();
-  const classes = useStyles();
   const allBooks = useSelector((state) => state.books);
   const [allUnSoldbooks, setAllUnSoldBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState("#ffff00");
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -67,14 +53,12 @@ const BookSlider = () => {
 
   const override = css`
     display: block;
-    padding-left: 45%;
     border-color: red;
     background-color: #eae7dc;
   `;
 
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
@@ -116,12 +100,15 @@ const BookSlider = () => {
       </div>
 
       {loading ? (
-        <PulseLoader
-          loading={loading}
-          color="#e98074"
-          css={override}
-          size={30}
-        />
+        <div style={{ textAlign: "center" }}>
+          <PulseLoader
+            loading={loading}
+            color="#e98074"
+            css={override}
+            size={30}
+            style={{ background: "rgb(234,231,220)" }}
+          />
+        </div>
       ) : (
         <div
           style={{
@@ -170,13 +157,15 @@ const BookSlider = () => {
       </div>
 
       {loading ? (
-        <PulseLoader
-          loading={loading}
-          color="#e98074"
-          css={override}
-          size={30}
-          style={{ background: "rgb(234,231,220)" }}
-        />
+        <div style={{ textAlign: "center" }}>
+          <PulseLoader
+            loading={loading}
+            color="#e98074"
+            css={override}
+            size={30}
+            style={{ background: "rgb(234,231,220)" }}
+          />
+        </div>
       ) : (
         <div
           style={{

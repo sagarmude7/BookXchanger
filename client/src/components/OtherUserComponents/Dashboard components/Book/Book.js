@@ -1,28 +1,11 @@
-import React, { useState, useEffect } from "react";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-} from "@material-ui/core/";
-import { ThumbUpAltOutlined } from "@material-ui/icons";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import DeleteIcon from "@material-ui/icons/Delete";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import React from "react";
+import { Card, CardContent, CardMedia, Typography } from "@material-ui/core/";
+
 import useStyles from "./style";
 import moment from "moment";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { updatedIsSold, deleteaBook } from "../../../../actions/books";
 
 const Book = ({ book }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const history = useHistory();
-  // const [book, setBook] = useState({});
 
   return (
     <Card className={classes.card}>
@@ -56,18 +39,6 @@ const Book = ({ book }) => {
           {book?.tags.map((tag) => `#${tag} `)}
         </Typography>
       </CardContent>
-      {/* <CardActions className={classes.cardActions}>
-        <Button size="medium" color="secondary" onClick={deleteBook}>
-          <DeleteIcon />
-        </Button>
-        {
-          book.isSold===false?(
-            <Button variant="contained" color="primary" onClick={onClickSold}>
-              Sold
-            </Button>
-          ):null
-        }
-      </CardActions> */}
     </Card>
   );
 };

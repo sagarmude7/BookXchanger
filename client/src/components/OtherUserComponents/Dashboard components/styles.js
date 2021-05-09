@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
 
-export default makeStyles((theme) => ({
+export default makeStyles(() => ({
   body: {
     background: "#eae7dc",
     borderRadius: "5px",

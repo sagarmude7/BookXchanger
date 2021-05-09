@@ -18,8 +18,6 @@ import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./styles";
-import Navbar from "../Navbar/Navbar.js";
-import Footer from "../Footer/footer.js";
 import { editaBook } from "../../actions/books";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
@@ -81,16 +79,14 @@ const EditBook = ({ match }) => {
 
   return (
     <>
-    <ArrowBackIcon
-                className={classes.back}
-                onClick={() => history.goBack()}
-                fontSize="large"
-              ></ArrowBackIcon>
-      \
+      <ArrowBackIcon
+        className={classes.back}
+        onClick={() => history.goBack()}
+        fontSize="large"
+      ></ArrowBackIcon>
+
       <Grow in>
-      
         <Container>
-        
           <Paper className={classes.paper}>
             <form
               autoComplete="off"
@@ -99,7 +95,7 @@ const EditBook = ({ match }) => {
               onSubmit={handleSubmit}
             >
               <Typography color="secondary" variant="h6">
-                Update Any of the attributes You want
+                Update the Book Information
               </Typography>
               {!next ? (
                 <>

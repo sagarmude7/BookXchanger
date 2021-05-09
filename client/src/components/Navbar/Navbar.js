@@ -15,10 +15,8 @@ import useStyles from "./styles.js";
 import { useDispatch } from "react-redux";
 import { Link as RouterLink, useHistory, useLocation } from "react-router-dom";
 import { LOGOUT } from "../../constants/actions";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import Wishlist from "../WishlistComponent/Wishlist";
 import decode from "jwt-decode";
 
 const Navbar = () => {
@@ -29,16 +27,13 @@ const Navbar = () => {
     appBarSpacer,
     menuButton,
     appBar,
-    brandContainer,
     toolbar,
     drawerContainer,
-    image,
-    heading,
+
     image1,
     sellButton,
   } = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  const [push, setPush] = useState(false);
   const history = useHistory();
   const [state, setState] = useState({
     mobileView: false,
@@ -48,13 +43,6 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
-  const bookLogo = (
-    <div className={brandContainer}>
-      <Link href="#" color="inherit">
-        <img className={image1} src={logo} alt="BookXchanger" />
-      </Link>
-    </div>
-  );
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -81,10 +69,7 @@ const Navbar = () => {
     history.push("/");
   };
 
-  //get user data
-
   useEffect(() => {
-    //Function which returns the current view of the window.
     const setResponsiveness = () => {
       return window.innerWidth < 900 && window.innerWidth > 100
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
@@ -97,7 +82,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("profile")));
-    const token = user?.token;
   }, [location, user?.token]);
 
   const getDrawerChoices = () => {
@@ -156,9 +140,6 @@ const Navbar = () => {
           <Button component={RouterLink} to="/aboutus" className={menuButton}>
             About Us
           </Button>
-          {/* <Button component={RouterLink} to="/contact" className={menuButton}>
-            Contact Us
-          </Button> */}
         </div>
         {user ? (
           <>
@@ -248,9 +229,6 @@ const Navbar = () => {
     );
   };
 
-  ///DisplayDesktop() Functionality
-
-  //Writing displayMobile() functionality
   const displayDesktop = () => {
     return (
       <>

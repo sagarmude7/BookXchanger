@@ -1,16 +1,14 @@
-import { colors, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
-const styles = makeStyles((theme) => ({
+const styles = makeStyles(() => ({
   footer: {
     position: "center",
-
     background: "#E85A4F",
   },
 
   flexContainer: {
     display: "flex",
     flexFlow: "row nowrap",
-    background: "rgb(236,75,56)",
     background:
       "linear-gradient(90deg, rgba(236,75,56,1) 10%, rgba(232,90,79,1) 55%)",
     padding: "30px 0px 10px 0px",
@@ -42,7 +40,6 @@ const styles = makeStyles((theme) => ({
     transition: "1s",
     "&:hover": {
       color: "#eae7dc",
-
       textShadow: "0 0 5px #eae7dc",
     },
   },
@@ -68,18 +65,14 @@ const styles = makeStyles((theme) => ({
     fontSize: "40px",
     transform: "scale(.9)",
     zIndex: "-1",
-
     transition: ".5s",
-
     "&:hover::before": {
       transform: "scale(1.1)",
     },
 
     "&:hover": {
       color: "#eae7dc",
-
       textShadow: "0 0 5px #eae7dc",
-      color: "#ffffff",
       transform: "scale(1.3)",
     },
     "@media (max-width : 700px)": {

@@ -1,21 +1,9 @@
 import React from "react";
-import {
-  Container,
-  Paper,
-  Card,
-  CardMedia,
-  CardHeader,
-  Grid,
-  CardContent,
-  Typography,
-  Button,
-  Box,
-} from "@material-ui/core";
+import { Typography, Button, Box } from "@material-ui/core";
 import image2 from "./image2.png";
 import useStyles from "./styles.js";
 
-import { Link as RouterLink, useHistory } from "react-router-dom";
-// import "./styles.scss";
+import { useHistory } from "react-router-dom";
 
 const Error404 = () => {
   const classes = useStyles();

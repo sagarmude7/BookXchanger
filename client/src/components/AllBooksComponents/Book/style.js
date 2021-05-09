@@ -12,9 +12,6 @@ export default makeStyles({
       width: "100% !important",
       margin: "auto",
     },
-    // "@media (max-width : 900px)": {
-    //     height : "400px"
-    // },
   },
 
   top: {
@@ -83,10 +80,6 @@ export default makeStyles({
       top: "15px",
       fontSize: "12px",
       left: "10px",
-    },
-    "@media (max-width : 900px)": {
-      width: "100% !important",
-      margin: "auto",
     },
   },
 

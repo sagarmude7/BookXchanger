@@ -1,1 +1,1 @@
-const {data} = await api.editProfile(userData);
+const { data } = await api.editProfile(userData);

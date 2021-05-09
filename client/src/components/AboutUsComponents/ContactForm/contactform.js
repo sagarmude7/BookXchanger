@@ -2,15 +2,10 @@ import React, { useState, useEffect } from "react";
 import {
   TextField,
   Container,
-  Paper,
   Button,
   Typography,
-  Grid,
-  Box,
   List,
   ListItem,
-  ListItemAvatar,
-  Avatar,
   ListItemText,
   Divider,
 } from "@material-ui/core";
@@ -22,7 +17,6 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postFeedBackForm } from "../../../actions/user";
 import { FEEDBACK } from "../../../constants/actions";
-import Jello from "react-reveal/Jello";
 const Contact = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -32,7 +26,7 @@ const Contact = () => {
   });
   const history = useHistory();
   const [err, setErr] = useState(false);
-  const [loader, setLoader] = useState(false);
+  const [, setLoader] = useState(false);
   const user = JSON.parse(localStorage.getItem("profile"));
   const feedback = useSelector((state) => state.user);
 
@@ -254,13 +248,6 @@ const Contact = () => {
                 />
               </ListItem>
             </List>
-            {/* <Typography variant="h6" align="center" color="textPrimary">
-              Report an Ad
-            </Typography>
-            <Typography variant="body1" align="center" color="textPrimary">
-              If you find any Ad with Hate speech, Violence, Nudity or any
-              banned content. Report us immediately.
-            </Typography> */}
           </div>
         </div>
       </div>
@@ -269,8 +256,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-/*
-MONGO_URI=mongodb+srv://Bookxchanger:Book@12341234@bookxchanger.hvboa.mongodb.net/Booxchanger?retryWrites=true&w=majority
-TOKEN_SECRET=3nklbfpavxzqqu37474
-*/

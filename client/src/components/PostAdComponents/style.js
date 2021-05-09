@@ -1,48 +1,48 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
     },
   },
-  back:{
-    position:'absolute',
-    margin:20,
-    marginTop:40,
-    zIndex:10,
-    [theme.breakpoints.down(900)]:{
-      marginTop:60,
+  back: {
+    position: "absolute",
+    margin: 20,
+    marginTop: 40,
+    zIndex: 10,
+    [theme.breakpoints.down(900)]: {
+      marginTop: 60,
     },
   },
   paper: {
     padding: theme.spacing(2),
     margin: theme.spacing(1),
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    backgroundColor:'#e7dbc9',
-    borderRadius:"0.7rem",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    backgroundColor: "#e7dbc9",
+    borderRadius: "0.7rem",
     border: "3px solid #E98074",
     textShadow: "0 0 1px #e98074",
-    boxShadow:"8px 8px 8px grey" 
+    boxShadow: "8px 8px 8px grey",
   },
   form: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
   },
   fileInput: {
-    width: '97%',
-    margin: '10px 0',
+    width: "97%",
+    margin: "10px 0",
   },
   buttonSubmit: {
-    backgroundColor:"#E85A4F",
+    backgroundColor: "#E85A4F",
     "&:hover": {
       backgroundColor: "#8E8D8A",
     },
-    margin:theme.spacing(1),
-    color:'white'
+    margin: theme.spacing(1),
+    color: "white",
   },
   formControl: {
     // margin: theme.spacing(1),
@@ -52,97 +52,89 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   root1: {
-    '& > *': {
+    "& > *": {
       margin: theme.spacing(1),
     },
   },
   input: {
-    display: 'none',
+    display: "none",
   },
-  mainContainer:{
+  mainContainer: {
     backgroundColor: "#e5e1d4",
   },
-  textfield:{
-    marginBottom:'20px',
+  textfield: {
+    marginBottom: "20px",
     //border: "1px solid black",
-
   },
-  backbutton:{
+  backbutton: {
     backgroundColor: "#8E8D8A",
-    color:"white",
-    margin:theme.spacing(1)
+    color: "white",
+    margin: theme.spacing(1),
   },
-  nextbutton:{
-    backgroundColor:"#E85A4F",
+  nextbutton: {
+    backgroundColor: "#E85A4F",
     "&:hover": {
       backgroundColor: "#8E8D8A",
     },
-    color:"white",
-    margin:theme.spacing(1)
+    color: "white",
+    margin: theme.spacing(1),
   },
-  box:{
-    margin:theme.spacing(2),
-    //marginTop:'50px'
+  box: {
+    margin: theme.spacing(2),
   },
-  stepper:{
-    background:"#E98074",
-    borderRadius:"0.7rem",
-    width:"80%",
-    //marginTop:"15px" #E98074 #6c6b68
+  stepper: {
+    background: "#E98074",
+    borderRadius: "0.7rem",
+    width: "80%",
   },
-  step:{
+  step: {
     margin: theme.spacing(1),
     width: theme.spacing(10),
-    height: theme.spacing(10)
+    height: theme.spacing(10),
   },
-  stepname:{
-    // color:"#6c6b68"
-  },
-  stepcolor:{
+  stepname: {},
+  stepcolor: {
     backgroundColor: "#8E8D8A",
-    width: '35px',
-    padding: '5px',
-    textAlign: 'center',
-    height: '35px',
-    fontSize: '17px',
-    borderRadius: '50%',
-    marginBottom:'20px' 
+    width: "35px",
+    padding: "5px",
+    textAlign: "center",
+    height: "35px",
+    fontSize: "17px",
+    borderRadius: "50%",
+    marginBottom: "20px",
   },
 
-  [theme.breakpoints.down(700)]:{
-    stepper:{
-      background:"#E98074",
-      borderRadius:"0.7rem",
-      width:"100%",
-      marginTop:"40px"
+  [theme.breakpoints.down(700)]: {
+    stepper: {
+      background: "#E98074",
+      borderRadius: "0.7rem",
+      width: "100%",
+      marginTop: "40px",
     },
-    stepname:{
-      // color:"#6c6b68",
-      fontSize:16
+    stepname: {
+      fontSize: 16,
     },
-    stepcolor:{
+    stepcolor: {
       backgroundColor: "#8E8D8A",
-      width: '30px',
-      padding: '5px',
-      textAlign: 'center',
-      height: '30px',
-      fontSize: '17px',
-      borderRadius: '50%',
-      marginBottom:'20px' 
+      width: "30px",
+      padding: "5px",
+      textAlign: "center",
+      height: "30px",
+      fontSize: "17px",
+      borderRadius: "50%",
+      marginBottom: "20px",
     },
   },
 
-  [theme.breakpoints.between(700,1200)]:{
-    stepper:{
-      background:"#E98074",
-      borderRadius:"0.7rem",
-      width:"80%",
-      marginTop:"40px"
+  [theme.breakpoints.between(700, 1200)]: {
+    stepper: {
+      background: "#E98074",
+      borderRadius: "0.7rem",
+      width: "80%",
+      marginTop: "40px",
     },
-    stepname:{
-      // color:"#6c6b68",
-      fontSize:19
-    }
-
-  }
+    stepname: {
+      fontSize: 19,
+    },
+  },
 }));

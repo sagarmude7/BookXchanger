@@ -82,12 +82,15 @@ export const postFeedBackForm = (feedData) => async (dispatch)=>{
 }
 export const deleteaBookFromWish = (book_id,book) => async (dispatch) => {
     try{
-        await api.deleteaBookFromWish(book_id)
-        console.log("Actions Book"+ book);
-        console.log("Book ID is"+ book_id)
+        await api.deleteaBookFromWish(book_id);
+        // console.log("Actions Book"+ book);
+        // console.log("Book ID is"+ book_id)
         dispatch({type:DEL_BOOK_WISH,payload:book})
+     
+       // console.log("Book dispathched SuccessFully")
     }
     catch(err){
             console.log(err);
+            console.log(err.message);
     }
 }
