@@ -67,8 +67,10 @@ export default makeStyles((theme) => ({
     //border: "1px solid black",
   },
   backbutton: {
-    backgroundColor: "#8E8D8A",
-    color: "white",
+    backgroundColor: "#E85A4F",
+    "&:hover": {
+      backgroundColor: "#8E8D8A",
+    },    color: "white",
     margin: theme.spacing(1),
   },
   nextbutton: {
