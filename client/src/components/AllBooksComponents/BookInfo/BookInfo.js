@@ -30,6 +30,13 @@ const BookInfo = ({ match }) => {
   const book = useSelector((state) => state.book);
   const bookId = match.params.bookId;
   const [found] = useState(books.find((bk) => bk._id === bookId) !== undefined);
+  const [contact_URL,setContact_URL] = useState("/auth");
+  const localUser = JSON.parse(localStorage.getItem("profile"));
+
+
+  useEffect(() => {
+      localUser ? setContact_URL(`/user/${book.owner}`) : setContact_URL("/auth");
+  });
 
   useEffect(() => {
     if (books.find((bk) => bk._id === bookId) !== undefined) {
@@ -247,7 +254,7 @@ const BookInfo = ({ match }) => {
                 <Typography variant="h6">{book.ownerName}</Typography>
                 <Link
                   color="inherit"
-                  to={`/user/${book.owner}`}
+                  to={contact_URL}
                   component={RouterLink}
                   key="Home"
                   className={classes.name}
@@ -256,7 +263,8 @@ const BookInfo = ({ match }) => {
                 </Link>
                 <br />
                 <Link
-                  to="/auth"
+                  // to="/auth"
+                  to={contact_URL}
                   component={RouterLink}
                   key="Home"
                   className={classes.name}
