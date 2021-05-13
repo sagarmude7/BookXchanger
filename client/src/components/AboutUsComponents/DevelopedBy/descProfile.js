@@ -13,7 +13,7 @@ export const profiles = [
     img:
       "https://res.cloudinary.com/bookxchanger/image/upload/v1620148960/profiles/Sagar_Mude_ubrd3k.jpg",
     github: "https://github.com/sagarmude7",
-    linkedin: "www.linkedin.com/in/sagar-mude",
+    linkedin: "https://www.linkedin.com/in/sagar-mude",
   },
   {
     name: "Vedant Mondkar",
