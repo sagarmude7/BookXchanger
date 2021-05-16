@@ -290,6 +290,7 @@ const Profile = () => {
             <Button
               className={classes.changePassword}
               variant="contained"
+              color="primary"
               onClick={handleClickOpen}
             >
               Change Password
@@ -490,6 +491,7 @@ const Profile = () => {
                   <label htmlFor="icon-button-file">
                     <Button
                       variant="contained"
+                      color="primary"
                       component="span"
                       className={classes.uploadPhoto}
                     >
@@ -508,7 +510,7 @@ const Profile = () => {
                 <div>
                   {userData.profilePic != img ? (
                     <Button
-                      className={classes.removePhoto}
+                      className={classes.removePho}
                       variant="contained"
                       color="primary"
                       component="span"
@@ -524,6 +526,7 @@ const Profile = () => {
             <Button
               className={classes.saveChanges}
               variant="contained"
+              color="primary"
               type="submit"
             >
               Save Changes

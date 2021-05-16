@@ -104,7 +104,10 @@ export default makeStyles((theme) => ({
   Edit: {
     width: "18%",
     marginLeft: "80%",
-    backgroundColor: "#E85A4F",
+    backgroundColor: "#e85a4f",
+    "&:hover": {
+      backgroundColor: "#e98074",
+    },
     color: "white",
   },
 
@@ -130,7 +133,10 @@ export default makeStyles((theme) => ({
   changePassword: {
     width: 180,
     marginLeft: "77%",
-    backgroundColor: "#8E8D8A",
+    backgroundColor: "#e85a4f",
+    "&:hover": {
+      backgroundColor: "#e98074",
+    },
   },
 
   textField: {
@@ -147,17 +153,15 @@ export default makeStyles((theme) => ({
     marginTop: 30,
     marginLeft: "72%",
     color: "white",
-    backgroundColor: "#E85A4F",
+    backgroundColor: "#e85a4f",
     "&:hover": {
-      backgroundColor: "#8E8D8A",
+      backgroundColor: "#e98074",
     },
   },
 
   rootTab: {
     backgroundColor: "#E98074",
-    color: "black",
-    textColor: "green",
-    indicatorColor: "#ffffff",
+    color: "WHITE",
   },
 
   topBox: {
@@ -239,13 +243,20 @@ export default makeStyles((theme) => ({
   },
 
   uploadPhoto: {
-    backgroundColor: "#8E8D8A",
+    backgroundColor: "#e85a4f",
+    "&:hover": {
+      backgroundColor: "#e98074",
+    },
   },
 
   [theme.breakpoints.up(700)]: {
-    removePhoto: {
+    removePho: {
       marginLeft: 30,
       marginTop: 20,
+      backgroundColor: "#e85a4f",
+      "&:hover": {
+        backgroundColor: "#e98074",
+      },
     },
 
     uploadPhoto: {
@@ -422,8 +433,12 @@ export default makeStyles((theme) => ({
       marginTop: 10,
     },
 
-    removePhoto: {
-      marginTop: 15,
+    removePho: {
+      fontSize: 10.5,
+      backgroundColor: "#e85a4f",
+      "&:hover": {
+        backgroundColor: "#e98074",
+      },
     },
 
     editProfilePic: {
@@ -507,10 +522,6 @@ export default makeStyles((theme) => ({
 
     passTitle: {
       fontSize: 12,
-    },
-
-    removePhoto: {
-      fontSize: 10.5,
     },
 
     uploadPhoto: {

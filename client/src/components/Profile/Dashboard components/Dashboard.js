@@ -144,7 +144,11 @@ const Dashboard = () => {
                     .map(card)}
                 </>
               ) : (
-                <>No Sold Ads</>
+                <>
+                  <Typography align="center" variant="h5">
+                    No Sold Ads
+                  </Typography>
+                </>
               )}
             </Grid>
           </TabPanel>

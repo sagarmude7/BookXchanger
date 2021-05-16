@@ -37,9 +37,9 @@ export default makeStyles((theme) => ({
     margin: "10px 0",
   },
   buttonSubmit: {
-    backgroundColor: "#E85A4F",
+    backgroundColor: "#e85a4f",
     "&:hover": {
-      backgroundColor: "#8E8D8A",
+      backgroundColor: "#e98074",
     },
     margin: theme.spacing(1),
     color: "white",
@@ -67,16 +67,17 @@ export default makeStyles((theme) => ({
     //border: "1px solid black",
   },
   backbutton: {
-    backgroundColor: "#E85A4F",
+    backgroundColor: "#e85a4f",
     "&:hover": {
-      backgroundColor: "#8E8D8A",
-    },    color: "white",
+      backgroundColor: "#e98074",
+    },
+    color: "white",
     margin: theme.spacing(1),
   },
   nextbutton: {
-    backgroundColor: "#E85A4F",
+    backgroundColor: "#e85a4f",
     "&:hover": {
-      backgroundColor: "#8E8D8A",
+      backgroundColor: "#e98074",
     },
     color: "white",
     margin: theme.spacing(1),

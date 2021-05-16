@@ -176,8 +176,7 @@ const Feature = () => {
                         className={classes.inline}
                         color="textPrimary"
                       >
-                        Let's improve BF together. Report us if you stuck
-                        anywhere.
+                        Let's improve together. Report us if you stuck anywhere.
                       </Typography>
                     </React.Fragment>
                   }

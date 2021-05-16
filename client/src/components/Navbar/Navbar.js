@@ -29,7 +29,6 @@ const Navbar = () => {
     appBar,
     toolbar,
     drawerContainer,
-
     image1,
     sellButton,
   } = useStyles();
@@ -158,44 +157,59 @@ const Navbar = () => {
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
-              style={{ color: "pink" }}
             >
-              <MenuItem onClick={handleClose}>
-                <Button component={RouterLink} to="/profile">
+              <MenuItem
+                onClick={handleClose}
+                style={{ backgroundColor: "#e85a4f", padding: "0px auto" }}
+              >
+                <Button
+                  component={RouterLink}
+                  to="/profile"
+                  style={{ backgroundColor: "#e85a4f" }}
+                >
                   <Typography
                     variant="h6"
                     style={{
                       fontWeight: "400",
                       boxShadow: " none",
-                      fontSize: "1.2rem",
+                      fontSize: "1.1rem",
+                      color: "white",
                     }}
                   >
                     My Profile
                   </Typography>
                 </Button>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={handleClose}
+                style={{ backgroundColor: "#e85a4f" }}
+              >
                 <Button component={RouterLink} to="/wishlist">
                   <Typography
                     variant="h6"
                     style={{
                       fontWeight: "400",
                       boxShadow: " none",
-                      fontSize: "1.2rem",
+                      fontSize: "1.1rem",
+                      color: "white",
                     }}
                   >
                     Wishlist
                   </Typography>
                 </Button>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={handleClose}
+                style={{ backgroundColor: "#e85a4f" }}
+              >
                 <Button component={RouterLink} to="/auth" onClick={logout}>
                   <Typography
                     variant="h6"
                     style={{
                       fontWeight: "400",
                       boxShadow: " none",
-                      fontSize: "1.2rem",
+                      fontSize: "1.1rem",
+                      color: "white",
                     }}
                   >
                     Logout
@@ -296,7 +310,10 @@ const Navbar = () => {
               onClose={handleClose}
               style={{ color: "pink" }}
             >
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={handleClose}
+                style={{ backgroundColor: "#e85a4f" }}
+              >
                 <Button component={RouterLink} to="/profile">
                   <Typography
                     variant="h6"
@@ -304,13 +321,17 @@ const Navbar = () => {
                       fontWeight: "400",
                       boxShadow: " none",
                       fontSize: "1.2rem",
+                      color: "white",
                     }}
                   >
                     My Profile
                   </Typography>
                 </Button>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={handleClose}
+                style={{ backgroundColor: "#e85a4f" }}
+              >
                 <Button component={RouterLink} to="/wishlist">
                   <Typography
                     variant="h6"
@@ -318,13 +339,17 @@ const Navbar = () => {
                       fontWeight: "400",
                       boxShadow: " none",
                       fontSize: "1.2rem",
+                      color: "white",
                     }}
                   >
                     Wishlist
                   </Typography>
                 </Button>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={handleClose}
+                style={{ backgroundColor: "#e85a4f" }}
+              >
                 <Button component={RouterLink} to="/auth" onClick={logout}>
                   <Typography
                     variant="h6"
@@ -332,6 +357,7 @@ const Navbar = () => {
                       fontWeight: "400",
                       boxShadow: " none",
                       fontSize: "1.2rem",
+                      color: "white",
                     }}
                   >
                     Logout

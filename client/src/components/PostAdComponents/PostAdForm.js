@@ -24,7 +24,6 @@ import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import Compress from "compress.js";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./style";
-
 import { createBookAd } from "../../actions/books";
 import { VALID } from "../../constants/actions";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -399,7 +398,7 @@ const PostAdForm = () => {
       ></ArrowBackIcon>
       {err ? (
         <Snackbar
-          style={{ top: "10%", left: "55%" }}
+          style={{ top: "10%", left: "50%", align: "center" }}
           anchorOrigin={{ horizontal: "center", vertical: "top" }}
           open={err}
           autoHideDuration={5000}

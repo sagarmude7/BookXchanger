@@ -38,9 +38,14 @@ const styles = makeStyles(() => ({
     textAlign: "center",
     paddingInlineStart: "0px",
     transition: "1s",
+  },
+
+  linkName: {
+    color: "black",
+    transition: "0.5s",
     "&:hover": {
-      color: "#eae7dc",
-      textShadow: "0 0 5px #eae7dc",
+      color: "#E2F0F9",
+      textShadow: "0 0 5px #E2F0F9",
     },
   },
 

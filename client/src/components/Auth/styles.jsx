@@ -1,117 +1,113 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     padding: theme.spacing(2),
-    width:'540px',
-    marginBottom:'20px',
-    marginLeft:'80px',
-    backgroundColor:'#e7dbc9',
-    borderRadius:"0.7rem"
+    width: "540px",
+    marginBottom: "20px",
+    marginLeft: "80px",
+    backgroundColor: "#e7dbc9",
+    borderRadius: "0.7rem",
   },
 
   root: {
-    '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '25ch',
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: "25ch",
     },
   },
 
   avatar: {
     margin: theme.spacing(1),
     width: theme.spacing(10),
-    height: theme.spacing(10)
+    height: theme.spacing(10),
   },
 
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(2),
   },
 
   submit: {
     margin: theme.spacing(3, 0, 2),
-    width:'40%',
-    backgroundColor:"#E85A4F",
+    width: "40%",
+    backgroundColor: "#e85a4f",
     "&:hover": {
-      backgroundColor: "#8E8D8A",
+      backgroundColor: "#e98074",
     },
   },
 
-  customLogin:{
-    width:'60%',
-    backgroundColor:"#E85A4F",
+  customLogin: {
+    width: "60%",
+    backgroundColor: "#e85a4f",
     "&:hover": {
-      backgroundColor: "#8E8D8A",
+      backgroundColor: "#e98074",
     },
   },
-  reg : {
-    background:"#e2d3bd",
-    borderRadius:"200px",
-    width:"80%",
-    padding : "4px",
-    backgroundColor:"#E85A4F",
+  reg: {
+    background: "#e2d3bd",
+    borderRadius: "200px",
+    width: "80%",
+    padding: "4px",
+    backgroundColor: "#E85A4F",
   },
 
   googleButton: {
     marginBottom: theme.spacing(2),
   },
 
-  switch:{
-    backgroundColor:"#E98074",
+  switch: {
+    backgroundColor: "#e85a4f",
     "&:hover": {
-      backgroundColor: "#8E8D8A",
+      backgroundColor: "#e98074",
     },
   },
 
-  mainContainer:{
+  mainContainer: {
     backgroundColor: "#e5e1d4",
-    //backgroundImage: `url(${'https://www.transparenttextures.com/patterns/concrete-wall-2.png'})`,
   },
 
-  avt:{
+  avt: {
     margin: theme.spacing(1),
     backgroundColor: "#E85A4F",
     width: theme.spacing(7),
-    height: theme.spacing(7)
+    height: theme.spacing(7),
   },
 
-  grid:{
-    marginTop: theme.spacing(9)
+  grid: {
+    marginTop: theme.spacing(9),
   },
 
-  inline:{
-      display:'inline'
+  inline: {
+    display: "inline",
   },
 
-  list:{
-    
-  margin:theme.spacing(1.5),
-  paddingLeft: "0px" 
+  list: {
+    margin: theme.spacing(1.5),
+    paddingLeft: "0px",
   },
 
-
-  [theme.breakpoints.down(1400)]:{
-    paper:{
-      width:"90%",
-      marginLeft:"20px"
+  [theme.breakpoints.down(1400)]: {
+    paper: {
+      width: "90%",
+      marginLeft: "20px",
     },
-
   },
 
-  [theme.breakpoints.up(1400)]:{
-      inline:{
-        marginLeft:'30px',
-      }
-  },
-
-  [theme.breakpoints.down(700)]:{
-    paper:{
-      marginLeft:"15px",
-      width:"90%",
+  [theme.breakpoints.up(1400)]: {
+    inline: {
+      marginLeft: "30px",
     },
-  }
+  },
+
+  [theme.breakpoints.down(700)]: {
+    paper: {
+      marginLeft: "15px",
+      width: "90%",
+    },
+  },
 }));

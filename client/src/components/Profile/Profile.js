@@ -168,12 +168,19 @@ const Profile = () => {
             <Tab
               className={classes.rootTab}
               label="Profile"
+              indicatorColor="white"
               {...a11yProps(0)}
             />
-            <Tab className={classes.rootTab} label="My Ads" {...a11yProps(1)} />
+            <Tab
+              className={classes.rootTab}
+              indicatorColor="white"
+              label="My Ads"
+              {...a11yProps(1)}
+            />
             <Tab
               className={classes.rootTab}
               label="Messages"
+              indicatorColor="white"
               {...a11yProps(2)}
             />
           </Tabs>

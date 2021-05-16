@@ -54,12 +54,16 @@ const styles = makeStyles((theme) => ({
   },
   button: {
     justifyContent: "center",
-    backgroundColor: "#e85a4f",
     margin: "25px 0px",
+    backgroundColor: "#e85a4f",
+    "&:hover": {
+      backgroundColor: "#e98074",
+    },
     "@media (max-width : 700px)": {
       marginBottom: "10px",
     },
   },
+
   advance: {
     backgroundColor: "#e85a4f",
     float: "right",
@@ -79,11 +83,7 @@ const styles = makeStyles((theme) => ({
     AlignItems: "center",
     justifyContent: "center",
   },
-  //  gridContainer: {
-  //   display:"flex",
-  //   alignItems:"center",
-  //   justifyContent:"center",
-  //  },
+
   gridItem: {
     border: "1px solid blue",
     borderRadius: "10px",

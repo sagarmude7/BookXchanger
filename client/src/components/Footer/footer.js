@@ -7,7 +7,6 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import EmailIcon from "@material-ui/icons/Email";
-
 import { Link as RouterLink } from "react-router-dom";
 
 const Footer = () => {
@@ -91,6 +90,7 @@ const Footer = () => {
                     component={RouterLink}
                     key="Home"
                     color="inherit"
+                    className={classes.linkName}
                   >
                     Home
                   </Link>
@@ -101,6 +101,7 @@ const Footer = () => {
                     component={RouterLink}
                     key="Books"
                     color="inherit"
+                    className={classes.linkName}
                   >
                     Books
                   </Link>
@@ -111,18 +112,20 @@ const Footer = () => {
                     component={RouterLink}
                     key="About Us"
                     color="inherit"
+                    className={classes.linkName}
                   >
                     About Us
                   </Link>
                 </ul>
                 <ul className={classes.link}>
                   <Link
-                    to="/aboutus"
+                    to="/add"
                     component={RouterLink}
-                    key="About Us"
+                    key="Sell Books"
                     color="inherit"
+                    className={classes.linkName}
                   >
-                    Contact Us
+                    Sell Books
                   </Link>
                 </ul>
               </li>
