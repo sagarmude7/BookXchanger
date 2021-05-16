@@ -19,6 +19,8 @@ import Message from "./Messages/Message";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 function TabPanel(props) {
+
+
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -51,11 +53,14 @@ function a11yProps(index) {
 }
 
 const Profile = () => {
+
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
   const theme = useTheme();
   const localUser = JSON.parse(localStorage.getItem("profile"));
+  
+
   const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
 
@@ -87,11 +92,11 @@ const Profile = () => {
 
   const [value, setValue] = useState(0);
 
-  const handleChange = (newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const handleClose = (reason) => {
+  const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
