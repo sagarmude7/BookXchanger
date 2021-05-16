@@ -16,6 +16,13 @@ import {
   StepLabel,
   Box,
 } from "@material-ui/core";
+import PropTypes from "prop-types";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import StepConnector from "@material-ui/core/StepConnector";
+import clsx from "clsx";
+import LibraryBooksOutlinedIcon from "@material-ui/icons/LibraryBooksOutlined";
+import AddToPhotosOutlinedIcon from "@material-ui/icons/AddToPhotosOutlined";
+import AssignmentOutlinedIcon from "@material-ui/icons/AssignmentOutlined";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import { useHistory } from "react-router-dom";
@@ -51,9 +58,7 @@ const PostAdForm = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [err, setErr] = useState(false);
   const book = useSelector((state) => state.book);
-
   const compress = new Compress();
-
   const addImage = async (e) => {
     const files = [...e.target.files];
     const imageData = await compress.compress(files, {
@@ -378,6 +383,89 @@ const PostAdForm = () => {
     }
   }
 
+  const ColorlibConnector = withStyles({
+    alternativeLabel: {
+      top: 22,
+    },
+    active: {
+      "& $line": {
+        backgroundImage:
+          "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
+      },
+    },
+    completed: {
+      "& $line": {
+        backgroundImage:
+          "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
+      },
+    },
+    line: {
+      height: 3,
+      border: 0,
+      backgroundColor: "#eaeaf0",
+      borderRadius: 1,
+    },
+  })(StepConnector);
+
+  const useColorlibStepIconStyles = makeStyles({
+    root: {
+      backgroundColor: "#ccc",
+      zIndex: 1,
+      color: "#fff",
+      width: 50,
+      height: 50,
+      display: "flex",
+      borderRadius: "50%",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    active: {
+      backgroundImage:
+        "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+      boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
+    },
+    completed: {
+      backgroundImage:
+        "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+    },
+  });
+
+  function ColorlibStepIcon(props) {
+    const classes = useColorlibStepIconStyles();
+    const { active, completed } = props;
+
+    const icons = {
+      1: <LibraryBooksOutlinedIcon />,
+      2: <AddToPhotosOutlinedIcon />,
+      3: <AssignmentOutlinedIcon />,
+    };
+    return (
+      <div
+        className={clsx(classes.root, {
+          [classes.active]: active,
+          [classes.completed]: completed,
+        })}
+      >
+        {icons[String(props.icon)]}
+      </div>
+    );
+  }
+
+  ColorlibStepIcon.propTypes = {
+    /**
+     * Whether this step is active.
+     */
+    active: PropTypes.bool,
+    /**
+     * Mark the step as completed. Is passed to child components.
+     */
+    completed: PropTypes.bool,
+    /**
+     * The label displayed in the step icon.
+     */
+    icon: PropTypes.node,
+  };
+
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
 
@@ -416,24 +504,14 @@ const PostAdForm = () => {
             <Stepper
               activeStep={activeStep}
               alternativeLabel
-              className={classes.stepper}
+              connector={<ColorlibConnector />}
+              style={{ background: "#eae7dc" }}
             >
-              {steps.map((label, index) => {
-                const props = {};
-                const labelProps = {};
-                labelProps.icon = (
-                  <div className={classes.stepcolor}>{index + 1}</div>
-                );
+              {steps.map((label) => {
                 return (
-                  <Step key={label} {...props}>
-                    <StepLabel {...labelProps}>
-                      <Typography
-                        component="span"
-                        variant="h5"
-                        className={classes.stepname}
-                      >
-                        {label}
-                      </Typography>
+                  <Step key={label}>
+                    <StepLabel StepIconComponent={ColorlibStepIcon}>
+                      {label}
                     </StepLabel>
                   </Step>
                 );

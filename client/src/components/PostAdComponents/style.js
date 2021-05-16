@@ -95,7 +95,9 @@ export default makeStyles((theme) => ({
     width: theme.spacing(10),
     height: theme.spacing(10),
   },
-  stepname: {},
+  stepname: {
+    color: "white",
+  },
   stepcolor: {
     backgroundColor: "#8E8D8A",
     width: "35px",
@@ -115,11 +117,13 @@ export default makeStyles((theme) => ({
       marginTop: "40px",
     },
     stepname: {
+      color: "white",
       fontSize: 16,
     },
     stepcolor: {
       backgroundColor: "#8E8D8A",
       width: "30px",
+      color: "white",
       padding: "5px",
       textAlign: "center",
       height: "30px",
@@ -138,6 +142,7 @@ export default makeStyles((theme) => ({
     },
     stepname: {
       fontSize: 19,
+      color: "white",
     },
   },
 }));
