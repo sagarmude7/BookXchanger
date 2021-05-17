@@ -17,6 +17,15 @@ import { useHistory } from "react-router-dom";
 import { getRecentUsers } from "../../actions/user";
 import Message from "./Messages/Message";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const outerTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#000000',
+    },
+  },
+});
 
 function TabPanel(props) {
 
@@ -159,7 +168,7 @@ const Profile = () => {
             <Typography className={classes.listLetter}>Ads Sold</Typography>
           </div>
         </Container>
-
+        <ThemeProvider theme={outerTheme}>
         <AppBar className={classes.rootTab} position="static" color="default">
           <Tabs
             className={classes.rootTab}
@@ -169,27 +178,26 @@ const Profile = () => {
             textColor="primary"
             variant="fullWidth"
             aria-label="full width tabs example"
+            theme={outerTheme}
           >
             <Tab
               className={classes.rootTab}
               label="Profile"
-              indicatorColor="white"
               {...a11yProps(0)}
             />
             <Tab
               className={classes.rootTab}
-              indicatorColor="white"
               label="My Ads"
               {...a11yProps(1)}
             />
             <Tab
               className={classes.rootTab}
               label="Messages"
-              indicatorColor="white"
               {...a11yProps(2)}
             />
           </Tabs>
         </AppBar>
+        </ThemeProvider>
       </div>
 
       <TabPanel value={value} index={0} dir={theme.direction}>
