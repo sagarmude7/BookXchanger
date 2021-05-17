@@ -12,6 +12,15 @@ import { getBooks } from "../../../actions/books.js";
 import { css } from "@emotion/react";
 import PulseLoader from "react-spinners/PulseLoader";
 import AppBar from "@material-ui/core/AppBar";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const outerTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#000000',
+    },
+  },
+});
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,6 +43,7 @@ function TabPanel(props) {
 
 const Dashboard = () => {
   const userId = JSON.parse(localStorage.getItem("profile")).profile.id;
+  const user = useSelector((state) => state.user);
   const books = useSelector((state) => state.books);
 
   const [loading, setLoading] = useState(true);
@@ -68,16 +78,29 @@ const Dashboard = () => {
 
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const [Myadbool, setMyadbool] = useState(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  //  dispatch(getMyAds())
   function a11yProps(index) {
     return {
       id: `full-width-tab-${index}`,
       "aria-controls": `full-width-tabpanel-${index}`,
     };
   }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Container className={classes.body}>
       {loading ? (
@@ -92,6 +115,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <>
+        <ThemeProvider theme={outerTheme}>
           <AppBar className={classes.root} position="static" color="default">
             <Tabs
               value={value}
@@ -103,7 +127,7 @@ const Dashboard = () => {
               <Tab label="Sold Ads" {...a11yProps(1)} />
             </Tabs>
           </AppBar>
-
+          </ThemeProvider>
           <TabPanel value={value} index={0}>
             <Grid
               className={classes.container}

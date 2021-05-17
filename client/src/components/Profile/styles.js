@@ -161,7 +161,6 @@ export default makeStyles((theme) => ({
 
   rootTab: {
     backgroundColor: "#E98074",
-    color: "WHITE",
   },
 
   topBox: {
