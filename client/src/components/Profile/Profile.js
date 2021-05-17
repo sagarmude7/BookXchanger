@@ -134,10 +134,10 @@ const Profile = () => {
       ></ArrowBackIcon>
       <div className={classes.topBox}>
         <Container className={classes.head}>
-          {user.profilePic ? (
+          {user?.profilePic ? (
             <img
               className={classes.pic}
-              src={user.profilePic}
+              src={user?.profilePic}
               alt="M"
               loading="lazy"
             ></img>
