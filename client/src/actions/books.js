@@ -6,7 +6,9 @@ import {
   DELETE_BOOK,
   UPDATE_BOOKS,
   VALID,
+  DEL_BOOK_WISH
 } from "../constants/actions";
+const localUser = JSON.parse(localStorage.getItem("profile"));
 const api = require("../api/index");
 
 export const getBooks = () => async (dispatch) => {
@@ -61,3 +63,20 @@ export const editaBook = (id, formData) => async (dispatch) => {
     dispatch({ type: UPDATE_BOOKS, payload: data });
   } catch (err) {}
 };
+
+export const deleteaBookFromWish = (book) => async (dispatch) => {
+  try{
+      console.log("Actions Book"+ book);
+      await api.deleteaBookFromWish(book._id);
+      console.log("Actions Book2"+ book);
+      dispatch({type:DEL_BOOK_WISH,payload:book})
+
+
+      // console.log("Book ID is"+ book_id)
+     // console.log("Book dispathched SuccessFully")
+  }
+  catch(err){
+          console.log(err);
+          console.log(err.message);
+  }
+}

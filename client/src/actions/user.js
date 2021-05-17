@@ -1,4 +1,4 @@
-import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR, CHANGE_PASSWORD, FEEDBACK, VALID, GET_RECENTS,DEL_BOOK_WISH} from '../constants/actions'
+import {FETCH_FAV, GET_PROFILE, EDIT_PROFILE, ERROR, CHANGE_PASSWORD, FEEDBACK, VALID, GET_RECENTS} from '../constants/actions'
 import api from '../api/index';
 
 export const getProfile = (id) => async (dispatch) => {
@@ -78,19 +78,5 @@ export const postFeedBackForm = (feedData) => async (dispatch)=>{
         const data = err.response.data
         console.log(data)
         dispatch({type:FEEDBACK,payload:data});
-    }
-}
-export const deleteaBookFromWish = (book_id,book) => async (dispatch) => {
-    try{
-        await api.deleteaBookFromWish(book_id);
-        // console.log("Actions Book"+ book);
-        // console.log("Book ID is"+ book_id)
-        dispatch({type:DEL_BOOK_WISH,payload:book})
-     
-       // console.log("Book dispathched SuccessFully")
-    }
-    catch(err){
-            console.log(err);
-            console.log(err.message);
     }
 }

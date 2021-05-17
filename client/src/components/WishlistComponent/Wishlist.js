@@ -45,6 +45,13 @@ const Wishlist = () => {
     }
   }, [books]);
 
+
+setTimeout(()=>{
+  setWishListedBooks(
+    books.filter(
+      (book) => book.wishListedBy.includes(user.profile.id) === true)
+  )
+},4000)
   const override = css`
     display: block;
     border-color: red;
@@ -142,6 +149,7 @@ const Wishlist = () => {
                     spacing={3}
                   >
                     {wishListedBooks.map((book) => (
+                      
                       <Grid item xs={12} sm={3}>
                         <Zoom bottom>
                           <Book key={book._id} book={book} />

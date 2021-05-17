@@ -19,6 +19,10 @@ export default makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: "25ch",
     },
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
   },
 
   avatar: {

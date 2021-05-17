@@ -43,7 +43,7 @@ const changePassword = (updatedPassword) =>
 
 const sendMail = (feedData) => API.post(`${urlUsers}/send-email`,feedData);
 // const getWishList = (id) => API.get(`${urlUsers}/wishList`);
-const deleteaBookFromWish = (book_id,localUser) => API.delete(`${urlUsers}/${book_id}`,localUser)
+const deleteaBookFromWish = (book_id) => API.delete(`${urlUsers}/${book_id}`)
 
 
 
