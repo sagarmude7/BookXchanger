@@ -89,10 +89,10 @@ You can see the demo video of our project below.
 ## Links
 You will get all the links that are related to project below-
 
-[BookXchanger]() - The link to BookXchanger Website.
-[Code](https://github.com/sagarmude7/BookXchanger) - All the code of Project.
-[Demo Video]() - Demo Video of Project.
-[Report](https://docs.google.com/document/d/18DFVA1zDr2o_mGOa4heCsVh2BHWxjVdTNasb6ritMKo/edit?usp=sharing) - Report of the project.
+- [BookXchanger]() - The link to BookXchanger Website.
+- [Code](https://github.com/sagarmude7/BookXchanger) - All the code of Project.
+- [Demo Video]() - Demo Video of Project.
+- [Report](https://docs.google.com/document/d/18DFVA1zDr2o_mGOa4heCsVh2BHWxjVdTNasb6ritMKo/edit?usp=sharing) - Report of the project.
 
 ## Contributors
 * [Harshil Doshi](https://github.com/Harshil333)(Mentor)
