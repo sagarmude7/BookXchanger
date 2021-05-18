@@ -49,6 +49,9 @@ const styles = makeStyles(() => ({
   button: {
     marginTop: "40px",
     backgroundColor: "#e85a4f",
+    "&:hover": {
+      backgroundColor: "#e98074",
+    },
   },
 }));
 

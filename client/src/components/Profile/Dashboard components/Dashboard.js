@@ -135,7 +135,13 @@ const Dashboard = () => {
                     ?.map(card)}
                 </>
               ) : (
-                <>No Active Ads</>
+                <>
+                  <div>
+                    <Typography align="center" variant="h5">
+                      No Active Ads
+                    </Typography>
+                  </div>
+                </>
               )}
             </Grid>
           </TabPanel>
@@ -158,9 +164,11 @@ const Dashboard = () => {
                 </>
               ) : (
                 <>
-                  <Typography align="center" variant="h5">
-                    No Sold Ads
-                  </Typography>
+                  <div>
+                    <Typography align="center" variant="h5">
+                      No Sold Ads
+                    </Typography>
+                  </div>
                 </>
               )}
             </Grid>
