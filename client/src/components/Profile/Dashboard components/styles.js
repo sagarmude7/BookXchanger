@@ -21,10 +21,16 @@ export default makeStyles((theme) => ({
   },
 
   container: {
-    padding: "0px",
-  },
+    paddingTop: "20px",
+    display : "flex",
+    flexWrap : "wrap",
+    
 
+  },
   root: {
     backgroundColor: "#E98074",
   },
+  grid:{
+    padding:'10px'
+  }
 }));

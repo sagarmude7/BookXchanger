@@ -8,33 +8,35 @@ export default makeStyles({
     borderRadius: "15px",
     height: "100%",
     position: "relative",
-    "@media (max-width : 900px)": {
+    width:'280px',
+    
+    /*"@media (max-width : 900px)": {
       width: "100% !important",
       margin: "auto",
-    },
+    },*/
   },
 
   top: {
     position: "relative",
     height: "180px",
-    "@media (max-width : 900px)": {
+    /*"@media (max-width : 900px)": {
       height: "350px",
     },
     "@media (max-width : 400px)": {
       height: "220px",
-    },
+    },*/
   },
 
   media: {
     paddingTop: "56.25%",
     backgroundColor: "rgba(0, 0, 0, 0.4)",
     backgroundBlendMode: "darken",
-    "@media (max-width : 900px)": {
+    /*"@media (max-width : 900px)": {
       height: "200px",
     },
     "@media (max-width : 400px)": {
       height: "160px",
-    },
+    },*/
   },
 
   favourite: {
@@ -49,7 +51,7 @@ export default makeStyles({
       transform: "scale(1.31)",
       textShadow: "0 0 5px #e85a4f",
     },
-    "@media (max-width : 900px)": {
+    /*"@media (max-width : 900px)": {
       top: "2.5px",
       left: "293px",
       paddingBottom: "1px",
@@ -66,7 +68,7 @@ export default makeStyles({
       left: "265px",
       paddingBottom: "1px",
       transform: "scale(1.3)",
-    },
+    },*/
   },
 
   price: {
@@ -76,11 +78,11 @@ export default makeStyles({
     left: "15px",
     fontSize: "20px",
     fontWeight: "1000",
-    "@media (max-width : 900px)": {
+    /*"@media (max-width : 900px)": {
       top: "15px",
       fontSize: "12px",
       left: "10px",
-    },
+    },*/
   },
 
   Branch: {
@@ -94,7 +96,8 @@ export default makeStyles({
     textAlign: "center",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
-    "@media (max-width : 900px)": {
+    //margin:'10px',
+    /*"@media (max-width : 900px)": {
       fontSize: "12px",
       marginTop: "0px",
       padding: "1px",
@@ -112,17 +115,17 @@ export default makeStyles({
       padding: "1px",
       position: "absolute",
       top: "190px",
-    },
+    },*/
   },
 
   BookName: {
-    margin: "5px 15px 7px 15px",
+    /*margin: "5px 15px 7px 15px",
     "@media (max-width : 900px)": {
       margin: "-40px 15px 7px 15px",
     },
     "@media (max-width : 428px)": {
       margin: "15px 15px 7px 15px",
-    },
+    },*/
   },
 
   Description: {
