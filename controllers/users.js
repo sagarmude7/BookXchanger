@@ -75,6 +75,41 @@ exports.signIn = async(req,res)=>{
     }
 }
 
+
+exports.sendResetPassEmail = async(req,res)=>{
+  const email = req.body.email;
+  const payload = {
+    email:email
+  }
+  try{
+
+      const oldUser = await User.findOne({email:email})
+
+      
+      if(!oldUser)
+            return res.status(400).json({msg:"No user exists with this email"})
+      
+      // const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"300000"})
+    
+      console.log(oldUser.resetPasswordExpires,oldUser.resetPasswordToken) 
+      
+      // const updatedUser = await User.findOneAndUpdate({email:email},{resetPasswordToken:token,resetPasswordExpires:Date.now()+300000},{new:true})
+      // updatedUser.save()
+      console.log(req.headers.origin)
+      const sender = "bookxchanger7@gmail.com"
+      const subject = "BookXchanger Password Reset"
+      const body = 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+      'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+      req.headers.origin + '/password-reset/' + token + '\n\n' +
+      'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+    
+      return res.status(200).json({msg:"An e-mail has been sent with further instructions"})
+  }catch(err){
+        console.log(err)
+        return res.status(500).json({ msg: "Something went wrong on Server.." }); 
+  }
+}
+
 //utility function to generate a random password
 function random_password_generate(max,min)
 {
@@ -153,77 +188,6 @@ exports.editProfile = async(req,res)=>{
     }
 }
 
-exports.googleFacebookSignIn = async (req, res) => {
-  const { email, name, profilePic } = req.body;
-  try {
-    const oldUser = await User.findOne({ email: email });
-
-    if (!oldUser) {
-      const password = random_password_generate(20, 10);
-
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const newUser = await User.create({
-        name,
-        email,
-        password: hashedPassword,
-        profilePic,
-        createdAt: new Date().toISOString(),
-        college: "ABC",
-        location: "DEF",
-        postedBooks: [],
-      });
-
-      const payload = {
-        email: newUser.email,
-        id: newUser._id,
-      };
-
-      await sendGoogleMail(email, name, password);
-      const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
-        expiresIn: "4h",
-      });
-
-      return res
-        .status(200)
-        .json({
-          profile: {
-            name: newUser.name,
-            email: newUser.email,
-            profilePic: newUser.profilePic,
-            id: newUser._id,
-          },
-          token,
-        });
-    }
-
-    const updatedUser = await User.findOneAndUpdate(
-      { email: email },
-      { profilePic: profilePic },
-      { new: true }
-    );
-
-    updatedUser.save();
-    const token = jwt.sign(
-      { profile: updatedUser, id: oldUser._id },
-      process.env.TOKEN_SECRET,
-      { expiresIn: "4h" }
-    );
-
-    return res
-      .status(200)
-      .json({
-        profile: {
-          name: updatedUser.name,
-          email: updatedUser.email,
-          profilePic: updatedUser.profilePic,
-          id: updatedUser._id,
-        },
-        token,
-      });
-  } catch (err) {
-    return res.status(500).json({ msg: "Something went wrong" });
-  }
-};
 
 exports.getProfile = async (req, res) => {
   try {
@@ -297,7 +261,7 @@ exports.sendMail = async (req, res) => {
         .json({ msg: error.details[0].message, severity: "error" });
     const receiver = "bookxchanger7@gmail.com";
     const message = req.body.message;
-    const subject = `Feedback from ${req.body.name}-${req.body.email}`;
+    const subject = `Feedback from ${req.body.name}`;
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -425,25 +389,26 @@ console.log(err);
 
 exports.deleteaBookFromWish = async(req,res) => {
 
-// console.log("This is Backend Request to delete a book" );
-const {id} = req.params;
-console.log(id);
-try{
-    if (!mongoose.Types.ObjectId.isValid(id))
-      return res.status(404).json({ msg: `No Book with id:${id}` });
-    // console.log("Valid ID")
-    const book = await Book.findById(id);
-    const filteredBooks = book.wishListedBy.filter((userId)=> req.userId != userId);
-    console.log("My id"+ req.userId)
-    book.wishListedBy = filteredBooks;
-    console.log("Book"+ book.wishListedBy);
-    await Book.findOneAndUpdate({_id:id},book,{new: true});
-    console.log("Book deleted successfully")
+    // console.log("This is Backend Request to delete a book" );
+    const {id} = req.params;
+    console.log(id);
+    try{
+        if (!mongoose.Types.ObjectId.isValid(id))
+          return res.status(404).json({ msg: `No Book with id:${id}` });
+        // console.log("Valid ID")
+        const book = await Book.findById(id);
+        const filteredBooks = book.wishListedBy.filter((userId)=> req.userId != userId);
+        console.log("My id"+ req.userId)
+        book.wishListedBy = filteredBooks;
+        console.log("Book"+ book.wishListedBy);
+        await Book.findOneAndUpdate({_id:id},book,{new: true});
+        console.log("Book deleted successfully")
 
-    return res.status(204).json({msg:"Book Deleted Successfully"})
+        return res.status(204).json({msg:"Book Deleted Successfully"})
 
-  }catch(err){
-    console.log(err);
-    return res.status(500).json({ msg: "Something went wrong on Server.." }); 
-  }
+    }catch(err){
+      console.log(err);
+      return res.status(500).json({ msg: "Something went wrong on Server.." }); 
+    }
 }
+

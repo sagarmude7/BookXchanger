@@ -7,6 +7,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../../AllBooksComponents/Book/Book";
 import { Grid, Container, Typography } from "@material-ui/core";
 import { getBooks } from "../../../actions/books";
+import {v4} from 'uuid'
 
 const BookSlider = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const BookSlider = () => {
         arr.push(allUnSoldbooks[i]);
       }
       setBooks(arr);
+      console.log(books)
     } else {
       setBooks(allUnSoldbooks);
     }
@@ -125,11 +127,7 @@ const BookSlider = () => {
             autoPlay={true}
           >
             {books.map((book) => (
-              <Grid>
-                <Container>
-                  <Book key={book._id} book={book} />
-                </Container>
-              </Grid>
+                <Book key={v4()} book={book} />
             ))}
           </Carousel>
         </div>

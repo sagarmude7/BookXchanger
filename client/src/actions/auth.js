@@ -8,8 +8,8 @@ export const signUp = (formData, history) => async (dispatch) => {
     dispatch({ type: VALID, payload: { msg: "Logged In Successfully" } });
     history.push("/");
   } catch (err) {
-    const data = err;
-    dispatch({ type: VALID, payload: data });
+    const data = err.response.data;
+    dispatch({ type: VALID, payload: {msg:data.msg,type:"error"}});
   }
 };
 
@@ -22,7 +22,7 @@ export const signIn = (formData, history) => async (dispatch) => {
     history.push("/");
   } catch (err) {
     const data = err.response.data;
-    dispatch({ type: VALID, payload: data });
+    dispatch({ type: VALID, payload: {msg:data.msg,type:"error"}});
   }
 };
 
@@ -34,6 +34,18 @@ export const googleFacebookSignIn = (formData, history) => async (dispatch) => {
     history.push("/");
   } catch (err) {
     const data = err?.response?.data;
-    dispatch({ type: VALID, payload: data });
+    dispatch({ type: VALID, payload: {msg:data.msg,type:"error"}});
   }
 };
+
+export const sendPasswordMail = (resetEmail) => async(dispatch) =>{
+  try{
+    console.log(resetEmail)
+    const {data} = await api.sendPasswordMail({email:resetEmail});
+    console.log(data)
+    dispatch({type:VALID,payload:{msg:data.msg,type:"success"}})
+  }catch(err){
+    const data = err?.response?.data;
+    dispatch({ type: VALID, payload: {msg:data.msg,type:"error"}});
+  }
+}

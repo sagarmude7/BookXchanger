@@ -107,7 +107,7 @@ const SearchBox = () => {
         }
         if (
           book.branch === inputBranch ||
-          book.condition === inputCondition.toLowerCase() ||
+          book.condition === inputCondition ||
           book.priceType === inputPrice
         ) {
           if (filteredBookArr.length !== 0) {

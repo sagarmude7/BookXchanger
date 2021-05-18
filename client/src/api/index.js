@@ -31,6 +31,8 @@ const urlUsers = "/users";
 const signUp = (formData) => API.post(`${urlUsers}/signUp`, formData);
 const signIn = (formData) => API.post(`${urlUsers}/signIn`, formData);
 
+const sendPasswordMail = (email)=>API.post(`${urlUsers}/forgot-password`,email)
+
 const googleFacebookSignIn = (formData) =>
   API.post(`${urlUsers}/googleFacebookSignIn`, formData);
 
@@ -44,6 +46,8 @@ const changePassword = (updatedPassword) =>
 const sendMail = (feedData) => API.post(`${urlUsers}/send-email`,feedData);
 // const getWishList = (id) => API.get(`${urlUsers}/wishList`);
 const deleteaBookFromWish = (book_id) => API.delete(`${urlUsers}/${book_id}`)
+
+
 
 
 
@@ -63,5 +67,6 @@ module.exports = {
   changePassword,
   sendMail,
   getRecentUsers,
-  deleteaBookFromWish
+  deleteaBookFromWish,
+  sendPasswordMail
 };
