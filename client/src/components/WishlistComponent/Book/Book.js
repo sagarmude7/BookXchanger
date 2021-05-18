@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardActions,
-  CardContent,
   CardMedia,
   Button,
   Typography,
@@ -24,8 +23,7 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteaBookFromWish } from "../../../actions/books";
-import {updatedIsSold  } from "../../../actions/books";
-
+import { updatedIsSold } from "../../../actions/books";
 
 const Book = ({ book }) => {
   const classes = useStyles();
@@ -36,7 +34,6 @@ const Book = ({ book }) => {
   const getBook = () => {
     history.push(`/all/book/${book._id}`);
   };
-
 
   const [DeleteOpen, setDeleteOpen] = React.useState(false);
 
@@ -49,11 +46,11 @@ const Book = ({ book }) => {
   };
 
   const deleteBook = () => {
-    book.wishListedBy =  book.wishListedBy.filter((userId) => userId !== localUser.profile.id);
+    book.wishListedBy = book.wishListedBy.filter(
+      (userId) => userId !== localUser.profile.id
+    );
     dispatch(deleteaBookFromWish(book));
   };
-
-
 
   const [SoldOpen, setSoldOpen] = React.useState(false);
 
@@ -155,7 +152,11 @@ const Book = ({ book }) => {
           </Typography>
 
           <CardActions className={classes.favourite}>
-            <Button size="medium" style={{ color: "#E98074" }} onClick={handleDeleteOpen}>
+            <Button
+              size="medium"
+              style={{ color: "#E98074" }}
+              onClick={handleDeleteOpen}
+            >
               <DeleteIcon />
             </Button>
             <Dialog
@@ -169,10 +170,17 @@ const Book = ({ book }) => {
               </DialogTitle>
 
               <DialogActions>
-                <Button onClick={handleDeleteClose} style={{ color: "#E85A4F" }}>
+                <Button
+                  onClick={handleDeleteClose}
+                  style={{ color: "#E85A4F" }}
+                >
                   No
                 </Button>
-                <Button onClick={deleteBook} style={{ color: "#E85A4F" }} autoFocus>
+                <Button
+                  onClick={deleteBook}
+                  style={{ color: "#E85A4F" }}
+                  autoFocus
+                >
                   Yes
                 </Button>
               </DialogActions>

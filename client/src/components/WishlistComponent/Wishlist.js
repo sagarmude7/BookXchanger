@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../WishlistComponent/Book/Book.js";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Grid,
-  CircularProgress,
-  Container,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Container, Typography } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
 import useStyles from "./style.js";
 import { getBooks } from "../../actions/books";
