@@ -12,7 +12,7 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import clsx from "clsx";
 import IconButton from "@material-ui/core/IconButton";
 
-const App = () => {
+const ForgotPassword = () => {
   const classes = useStyles();
   const [values1, setValues1] = useState({
     password: "",
@@ -161,4 +161,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ForgotPassword;
