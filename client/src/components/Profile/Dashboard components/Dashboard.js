@@ -67,7 +67,7 @@ const Dashboard = () => {
 
   function card(book) {
     return (
-      <Grid item xs={12} sm={3}>
+      <Grid className={classes.grid}>
         <Book key={book._id} book={book} />
       </Grid>
     );

@@ -7,14 +7,17 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../../AllBooksComponents/Book/Book";
 import { Grid, Container, Typography } from "@material-ui/core";
 import { getBooks } from "../../../actions/books";
+import useStyles from "./style";
 
 const BookSlider = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const allBooks = useSelector((state) => state.books);
   const [allUnSoldbooks, setAllUnSoldBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [books, setBooks] = useState([]);
 
+  
   useEffect(() => {
     if (allBooks.length === 0) {
       dispatch(getBooks());
@@ -123,9 +126,10 @@ const BookSlider = () => {
             arrows={false}
             infinite={true}
             autoPlay={true}
+            className={classes.carousel}
           >
             {books.map((book) => (
-              <Grid>
+              <Grid  className={classes.grid}>
                 <Container>
                   <Book key={book._id} book={book} />
                 </Container>
@@ -183,12 +187,13 @@ const BookSlider = () => {
             autoPlaySpeed={6000}
           >
             {books.map((book) => (
-              <Grid>
+              <Grid className={classes.grid}>
                 <Container>
                   <Book key={book._id} book={book} />
                 </Container>
               </Grid>
             ))}
+            
           </Carousel>
         </div>
       )}

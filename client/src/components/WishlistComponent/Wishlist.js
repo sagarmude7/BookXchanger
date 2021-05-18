@@ -149,7 +149,7 @@ const Wishlist = () => {
                     spacing={3}
                   >
                     {wishListedBooks.map((book) => (
-                      <Grid item xs={12} sm={3}>
+                      <Grid className={classes.grid}>
                         <Zoom bottom>
                           <Book key={book._id} book={book} />
                         </Zoom>
