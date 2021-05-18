@@ -51,9 +51,7 @@ const Book = ({book }) => {
   };
 
   return (
-    <Grid key={book._id}>
-        <Container>
-            <Card raised className={classes.card}>
+      <Card raised className={classes.card}>
             <div className={classes.top}>
               <CardMedia
                 className={classes.media}
@@ -135,9 +133,6 @@ const Book = ({book }) => {
               bookInfo
             </Button>
           </Card>
-        </Container>
-    </Grid>
-      
 
   );
 };

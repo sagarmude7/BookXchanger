@@ -508,7 +508,7 @@ const Profile = () => {
                   </label>
                 </div>
                 <div>
-                  {userData.profilePic != img ? (
+                  {userData.profilePic !== img ? (
                     <Button
                       className={classes.removePho}
                       variant="contained"

@@ -3,39 +3,41 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles({
   //
   card: {
-    backgroundColor: "#D8C3A5",
     display: "flex",
     flexDirection: "column",
+    backgroundColor: "rgb(216,199,165)",
     borderRadius: "15px",
     height: "100%",
     position: "relative",
-    "@media (max-width : 900px)": {
+    width:'280px',
+    
+    /*"@media (max-width : 900px)": {
       width: "100% !important",
       margin: "auto",
-    },
+    },*/
   },
 
   top: {
     position: "relative",
     height: "180px",
-    "@media (max-width : 900px)": {
+    /*"@media (max-width : 900px)": {
       height: "350px",
     },
     "@media (max-width : 400px)": {
       height: "220px",
-    },
+    },*/
   },
 
   media: {
     paddingTop: "56.25%",
     backgroundColor: "rgba(0, 0, 0, 0.4)",
     backgroundBlendMode: "darken",
-    "@media (max-width : 900px)": {
+    /*"@media (max-width : 900px)": {
       height: "200px",
     },
     "@media (max-width : 400px)": {
       height: "200px",
-    },
+    },*/
   },
 
   overlay2: {
@@ -54,10 +56,9 @@ export default makeStyles({
 
     "&:hover": {
       color: "#ffffff",
-      //transform: "scale(1.31)",
       textShadow: "0 0 5px #ffffff",
     },
-    "@media (max-width : 900px)": {
+    /*"@media (max-width : 900px)": {
       bottom: "2.5px",
       left: "730px",
       paddingBottom: "10px",
@@ -68,7 +69,7 @@ export default makeStyles({
       left: "240px",
       paddingBottom: "10px",
       transform: "scale(1.3)",
-    },
+    },*/
   },
 
   price: {
@@ -78,11 +79,11 @@ export default makeStyles({
     left: "15px",
     fontSize: "20px",
     fontWeight: "1000",
-    "@media (max-width : 900px)": {
+    /*"@media (max-width : 900px)": {
       top: "15px",
       fontSize: "12px",
       left: "10px",
-    },
+    },*/
   },
 
   Branch: {
@@ -96,9 +97,9 @@ export default makeStyles({
     textAlign: "center",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
-    "@media (max-width : 700px)": {
+    /*"@media (max-width : 700px)": {
       fontSize: "12px",
-    },
+    },*/
   },
 
   BookName: {

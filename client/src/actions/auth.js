@@ -1,6 +1,8 @@
 import { AUTH, VALID } from "../constants/actions";
 import api from "../api/index";
 
+
+
 export const signUp = (formData, history) => async (dispatch) => {
   try {
     const { data } = await api.signUp(formData);
@@ -46,6 +48,29 @@ export const sendPasswordMail = (resetEmail) => async(dispatch) =>{
     dispatch({type:VALID,payload:{msg:data.msg,type:"success"}})
   }catch(err){
     const data = err?.response?.data;
+    dispatch({ type: VALID, payload: {msg:data.msg,type:"error"}});
+  }
+}
+
+export const checkUserValid = (token,history)=>async(dispatch)=>{
+  try{
+    const {data} = await api.checkUserValid({token:token});
+    dispatch({type:VALID,payload:{msg:data.msg,type:"success"}})
+  }catch(err){
+    const data = err?.response?.data;
+    console.log(data)
+    dispatch({ type: VALID, payload: {msg:data.msg,type:"error"}});
+    history.push('/auth');
+  }
+}
+
+export const resetPassword = (password,confirmPassword,token)=>async(dispatch)=>{
+  try {
+    const {data} = await api.resetPassword({password:password,confirmPassword:confirmPassword,token:token})
+    dispatch({type:VALID,payload:{msg:data.msg,type:"success"}})
+  } catch (err) {
+    const data = err?.response?.data;
+    console.log(data)
     dispatch({ type: VALID, payload: {msg:data.msg,type:"error"}});
   }
 }

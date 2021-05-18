@@ -89,24 +89,84 @@ exports.sendResetPassEmail = async(req,res)=>{
       if(!oldUser)
             return res.status(400).json({msg:"No user exists with this email"})
       
-      // const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"300000"})
+      const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"300000"})
     
       console.log(oldUser.resetPasswordExpires,oldUser.resetPasswordToken) 
       
-      // const updatedUser = await User.findOneAndUpdate({email:email},{resetPasswordToken:token,resetPasswordExpires:Date.now()+300000},{new:true})
-      // updatedUser.save()
+      const updatedUser = await User.findOneAndUpdate({email:email},{resetPasswordToken:token,resetPasswordExpires:Date.now()+300000},{new:true})
+      updatedUser.save()
       console.log(req.headers.origin)
-      const sender = "bookxchanger7@gmail.com"
+      const sender = "reply.bookxchanger@gmail.com"
       const subject = "BookXchanger Password Reset"
       const body = 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
       'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
       req.headers.origin + '/password-reset/' + token + '\n\n' +
       'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+
+      const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        requireTLS: true,
+        auth: {
+          user: sender,
+          pass: "Book@12341234",
+        },
+      });
+  
+      const mailOptions = {
+        from: sender,
+        to: email,
+        subject: subject,
+        text: body,
+      };
+  
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          console.log(err)
+        } else {
+        }
+      });
+
     
       return res.status(200).json({msg:"An e-mail has been sent with further instructions"})
   }catch(err){
         console.log(err)
         return res.status(500).json({ msg: "Something went wrong on Server.." }); 
+  }
+}
+
+exports.checkValidUser = async(req,res)=>{
+  console.log(req.body.token)
+  try{
+    const foundUser = await User.findOne({resetPasswordToken:req.body.token,resetPasswordExpires: { $gt: Date.now() }})
+    if(!foundUser)
+      return res.status(400).json({msg:"Password Token is inValid"})
+    console.log(foundUser)
+    return res.status(200).json({msg:"User and Token Validated successfully"})
+  }catch(err){
+    console.log(err)
+    return res.status(500).json({ msg: "Something went wrong" });
+  }
+}
+
+exports.resetPassword = async(req,res)=>{
+  console.log(req.body)
+  try{
+    const foundUser = await User.findOne({resetPasswordToken:req.body.token,resetPasswordExpires: { $gt: Date.now() }})
+    if(!foundUser)
+      return res.status(400).json({msg:"Password Token is inValid"})
+
+    const hashedPassword = await bcrypt.hash(req.body.password,10);
+    
+    const updatedUser = await User.findOneAndUpdate({email:foundUser.email},{resetPasswordToken:"",resetPasswordExpires:"",password:hashedPassword},{new:true})
+    updatedUser.save()
+    
+    console.log(updatedUser)
+    return res.status(200).json({msg:"Password reset successfully"})
+  }catch(err){
+    console.log(err)
+    return res.status(500).json({ msg: "Something went wrong" });
   }
 }
 

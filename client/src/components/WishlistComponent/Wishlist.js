@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../WishlistComponent/Book/Book.js";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Grid,
-  CircularProgress,
-  Container,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Container, Typography } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
 import useStyles from "./style.js";
 import { getBooks } from "../../actions/books";
@@ -154,7 +149,7 @@ const Wishlist = () => {
                     spacing={3}
                   >
                     {wishListedBooks.map((book) => (
-                      <Grid item xs={12} sm={3}>
+                      <Grid className={classes.grid}>
                         <Zoom bottom>
                           <Book key={book._id} book={book} />
                         </Zoom>
