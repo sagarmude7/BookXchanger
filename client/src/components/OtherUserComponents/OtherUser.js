@@ -72,10 +72,10 @@ const OtherUser = ({ match }) => {
       ></ArrowBackIcon>
       <div className={classes.topBox}>
         <Container className={classes.head}>
-          {user.profilePic ? (
+          {user?.profilePic ? (
             <img
               className={classes.pic}
-              src={user.profilePic}
+              src={user?.profilePic}
               alt="M"
               width="175"
               height="190"
@@ -96,14 +96,14 @@ const OtherUser = ({ match }) => {
               color="textPrimary"
               className={classes.name}
             >
-              {user.name}
+              {user?.name}
             </Typography>
 
             <Typography className={classes.headUser}>
-              College: {user.college}
+              College: {user?.college}
             </Typography>
             <Typography className={classes.headUser}>
-              Location: {user.location}
+              Location: {user?.location}
             </Typography>
           </div>
 

@@ -183,9 +183,9 @@ const BookSlider = () => {
             autoPlaySpeed={6000}
           >
             {books.map((book) => (
-              <Grid>
+              <Grid key={book._id}>
                 <Container>
-                  <Book key={book._id} book={book} />
+                  <Book  book={book} />
                 </Container>
               </Grid>
             ))}
