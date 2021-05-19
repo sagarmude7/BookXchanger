@@ -28,7 +28,7 @@
 * [Shashank Pagrut](https://github.com/Shashank2370)
 * [Vedant Mankar](https://github.com/VedantMankar)
 
-## Mentors
+## Team Mentor
 * [Harshil Doshi](https://github.com/Harshil333)
 
 ## Introduction
@@ -81,7 +81,7 @@ So we try to make a BookXchanger website with almost all the features which can 
 
 
 
-## Applications
+## Application
 > _BookXchanger is a website where a person can buy or sell his books. Every year we see that if a student wants to buy second-hand books he has to ask everyone whether they have books or not. Similarly, if a person wants to sell his old books he has to ask everyone and search for buyers. So we try to create a platform where a person can buy or sell his second-hand books without any difficulty._
 _So we try to make a BookXchanger website with almost all the features which can resolve all the problems the buyers or sellers face while buying or selling a book._
 
@@ -91,7 +91,7 @@ _So we try to make a BookXchanger website with almost all the features which can
 > - We also want to integrate Google Maps API so that buyers can get the exact location of the seller.
 > - Further we can work on our UI to improve user experience.
 
-## What did you learn from this project
+## What we have learn from this project
 
 1. Sagar Mude
 This is the first big project that I have been working on. Before starting the project I have a MERN tutorial but not implemented those concepts in real-life projects. But while doing this project I got a hands-on experiment of every tech stack that we have used. While solving the errors I got to know new things which help me afterward.  I have also learned a new styling technique.
