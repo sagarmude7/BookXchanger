@@ -86,10 +86,10 @@ So we try to make a BookXchanger website with almost all the features which can 
 So we try to make a BookXchanger website with almost all the features which can resolve all the problems the buyers or sellers face while buying or selling a book.
 
 ## Future scope
-> We can improve our project by adding different colleges, and then filter books according to college.
-> Further we want to add a recommendation system which will suggest the books according to his previous searches.
-> We also want to integrate Google Maps API so that buyers can get the exact location of the seller.
-> Further we can work on our UI to improve user experience.
+> - We can improve our project by adding different colleges, and then filter books according to college.
+> - Further we want to add a recommendation system which will suggest the books according to his previous searches.
+> - We also want to integrate Google Maps API so that buyers can get the exact location of the seller.
+> - Further we can work on our UI to improve user experience.
 
 ## What did you learn from this project
 
