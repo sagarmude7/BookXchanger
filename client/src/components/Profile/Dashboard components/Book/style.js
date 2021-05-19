@@ -97,6 +97,8 @@ export default makeStyles({
     textAlign: "center",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
     /*"@media (max-width : 700px)": {
       fontSize: "12px",
     },*/

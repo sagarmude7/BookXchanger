@@ -64,19 +64,23 @@ const BookSlider = () => {
 
   const responsive = {
     superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
+      breakpoint: { max: 4000, min: 1800 },
       items: 5,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 1800, min: 1350 },
       items: 4,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 460 },
-      items: 2,
+      breakpoint: { max: 1350, min: 1000 },
+      items: 3,
     },
     mobile: {
-      breakpoint: { max: 360, min: 0 },
+      breakpoint: { max: 1000, min: 700 },
+      items: 2,
+    },
+    mobileSmall: {
+      breakpoint: { max: 700, min: 0 },
       items: 1,
     },
   };
@@ -128,7 +132,7 @@ const BookSlider = () => {
             arrows={false}
             infinite={true}
             autoPlay={true}
-            className={classes.carousel}
+            autoPlaySpeed={6000}
           >
             {books.map((book) => (
               <Grid  className={classes.grid}>

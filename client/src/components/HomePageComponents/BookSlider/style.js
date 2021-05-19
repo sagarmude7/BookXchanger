@@ -24,10 +24,6 @@ export default makeStyles((theme) => ({
     margin: "20px",
   },
 
-  carousel:{
-    display : "flex",
-    flexWrap : "wrap",
-  },
   grid:{
     padding:'15px',
   }

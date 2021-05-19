@@ -96,6 +96,8 @@ export default makeStyles({
     textAlign: "center",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
     //margin:'10px',
     /*"@media (max-width : 900px)": {
       fontSize: "12px",
@@ -119,8 +121,8 @@ export default makeStyles({
   },
 
   BookName: {
-    /*margin: "5px 15px 7px 15px",
-    "@media (max-width : 900px)": {
+    margin: "5px 15px 7px 15px",
+    /*"@media (max-width : 900px)": {
       margin: "-40px 15px 7px 15px",
     },
     "@media (max-width : 428px)": {
