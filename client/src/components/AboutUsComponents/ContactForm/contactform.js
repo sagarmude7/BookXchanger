@@ -56,12 +56,8 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!user) {
-      history.push("/auth");
-    }
     setLoader(true);
-    dispatch(postFeedBackForm({ ...feedData, email: user.profile.email }));
+    dispatch(postFeedBackForm(feedData));
   };
 
   return (

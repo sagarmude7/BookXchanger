@@ -31,6 +31,10 @@ const urlUsers = "/users";
 const signUp = (formData) => API.post(`${urlUsers}/signUp`, formData);
 const signIn = (formData) => API.post(`${urlUsers}/signIn`, formData);
 
+const checkUserValid = (token)=>API.post(`${urlUsers}/token-check`,token)
+const sendPasswordMail = (email)=>API.post(`${urlUsers}/forgot-password`,email)
+const resetPassword = (formData)=>API.post(`${urlUsers}/reset-password`,formData)
+
 const googleFacebookSignIn = (formData) =>
   API.post(`${urlUsers}/googleFacebookSignIn`, formData);
 
@@ -44,6 +48,8 @@ const changePassword = (updatedPassword) =>
 const sendMail = (feedData) => API.post(`${urlUsers}/send-email`,feedData);
 // const getWishList = (id) => API.get(`${urlUsers}/wishList`);
 const deleteaBookFromWish = (book_id) => API.delete(`${urlUsers}/${book_id}`)
+
+
 
 
 
@@ -63,5 +69,8 @@ module.exports = {
   changePassword,
   sendMail,
   getRecentUsers,
-  deleteaBookFromWish
+  deleteaBookFromWish,
+  sendPasswordMail,
+  checkUserValid,
+  resetPassword
 };

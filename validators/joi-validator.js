@@ -49,8 +49,7 @@ const postBookValidator = joi.object({
 
 const feedBackValidator = joi.object({
   name: joi.string().required(),
-  message: joi.string().required().min(20),
-  email: joi.string().required().email(),
+  message: joi.string().required().min(20)
 });
 
 module.exports.loginValidator = loginValidator;
