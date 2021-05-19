@@ -30,7 +30,6 @@ export default makeStyles((theme) => ({
   },
   grid:{
     padding:'15px',
-    
   }
   
 }));
