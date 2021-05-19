@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/sagarmude7/Bookxchanger#readme",
   "devDependencies": {
-    "concurrently": "^5.3.0",
+    "concurrently": "^6.1.0",
     "nodemon": "^2.0.7"
   },
   "dependencies": {
@@ -31,14 +31,14 @@
     "compress.js": "^1.1.2",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
-    "dotenv": "^8.6.0",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "filereader": "^0.10.3",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.7",
+    "mongoose": "^5.12.10",
     "node-blob": "0.0.2",
     "nodemailer": "^6.6.0",
-    "socket.io": "^4.0.2"
+    "socket.io": "^4.1.2"
   }
 }
