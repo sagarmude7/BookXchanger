@@ -7,14 +7,18 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../../AllBooksComponents/Book/Book";
 import { Grid, Container, Typography } from "@material-ui/core";
 import { getBooks } from "../../../actions/books";
+import {v4} from 'uuid'
+import useStyles from "./style";
 
 const BookSlider = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const allBooks = useSelector((state) => state.books);
   const [allUnSoldbooks, setAllUnSoldBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [books, setBooks] = useState([]);
 
+  
   useEffect(() => {
     if (allBooks.length === 0) {
       dispatch(getBooks());
@@ -40,6 +44,7 @@ const BookSlider = () => {
         arr.push(allUnSoldbooks[i]);
       }
       setBooks(arr);
+      console.log(books)
     } else {
       setBooks(allUnSoldbooks);
     }
@@ -59,19 +64,23 @@ const BookSlider = () => {
 
   const responsive = {
     superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
+      breakpoint: { max: 4000, min: 1800 },
       items: 5,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 1800, min: 1350 },
       items: 4,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 460 },
-      items: 2,
+      breakpoint: { max: 1350, min: 1000 },
+      items: 3,
     },
     mobile: {
-      breakpoint: { max: 360, min: 0 },
+      breakpoint: { max: 1000, min: 700 },
+      items: 2,
+    },
+    mobileSmall: {
+      breakpoint: { max: 700, min: 0 },
       items: 1,
     },
   };
@@ -123,9 +132,10 @@ const BookSlider = () => {
             arrows={false}
             infinite={true}
             autoPlay={true}
+            autoPlaySpeed={6000}
           >
             {books.map((book) => (
-              <Grid>
+              <Grid  className={classes.grid}>
                 <Container>
                   <Book key={book._id} book={book} />
                 </Container>
@@ -183,12 +193,13 @@ const BookSlider = () => {
             autoPlaySpeed={6000}
           >
             {books.map((book) => (
-              <Grid key={book._id}>
+              <Grid className={classes.grid}>
                 <Container>
                   <Book  book={book} />
                 </Container>
               </Grid>
             ))}
+            
           </Carousel>
         </div>
       )}

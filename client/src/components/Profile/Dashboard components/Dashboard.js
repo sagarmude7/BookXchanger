@@ -12,12 +12,12 @@ import { getBooks } from "../../../actions/books.js";
 import { css } from "@emotion/react";
 import PulseLoader from "react-spinners/PulseLoader";
 import AppBar from "@material-ui/core/AppBar";
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const outerTheme = createMuiTheme({
   palette: {
     primary: {
-      main: '#000000',
+      main: "#000000",
     },
   },
 });
@@ -43,7 +43,6 @@ function TabPanel(props) {
 
 const Dashboard = () => {
   const userId = JSON.parse(localStorage.getItem("profile")).profile.id;
-  const user = useSelector((state) => state.user);
   const books = useSelector((state) => state.books);
 
   const [loading, setLoading] = useState(true);
@@ -68,7 +67,7 @@ const Dashboard = () => {
 
   function card(book) {
     return (
-      <Grid item xs={12} sm={3}>
+      <Grid className={classes.grid}>
         <Book key={book._id} book={book} />
       </Grid>
     );
@@ -82,24 +81,14 @@ const Dashboard = () => {
     setValue(newValue);
   };
 
-  const [Myadbool, setMyadbool] = useState(false);
+  const [, setAnchorEl] = React.useState(null);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  //  dispatch(getMyAds())
   function a11yProps(index) {
     return {
       id: `full-width-tab-${index}`,
       "aria-controls": `full-width-tabpanel-${index}`,
     };
   }
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <Container className={classes.body}>
@@ -115,18 +104,18 @@ const Dashboard = () => {
         </div>
       ) : (
         <>
-        <ThemeProvider theme={outerTheme}>
-          <AppBar className={classes.root} position="static" color="default">
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-            >
-              <Tab label="Active Ads" {...a11yProps(0)} />
-              <Tab label="Sold Ads" {...a11yProps(1)} />
-            </Tabs>
-          </AppBar>
+          <ThemeProvider theme={outerTheme}>
+            <AppBar className={classes.root} position="static" color="default">
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+              >
+                <Tab label="Active Ads" {...a11yProps(0)} />
+                <Tab label="Sold Ads" {...a11yProps(1)} />
+              </Tabs>
+            </AppBar>
           </ThemeProvider>
           <TabPanel value={value} index={0}>
             <Grid
@@ -146,7 +135,13 @@ const Dashboard = () => {
                     ?.map(card)}
                 </>
               ) : (
-                <>No Active Ads</>
+                <>
+                  <div>
+                    <Typography align="center" variant="h5">
+                      No Active Ads
+                    </Typography>
+                  </div>
+                </>
               )}
             </Grid>
           </TabPanel>
@@ -169,9 +164,11 @@ const Dashboard = () => {
                 </>
               ) : (
                 <>
-                  <Typography align="center" variant="h5">
-                    No Sold Ads
-                  </Typography>
+                  <div>
+                    <Typography align="center" variant="h5">
+                      No Sold Ads
+                    </Typography>
+                  </div>
                 </>
               )}
             </Grid>

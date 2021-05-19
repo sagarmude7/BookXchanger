@@ -23,4 +23,9 @@ export default makeStyles((theme) => ({
   sortButton: {
     margin: "20px",
   },
+
+  grid:{
+    padding:'15px',
+  }
+  
 }));

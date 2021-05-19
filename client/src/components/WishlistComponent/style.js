@@ -15,8 +15,13 @@ export default makeStyles((theme) => ({
       marginTop:60,
     },
   },
+  
   container: {
     paddingTop: "20px",
+    display : "flex",
+    flexWrap : "wrap",
+    justifyContent:'center',
+
   },
   paper: {
     padding: theme.spacing(0.5),
@@ -64,4 +69,7 @@ export default makeStyles((theme) => ({
     "-webkit-background-clip": "text",
     "-webkit-text-fill-color": "transparent",
   },
+  grid:{
+    padding:'10px'
+  }
 }));

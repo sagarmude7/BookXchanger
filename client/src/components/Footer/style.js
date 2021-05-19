@@ -84,5 +84,9 @@ const styles = makeStyles(() => ({
       margin: "0px 10px 10px 10px",
     },
   },
+
+  displayInline:{
+    display: 'inline'
+  }
 }));
 export default styles;

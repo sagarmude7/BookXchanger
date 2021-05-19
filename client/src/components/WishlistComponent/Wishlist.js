@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../WishlistComponent/Book/Book.js";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Grid,
-  CircularProgress,
-  Container,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Container, Typography } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
 import useStyles from "./style.js";
 import { getBooks } from "../../actions/books";
@@ -45,13 +40,13 @@ const Wishlist = () => {
     }
   }, [books]);
 
-
-setTimeout(()=>{
-  setWishListedBooks(
-    books.filter(
-      (book) => book.wishListedBy.includes(user.profile.id) === true)
-  )
-},4000)
+  setTimeout(() => {
+    setWishListedBooks(
+      books.filter(
+        (book) => book.wishListedBy.includes(user.profile.id) === true
+      )
+    );
+  }, 4000);
   const override = css`
     display: block;
     border-color: red;
@@ -60,16 +55,13 @@ setTimeout(()=>{
 
   var images = [
     {
-      img:
-        "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHw%3D&w=1000&q=80",
+      img: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHw%3D&w=1000&q=80",
     },
     {
-      img:
-        "https://www.teahub.io/photos/full/190-1905414_books-library-wallpaper-hd-wallpapers-for-pc-book.jpg",
+      img: "https://www.teahub.io/photos/full/190-1905414_books-library-wallpaper-hd-wallpapers-for-pc-book.jpg",
     },
     {
-      img:
-        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8&w=1000&q=80",
+      img: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8&w=1000&q=80",
     },
   ];
 
@@ -140,7 +132,15 @@ setTimeout(()=>{
                   </Typography>
                 </div>
                 {wishListedBooks.length === 0 ? (
-                  <CircularProgress />
+                  <div style={{ textAlign: "center" }}>
+                    <PulseLoader
+                      loading={loading}
+                      color="#e98074"
+                      css={override}
+                      size={30}
+                      style={{ background: "rgb(234,231,220)" }}
+                    />
+                  </div>
                 ) : (
                   <Grid
                     className={classes.container}
@@ -149,8 +149,7 @@ setTimeout(()=>{
                     spacing={3}
                   >
                     {wishListedBooks.map((book) => (
-                      
-                      <Grid item xs={12} sm={3}>
+                      <Grid className={classes.grid}>
                         <Zoom bottom>
                           <Book key={book._id} book={book} />
                         </Zoom>

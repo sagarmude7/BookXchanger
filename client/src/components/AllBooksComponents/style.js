@@ -22,7 +22,8 @@ export default makeStyles((theme) => ({
   container: {
     paddingTop: "20px",
     display : "flex",
-    flexWrap : "wrap"
+    flexWrap : "wrap",
+    justifyContent:'center',
 
   },
   actionDiv: {
@@ -64,4 +65,8 @@ export default makeStyles((theme) => ({
   buttonS: {
     padding: "0px 0px",
   },
+
+  grid:{
+    padding:'10px'
+  }
 }));
