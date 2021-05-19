@@ -52,6 +52,7 @@ const Auth = () => {
   const [err, setErr] = useState(false);
   const history = useHistory();
   const [open,setOpen] = useState(false);
+  const [openNew,setOpenNew] = useState(false);
   const [resetEmail,setResetEmail] = useState('');
   const [verifyEmail,setVerifyEmail] = useState('');
   const dispatch = useDispatch();
@@ -77,7 +78,13 @@ const Auth = () => {
   const handleDialogueClose = ()=>{
     setOpen(false);
   }
-  
+  const handleClickOpenNew = ()=>{
+    setOpenNew(true);
+  }
+
+  const handleDialogueCloseNew = ()=>{
+    setOpenNew(false);
+  }
 
   const handleClickSendMail = ()=>{
     dispatch(sendPasswordMail(resetEmail))
@@ -433,7 +440,12 @@ const Auth = () => {
                         variant="outlined"
                         id="email"
                         label="Email Address"
-                        value={resetEmail}
+                        value={
+                          resetEmail === null ||
+                          resetEmail === undefined
+                            ? ""
+                            : resetEmail
+                        }
                         onChange={(e)=>setResetEmail(e.target.value)}
                         fullWidth
                       />
@@ -480,7 +492,7 @@ const Auth = () => {
                         ? "Already have an account? Sign in"
                         : "Don't have an account? Sign Up"}
                     </Button>
-                <Dialog open={open} onClose={handleDialogueClose}>
+                <Dialog open={openNew} onClose={handleDialogueCloseNew}>
                   <DialogTitle id="verify-email">Login Without Password</DialogTitle>
                   <DialogContent>
                     <DialogContentText>
@@ -498,7 +510,7 @@ const Auth = () => {
                     </DialogContentText>
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handleDialogueClose} color="primary">Done</Button>
+                    <Button onClick={handleDialogueCloseNew} color="primary">Done</Button>
                     <Button onClick={handleClickVerifyMail} color="primary">Send Mail</Button>
                   </DialogActions>
               </Dialog>
