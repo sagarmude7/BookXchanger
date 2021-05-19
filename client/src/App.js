@@ -22,6 +22,7 @@ import history from "./history/history.js";
 import { useDispatch, useSelector } from "react-redux";
 import OtherUser from "./components/OtherUserComponents/OtherUser";
 import ForgotPassword from './components/ForgotPassword/ForgotPassword'
+import VerifyEmail from './components/VerifyEmail/VerifyEmail'
 import { socket } from "./service/socket";
 import { GET_NOTIFICATION, CLEAR_NOTIFICATION } from "./constants/actions.js";
 
@@ -122,6 +123,7 @@ const App = () => {
           <Route exact path="/editBook/:bookId" component={EditBook} />
           <Route exact path="/user/:userId" component={OtherUser} />
           <Route exact path="/password-reset/:token" component={ForgotPassword}/>
+          <Route exact path="/verify-email/:token" component={VerifyEmail}/>
         </Switch>
         <Footer />
       </Container>

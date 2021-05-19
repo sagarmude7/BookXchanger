@@ -30,6 +30,14 @@ const UserSchema = mongoose.Schema({
         type:String,
         default:""
     },
+    verifyEmailToken:{
+        type:String,
+        default:""
+    },
+    verifyEmailExpires:{
+        type:String,
+        default:""
+    },
     postedBooks:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Book'

@@ -31,6 +31,8 @@ import { GoogleLogin } from "react-google-login";
 import { signUp, signIn, googleFacebookSignIn,sendPasswordMail } from "../../actions/auth";
 import { VALID } from "../../constants/actions";
 import Fade from "react-reveal/Fade";
+import VerifyEmail from "../VerifyEmail/VerifyEmail";
+import {sendVerifyMail} from "../../actions/auth"
 
 const initialState = {
   firstName: "",
@@ -51,6 +53,7 @@ const Auth = () => {
   const history = useHistory();
   const [open,setOpen] = useState(false);
   const [resetEmail,setResetEmail] = useState('');
+  const [verifyEmail,setVerifyEmail] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -74,9 +77,13 @@ const Auth = () => {
   const handleDialogueClose = ()=>{
     setOpen(false);
   }
+  
 
   const handleClickSendMail = ()=>{
     dispatch(sendPasswordMail(resetEmail))
+  }
+  const handleClickVerifyMail = ()=>{
+    dispatch(sendVerifyMail(verifyEmail))
   }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -447,7 +454,16 @@ const Auth = () => {
                       Reset Password
                     </Button>
                   </Box>
-              ):null}
+              ):    
+              <Box textAlign="center">
+              <Button
+                variant="outlined"
+                color="primary" 
+                onClick={handleClickOpen} 
+              >
+                verify Mail
+              </Button>
+            </Box>}
               
               <Grid>
                 <Grid item>
@@ -462,6 +478,28 @@ const Auth = () => {
                         ? "Already have an account? Sign in"
                         : "Don't have an account? Sign Up"}
                     </Button>
+                <Dialog open={open} onClose={handleDialogueClose}>
+                  <DialogTitle id="verify-email">Login Without Password</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      Verify your Email by clicking on the link sent on this email when you submit
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        variant="outlined"
+                        id="email"
+                        label="Email Address"
+                        value={verifyEmail}
+                        onChange={(e)=>setVerifyEmail(e.target.value)}
+                        fullWidth
+                      />
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleDialogueClose} color="primary">Done</Button>
+                    <Button onClick={handleClickVerifyMail} color="primary">Send Mail</Button>
+                  </DialogActions>
+              </Dialog>
                   </Box>
                 </Grid>
               </Grid>

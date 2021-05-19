@@ -35,6 +35,10 @@ const checkUserValid = (token)=>API.post(`${urlUsers}/token-check`,token)
 const sendPasswordMail = (email)=>API.post(`${urlUsers}/forgot-password`,email)
 const resetPassword = (formData)=>API.post(`${urlUsers}/reset-password`,formData)
 
+const verifyEmail = (email)=>API.post(`${urlUsers}/verify-email`,email)
+const verifiedUser = (token)=>API.post(`${urlUsers}/validate-user`,token)
+
+
 const googleFacebookSignIn = (formData) =>
   API.post(`${urlUsers}/googleFacebookSignIn`, formData);
 
@@ -72,5 +76,7 @@ module.exports = {
   deleteaBookFromWish,
   sendPasswordMail,
   checkUserValid,
-  resetPassword
+  resetPassword,
+  verifyEmail,
+  verifiedUser
 };

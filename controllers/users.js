@@ -75,7 +75,76 @@ exports.signIn = async(req,res)=>{
     }
 }
 
+exports.verifyEmail = async(req,res) => {
 
+const {email} = req.body;
+const payload = {
+  email:email
+}
+    try{
+      const oldUser = await User.findOne({email:email})
+      if(!oldUser)
+            return res.status(400).json({msg:"No user exists with this email"})
+      
+      const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"300000"})
+      const updatedUser = await User.findOneAndUpdate({email:email},{verifyEmailToken:token,verifyEmailExpires:Date.now()+300000},{new:true})
+      updatedUser.save()
+      const sender = "reply.bookxchanger@gmail.com"
+      const subject = "BookXchanger Verify Email"
+      const body = 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+      'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+      req.headers.origin + '/verify-email/' + token + '\n\n' +
+      'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+
+      const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        requireTLS: true,
+        auth: {
+          user: sender,
+          pass: "Book@12341234",
+        },
+      });
+  
+      const mailOptions = {
+        from: sender,
+        to: email,
+        subject: subject,
+        text: body,
+      };
+  
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          console.log(err)
+        } else {
+        }
+      });
+
+    
+      return res.status(200).json({msg:"An e-mail has been sent with further instructions"})
+    }
+    catch (err){
+      console.log(err)
+    }
+}
+exports.validateUser = async(req,res) => {
+
+  const newToken = req.body.token;
+    console.log("My TOken : " + newToken)
+      try{
+        const oldUser = await User.findOne({verifyEmailToken:newToken})
+        console.log(oldUser);
+        // const updatedUser = await User.findOneAndUpdate({email:email},{verifyEmailToken:token,verifyEmailExpires:Date.now()+300000},{new:true})
+        // updatedUser.save()
+        const token = jwt.sign({ profile: oldUser, id: oldUser._id }, process.env.TOKEN_SECRET, { expiresIn: "4h" });
+        console.log("User Signed In By Verifying Email")
+        return res.status(200).json({ profile: {name:oldUser.name,email:oldUser.email,id:oldUser._id}, token });
+      }
+      catch (err){
+        console.log(err)
+      }
+  }
 exports.sendResetPassEmail = async(req,res)=>{
   const email = req.body.email;
   const payload = {
@@ -91,7 +160,7 @@ exports.sendResetPassEmail = async(req,res)=>{
       
       const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"300000"})
     
-      console.log(oldUser.resetPasswordExpires,oldUser.resetPasswordToken) 
+      console.log(oldUser.resetPasswordExpires,oldUser.resetPasswordToken);
       
       const updatedUser = await User.findOneAndUpdate({email:email},{resetPasswordToken:token,resetPasswordExpires:Date.now()+300000},{new:true})
       updatedUser.save()
@@ -451,18 +520,18 @@ exports.deleteaBookFromWish = async(req,res) => {
 
     // console.log("This is Backend Request to delete a book" );
     const {id} = req.params;
-    console.log(id);
+    // console.log(id);
     try{
         if (!mongoose.Types.ObjectId.isValid(id))
           return res.status(404).json({ msg: `No Book with id:${id}` });
         // console.log("Valid ID")
         const book = await Book.findById(id);
         const filteredBooks = book.wishListedBy.filter((userId)=> req.userId != userId);
-        console.log("My id"+ req.userId)
+        // console.log("My id"+ req.userId)
         book.wishListedBy = filteredBooks;
-        console.log("Book"+ book.wishListedBy);
+        // console.log("Book"+ book.wishListedBy);
         await Book.findOneAndUpdate({_id:id},book,{new: true});
-        console.log("Book deleted successfully")
+        // console.log("Book deleted successfully")
 
         return res.status(204).json({msg:"Book Deleted Successfully"})
 
