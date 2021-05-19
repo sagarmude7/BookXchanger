@@ -5,12 +5,18 @@ import {
   Typography,
   Button,
   Avatar,
+  TextField,
   Box,
   Divider,
   ListItem,
   ListItemAvatar,
   ListItemText,
   List,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -22,7 +28,7 @@ import useStyles from "./styles";
 import GoogleIcon from "./GoogleIcon";
 import { useDispatch } from "react-redux";
 import { GoogleLogin } from "react-google-login";
-import { signUp, signIn, googleFacebookSignIn } from "../../actions/auth";
+import { signUp, signIn, googleFacebookSignIn,sendPasswordMail } from "../../actions/auth";
 import { VALID } from "../../constants/actions";
 import Fade from "react-reveal/Fade";
 
@@ -43,6 +49,8 @@ const Auth = () => {
   const book = useSelector((state) => state.book);
   const [err, setErr] = useState(false);
   const history = useHistory();
+  const [open,setOpen] = useState(false);
+  const [resetEmail,setResetEmail] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,6 +65,19 @@ const Auth = () => {
     }
   };
 
+  
+
+  const handleClickOpen = ()=>{
+    setOpen(true);
+  }
+
+  const handleDialogueClose = ()=>{
+    setOpen(false);
+  }
+
+  const handleClickSendMail = ()=>{
+    dispatch(sendPasswordMail(resetEmail))
+  }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -296,7 +317,7 @@ const Auth = () => {
                 autoHideDuration={5000}
                 onClose={handleClose}
               >
-                <Alert onClose={handleClose} severity="error">
+                <Alert onClose={handleClose} severity={book.type}>
                   <strong>{book?.msg}</strong>
                 </Alert>
               </Snackbar>
@@ -323,6 +344,7 @@ const Auth = () => {
                 onFailure={googleError}
                 cookiePolicy="single_host_origin"
               />
+              
               <Typography
                 component="h1"
                 variant="h5"
@@ -392,7 +414,41 @@ const Auth = () => {
                   {isSignup ? "Sign Up" : "Sign In"}
                 </Button>
               </Box>
-
+                  
+              <Dialog open={open} onClose={handleDialogueClose}>
+                  <DialogTitle id="reset-password"> Reset Password</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      Change your password by clicking on the link sent on this email when you submit
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        variant="outlined"
+                        id="email"
+                        label="Email Address"
+                        value={resetEmail}
+                        onChange={(e)=>setResetEmail(e.target.value)}
+                        fullWidth
+                      />
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleDialogueClose} color="primary">Done</Button>
+                    <Button onClick={handleClickSendMail} color="primary">Send Mail</Button>
+                  </DialogActions>
+              </Dialog>
+              {isSignup?(
+                  <Box textAlign="center">
+                    <Button
+                      variant="outlined"
+                      color="primary" 
+                      onClick={handleClickOpen} 
+                    >
+                      Reset Password
+                    </Button>
+                  </Box>
+              ):null}
+              
               <Grid>
                 <Grid item>
                   <Box textAlign="center">

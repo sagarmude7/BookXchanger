@@ -21,6 +21,7 @@ import { green } from "@material-ui/core/colors";
 import history from "./history/history.js";
 import { useDispatch, useSelector } from "react-redux";
 import OtherUser from "./components/OtherUserComponents/OtherUser";
+import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 import { socket } from "./service/socket";
 import { GET_NOTIFICATION, CLEAR_NOTIFICATION } from "./constants/actions.js";
 
@@ -120,6 +121,7 @@ const App = () => {
           <Route exact path="/all/book/:bookId" component={BookInfo} />
           <Route exact path="/editBook/:bookId" component={EditBook} />
           <Route exact path="/user/:userId" component={OtherUser} />
+          <Route exact path="/password-reset/:token" component={ForgotPassword}/>
         </Switch>
         <Footer />
       </Container>

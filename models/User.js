@@ -22,6 +22,14 @@ const UserSchema = mongoose.Schema({
         required:true
     },
     profilePic:String,
+    resetPasswordToken:{
+        type:String,
+        default:""
+    },
+    resetPasswordExpires:{
+        type:String,
+        default:""
+    },
     postedBooks:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Book'

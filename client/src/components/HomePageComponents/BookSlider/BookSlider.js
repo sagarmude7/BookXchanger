@@ -7,6 +7,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Book from "../../AllBooksComponents/Book/Book";
 import { Grid, Container, Typography } from "@material-ui/core";
 import { getBooks } from "../../../actions/books";
+import {v4} from 'uuid'
 import useStyles from "./style";
 
 const BookSlider = () => {
@@ -43,6 +44,7 @@ const BookSlider = () => {
         arr.push(allUnSoldbooks[i]);
       }
       setBooks(arr);
+      console.log(books)
     } else {
       setBooks(allUnSoldbooks);
     }

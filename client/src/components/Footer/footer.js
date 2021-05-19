@@ -26,12 +26,12 @@ const Footer = () => {
                 <img className={classes.image1} src={logo} alt="BookXchanger" />
               </Link>
               <br />
-              <Typography
+              <span
                 style={{ fontSize: "20px", fontWeight: "bold" }}
                 align="center"
               >
                 Best Recycle is Book Recycle.
-              </Typography>
+              </span>
             </Typography>
           </div>
 
@@ -82,9 +82,9 @@ const Footer = () => {
             >
               Quick Links
             </Typography>
-            <Typography align="center">
-              <li style={{ listStyleType: "none", textAlign: "center" }}>
-                <ul className={classes.link}>
+            <div align="center">
+              <ul className={classes.displyInline} style={{ listStyleType: "none", textAlign: "center" }}>
+                <li className={classes.link}>
                   <Link
                     to="/"
                     component={RouterLink}
@@ -94,8 +94,8 @@ const Footer = () => {
                   >
                     Home
                   </Link>
-                </ul>
-                <ul className={classes.link}>
+                </li>
+                <li className={classes.link}>
                   <Link
                     to="/all"
                     component={RouterLink}
@@ -105,8 +105,8 @@ const Footer = () => {
                   >
                     Books
                   </Link>
-                </ul>
-                <ul className={classes.link}>
+                </li>
+                <li className={classes.link}>
                   <Link
                     to="/aboutus"
                     component={RouterLink}
@@ -116,8 +116,8 @@ const Footer = () => {
                   >
                     About Us
                   </Link>
-                </ul>
-                <ul className={classes.link}>
+                </li>
+                <li className={classes.link}>
                   <Link
                     to="/add"
                     component={RouterLink}
@@ -127,9 +127,9 @@ const Footer = () => {
                   >
                     Sell Books
                   </Link>
-                </ul>
-              </li>
-            </Typography>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 

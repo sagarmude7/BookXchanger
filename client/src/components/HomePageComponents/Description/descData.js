@@ -19,7 +19,7 @@ var items = [
     heading: "Welcome to",
     subHeading: "Your personalized old books exchanging Store",
     description:
-      "Hey, Want to Sell/Buy old books , don't know where to go. You have Come at the right place3",
+      "Hey, Want to Sell/Buy old books , don't know where to go. You have Come at the right place",
     img:
       "https://images.pexels.com/photos/877971/pexels-photo-877971.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1000",
   },
