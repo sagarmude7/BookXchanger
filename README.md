@@ -82,8 +82,8 @@ So we try to make a BookXchanger website with almost all the features which can 
 
 
 ## Applications
-> BookXchanger is a website where a person can buy or sell his books. Every year we see that if a student wants to buy second-hand books he has to ask everyone whether they have books or not. Similarly, if a person wants to sell his old books he has to ask everyone and search for buyers. So we try to create a platform where a person can buy or sell his second-hand books without any difficulty. 
-So we try to make a BookXchanger website with almost all the features which can resolve all the problems the buyers or sellers face while buying or selling a book.
+> _BookXchanger is a website where a person can buy or sell his books. Every year we see that if a student wants to buy second-hand books he has to ask everyone whether they have books or not. Similarly, if a person wants to sell his old books he has to ask everyone and search for buyers. So we try to create a platform where a person can buy or sell his second-hand books without any difficulty._
+_So we try to make a BookXchanger website with almost all the features which can resolve all the problems the buyers or sellers face while buying or selling a book._
 
 ## Future scope
 > - We can improve our project by adding different colleges, and then filter books according to college.
