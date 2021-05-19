@@ -6,8 +6,8 @@ export const signUp = (formData, history) => async (dispatch) => {
   try {
     const { data } = await api.signUp(formData);
     dispatch({ type: AUTH, payload: data });
-    dispatch({ type: VALID, payload: { msg: "Logged In Successfully" } });
-    history.push("/");
+    dispatch({ type: VALID, payload: { msg: "Check Your Email to Verify and Login" } });
+    // history.push("/");
   } catch (err) {
     const data = err.response.data;
     dispatch({ type: VALID, payload: {msg:data.msg,type:"error"}});

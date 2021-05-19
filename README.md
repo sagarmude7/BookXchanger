@@ -98,6 +98,7 @@ This is the first big project that I have been working on. Before starting the p
 
 2. Vedant Mondkar
 3. Vishal Dange
+    This is the first project I have worked on which will be used in real life.In this Bookxchanger Project , I learnt to apply all the theoey learnt about web developement.Also, how to make use of libraries and add more features to the website.
 4. Mohak Chandani
 BookXchanger was my first project in the field of web development. This project has helped me to learn all the core concepts to build a web application using the MERN stack. 
 5. Shashank Pagrut

@@ -40,7 +40,39 @@ exports.signUp = async(req,res)=>{
         }
 
         const token = jwt.sign(payload,process.env.TOKEN_SECRET,{expiresIn:"4h"})
-
+        const updatedUser = await User.findOneAndUpdate({email:email},{verifyEmailToken:token,verifyEmailExpires:Date.now()+300000},{new:true})
+        updatedUser.save()
+        const sender = "reply.bookxchanger@gmail.com"
+        const subject = "BookXchanger Verify Email"
+        const body = 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+        req.headers.origin + '/verify-email/' + token + '\n\n' +
+        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+  
+        const transporter = nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 587,
+          secure: false,
+          requireTLS: true,
+          auth: {
+            user: sender,
+            pass: "Book@12341234",
+          },
+        });
+    
+        const mailOptions = {
+          from: sender,
+          to: email,
+          subject: subject,
+          text: body,
+        };
+    
+        transporter.sendMail(mailOptions, (err, info) => {
+          if (err) {
+            console.log(err)
+          } else {
+          }
+        });
         console.log("New User created using sign Up")
         return res.status(200).json({ profile: {name:newUser.name,email:newUser.email,id:newUser._id}, token })
     } catch (err) {
@@ -77,7 +109,7 @@ exports.signIn = async(req,res)=>{
 
 exports.verifyEmail = async(req,res) => {
 
-const {email} = req.body;
+const email = req.body.email;
 const payload = {
   email:email
 }
@@ -118,6 +150,7 @@ const payload = {
         if (err) {
           console.log(err)
         } else {
+          console.log(infoq)
         }
       });
 

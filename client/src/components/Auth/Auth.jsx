@@ -447,8 +447,9 @@ const Auth = () => {
               {isSignup?(
                   <Box textAlign="center">
                     <Button
-                      variant="outlined"
-                      color="primary" 
+                      variant="contained"
+                      color="primary"
+                      className={classes.submit}
                       onClick={handleClickOpen} 
                     >
                       Reset Password
@@ -457,11 +458,12 @@ const Auth = () => {
               ):    
               <Box textAlign="center">
               <Button
-                variant="outlined"
-                color="primary" 
+                variant="contained"
+                color="primary"
+                className={classes.submit}
                 onClick={handleClickOpen} 
               >
-                verify Mail
+               Login Without Password ?
               </Button>
             </Box>}
               
