@@ -12,7 +12,7 @@ const app = express();
 
 options = {
   cors: true,
-  origins: ["https://bookxchanger.netlify.app/"],
+  origins: ["https://bookxchanger.netlify.app"],
 };
 app.use(compression());
 if (typeof window === "undefined") {
@@ -25,17 +25,14 @@ app.get("/", (req, res) => {
 });
 
 app.use((req, res, next) => {
-  res.append(
-    "Access-Control-Allow-Origin",
-    "https://bookxchanger.netlify.app/"
-  );
+  res.append("Access-Control-Allow-Origin", "https://bookxchanger.netlify.app");
   res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
   res.append(
     "Access-Control-Allow-Headers",
     "authorization,Content-Type,origin, x-requested-with"
   );
   res.append("Access-Control-Allow-Credentials", "true");
-  res.append("Origin", "https://bookxchanger.netlify.app/");
+  res.append("Origin", "https://bookxchanger.netlify.app");
   res.append("Access-Control-Max-Age", "86400");
   next();
 });
@@ -53,7 +50,7 @@ var server = app.listen(PORT, () =>
 
 options = {
   cors: true,
-  origins: ["https://bookxchanger.netlify.app/"],
+  origins: ["https://bookxchanger.netlify.app"],
 };
 const io = require("socket.io")(server, options);
 
