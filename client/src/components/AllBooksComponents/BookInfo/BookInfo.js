@@ -30,12 +30,11 @@ const BookInfo = ({ match }) => {
   const book = useSelector((state) => state.book);
   const bookId = match.params.bookId;
   const [found] = useState(books.find((bk) => bk._id === bookId) !== undefined);
-  const [contact_URL,setContact_URL] = useState("/auth");
+  const [contact_URL, setContact_URL] = useState("/auth");
   const localUser = JSON.parse(localStorage.getItem("profile"));
 
-
   useEffect(() => {
-      localUser ? setContact_URL(`/user/${book.owner}`) : setContact_URL("/auth");
+    localUser ? setContact_URL(`/user/${book.owner}`) : setContact_URL("/auth");
   });
 
   useEffect(() => {
@@ -247,7 +246,7 @@ const BookInfo = ({ match }) => {
               <div className={classes.UserInfo}>
                 <img
                   className={classes.userProfilePic}
-                  src="http://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png"
+                  src="https://res.cloudinary.com/bookxchanger/image/upload/v1621510387/other/user_tivn0l.png"
                   alt="User Profile"
                   loading="lazy"
                 />
