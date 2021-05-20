@@ -20,6 +20,10 @@ if (typeof window === "undefined") {
 }
 connectDB();
 
+app.get("/", (req, res) => {
+  res.send("This is Bookxchanger");
+});
+
 app.use((req, res, next) => {
   res.append("Access-Control-Allow-Origin", "http://localhost:3000");
   res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
@@ -88,34 +92,28 @@ io.on("connection", async (socket) => {
       });
       await message.save();
       if (socket.adapter.rooms.has(msg.to)) {
-        await io.sockets
-          .in(msg.from)
-          .emit("send_msg", {
-            content: message.content,
-            from: message.from,
-            to: message.to,
-            fromName: msg.fromName,
-            sentAt: message.sentAt,
-          });
-        await io.sockets
-          .in(msg.to)
-          .emit("send_msg", {
-            content: message.content,
-            from: message.from,
-            to: message.to,
-            fromName: msg.fromName,
-            sentAt: message.sentAt,
-          });
+        await io.sockets.in(msg.from).emit("send_msg", {
+          content: message.content,
+          from: message.from,
+          to: message.to,
+          fromName: msg.fromName,
+          sentAt: message.sentAt,
+        });
+        await io.sockets.in(msg.to).emit("send_msg", {
+          content: message.content,
+          from: message.from,
+          to: message.to,
+          fromName: msg.fromName,
+          sentAt: message.sentAt,
+        });
       } else {
-        await io.sockets
-          .in(msg.from)
-          .emit("send_msg", {
-            content: message.content,
-            from: message.from,
-            to: message.to,
-            fromName: msg.fromName,
-            sentAt: message.sentAt,
-          });
+        await io.sockets.in(msg.from).emit("send_msg", {
+          content: message.content,
+          from: message.from,
+          to: message.to,
+          fromName: msg.fromName,
+          sentAt: message.sentAt,
+        });
         const receiver = await User.findById(message.to);
         await sendChatMail(
           receiver.email,
