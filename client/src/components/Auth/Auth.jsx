@@ -341,7 +341,7 @@ const Auth = () => {
             ) : null}
             <form className={classes.form} onSubmit={handleSubmit}>
               <GoogleLogin
-                clientId="716279671550-uhbhnkiocr43jt3don07qtr9inmi4hk7.apps.googleusercontent.com"
+                clientId="466345532266-vvuivtauk0h4b7b1um3sjlgac56sghsb.apps.googleusercontent.com"
                 render={(renderProps) => (
                   <Box align="center">
                     <Button
