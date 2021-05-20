@@ -388,6 +388,7 @@ const Auth = () => {
                       handleChange={handleChange}
                     />
                     <Input
+                      key="loca"
                       name="location"
                       label="Your current Place"
                       handleChange={handleChange}
@@ -436,16 +437,12 @@ const Auth = () => {
                       Change your password by clicking on the link sent on this email when you submit
                       <TextField
                         autoFocus
+                        key="Email-key"
                         margin="dense"
                         variant="outlined"
                         id="email"
                         label="Email Address"
-                        value={
-                          resetEmail === null ||
-                          resetEmail === undefined
-                            ? ""
-                            : resetEmail
-                        }
+                        value={resetEmail}
                         onChange={(e)=>setResetEmail(e.target.value)}
                         fullWidth
                       />
