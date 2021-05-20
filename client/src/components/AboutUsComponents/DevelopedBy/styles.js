@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles(() => ({
   card: {
     display: "flex",
-
     flexDirection: "column",
     justifyContent: "center",
     textDecoration: "none",
@@ -12,10 +11,12 @@ export default makeStyles(() => ({
     width: "auto",
     cursor: "pointer",
     transition: ".5s",
-
     "&:hover": {
       color: "#e85a4f",
       textShadow: "0 0 2px #e85a4f",
+    },
+    "@media (max-width : 700px)": {
+      height: "70vh",
     },
   },
   frontCard: {
