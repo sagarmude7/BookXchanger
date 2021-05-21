@@ -1,5 +1,7 @@
 # **BookXchanger**
 
+![Home Page](https://res.cloudinary.com/bookxchanger/image/upload/v1621603229/Website/Home-888x480_giifms.gif)
+
 ### Table of Content
 
 - [Team Members](#Team-Members)
@@ -102,25 +104,25 @@ So we try to make a BookXchanger website with almost all the features which can 
 > - We can improve our project by adding different colleges, and then filter books according to college.
 > - Further we want to add a recommendation system which will suggest the books according to his previous searches.
 > - We also want to integrate Google Maps API so that buyers can get the exact location of the seller.
-> - Further we can work on our UI to improve user experience.
+> - Further we can work on our UI to improve the user experience.
 
 ## What we have learn from this project
 
 1. Sagar Mude - 
-   This is the first big project that I have been working on. Before starting the project I have a MERN tutorial but not implemented those concepts in real-life projects. But      while doing this project I got a hands-on experiment of every tech stack that we have used. While solving the errors I got to know new things which help me afterward. I have    also learned a new styling technique.
+   This is the first big project that I have been working on. Before starting the project I have done a MERN tutorial but not implemented those concepts in real-life projects. But while doing this project I got a hands-on experiment of every tech stack that we have used. While solving the errors I got to know new things which help me afterward. I have also learned a new styling technique.
 
 2. Vedant Mondkar - 
-   This project has helped me a lot to implement most of the MERN stack operations. Also some additional tricks i have learned thorugh my mentor & team mates. Learned about a lot node modules and implemented the. Fixing the bugs was always challenging, but we have successfully fixed them. I am very glad!
+   This project has helped me a lot to implement most of the MERN stack operations. Also some additional tricks I have learned through my mentor & teammates. Learned a lot of node modules and implemented them. Fixing the bugs was always challenging, but we have successfully fixed them. I am very glad!
 
 
 3. Vishal Dange - 
-   This is the first project I have worked on which will be used in real life.In this Bookxchanger Project , I learnt to apply all the theoey learnt about web developement.Also,    how to make use of libraries and add more features to the website.
+   This is the first project I have worked on which will be used in real life. In this Bookxchanger Project, I learned to apply all the theories learned about web development. Also,    how to make use of libraries and add more features to the website.
 
 4. Mohak Chandani - 
    BookXchanger was my first project in the field of web development. This project has helped me to learn all the core concepts to build a web application using the MERN stack.
 
 5. Shashank Pagrut - 
-   This was my first group project. Through this project I was able to implement the core concepts of MERN stack into a web application. My mentor and team-mates also helped me    to learn new tricks. 
+   This was my first group project. Through this project, I was able to implement the core concepts of the MERN stack into a web application. My mentor and teammates also helped me to learn new tricks. 
 
 6. Vedant Mankar - 
 
