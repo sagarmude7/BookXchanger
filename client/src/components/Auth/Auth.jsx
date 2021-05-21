@@ -178,7 +178,7 @@ const Auth = () => {
                         className={classes.inline}
                         color="textPrimary"
                       >
-                        User Dashboard
+                        User Dashboard 
                       </Typography>
                     </React.Fragment>
                   }
@@ -396,7 +396,6 @@ const Auth = () => {
                       label="Your current Place"
                       handleChange={handleChange}
                     />
-                    <h1>Heeeeeeeelo</h1>
                   </>
                 )}
                 <Input
