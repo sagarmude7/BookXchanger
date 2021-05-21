@@ -97,6 +97,41 @@ const Book = ({ book }) => {
             {book.priceType}
             {")"}
           </Typography>
+          <CardActions className={classes.favourite}>
+            <Button
+              size="medium"
+              style={{ color: "#E98074" }}
+              onClick={handleDeleteOpen}
+            >
+              <DeleteIcon />
+            </Button>
+            <Dialog
+              open={DeleteOpen}
+              onClose={handleDeleteClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Do you want to remove this book from Wishlist ?"}
+              </DialogTitle>
+
+              <DialogActions>
+                <Button
+                  onClick={handleDeleteClose}
+                  style={{ color: "#E85A4F" }}
+                >
+                  No
+                </Button>
+                <Button
+                  onClick={deleteBook}
+                  style={{ color: "#E85A4F" }}
+                  autoFocus
+                >
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </CardActions>
         </div>
 
         <div>
