@@ -19,10 +19,10 @@ export default makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: "25ch",
     },
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
   },
 
   avatar: {
@@ -64,12 +64,7 @@ export default makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
 
-  switch: {
-    backgroundColor: "#e85a4f",
-    "&:hover": {
-      backgroundColor: "#e98074",
-    },
-  },
+  switch: {},
 
   mainContainer: {
     backgroundColor: "#e5e1d4",

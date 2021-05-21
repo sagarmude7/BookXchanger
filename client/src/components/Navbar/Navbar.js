@@ -246,7 +246,7 @@ const Navbar = () => {
   const displayDesktop = () => {
     return (
       <>
-        <Link href="#" color="inherit">
+        <Link component={RouterLink} to="\" color="inherit">
           <img className={image1} src={logo} alt="BookXchanger" />
         </Link>
         <Toolbar className={toolbar}>{getMenuButtons()}</Toolbar>
@@ -286,7 +286,7 @@ const Navbar = () => {
             <div className={drawerContainer}>{getDrawerChoices()}</div>
           </Drawer>
 
-          <Link href="#" color="inherit">
+          <Link component={RouterLink} to="\" color="inherit">
             <img className={image1} src={logo} alt="BookXchanger" />
           </Link>
         </Toolbar>

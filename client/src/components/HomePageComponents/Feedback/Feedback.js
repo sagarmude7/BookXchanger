@@ -55,8 +55,8 @@ const Feedback = () => {
           animation="slide"
           autoPlay={true}
           interval={10000}
-          stopAutoPlayOnHover={false}
-          navButtonsAlwaysInvisible={true}
+          stopAutoPlayOnHover={true}
+          navButtonsAlwaysInvisible={false}
         >
           {descFeedback.map((item, index) => (
             <Item key={index} item={item} />

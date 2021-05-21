@@ -84,59 +84,6 @@ const Book = ({ book }) => {
     <>
       <Card className={classes.card}>
         <div className={classes.top}>
-          <div className={classes.overlay2}>
-            <Button
-              style={{ color: "#E98074" }}
-              size="medium"
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
-            >
-              <MoreVertIcon fontSize="default" />
-            </Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={editBook} disabled={book.isSold === true}>
-                Edit
-              </MenuItem>
-              <MenuItem
-                onClick={handleSoldOpen}
-                disabled={book.isSold === true}
-              >
-                Sold
-              </MenuItem>
-            </Menu>
-            <Dialog
-              open={SoldOpen}
-              onClose={handleSoldClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {"Have you sell this book?"}
-              </DialogTitle>
-
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  If Yes, this book will no longer be able for sell.
-                </DialogContentText>
-              </DialogContent>
-
-              <DialogActions>
-                <Button onClick={handleSoldClose} color="primary">
-                  No
-                </Button>
-                <Button onClick={soldBook} color="primary" autoFocus>
-                  Yes
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </div>
           <CardMedia
             className={classes.media}
             src="book"
@@ -150,7 +97,6 @@ const Book = ({ book }) => {
             {book.priceType}
             {")"}
           </Typography>
-
           <CardActions className={classes.favourite}>
             <Button
               size="medium"
@@ -166,7 +112,7 @@ const Book = ({ book }) => {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                {"Do you want to delete this Ad?"}
+                {"Do you want to remove this book from Wishlist ?"}
               </DialogTitle>
 
               <DialogActions>

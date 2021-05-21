@@ -12,7 +12,7 @@ const app = express();
 
 options = {
   cors: true,
-  origins: ["http://localhost:3000"],
+  origins: ["https://bookxchanger.netlify.app"],
 };
 app.use(compression());
 if (typeof window === "undefined") {
@@ -20,15 +20,19 @@ if (typeof window === "undefined") {
 }
 connectDB();
 
+app.get("/", (req, res) => {
+  res.send("This is Bookxchanger");
+});
+
 app.use((req, res, next) => {
-  res.append("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.append("Access-Control-Allow-Origin", "https://bookxchanger.netlify.app");
   res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
   res.append(
     "Access-Control-Allow-Headers",
     "authorization,Content-Type,origin, x-requested-with"
   );
   res.append("Access-Control-Allow-Credentials", "true");
-  res.append("Origin", "http://localhost:3000");
+  res.append("Origin", "https://bookxchanger.netlify.app");
   res.append("Access-Control-Max-Age", "86400");
   next();
 });
@@ -46,7 +50,7 @@ var server = app.listen(PORT, () =>
 
 options = {
   cors: true,
-  origins: ["http://localhost:3000"],
+  origins: ["https://bookxchanger.netlify.app"],
 };
 const io = require("socket.io")(server, options);
 
@@ -88,40 +92,34 @@ io.on("connection", async (socket) => {
       });
       await message.save();
       if (socket.adapter.rooms.has(msg.to)) {
-        await io.sockets
-          .in(msg.from)
-          .emit("send_msg", {
-            content: message.content,
-            from: message.from,
-            to: message.to,
-            fromName: msg.fromName,
-            sentAt: message.sentAt,
-          });
-        await io.sockets
-          .in(msg.to)
-          .emit("send_msg", {
-            content: message.content,
-            from: message.from,
-            to: message.to,
-            fromName: msg.fromName,
-            sentAt: message.sentAt,
-          });
+        await io.sockets.in(msg.from).emit("send_msg", {
+          content: message.content,
+          from: message.from,
+          to: message.to,
+          fromName: msg.fromName,
+          sentAt: message.sentAt,
+        });
+        await io.sockets.in(msg.to).emit("send_msg", {
+          content: message.content,
+          from: message.from,
+          to: message.to,
+          fromName: msg.fromName,
+          sentAt: message.sentAt,
+        });
       } else {
-        await io.sockets
-          .in(msg.from)
-          .emit("send_msg", {
-            content: message.content,
-            from: message.from,
-            to: message.to,
-            fromName: msg.fromName,
-            sentAt: message.sentAt,
-          });
+        await io.sockets.in(msg.from).emit("send_msg", {
+          content: message.content,
+          from: message.from,
+          to: message.to,
+          fromName: msg.fromName,
+          sentAt: message.sentAt,
+        });
         const receiver = await User.findById(message.to);
         await sendChatMail(
           receiver.email,
           receiver.name,
           message.fromName,
-          `http://localhost:3000/user/${message.from}`
+          `https://bookxchanger.netlify.app/user/${message.from}`
         );
       }
     } catch (err) {}

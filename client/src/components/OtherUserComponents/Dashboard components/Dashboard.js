@@ -28,7 +28,7 @@ const Dashboard = ({ userId }) => {
 
   function card(book) {
     return (
-      <Grid item xs={12} sm={4}>
+      <Grid className={classes.grid}>
         <Book key={book._id} book={book} style={{ width: "auto" }} />
       </Grid>
     );

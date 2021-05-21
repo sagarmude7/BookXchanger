@@ -41,7 +41,7 @@ const Home = () => {
       <div style={{ background: "e85a4f" }}>
         {alert ? (
           <Snackbar
-            style={{ top: "10%", left: "50%" }}
+            style={{ top: "10%", textAlign: "center" }}
             anchorOrigin={{ horizontal: "center", vertical: "top" }}
             open={alert}
             autoHideDuration={5000}

@@ -4,6 +4,7 @@ import {
   Grid,
   Typography,
   Button,
+  ButtonGroup,
   Avatar,
   TextField,
   Box,
@@ -16,7 +17,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogContentText,
-  DialogActions
+  DialogActions,
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -28,11 +29,16 @@ import useStyles from "./styles";
 import GoogleIcon from "./GoogleIcon";
 import { useDispatch } from "react-redux";
 import { GoogleLogin } from "react-google-login";
-import { signUp, signIn, googleFacebookSignIn,sendPasswordMail } from "../../actions/auth";
+import {
+  signUp,
+  signIn,
+  googleFacebookSignIn,
+  sendPasswordMail,
+} from "../../actions/auth";
 import { VALID } from "../../constants/actions";
 import Fade from "react-reveal/Fade";
 import VerifyEmail from "../VerifyEmail/VerifyEmail";
-import {sendVerifyMail} from "../../actions/auth"
+import { sendVerifyMail } from "../../actions/auth";
 
 const initialState = {
   firstName: "",
@@ -51,10 +57,10 @@ const Auth = () => {
   const book = useSelector((state) => state.book);
   const [err, setErr] = useState(false);
   const history = useHistory();
-  const [open,setOpen] = useState(false);
-  const [openNew,setOpenNew] = useState(false);
-  const [resetEmail,setResetEmail] = useState('');
-  const [verifyEmail,setVerifyEmail] = useState('');
+  const [open, setOpen] = useState(false);
+  const [openNew, setOpenNew] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [verifyEmail, setVerifyEmail] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -69,29 +75,27 @@ const Auth = () => {
     }
   };
 
-  
-
-  const handleClickOpen = ()=>{
+  const handleClickOpen = () => {
     setOpen(true);
-  }
+  };
 
-  const handleDialogueClose = ()=>{
+  const handleDialogueClose = () => {
     setOpen(false);
-  }
-  const handleClickOpenNew = ()=>{
+  };
+  const handleClickOpenNew = () => {
     setOpenNew(true);
-  }
+  };
 
-  const handleDialogueCloseNew = ()=>{
+  const handleDialogueCloseNew = () => {
     setOpenNew(false);
-  }
+  };
 
-  const handleClickSendMail = ()=>{
-    dispatch(sendPasswordMail(resetEmail))
-  }
-  const handleClickVerifyMail = ()=>{
-    dispatch(sendVerifyMail(verifyEmail))
-  }
+  const handleClickSendMail = () => {
+    dispatch(sendPasswordMail(resetEmail));
+  };
+  const handleClickVerifyMail = () => {
+    dispatch(sendVerifyMail(verifyEmail));
+  };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -154,7 +158,6 @@ const Auth = () => {
                 </Typography>
               </div>
             </Box>
-            {/* <hr align="center" style={{ border: "1px solid #19120b"}}></hr> */}
             <List>
               <ListItem className={classes.list}>
                 <ListItemAvatar>
@@ -338,7 +341,7 @@ const Auth = () => {
             ) : null}
             <form className={classes.form} onSubmit={handleSubmit}>
               <GoogleLogin
-                clientId="716279671550-uhbhnkiocr43jt3don07qtr9inmi4hk7.apps.googleusercontent.com"
+                clientId="466345532266-vvuivtauk0h4b7b1um3sjlgac56sghsb.apps.googleusercontent.com"
                 render={(renderProps) => (
                   <Box align="center">
                     <Button
@@ -358,7 +361,7 @@ const Auth = () => {
                 onFailure={googleError}
                 cookiePolicy="single_host_origin"
               />
-              
+
               <Typography
                 component="h1"
                 variant="h5"
@@ -429,7 +432,7 @@ const Auth = () => {
                   {isSignup ? "Sign Up" : "Sign In"}
                 </Button>
               </Box>
-                  
+
               <Dialog open={open} onClose={handleDialogueClose}>
                   <DialogTitle id="reset-password"> Reset Password</DialogTitle>
                   <DialogContent>
@@ -453,64 +456,80 @@ const Auth = () => {
                     <Button onClick={handleClickSendMail} color="primary">Send Mail</Button>
                   </DialogActions>
               </Dialog>
-              {isSignup?(
-                  <Box textAlign="center">
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}
-                      onClick={handleClickOpen} 
+              {isSignup ? (
+                <>
+                  <div></div>
+                </>
+              ) : (
+                <>
+                  <Box textAlign="center" style={{ margin: "5px 0px" }}>
+                    <ButtonGroup
+                      variant="text"
+                      size="large"
+                      aria-label="outlined secondary button group"
                     >
-                      Reset Password
-                    </Button>
+                      <Button
+                        style={{ color: "#e85a4f" }}
+                        onClick={handleClickOpen}
+                      >
+                        Login With One Time Password
+                      </Button>
+                      <Button
+                        style={{ color: "#e85a4f" }}
+                        onClick={handleClickOpen}
+                      >
+                        Forgot Password
+                      </Button>
+                    </ButtonGroup>
                   </Box>
-              ):    
-              <Box textAlign="center">
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={handleClickOpen} 
-              >
-               Login Without Password ?
-              </Button>
-            </Box>}
-              
+                </>
+              )}
+
               <Grid>
                 <Grid item>
                   <Box textAlign="center">
                     <Button
                       onClick={switchMode}
+                      variant="outlined"
+                      style={{ color: "#e85a4f" }}
                       className={classes.switch}
-                      variant="contained"
-                      color="primary"
                     >
                       {isSignup
                         ? "Already have an account? Sign in"
                         : "Don't have an account? Sign Up"}
                     </Button>
-                <Dialog open={openNew} onClose={handleDialogueCloseNew}>
-                  <DialogTitle id="verify-email">Login Without Password</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText>
-                      Verify your Email by clicking on the link sent on this email when you submit
-                      <TextField
-                        autoFocus
-                        margin="dense"
-                        variant="outlined"
-                        id="email"
-                        label="Email Address"
-                        value={verifyEmail}
-                        onChange={(e)=>setVerifyEmail(e.target.value)}
-                        fullWidth
-                      />
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={handleDialogueCloseNew} color="primary">Done</Button>
-                    <Button onClick={handleClickVerifyMail} color="primary">Send Mail</Button>
-                  </DialogActions>
-              </Dialog>
+                    <Dialog open={openNew} onClose={handleDialogueCloseNew}>
+                      <DialogTitle id="verify-email">
+                        Login Without Password
+                      </DialogTitle>
+                      <DialogContent>
+                        <DialogContentText>
+                          Verify your Email by clicking on the link sent on this
+                          email when you submit
+                          <TextField
+                            autoFocus
+                            margin="dense"
+                            variant="outlined"
+                            id="email"
+                            label="Email Address"
+                            value={verifyEmail}
+                            onChange={(e) => setVerifyEmail(e.target.value)}
+                            fullWidth
+                          />
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button
+                          onClick={handleDialogueCloseNew}
+                          color="primary"
+                        >
+                          Done
+                        </Button>
+                        <Button onClick={handleClickVerifyMail} color="primary">
+                          Send Mail
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                   </Box>
                 </Grid>
               </Grid>

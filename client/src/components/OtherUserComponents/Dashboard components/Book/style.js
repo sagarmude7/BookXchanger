@@ -20,12 +20,16 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
+    width:'280px',
   },
   overlay: {
     position: 'absolute',
     top: '20px',
     left: '20px',
     color: 'white',
+    width:'250px',
+    textOverflow: "ellipsis",
+    overflow: "hidden",
   },
   overlay2: {
     position: 'absolute',

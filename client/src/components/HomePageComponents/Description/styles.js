@@ -4,7 +4,7 @@ const styles = makeStyles(() => ({
   paper: {
     border: "5px solid #000WWW",
     backgroundSize: "cover",
-    height: "655px",
+    height: "100vh",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     position: "relative",
