@@ -183,7 +183,7 @@ $ git push origin feature/AddFeature
 
 You can see the demo video of our project below.
 
-![Demo Video](https://img.youtube.com/vi/VfsMg4z-lfc/0.jpg)](https://www.youtube.com/watch?v=VfsMg4z-lfc)
+[![Demo Video](https://img.youtube.com/vi/VfsMg4z-lfc/0.jpg)](https://www.youtube.com/watch?v=VfsMg4z-lfc)
 
 
 ## Links
