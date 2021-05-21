@@ -20,6 +20,7 @@
 - [Future Scope](#Future-Scope)
 - [What we have learn from this project](#What-we-have-learn-from-this-project)
 - [Installation](#Installation)
+- [Contribution](#Contribution)
 - [Demo](#Demo)
 - [Links](#Links)
 - [Acknowledgement](#Acknowledgement)
@@ -159,9 +160,30 @@ Now you can run the app on localhost:3000 using:
 $ npm run dev
 ```
 
+## Contribution
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+1. Fork the Project
+2. Create your Feature Branch 
+```
+$ git checkout -b feature/AddFeature
+```
+3. Commit your Changes
+```
+$ git commit -m 'Add some New Feature'
+```
+4. Push to the Branch (git push origin feature/AmazingFeature)
+```
+$ git push origin feature/AddFeature
+```
+5. Open a Pull Request
+
 ## Demo
 
 You can see the demo video of our project below.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VfsMg4z-lfc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Links
 
