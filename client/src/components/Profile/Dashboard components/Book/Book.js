@@ -188,11 +188,9 @@ const Book = ({ book }) => {
             {book.branch}
           </Typography>
         </div>
-        <div>
-          <Typography variant="h6" className={classes.BookName}>
-            {book.bookName}
-          </Typography>
-        </div>
+        <Typography variant="h6" className={classes.BookName}>
+          {book.bookName}
+        </Typography>
         <Typography variant="body2" className={classes.Description}>
           {book.description}
         </Typography>

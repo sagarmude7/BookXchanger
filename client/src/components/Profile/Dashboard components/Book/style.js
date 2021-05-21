@@ -75,9 +75,9 @@ export default makeStyles({
 
   BookName: {
     margin: "5px 15px 7px 15px",
-    width:'220px',
     textOverflow: "ellipsis",
     overflow: "hidden",
+    whiteSpace: "nowrap",
   },
 
   Description: {

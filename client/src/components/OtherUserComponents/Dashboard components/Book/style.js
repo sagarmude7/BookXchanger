@@ -27,9 +27,9 @@ export default makeStyles({
     top: '20px',
     left: '20px',
     color: 'white',
-    width:'250px',
     textOverflow: "ellipsis",
     overflow: "hidden",
+    whiteSpace: "nowrap",
     
   },
   overlay2: {
