@@ -1,6 +1,6 @@
 # **BookXchanger**
 
-![Home Page](https://res.cloudinary.com/bookxchanger/image/upload/v1621604311/Website/1_y9eozp.gif)
+![Home Page](https://res.cloudinary.com/bookxchanger/image/upload/v1621604693/Website/2_tgzkrc.gif)
 
 ### Table of Content
 
