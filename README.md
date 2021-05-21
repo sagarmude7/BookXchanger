@@ -116,7 +116,7 @@ So we try to make a BookXchanger website with almost all the features which can 
 
 
 3. Vishal Dange - 
-   This is the first project I have worked on which will be used in real life. In this Bookxchanger Project, I learned to apply all the theories learned about web development. Also,    how to make use of libraries and add more features to the website.
+   This is the first project I have worked on which will be used in real life. In this Bookxchanger Project, I learned to apply all the theories learned about web development.      Also, how to make use of libraries and add more features to the website.
 
 4. Mohak Chandani - 
    BookXchanger was my first project in the field of web development. This project has helped me to learn all the core concepts to build a web application using the MERN stack.
@@ -125,6 +125,7 @@ So we try to make a BookXchanger website with almost all the features which can 
    This was my first group project. Through this project, I was able to implement the core concepts of the MERN stack into a web application. My mentor and teammates also helped me to learn new tricks. 
 
 6. Vedant Mankar - 
+   I have learnt so many new things while doing this project. This project has helped me to learn all the core concepts to build a web application using the MERN stack.
 
 ## Installation
 
