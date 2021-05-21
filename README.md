@@ -106,21 +106,22 @@ So we try to make a BookXchanger website with almost all the features which can 
 
 ## What we have learn from this project
 
-1. Sagar Mude
+1. Sagar Mude - 
    This is the first big project that I have been working on. Before starting the project I have a MERN tutorial but not implemented those concepts in real-life projects. But      while doing this project I got a hands-on experiment of every tech stack that we have used. While solving the errors I got to know new things which help me afterward. I have    also learned a new styling technique.
 
-2. Vedant Mondkar
+2. Vedant Mondkar - 
    This project has helped me a lot to implement most of the MERN stack operations. Also some additional tricks i have learned thorugh my mentor & team mates. Learned about a lot node modules and implemented the. Fixing the bugs was always challenging, but we have successfully fixed them. I am very glad!
 
 
-3. Vishal Dange
+3. Vishal Dange - 
    This is the first project I have worked on which will be used in real life.In this Bookxchanger Project , I learnt to apply all the theoey learnt about web developement.Also,    how to make use of libraries and add more features to the website.
 
-4. Mohak Chandani
+4. Mohak Chandani - 
    BookXchanger was my first project in the field of web development. This project has helped me to learn all the core concepts to build a web application using the MERN stack.
 
-5. Shashank Pagrut
-6. Vedant Mankar
+5. Shashank Pagrut - 
+
+6. Vedant Mankar - 
 
 ## Installation
 
