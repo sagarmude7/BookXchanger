@@ -68,6 +68,8 @@ export default makeStyles({
 
   BookName: {
     margin: "5px 15px 7px 15px",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
  
   },
 
