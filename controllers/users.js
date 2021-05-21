@@ -65,7 +65,7 @@ exports.signUp = async (req, res) => {
       { new: true }
     );
     updatedUser.save();
-    const sender = "bookxchanger7@gmail.com";
+    const sender = "reply.bookxchanger@gmail.com";
     const subject = "BookXchanger Verify Email";
     const body =
       "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
@@ -173,7 +173,7 @@ exports.verifyEmail = async (req, res) => {
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
+      port: process.env.PORT,
       secure: false,
       requireTLS: true,
       auth: {
