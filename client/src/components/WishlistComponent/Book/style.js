@@ -11,33 +11,20 @@ export default makeStyles({
     position: "relative",
     width:'280px',
     
-    /*"@media (max-width : 900px)": {
-      width: "100% !important",
-      margin: "auto",
-    },*/
+    
   },
 
   top: {
     position: "relative",
     height: "180px",
-    /*"@media (max-width : 900px)": {
-      height: "350px",
-    },
-    "@media (max-width : 400px)": {
-      height: "220px",
-    },*/
+    
   },
 
   media: {
     paddingTop: "56.25%",
     backgroundColor: "rgba(0, 0, 0, 0.4)",
     backgroundBlendMode: "darken",
-    /*"@media (max-width : 900px)": {
-      height: "200px",
-    },
-    "@media (max-width : 400px)": {
-      height: "200px",
-    },*/
+    
   },
 
   overlay2: {
@@ -59,18 +46,7 @@ export default makeStyles({
       //transform: "scale(1.31)",
       textShadow: "0 0 5px #ffffff",
     },
-    /*"@media (max-width : 900px)": {
-      bottom: "2.5px",
-      left: "730px",
-      paddingBottom: "10px",
-      transform: "scale(1.3)",
-    },
-    "@media (max-width : 700px)": {
-      bottom: "2.5px",
-      left: "240px",
-      paddingBottom: "10px",
-      transform: "scale(1.3)",
-    },*/
+    
   },
 
   price: {
@@ -80,13 +56,7 @@ export default makeStyles({
     left: "15px",
     fontSize: "20px",
     fontWeight: "1000",
-    /*"@media (max-width : 900px)": {
-      top: "15px",
-      fontSize: "12px",
-      left: "10px",
-      width: "100% !important",
-      margin: "auto",
-    },*/
+    
   },
 
   Branch: {
@@ -102,9 +72,7 @@ export default makeStyles({
     verticalAlign: "middle",
     textOverflow: "ellipsis",
     overflow: "hidden",
-    /*"@media (max-width : 700px)": {
-      fontSize: "12px",
-    },*/
+    
   },
 
   BookName: {

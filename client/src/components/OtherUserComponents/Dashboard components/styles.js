@@ -12,5 +12,11 @@ export default makeStyles(() => ({
     width: "100%",
     padding: "12px",
     margin: "0px",
+    display : "flex",
+    flexWrap : "wrap",
+    justifyContent:'center',
   },
+  grid:{
+    padding:'10px'
+  }
 }));
