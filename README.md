@@ -1,6 +1,6 @@
 # **BookXchanger**
 
-![Home Page](https://res.cloudinary.com/bookxchanger/image/upload/v1621604693/Website/2_tgzkrc.gif)
+[![BookXchanger](https://res.cloudinary.com/bookxchanger/image/upload/v1621614882/Website/3_u5tfsj.gif)](https://bookxchanger.netlify.app/)
 
 ### Table of Content
 
@@ -183,7 +183,7 @@ $ git push origin feature/AddFeature
 
 You can see the demo video of our project below.
 
-[![Demo Video](https://img.youtube.com/vi/VfsMg4z-lfc/0.jpg)](https://www.youtube.com/watch?v=VfsMg4z-lfc)
+[![Demo Video](https://res.cloudinary.com/bookxchanger/image/upload/v1621614856/Website/youtube_v1rtep.jpg)](https://www.youtube.com/watch?v=VfsMg4z-lfc)
 
 
 ## Links
