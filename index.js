@@ -10,10 +10,6 @@ const PORT = process.env.PORT || 5000;
 dotenv.config({ path: "./config/config.env" });
 const app = express();
 
-options = {
-  cors: true,
-  origins: ["https://bookxchanger.netlify.app"],
-};
 app.use(compression());
 if (typeof window === "undefined") {
   global.window = {};
@@ -50,7 +46,7 @@ var server = app.listen(PORT, () =>
 
 options = {
   cors: true,
-  origins: ["https://bookxchanger.netlify.app"],
+  origins: ["https://bookxchanger.netlify.app:5000"],
 };
 const io = require("socket.io")(server, options);
 
