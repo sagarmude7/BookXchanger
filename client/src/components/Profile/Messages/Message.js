@@ -24,14 +24,14 @@ const Message = () => {
   useEffect(() => {
     dispatch(getRecentUsers());
   }, []);
-
+  console.log(recents)
   return (
     <div>
       <Container className={classes.messageBody}>
         <Typography className={classes.messageHeading}>
           Recent Messages
         </Typography>
-        {recents.map((user) => (
+        {recents.map((user,index) => (
           <Card className={classes.messageCard} variant="outlined">
             <CardContent className={classes.messageCardContent}>
               <Avatar src={user.profilePic} className={classes.large}></Avatar>
@@ -54,6 +54,7 @@ const Message = () => {
             </CardContent>
             <CardActions>
               <IconButton
+                key={user.id}
                 className={classes.messageButtonOuter}
                 onClick={() => history.push(`user/${user.id}`)}
                 size="small"

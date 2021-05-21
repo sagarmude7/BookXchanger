@@ -15,10 +15,11 @@ export const getProfile = (id) => async (dispatch) => {
     
 };
 
-export const getRecentUsers = ()=>async(dispatch)=>{
+export const getRecentUsers = () =>async(dispatch)=>{
     try{
         const {data} = await api.getRecentUsers();
         dispatch({type:GET_RECENTS,payload:data})
+
     }catch(err){
         console.log(err);
     }
@@ -28,7 +29,6 @@ export const editProfile = (userData) => async (dispatch) => {
     try {
         
         const {data} = await api.editProfile(userData);
-        
         dispatch({type:EDIT_PROFILE,payload:data});
         dispatch({type:VALID,payload:{msg:"Profile Updated Successfully"}})
     } catch (error) {

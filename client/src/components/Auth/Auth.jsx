@@ -391,6 +391,7 @@ const Auth = () => {
                       handleChange={handleChange}
                     />
                     <Input
+                      key="loca"
                       name="location"
                       label="Your current Place"
                       handleChange={handleChange}
@@ -433,35 +434,27 @@ const Auth = () => {
               </Box>
 
               <Dialog open={open} onClose={handleDialogueClose}>
-                <DialogTitle id="reset-password"> Reset Password</DialogTitle>
-                <DialogContent>
-                  <DialogContentText>
-                    Change your password by clicking on the link sent on this
-                    email when you submit
-                    <TextField
-                      autoFocus
-                      margin="dense"
-                      variant="outlined"
-                      id="email"
-                      label="Email Address"
-                      value={
-                        resetEmail === null || resetEmail === undefined
-                          ? ""
-                          : resetEmail
-                      }
-                      onChange={(e) => setResetEmail(e.target.value)}
-                      fullWidth
-                    />
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleDialogueClose} color="primary">
-                    Done
-                  </Button>
-                  <Button onClick={handleClickSendMail} color="primary">
-                    Send Mail
-                  </Button>
-                </DialogActions>
+                  <DialogTitle id="reset-password"> Reset Password</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      Change your password by clicking on the link sent on this email when you submit
+                      <TextField
+                        autoFocus
+                        key="Email-key"
+                        margin="dense"
+                        variant="outlined"
+                        id="email"
+                        label="Email Address"
+                        value={resetEmail}
+                        onChange={(e)=>setResetEmail(e.target.value)}
+                        fullWidth
+                      />
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleDialogueClose} color="primary">Done</Button>
+                    <Button onClick={handleClickSendMail} color="primary">Send Mail</Button>
+                  </DialogActions>
               </Dialog>
               {isSignup ? (
                 <>
