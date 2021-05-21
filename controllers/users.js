@@ -65,7 +65,7 @@ exports.signUp = async (req, res) => {
       { new: true }
     );
     updatedUser.save();
-    const sender = "reply.bookxchanger@gmail.com";
+    const sender = "bookxchanger7@gmail.com";
     const subject = "BookXchanger Verify Email";
     const body =
       "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
@@ -101,10 +101,7 @@ exports.signUp = async (req, res) => {
       }
     });
     console.log("New User created using sign Up");
-    return res.status(200).json({
-      profile: { name: newUser.name, email: newUser.email, id: newUser._id },
-      token,
-    });
+    return res.status(200).json({profile: { name: newUser.name, email: newUser.email, id: newUser._id },token});
   } catch (err) {
     return res.status(500).json({ msg: "SomeThing went wrong" });
   }
