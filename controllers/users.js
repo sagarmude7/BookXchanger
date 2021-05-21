@@ -12,11 +12,8 @@ const {
   changePasswordValidator,
   feedBackValidator,
 } = require("../validators/joi-validator");
-const { update } = require("../models/User");
-const { filter } = require("compression");
 
 exports.signUp = async (req, res) => {
-  // console.log(req.body)
   const {
     firstName,
     lastName,
@@ -34,7 +31,6 @@ exports.signUp = async (req, res) => {
 
     const existingUser = await User.findOne({ email: email });
 
-    //if existing User is found
     if (existingUser)
       return res
         .status(400)
@@ -568,12 +564,10 @@ exports.sendMail = async (req, res) => {
       } else {
       }
     });
-    return res
-      .status(200)
-      .json({
-        msg: "Feedback sent successfully! \n Thank you for you Feedback",
-        severity: "success",
-      });
+    return res.status(200).json({
+      msg: "Feedback sent successfully! \n Thank you for you Feedback",
+      severity: "success",
+    });
   } catch (err) {
     return res.status(500).json({ msg: "Something went wrong" });
   }
@@ -666,6 +660,7 @@ exports.getRecentUsers = async (req, res) => {
       users[j] = { ...users[j], id: id };
       j++;
     }
+    return res.status(200).json(users);
   } catch (err) {
     console.log(err);
   }
