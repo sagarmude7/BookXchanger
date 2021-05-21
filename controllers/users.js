@@ -649,22 +649,26 @@ exports.getRecentUsers = async (req, res) => {
   const userId = req.userId;
   try {
     const recentUsers = await Message.distinct("fromName", { to: userId });
+    console.log(recentUsers);
     const recentIds = await Message.distinct("from", { to: userId });
+    console.log(recentIds)
     const users = [];
     for (const recent of recentUsers) {
       users.push({ name: recent });
     }
-
+    console.log(users)
     var j = 0;
     for (const id of recentIds) {
       users[j] = { ...users[j], id: id };
       j++;
     }
+    console.log(users);
     return res.status(200).json(users);
-  } catch (err) {
-    console.log(err);
-  }
-};
+}
+catch(err){
+console.log(err);
+}
+}
 
 exports.deleteaBookFromWish = async (req, res) => {
   // console.log("This is Backend Request to delete a book" );
