@@ -8,8 +8,7 @@ export default makeStyles({
     borderRadius: "15px",
     height: "100%",
     position: "relative",
-    width:'280px',
-    
+    width: "280px",
   },
 
   top: {
@@ -21,7 +20,6 @@ export default makeStyles({
     paddingTop: "56.25%",
     backgroundColor: "rgba(0, 0, 0, 0.4)",
     backgroundBlendMode: "darken",
-  
   },
 
   favourite: {
@@ -36,7 +34,6 @@ export default makeStyles({
       transform: "scale(1.31)",
       textShadow: "0 0 5px #e85a4f",
     },
-    
   },
 
   price: {
@@ -46,7 +43,6 @@ export default makeStyles({
     left: "15px",
     fontSize: "20px",
     fontWeight: "1000",
-   
   },
 
   Branch: {
@@ -62,13 +58,10 @@ export default makeStyles({
     verticalAlign: "middle",
     textOverflow: "ellipsis",
     overflow: "hidden",
-   
-    
   },
 
   BookName: {
     margin: "5px 15px 7px 15px",
- 
   },
 
   Description: {
