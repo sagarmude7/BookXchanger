@@ -22,6 +22,7 @@
 - [Installation](#Installation)
 - [Demo](#Demo)
 - [Links](#Links)
+- [Acknowledgement](#Acknowledgement)
 
 ## Team members
 
@@ -168,4 +169,7 @@ You will get all the links that are related to the project below-
 
 - [BookXchanger](https://bookxchanger.netlify.app/) - The link to BookXchanger Website.
 - [Github Repo's Link](https://github.com/sagarmude7/BookXchanger) - All the code of Project.
-- [Demo Video]() - Demo Video of Project.
+- [Demo Video](https://youtu.be/VfsMg4z-lfc) - Demo Video of Project.
+
+## Acknowledgement
+We would like to thank the [Developer students Club VJTI](https://github.com/DSC-VJTI) and [Community of Coders](https://github.com/CommunityOfCoders) for organizing the SKILL UP 2.0 Program. We also would like to thank [Harshil Doshi](https://github.com/Harshil333) for mentoring us during the whole project.
