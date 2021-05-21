@@ -79,6 +79,7 @@ export default makeStyles({
     width:'200px',
     textOverflow: "ellipsis",
     overflow: "hidden",
+    border:'solid red'
   },
 
   Description: {
