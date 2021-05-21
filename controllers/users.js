@@ -83,7 +83,7 @@ exports.signUp = async (req, res) => {
       requireTLS: true,
       auth: {
         user: sender,
-        pass: "Book@12341234",
+        pass: "Book@123123",
       },
     });
 
@@ -178,7 +178,7 @@ exports.verifyEmail = async (req, res) => {
       requireTLS: true,
       auth: {
         user: sender,
-        pass: "Book@12341234",
+        pass: "Book@123123",
       },
     });
 
@@ -198,7 +198,9 @@ exports.verifyEmail = async (req, res) => {
       }
     });
 
-    return res.status(200).json({ msg: "An E-mail has been sent with further instructions" });
+    return res
+      .status(200)
+      .json({ msg: "An E-mail has been sent with further instructions" });
   } catch (err) {
     console.log(err);
   }
@@ -267,7 +269,7 @@ exports.sendResetPassEmail = async (req, res) => {
       requireTLS: true,
       auth: {
         user: sender,
-        pass: "Book@12341234",
+        pass: "Book@123123",
       },
     });
 
@@ -285,7 +287,9 @@ exports.sendResetPassEmail = async (req, res) => {
       }
     });
 
-    return res.status(200).json({ msg: "An e-mail has been sent with further instructions" });
+    return res
+      .status(200)
+      .json({ msg: "An e-mail has been sent with further instructions" });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ msg: "Something went wrong on Server.." });
@@ -542,7 +546,7 @@ exports.sendMail = async (req, res) => {
       requireTLS: true,
       auth: {
         user: "reply.bookxchanger@gmail.com",
-        pass: "Book@12341234",
+        pass: "Book@123123",
       },
     });
 
@@ -585,7 +589,7 @@ const sendGoogleMail = async (to, toName, password) => {
       requireTLS: true,
       auth: {
         user: "reply.bookxchanger@gmail.com",
-        pass: "Book@12341234",
+        pass: "Book@123123",
       },
     });
 
@@ -620,7 +624,7 @@ exports.sendChatMail = async (to, toName, fromName, url) => {
       requireTLS: true,
       auth: {
         user: "reply.bookxchanger@gmail.com",
-        pass: "Book@12341234",
+        pass: "Book@123123",
       },
     });
 
@@ -645,12 +649,12 @@ exports.getRecentUsers = async (req, res) => {
     const recentUsers = await Message.distinct("fromName", { to: userId });
     console.log(recentUsers);
     const recentIds = await Message.distinct("from", { to: userId });
-    console.log(recentIds)
+    console.log(recentIds);
     const users = [];
     for (const recent of recentUsers) {
       users.push({ name: recent });
     }
-    console.log(users)
+    console.log(users);
     var j = 0;
     for (const id of recentIds) {
       users[j] = { ...users[j], id: id };
@@ -658,11 +662,10 @@ exports.getRecentUsers = async (req, res) => {
     }
     console.log(users);
     return res.status(200).json(users);
-}
-catch(err){
-console.log(err);
-}
-}
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 exports.deleteaBookFromWish = async (req, res) => {
   // console.log("This is Backend Request to delete a book" );
