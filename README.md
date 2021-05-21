@@ -120,6 +120,7 @@ So we try to make a BookXchanger website with almost all the features which can 
    BookXchanger was my first project in the field of web development. This project has helped me to learn all the core concepts to build a web application using the MERN stack.
 
 5. Shashank Pagrut - 
+   This was my first group project. Through this project I was able to implement the core concepts of MERN stack into a web application. My mentor and team-mates also helped me    to learn new tricks. 
 
 6. Vedant Mankar - 
 
