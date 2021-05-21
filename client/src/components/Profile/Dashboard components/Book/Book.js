@@ -189,7 +189,7 @@ const Book = ({ book }) => {
           </Typography>
         </div>
         <div className={classes.BookName}>
-          <Typography variant="h6" className={classes.BookName}>
+          <Typography variant="h6">
             {book.bookName}
           </Typography>
         </div>
