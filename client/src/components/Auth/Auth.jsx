@@ -178,7 +178,7 @@ const Auth = () => {
                         className={classes.inline}
                         color="textPrimary"
                       >
-                        User Dashboard
+                        User Dashboard   123312
                       </Typography>
                     </React.Fragment>
                   }
