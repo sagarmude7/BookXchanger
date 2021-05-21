@@ -196,13 +196,12 @@ exports.verifyEmail = async (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(infoq);
+        // console.log(infoq);
+        console.log("Working");
       }
     });
 
-    return res
-      .status(200)
-      .json({ msg: "An E-mail has been sent with further instructions" });
+    return res.status(200).json({ msg: "An E-mail has been sent with further instructions" });
   } catch (err) {
     console.log(err);
   }
@@ -289,9 +288,7 @@ exports.sendResetPassEmail = async (req, res) => {
       }
     });
 
-    return res
-      .status(200)
-      .json({ msg: "An e-mail has been sent with further instructions" });
+    return res.status(200).json({ msg: "An e-mail has been sent with further instructions" });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ msg: "Something went wrong on Server.." });
