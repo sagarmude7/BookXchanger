@@ -30,6 +30,7 @@ export default makeStyles({
     width:'250px',
     textOverflow: "ellipsis",
     overflow: "hidden",
+    
   },
   overlay2: {
     position: 'absolute',
