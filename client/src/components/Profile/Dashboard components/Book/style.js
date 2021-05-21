@@ -71,7 +71,7 @@ export default makeStyles({
     verticalAlign: "middle",
     textOverflow: "ellipsis",
     overflow: "hidden",
-    
+    border:'solid black'
   },
 
   BookName: {
