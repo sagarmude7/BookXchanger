@@ -183,7 +183,8 @@ $ git push origin feature/AddFeature
 
 You can see the demo video of our project below.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VfsMg4z-lfc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+![Demo Video](https://img.youtube.com/vi/VfsMg4z-lfc/0.jpg)](https://www.youtube.com/watch?v=VfsMg4z-lfc)
+
 
 ## Links
 
