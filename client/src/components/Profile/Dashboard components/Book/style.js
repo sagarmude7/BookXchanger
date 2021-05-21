@@ -7,7 +7,7 @@ export default makeStyles({
     flexDirection: "column",
     backgroundColor: "rgb(216,199,165)",
     borderRadius: "15px",
-    height: "100%",
+    //height: "100%",
     position: "relative",
     width:'280px',
     
@@ -71,7 +71,6 @@ export default makeStyles({
     verticalAlign: "middle",
     textOverflow: "ellipsis",
     overflow: "hidden",
-    border:'solid black'
   },
 
   BookName: {
