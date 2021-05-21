@@ -173,7 +173,7 @@ $ git checkout -b feature/AddFeature
 ```
 $ git commit -m 'Add some New Feature'
 ```
-4. Push to the Branch (git push origin feature/AmazingFeature)
+4. Push to the Branch (git push origin feature/AddFeature)
 ```
 $ git push origin feature/AddFeature
 ```
