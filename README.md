@@ -127,7 +127,7 @@ So we try to make a BookXchanger website with almost all the features which can 
    This was my first group project. Through this project, I was able to implement the core concepts of the MERN stack into a web application. My mentor and teammates also helped me to learn new tricks. 
 
 6. Vedant Mankar - 
-   I have learnt so many new things while doing this project. This project has helped me to learn all the core concepts to build a web application using the MERN stack.
+   I have learned so many new things while doing this project. This project has helped me to learn all the core concepts to build a web application using the MERN stack.
 
 ## Installation
 
@@ -162,7 +162,7 @@ $ npm run dev
 
 ## Contribution
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 1. Fork the Project
 2. Create your Feature Branch 
