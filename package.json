@@ -21,7 +21,7 @@
   "homepage": "https://github.com/sagarmude7/Bookxchanger#readme",
   "devDependencies": {
     "concurrently": "^6.1.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.19"
   },
   "dependencies": {
     "atob": "^2.1.2",
