@@ -2,12 +2,14 @@
   "name": "bookxchanger",
   "version": "1.0.0",
   "description": "Find your required books and sell, built using MERN stack",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node index",
-    "server": "nodemon index",
+    "start": "node src/server.js",
+    "server": "nodemon src/server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
+    "format:check": "prettier --check \"**/*.{js,json,md}\" --ignore-path .gitignore"
   },
   "repository": {
     "type": "git",
@@ -20,25 +22,20 @@
   },
   "homepage": "https://github.com/sagarmude7/Bookxchanger#readme",
   "devDependencies": {
-    "concurrently": "^6.1.0",
-    "nodemon": "^2.0.7"
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
   },
   "dependencies": {
-    "atob": "^2.1.2",
-    "bcryptjs": "^2.4.3",
-    "blob": "^0.1.0",
-    "body-parser": "^1.19.0",
-    "compress.js": "^1.1.2",
-    "compression": "^1.7.4",
+    "bcryptjs": "^3.0.2",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
-    "dotenv": "^9.0.2",
-    "express": "^4.17.1",
-    "filereader": "^0.10.3",
-    "joi": "^17.4.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.10",
-    "node-blob": "0.0.2",
-    "nodemailer": "^6.6.0",
-    "socket.io": "^4.1.2"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "google-auth-library": "^10.7.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "nodemailer": "^8.0.10",
+    "socket.io": "^4.8.1"
   }
 }

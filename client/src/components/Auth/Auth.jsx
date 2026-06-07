@@ -128,7 +128,7 @@ const Auth = () => {
       dispatch(
         googleFacebookSignIn(
           {
-            email: res.profileObj.email,
+            tokenId: res.tokenId,
             name: res.profileObj.name,
             profilePic: res.profileObj.imageUrl,
           },

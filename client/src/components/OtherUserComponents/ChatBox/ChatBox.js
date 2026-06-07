@@ -9,7 +9,6 @@ import moment from "moment";
 
 const initialState = {
   content: "",
-  from: "",
   to: "",
   fromName: "",
 };
@@ -28,10 +27,9 @@ const ChatBox = () => {
       setMsgData({
         ...msgData,
         to: receiver._id,
-        from: user.id,
         fromName: user.name,
       });
-      socket.emit("join", { id: user.id, receiver: receiver._id });
+      socket.emit("join", { receiver: receiver._id });
       socket.on("initial_msgs", (chat) => {
         dispatch({ type: INITIAL_CHAT, payload: chat });
       });

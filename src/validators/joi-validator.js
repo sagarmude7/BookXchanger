@@ -49,7 +49,11 @@ const postBookValidator = joi.object({
 
 const feedBackValidator = joi.object({
   name: joi.string().required(),
-  message: joi.string().required().min(20)
+  message: joi.string().required().min(20),
+});
+
+const emailOnlyValidator = joi.object({
+  email: joi.string().required().email(),
 });
 
 module.exports.loginValidator = loginValidator;
@@ -58,3 +62,4 @@ module.exports.editValidator = editValidator;
 module.exports.changePasswordValidator = changePasswordValidator;
 module.exports.postBookValidator = postBookValidator;
 module.exports.feedBackValidator = feedBackValidator;
+module.exports.emailOnlyValidator = emailOnlyValidator;

@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
@@ -5,13 +6,48 @@ const Book = require("../models/Book");
 const Message = require("../models/Message");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const { OAuth2Client } = require("google-auth-library");
 const {
   regValidator,
   loginValidator,
   editValidator,
   changePasswordValidator,
   feedBackValidator,
+  emailOnlyValidator,
 } = require("../validators/joi-validator");
+
+const SMTP_USER = process.env.SMTP_USER;
+const SMTP_PASS = process.env.SMTP_PASS;
+const SMTP_HOST = process.env.SMTP_HOST || "smtp.gmail.com";
+const SMTP_PORT = Number(process.env.SMTP_PORT) || 587;
+const FEEDBACK_RECEIVER =
+  process.env.FEEDBACK_RECEIVER || "bookxchanger7@gmail.com";
+
+const createTransporter = () =>
+  nodemailer.createTransport({
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: false,
+    requireTLS: true,
+    auth: {
+      user: SMTP_USER,
+      pass: SMTP_PASS,
+    },
+  });
+
+// Cryptographically-secure random password generator
+function random_password_generate(max, min) {
+  const passwordChars =
+    "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#@!%&()/";
+  const range = max - min + 1;
+  const randPwLen = min + (crypto.randomBytes(2).readUInt16BE(0) % range);
+  let randPassword = "";
+  for (let i = 0; i < randPwLen; i++) {
+    const idx = crypto.randomInt(0, passwordChars.length);
+    randPassword += passwordChars[idx];
+  }
+  return randPassword;
+}
 
 exports.signUp = async (req, res) => {
   const {
@@ -23,9 +59,7 @@ exports.signUp = async (req, res) => {
     password,
     confirmPassword,
   } = req.body;
-  console.log(password);
   const { error } = regValidator.validate(req.body);
-  console.log(error);
   try {
     if (error) return res.status(400).json({ msg: error.details[0].message });
 
@@ -59,33 +93,25 @@ exports.signUp = async (req, res) => {
     const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
       expiresIn: "4h",
     });
-    const updatedUser = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { email: email },
       { verifyEmailToken: token, verifyEmailExpires: Date.now() + 300000 },
-      { new: true }
+      { new: true },
     );
-    updatedUser.save();
-    const sender = "reply.bookxchanger@gmail.com";
+
+    const sender = SMTP_USER;
     const subject = "BookXchanger Verify Email";
+    const origin = req.headers.origin || "";
     const body =
       "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
       "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
-      req.headers.origin +
+      origin +
       "/verify-email/" +
       token +
       "\n\n" +
       "If you did not request this, please ignore this email and your password will remain unchanged.\n";
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: sender,
-        pass: "Book@123123",
-      },
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
       from: sender,
@@ -94,14 +120,15 @@ exports.signUp = async (req, res) => {
       text: body,
     };
 
-    transporter.sendMail(mailOptions, (err, info) => {
+    transporter.sendMail(mailOptions, (err) => {
       if (err) {
-        console.log(err);
-      } else {
+        console.log("Mail send error");
       }
     });
-    console.log("New User created using sign Up");
-    return res.status(200).json({profile: { name: newUser.name, email: newUser.email, id: newUser._id },token});
+    return res.status(200).json({
+      profile: { name: newUser.name, email: newUser.email, id: newUser._id },
+      token,
+    });
   } catch (err) {
     return res.status(500).json({ msg: "SomeThing went wrong" });
   }
@@ -109,7 +136,6 @@ exports.signUp = async (req, res) => {
 
 exports.signIn = async (req, res) => {
   const { email, password } = req.body;
-  console.log(password);
   const { error } = loginValidator.validate(req.body);
 
   try {
@@ -117,22 +143,19 @@ exports.signIn = async (req, res) => {
 
     const oldUser = await User.findOne({ email: email });
 
-    if (!oldUser) return res.status(400).json({ msg: "User doesn't exist" });
+    if (!oldUser)
+      return res.status(400).json({ msg: "Invalid email or password" });
 
-    const isPasswordIncorrect = await bcrypt.compare(
-      password,
-      oldUser.password
-    );
+    const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
 
-    if (!isPasswordIncorrect)
-      return res.status(400).json({ msg: "Password Incorrect" });
+    if (!isPasswordCorrect)
+      return res.status(400).json({ msg: "Invalid email or password" });
 
     const token = jwt.sign(
-      { profile: oldUser, id: oldUser._id },
+      { email: oldUser.email, id: oldUser._id },
       process.env.TOKEN_SECRET,
-      { expiresIn: "4h" }
+      { expiresIn: "4h" },
     );
-    console.log("User Signed In Normally");
     return res.status(200).json({
       profile: { name: oldUser.name, email: oldUser.email, id: oldUser._id },
       token,
@@ -143,44 +166,35 @@ exports.signIn = async (req, res) => {
 };
 
 exports.verifyEmail = async (req, res) => {
+  const { error } = emailOnlyValidator.validate(req.body);
+  if (error) return res.status(400).json({ msg: error.details[0].message });
   const email = req.body.email;
-  const payload = {
-    email: email,
-  };
+  const payload = { email: email };
   try {
     const oldUser = await User.findOne({ email: email });
     if (!oldUser)
       return res.status(400).json({ msg: "No user exists with this email" });
 
     const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
-      expiresIn: "300000",
+      expiresIn: "5m",
     });
-    const updatedUser = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { email: email },
       { verifyEmailToken: token, verifyEmailExpires: Date.now() + 300000 },
-      { new: true }
+      { new: true },
     );
-    updatedUser.save();
-    const sender = "reply.bookxchanger@gmail.com";
+    const sender = SMTP_USER;
     const subject = "BookXchanger Verify Email";
+    const origin = req.headers.origin || "";
     const body =
       "Please verify your email by clicking the link below:\n\n" +
-      req.headers.origin +
+      origin +
       "/verify-email/" +
       token +
       "\n\n" +
       "If you did not request this, please ignore this email..\n";
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: process.env.PORT,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: sender,
-        pass: "Book@123123",
-      },
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
       from: sender,
@@ -189,12 +203,9 @@ exports.verifyEmail = async (req, res) => {
       text: body,
     };
 
-    transporter.sendMail(mailOptions, (err, info) => {
+    transporter.sendMail(mailOptions, (err) => {
       if (err) {
-        console.log(err);
-      } else {
-        // console.log(infoq);
-        console.log("Working");
+        console.log("Mail send error");
       }
     });
 
@@ -202,36 +213,48 @@ exports.verifyEmail = async (req, res) => {
       .status(200)
       .json({ msg: "An E-mail has been sent with further instructions" });
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ msg: "Something went wrong" });
   }
 };
+
 exports.validateUser = async (req, res) => {
   const newToken = req.body.token;
-  console.log("My TOken : " + newToken);
   try {
+    if (!newToken) {
+      return res.status(400).json({ msg: "Invalid token" });
+    }
+    try {
+      jwt.verify(newToken, process.env.TOKEN_SECRET);
+    } catch (e) {
+      return res.status(400).json({ msg: "Invalid or expired token" });
+    }
+
     const oldUser = await User.findOne({ verifyEmailToken: newToken });
-    console.log(oldUser);
-    // const updatedUser = await User.findOneAndUpdate({email:email},{verifyEmailToken:token,verifyEmailExpires:Date.now()+300000},{new:true})
-    // updatedUser.save()
+    if (!oldUser) {
+      return res.status(400).json({ msg: "Invalid token" });
+    }
+    await User.findByIdAndUpdate(oldUser._id, {
+      $unset: { verifyEmailToken: 1, verifyEmailExpires: 1 },
+    });
     const token = jwt.sign(
-      { profile: oldUser, id: oldUser._id },
+      { email: oldUser.email, id: oldUser._id },
       process.env.TOKEN_SECRET,
-      { expiresIn: "4h" }
+      { expiresIn: "4h" },
     );
-    console.log("User Signed In By Verifying Email");
     return res.status(200).json({
       profile: { name: oldUser.name, email: oldUser.email, id: oldUser._id },
       token,
     });
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ msg: "Something went wrong" });
   }
 };
+
 exports.sendResetPassEmail = async (req, res) => {
+  const { error } = emailOnlyValidator.validate(req.body);
+  if (error) return res.status(400).json({ msg: error.details[0].message });
   const email = req.body.email;
-  const payload = {
-    email: email,
-  };
+  const payload = { email: email };
   try {
     const oldUser = await User.findOne({ email: email });
 
@@ -239,39 +262,27 @@ exports.sendResetPassEmail = async (req, res) => {
       return res.status(400).json({ msg: "No user exists with this email" });
 
     const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
-      expiresIn: "300000",
+      expiresIn: "5m",
     });
 
-    console.log(oldUser.resetPasswordExpires, oldUser.resetPasswordToken);
-
-    const updatedUser = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { email: email },
       { resetPasswordToken: token, resetPasswordExpires: Date.now() + 300000 },
-      { new: true }
+      { new: true },
     );
-    updatedUser.save();
-    console.log(req.headers.origin);
-    const sender = "reply.bookxchanger@gmail.com";
+    const sender = SMTP_USER;
     const subject = "BookXchanger Password Reset";
+    const origin = req.headers.origin || "";
     const body =
       "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
       "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
-      req.headers.origin +
+      origin +
       "/password-reset/" +
       token +
       "\n\n" +
       "If you did not request this, please ignore this email and your password will remain unchanged.\n";
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: sender,
-        pass: "Book@123123",
-      },
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
       from: sender,
@@ -280,10 +291,9 @@ exports.sendResetPassEmail = async (req, res) => {
       text: body,
     };
 
-    transporter.sendMail(mailOptions, (err, info) => {
+    transporter.sendMail(mailOptions, (err) => {
       if (err) {
-        console.log(err);
-      } else {
+        console.log("Mail send error");
       }
     });
 
@@ -291,33 +301,44 @@ exports.sendResetPassEmail = async (req, res) => {
       .status(200)
       .json({ msg: "An e-mail has been sent with further instructions" });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ msg: "Something went wrong on Server.." });
   }
 };
 
 exports.checkValidUser = async (req, res) => {
-  console.log(req.body.token);
   try {
+    if (!req.body.token) {
+      return res.status(400).json({ msg: "Password Token is inValid" });
+    }
+    try {
+      jwt.verify(req.body.token, process.env.TOKEN_SECRET);
+    } catch (e) {
+      return res.status(400).json({ msg: "Password Token is inValid" });
+    }
     const foundUser = await User.findOne({
       resetPasswordToken: req.body.token,
       resetPasswordExpires: { $gt: Date.now() },
     });
     if (!foundUser)
       return res.status(400).json({ msg: "Password Token is inValid" });
-    console.log(foundUser);
     return res
       .status(200)
       .json({ msg: "User and Token Validated successfully" });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ msg: "Something went wrong" });
   }
 };
 
 exports.resetPassword = async (req, res) => {
-  console.log(req.body);
   try {
+    if (!req.body.token || !req.body.password) {
+      return res.status(400).json({ msg: "Invalid request" });
+    }
+    try {
+      jwt.verify(req.body.token, process.env.TOKEN_SECRET);
+    } catch (e) {
+      return res.status(400).json({ msg: "Password Token is inValid" });
+    }
     const foundUser = await User.findOne({
       resetPasswordToken: req.body.token,
       resetPasswordExpires: { $gt: Date.now() },
@@ -327,52 +348,47 @@ exports.resetPassword = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    const updatedUser = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { email: foundUser.email },
       {
         resetPasswordToken: "",
         resetPasswordExpires: "",
         password: hashedPassword,
       },
-      { new: true }
+      { new: true },
     );
-    updatedUser.save();
 
-    console.log(updatedUser);
     return res.status(200).json({ msg: "Password reset successfully" });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ msg: "Something went wrong" });
   }
 };
 
-//utility function to generate a random password
-function random_password_generate(max, min) {
-  var passwordChars =
-    "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#@!%&()/";
-  var randPwLen = Math.floor(Math.random() * (max - min + 1)) + min;
-  var randPassword = Array(randPwLen)
-    .fill(passwordChars)
-    .map(function (x) {
-      return x[Math.floor(Math.random() * x.length)];
-    })
-    .join("");
-  return randPassword;
-}
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 exports.googleFacebookSignIn = async (req, res) => {
-  const { email, name, profilePic } = req.body;
-  // console.log(email)
+  const { tokenId, name, profilePic } = req.body;
   try {
+    if (!tokenId) {
+      return res.status(400).json({ msg: "Missing token" });
+    }
+
+    let email;
+    try {
+      const ticket = await googleClient.verifyIdToken({
+        idToken: tokenId,
+        audience: GOOGLE_CLIENT_ID,
+      });
+      email = ticket.getPayload().email;
+    } catch {
+      return res.status(401).json({ msg: "Invalid Google token" });
+    }
     const oldUser = await User.findOne({ email: email });
 
     if (!oldUser) {
       const password = random_password_generate(20, 10);
-      // console.log(name);
-      //siMrjVb44!QFG
-      // console.log(password);
       const hashedPassword = await bcrypt.hash(password, 10);
-      // console.log(hashedPassword)
       const newUser = await User.create({
         name,
         email,
@@ -384,7 +400,6 @@ exports.googleFacebookSignIn = async (req, res) => {
         postedBooks: [],
       });
 
-      // console.log("newUser",newUser);
       const payload = {
         email: newUser.email,
         id: newUser._id,
@@ -409,17 +424,15 @@ exports.googleFacebookSignIn = async (req, res) => {
     const updatedUser = await User.findOneAndUpdate(
       { email: email },
       { profilePic: profilePic },
-      { new: true }
+      { new: true },
     );
 
-    updatedUser.save();
     const token = jwt.sign(
-      { profile: updatedUser, id: oldUser._id },
+      { email: updatedUser.email, id: oldUser._id },
       process.env.TOKEN_SECRET,
-      { expiresIn: "4h" }
+      { expiresIn: "4h" },
     );
 
-    console.log("User Signed In using Google");
     return res.status(200).json({
       profile: {
         name: updatedUser.name,
@@ -438,38 +451,13 @@ exports.getProfile = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await User.findById(id);
-    console.log("Users Details Found");
-    return res.status(200).json(user);
-  } catch (err) {
-    return res.status(500).json({ msg: "Something went wrong" });
-  }
-};
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(400).json({ msg: "Invalid id" });
 
-exports.editProfile = async (req, res) => {
-  const { name, email, college, location, profilePic } = req.body;
-  const { error } = editValidator.validate(req.body);
-  console.log("in cont", profilePic);
-  try {
-    if (error) return res.status(400).json({ msg: error.details[0].message });
-    const updateData = { name, email, college, location, profilePic };
-
-    const updatedUser = await User.findByIdAndUpdate(req.userId, updateData, {
-      new: true,
-    });
-
-    console.log(updatedUser, "Profile Updated successfully!");
-    return res.status(200).json(updatedUser);
-  } catch (err) {
-    return res.status(500).json({ msg: "Something went wrong" });
-  }
-};
-
-exports.getProfile = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const user = await User.findById(id);
+    const user = await User.findById(id).select(
+      "-password -resetPasswordToken -resetPasswordExpires -verifyEmailToken -verifyEmailExpires",
+    );
+    if (!user) return res.status(404).json({ msg: "User not found" });
     return res.status(200).json(user);
   } catch (err) {
     return res.status(500).json({ msg: "Something went wrong" });
@@ -485,7 +473,9 @@ exports.editProfile = async (req, res) => {
 
     const updatedUser = await User.findByIdAndUpdate(req.userId, updateData, {
       new: true,
-    });
+    }).select(
+      "-password -resetPasswordToken -resetPasswordExpires -verifyEmailToken -verifyEmailExpires",
+    );
 
     return res.status(200).json(updatedUser);
   } catch (err) {
@@ -502,9 +492,10 @@ exports.changePassword = async (req, res) => {
     if (error) return res.status(400).json({ msg: error.details[0].message });
 
     const user = await User.findById(req.userId);
+    if (!user) return res.status(404).json({ msg: "User not found" });
     const isPasswordcorrect = await bcrypt.compare(
       currentPassword,
-      user.password
+      user.password,
     );
 
     if (!isPasswordcorrect)
@@ -519,7 +510,9 @@ exports.changePassword = async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       req.userId,
       updatedPassword,
-      { new: true }
+      { new: true },
+    ).select(
+      "-password -resetPasswordToken -resetPasswordExpires -verifyEmailToken -verifyEmailExpires",
     );
 
     return res.status(200).json(updatedUser);
@@ -535,31 +528,22 @@ exports.sendMail = async (req, res) => {
       return res
         .status(400)
         .json({ msg: error.details[0].message, severity: "error" });
-    const receiver = "bookxchanger7@gmail.com";
+    const receiver = FEEDBACK_RECEIVER;
     const message = req.body.message;
     const subject = `Feedback from ${req.body.name}`;
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: "reply.bookxchanger@gmail.com",
-        pass: "Book@123123",
-      },
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
-      from: "reply.bookxchanger@gmail.com",
+      from: SMTP_USER,
       to: receiver,
       subject: subject,
       text: message,
     };
 
-    transporter.sendMail(mailOptions, (err, info) => {
+    transporter.sendMail(mailOptions, (err) => {
       if (err) {
-      } else {
+        console.log("Mail send error");
       }
     });
     return res.status(200).json({
@@ -582,30 +566,23 @@ const sendGoogleMail = async (to, toName, password) => {
         `;
     const subject = `${toName},your passward generated; `;
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: "reply.bookxchanger@gmail.com",
-        pass: "Book@123123",
-      },
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
-      from: "reply.bookxchanger@gmail.com",
+      from: SMTP_USER,
       to: receiver,
       subject: subject,
       text: message,
     };
 
-    transporter.sendMail(mailOptions, (err, info) => {
+    transporter.sendMail(mailOptions, (err) => {
       if (err) {
-      } else {
+        console.log("Mail send error");
       }
     });
-  } catch (err) {}
+  } catch (err) {
+    console.log("sendGoogleMail error");
+  }
 };
 
 exports.sendChatMail = async (to, toName, fromName, url) => {
@@ -617,77 +594,60 @@ exports.sendChatMail = async (to, toName, fromName, url) => {
             Please head over to chatbox: ${url} To chat now
         `;
     const subject = `Dear ${toName},you have new messages `;
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: "reply.bookxchanger@gmail.com",
-        pass: "Book@123123",
-      },
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
-      from: "reply.bookxchanger@gmail.com",
+      from: SMTP_USER,
       to: receiver,
       subject: subject,
       text: message,
     };
 
-    transporter.sendMail(mailOptions, (err, info) => {
+    transporter.sendMail(mailOptions, (err) => {
       if (err) {
-      } else {
+        console.log("Mail send error");
       }
     });
-  } catch (err) {}
+  } catch (err) {
+    console.log("sendChatMail error");
+  }
 };
 
 exports.getRecentUsers = async (req, res) => {
   const userId = req.userId;
   try {
     const recentUsers = await Message.distinct("fromName", { to: userId });
-    console.log(recentUsers);
     const recentIds = await Message.distinct("from", { to: userId });
-    console.log(recentIds);
     const users = [];
     for (const recent of recentUsers) {
       users.push({ name: recent });
     }
-    console.log(users);
     var j = 0;
     for (const id of recentIds) {
       users[j] = { ...users[j], id: id };
       j++;
     }
-    console.log(users);
     return res.status(200).json(users);
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ msg: "Something went wrong" });
   }
 };
 
 exports.deleteaBookFromWish = async (req, res) => {
-  // console.log("This is Backend Request to delete a book" );
   const { id } = req.params;
-  // console.log(id);
   try {
     if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(404).json({ msg: `No Book with id:${id}` });
-    // console.log("Valid ID")
     const book = await Book.findById(id);
+    if (!book) return res.status(404).json({ msg: `No Book with id:${id}` });
     const filteredBooks = book.wishListedBy.filter(
-      (userId) => req.userId != userId
+      (userId) => req.userId != userId,
     );
-    // console.log("My id"+ req.userId)
     book.wishListedBy = filteredBooks;
-    // console.log("Book"+ book.wishListedBy);
     await Book.findOneAndUpdate({ _id: id }, book, { new: true });
-    // console.log("Book deleted successfully")
 
     return res.status(204).json({ msg: "Book Deleted Successfully" });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ msg: "Something went wrong on Server.." });
   }
 };

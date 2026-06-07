@@ -1,0 +1,12 @@
+node_modules
+package-lock.json
+client
+build
+dist
+coverage
+.next
+.nuxt
+.cache
+.parcel-cache
+config/config.env
+*.env

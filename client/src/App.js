@@ -41,9 +41,11 @@ const App = () => {
 
   useEffect(() => {
     if (localStorage.getItem("profile")) {
+      const profile = JSON.parse(localStorage.getItem("profile"));
+      socket.auth = { token: profile.token };
       socket.connect();
 
-      const id = JSON.parse(localStorage.getItem("profile")).profile.id;
+      const id = profile.profile.id;
       socket.on("connect", () => {
         socket.emit("login", { id: id });
       });
